@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="Encoding">
+    <file url="file://$PROJECT_DIR$/experiment/ablation/AutoChecker_without_APIRecommendation/results/easy/AvoidUsingOctalValuesRule.txt" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/experiment/ablation/AutoChecker_without_APIRecommendation/results/easy/ExceptionAsFlowControlRule.txt" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/experiment/ablation/AutoChecker_without_APIRecommendation/results/easy/ExcessiveImportsRule.txt" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/experiment/ablation/AutoChecker_without_APIRecommendation/results/easy/ExcessivePublicCountRule.txt" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/experiment/ablation/AutoChecker_without_APIRecommendation/results/easy/IdenticalCatchBranchesRule.txt" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/experiment/ablation/AutoChecker_without_APIRecommendation/results/easy/InefficientEmptyStringCheckRule.txt" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/experiment/ablation/AutoChecker_without_APIRecommendation/results/easy/NullAssignmentRule.txt" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/experiment/ablation/AutoChecker_without_APIRecommendation/results/easy/SignatureDeclareThrowsExceptionRule.txt" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/experiment/ablation/AutoChecker_without_APIRecommendation/results/easy/StringInstantiationRule.txt" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/experiment/ablation/AutoChecker_without_APIRecommendation/results/easy/UseStringBufferForStringAppendsRule.txt" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/experiment/ablation/AutoChecker_without_APIRecommendation/results/not easy/AssignmentToNonFinalStaticRule.txt" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/experiment/ablation/AutoChecker_without_APIRecommendation/results/not easy/AvoidDuplicateLiteralsRule.txt" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/experiment/ablation/AutoChecker_without_APIRecommendation/results/not easy/AvoidInstantiatingObjectsInLoopsRule.txt" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/experiment/ablation/AutoChecker_without_APIRecommendation/results/not easy/AvoidThrowingNullPointerExceptionRule.txt" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/experiment/ablation/AutoChecker_without_APIRecommendation/results/not easy/BrokenNullCheckRule.txt" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/experiment/ablation/AutoChecker_without_APIRecommendation/results/not easy/ClassWithOnlyPrivateConstructorsShouldBeFinalRule.txt" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/experiment/ablation/AutoChecker_without_APIRecommendation/results/not easy/EmptyControlStatementRule.txt" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/experiment/ablation/AutoChecker_without_APIRecommendation/results/not easy/LiteralsFirstInComparisonsRule.txt" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/experiment/ablation/AutoChecker_without_APIRecommendation/results/not easy/MethodNamingConventionsRule.txt" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/experiment/ablation/AutoChecker_without_APIRecommendation/results/not easy/UnnecessaryImportRule.txt" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/experiment/ablation/AutoChecker_without_APIRecommendation/results/not easy/UnnecessaryImportRule2.txt" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/experiment/ablation/AutoChecker_without_Iteration/results/easy/AvoidUsingOctalValuesRule.txt" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/experiment/ablation/AutoChecker_without_Iteration/results/easy/ExceptionAsFlowControlRule.txt" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/experiment/ablation/AutoChecker_without_Iteration/results/easy/ExcessiveImportsRule.txt" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/experiment/ablation/AutoChecker_without_Iteration/results/easy/ExcessivePublicCountRule.txt" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/experiment/ablation/AutoChecker_without_Iteration/results/easy/IdenticalCatchBranchesRule.txt" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/experiment/ablation/AutoChecker_without_Iteration/results/easy/InefficientEmptyStringCheckRule.txt" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/experiment/ablation/AutoChecker_without_Iteration/results/easy/NullAssignmentRule.txt" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/experiment/ablation/AutoChecker_without_Iteration/results/easy/SignatureDeclareThrowsExceptionRule.txt" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/experiment/ablation/AutoChecker_without_Iteration/results/easy/StringInstantiationRule.txt" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/experiment/ablation/AutoChecker_without_Iteration/results/easy/UseStringBufferForStringAppendsRule.txt" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/experiment/ablation/AutoChecker_without_Iteration/results/not easy/AssignmentToNonFinalStaticRule.txt" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/experiment/ablation/AutoChecker_without_Iteration/results/not easy/AvoidDuplicateLiteralsRule.txt" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/experiment/ablation/AutoChecker_without_Iteration/results/not easy/AvoidInstantiatingObjectsInLoopsRule.txt" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/experiment/ablation/AutoChecker_without_Iteration/results/not easy/AvoidThrowingNullPointerExceptionRule.txt" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/experiment/ablation/AutoChecker_without_Iteration/results/not easy/BrokenNullCheckRule.txt" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/experiment/ablation/AutoChecker_without_Iteration/results/not easy/ClassWithOnlyPrivateConstructorsShouldBeFinalRule.txt" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/experiment/ablation/AutoChecker_without_Iteration/results/not easy/EmptyControlStatementRule.txt" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/experiment/ablation/AutoChecker_without_Iteration/results/not easy/LiteralsFirstInComparisonsRule.txt" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/experiment/ablation/AutoChecker_without_Iteration/results/not easy/MethodNamingConventionsRule.txt" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/experiment/ablation/AutoChecker_without_Iteration/results/not easy/UnnecessaryImportRule.txt" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/experiment/autochecker/results/easy/AvoidUsingOctalValuesRule.txt" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/experiment/autochecker/results/easy/ExceptionAsFlowControlRule.txt" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/experiment/autochecker/results/easy/ExcessiveImportsRule.txt" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/experiment/autochecker/results/easy/ExcessivePublicCountRule.txt" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/experiment/autochecker/results/easy/IdenticalCatchBranchesRule.txt" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/experiment/autochecker/results/easy/InefficientEmptyStringCheckRule.txt" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/experiment/autochecker/results/easy/NullAssignmentRule.txt" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/experiment/autochecker/results/easy/SignatureDeclareThrowsExceptionRule.txt" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/experiment/autochecker/results/easy/StringInstantiationRule.txt" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/experiment/autochecker/results/easy/UseStringBufferForStringAppendsRule.txt" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/experiment/autochecker/results/not easy/AssignmentToNonFinalStaticRule.txt" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/experiment/autochecker/results/not easy/AvoidDuplicateLiteralsRule.txt" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/experiment/autochecker/results/not easy/AvoidInstantiatingObjectsInLoopsRule.txt" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/experiment/autochecker/results/not easy/AvoidThrowingNullPointerExceptionRule.txt" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/experiment/autochecker/results/not easy/BrokenNullCheckRule.txt" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/experiment/autochecker/results/not easy/ClassWithOnlyPrivateConstructorsShouldBeFinalRule.txt" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/experiment/autochecker/results/not easy/EmptyControlStatementRule.txt" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/experiment/autochecker/results/not easy/LiteralsFirstInComparisonsRule.txt" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/experiment/autochecker/results/not easy/MethodNamingConventionsRule.txt" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/experiment/autochecker/results/not easy/UnnecessaryImportRule.txt" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/experiment/autochecker/results/not easy/UnnecessaryImportRule2.txt" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/experiment/baselines/nCasesLLM/results/easy/AvoidUsingOctalValuesRule.txt" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/experiment/baselines/nCasesLLM/results/easy/ExceptionAsFlowControlRule.txt" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/experiment/baselines/nCasesLLM/results/easy/ExcessiveImportsRule.txt" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/experiment/baselines/nCasesLLM/results/easy/ExcessivePublicCountRule.txt" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/experiment/baselines/nCasesLLM/results/easy/IdenticalCatchBranchesRule.txt" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/experiment/baselines/nCasesLLM/results/easy/InefficientEmptyStringCheckRule.txt" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/experiment/baselines/nCasesLLM/results/easy/NullAssignmentRule.txt" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/experiment/baselines/nCasesLLM/results/easy/SignatureDeclareThrowsExceptionRule.txt" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/experiment/baselines/nCasesLLM/results/easy/StringInstantiationRule.txt" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/experiment/baselines/nCasesLLM/results/easy/UseStringBufferForStringAppendsRule.txt" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/experiment/baselines/nCasesLLM/results/not easy/AssignmentToNonFinalStaticRule.txt" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/experiment/baselines/nCasesLLM/results/not easy/AvoidDuplicateLiteralsRule.txt" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/experiment/baselines/nCasesLLM/results/not easy/AvoidInstantiatingObjectsInLoopsRule.txt" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/experiment/baselines/nCasesLLM/results/not easy/AvoidThrowingNullPointerExceptionRule.txt" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/experiment/baselines/nCasesLLM/results/not easy/BrokenNullCheckRule.txt" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/experiment/baselines/nCasesLLM/results/not easy/ClassWithOnlyPrivateConstructorsShouldBeFinalRule.txt" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/experiment/baselines/nCasesLLM/results/not easy/EmptyControlStatementRule.txt" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/experiment/baselines/nCasesLLM/results/not easy/LiteralsFirstInComparisonsRule.txt" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/experiment/baselines/nCasesLLM/results/not easy/MethodNamingConventionsRule.txt" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/experiment/baselines/nCasesLLM/results/not easy/UnnecessaryImportRule.txt" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/experiment/baselines/noCaseLLM/results/easy/AvoidUsingOctalValuesRule.txt" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/experiment/baselines/noCaseLLM/results/easy/ExceptionAsFlowControlRule.txt" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/experiment/baselines/noCaseLLM/results/easy/ExcessiveImportsRule.txt" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/experiment/baselines/noCaseLLM/results/easy/ExcessivePublicCountRule.txt" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/experiment/baselines/noCaseLLM/results/easy/IdenticalCatchBranchesRule.txt" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/experiment/baselines/noCaseLLM/results/easy/InefficientEmptyStringCheckRule.txt" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/experiment/baselines/noCaseLLM/results/easy/NullAssignmentRule.txt" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/experiment/baselines/noCaseLLM/results/easy/SignatureDeclareThrowsExceptionRule.txt" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/experiment/baselines/noCaseLLM/results/easy/StringInstantiationRule.txt" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/experiment/baselines/noCaseLLM/results/easy/UseStringBufferForStringAppendsRule.txt" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/experiment/baselines/noCaseLLM/results/not easy/AssignmentToNonFinalStaticRule.txt" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/experiment/baselines/noCaseLLM/results/not easy/AvoidDuplicateLiteralsRule.txt" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/experiment/baselines/noCaseLLM/results/not easy/AvoidInstantiatingObjectsInLoopsRule.txt" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/experiment/baselines/noCaseLLM/results/not easy/AvoidThrowingNullPointerExceptionRule.txt" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/experiment/baselines/noCaseLLM/results/not easy/BrokenNullCheckRule.txt" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/experiment/baselines/noCaseLLM/results/not easy/ClassWithOnlyPrivateConstructorsShouldBeFinalRule.txt" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/experiment/baselines/noCaseLLM/results/not easy/EmptyControlStatementRule.txt" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/experiment/baselines/noCaseLLM/results/not easy/LiteralsFirstInComparisonsRule.txt" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/experiment/baselines/noCaseLLM/results/not easy/MethodNamingConventionsRule.txt" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/experiment/baselines/noCaseLLM/results/not easy/UnnecessaryImportRule.txt" charset="GBK" />
+  </component>
+</project>
