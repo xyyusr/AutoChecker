@@ -25,14 +25,14 @@ def get_data(file_path: str):
 # Database to store embeddings and corresponding sentences
 database = []
 # Load model from HuggingFace Hub
-tokenizer = AutoTokenizer.from_pretrained('D:/JetBrains/pycharm/bge-large-en-v1.5')
-model = AutoModel.from_pretrained('D:/JetBrains/pycharm/bge-large-en-v1.5')
+tokenizer = AutoTokenizer.from_pretrained('xx/bge-large-en-v1.5')
+model = AutoModel.from_pretrained('xx/bge-large-en-v1.5')
 model.eval()
 
 def embeddingsentences():
     database.clear()
     # Sentences we want sentence embeddings for
-    sentences = get_data("../base/meta_operation_set.json")
+    sentences = get_data("../base/Meta_Op_DB.json")
 
     # Tokenize sentences
     encoded_input = tokenizer(sentences, padding=True, truncation=True, return_tensors='pt')
@@ -51,7 +51,7 @@ def embeddingsentences():
         database.append({'sentence': sent, 'embedding': emb})
 
 def findopimpl(op_name: str):
-    with open("../base/meta_operation_set.json", 'r', encoding='utf-8') as file:
+    with open("../base/Meta_Op_DB.json", 'r', encoding='utf-8') as file:
         data = json.load(file)
 
     # 遍历所有类

@@ -2368,3 +2368,39 @@ ok 4
 结束
 
 规则执行完毕，时间总花销： 2751.1708619594574 秒
+
+final checker
+```java
+package net.sourceforge.pmd.lang.java.rule.performance;
+
+
+import net.sourceforge.pmd.lang.java.rule.AbstractJavaRulechainRule;
+import net.sourceforge.pmd.lang.java.ast. *;
+import net.sourceforge.pmd.lang.java.ast.internal. *;
+import net.sourceforge.pmd.lang.java.rule.internal. *;
+import net.sourceforge.pmd.lang.java.types. *;
+import net.sourceforge.pmd.lang.java.symbols. *;
+import net.sourceforge.pmd.lang.ast.NodeStream;
+public class StringInstantiationRule extends AbstractJavaRulechainRule {
+    public StringInstantiationRule() {
+        super(ASTConstructorCall.class);
+    }
+
+    public boolean isVariableAccessStringType(ASTConstructorCall node) {
+        return TypeTestUtil.isA(String.class, node);
+    }
+
+    public int getArgumentNumber(ASTConstructorCall node){
+        ASTArgumentList arguments = node.getArguments();
+        return arguments != null ? arguments.size() : 0;
+    }
+
+    @Override
+    public Object visit(ASTConstructorCall node, Object data) {
+        if (isVariableAccessStringType(node) && getArgumentNumber(node) <= 1) {
+            addViolation(data, node);
+        }
+        return super.visit(node, data);
+    }
+}
+```

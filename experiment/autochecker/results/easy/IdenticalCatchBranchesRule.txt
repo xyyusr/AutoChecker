@@ -7612,3 +7612,67 @@ ok 5
 结束
 
 规则执行完毕，时间总花销： 5207.118096113205 秒
+
+```java
+package net.sourceforge.pmd.lang.java.rule.codestyle;
+
+import java.util.HashMap;
+import java.util.Map;
+import java.util.StringJoiner;
+
+
+import net.sourceforge.pmd.lang.java.rule.AbstractJavaRulechainRule;
+import net.sourceforge.pmd.lang.java.ast. *;
+import net.sourceforge.pmd.lang.java.ast.internal. *;
+import net.sourceforge.pmd.lang.java.rule.internal. *;
+import net.sourceforge.pmd.lang.java.types. *;
+import net.sourceforge.pmd.lang.java.symbols. *;
+import net.sourceforge.pmd.lang.ast.NodeStream;
+public class IdenticalCatchBranchesRule extends AbstractJavaRulechainRule {
+
+    public IdenticalCatchBranchesRule() {
+        super(ASTTryStatement.class);
+    }
+
+    @Override
+    public Object visit(ASTTryStatement node, Object data) {
+        Map<String, ASTCatchClause> catchBlocks = new HashMap<>();
+        for (ASTCatchClause catchClause : node.getCatchClauses()) {
+            String blockCode = getBlockCode(catchClause);
+            String exceptions = getExceptionTypes(catchClause.getParameter());
+
+            String key = blockCode + "|" + exceptions;  // combine block code and exceptions
+            if (catchBlocks.containsKey(key) && !catchBlocks.get(key).equals(catchClause)) {
+                addViolation(data, catchClause);
+            } else {
+                catchBlocks.put(key, catchClause);
+            }
+        }
+        return super.visit(node, data);
+    }
+
+    private String getBlockCode(ASTCatchClause catchClause) {
+        String blockCode = catchClause.getBody().getFirstChild().getImage();
+        ASTThrowStatement throwStatement = catchClause.getFirstDescendantOfType(ASTThrowStatement.class);
+        ASTMethodCall methodCall = catchClause.getFirstDescendantOfType(ASTMethodCall.class);
+        if (throwStatement != null) {
+            ASTStringLiteral stringLiteral = throwStatement.getFirstDescendantOfType(ASTStringLiteral.class);
+            if (stringLiteral != null) {
+                blockCode += "|" + stringLiteral.getImage();
+            }
+        } else if (methodCall != null) {
+            blockCode += "|" + methodCall.getMethodName();
+        }
+        return blockCode;
+    }
+
+    private String getExceptionTypes(ASTCatchParameter parameter) {
+        NodeStream<ASTClassOrInterfaceType> allExceptionTypes = parameter.getAllExceptionTypes();
+        StringJoiner joiner = new StringJoiner(",");
+        for (ASTClassOrInterfaceType type : allExceptionTypes) {
+            joiner.add(type.getImage());
+        }
+        return joiner.toString();
+    }
+}
+```

@@ -31418,3 +31418,43 @@ ok 17
 结束
 
 规则执行完毕，时间总花销： 11702.90268111229 秒
+
+final checker
+```java
+package net.sourceforge.pmd.lang.java.rule.performance;
+
+
+import net.sourceforge.pmd.lang.java.rule.AbstractJavaRulechainRule;
+import net.sourceforge.pmd.lang.java.ast. *;
+import net.sourceforge.pmd.lang.java.ast.internal. *;
+import net.sourceforge.pmd.lang.java.types. *;
+import net.sourceforge.pmd.lang.java.symbols. *;
+import net.sourceforge.pmd.lang.ast.NodeStream;
+public class UseStringBufferForStringAppendsRule extends AbstractJavaRulechainRule {
+
+    public UseStringBufferForStringAppendsRule() {
+        super(ASTMethodDeclaration.class, ASTDoStatement.class, ASTAssignmentExpression.class);
+    }
+
+    @Override
+    public Object visit(ASTMethodDeclaration node, Object data) {
+        return super.visit(node, data);
+    }
+
+    @Override
+    public Object visit(ASTDoStatement node, Object data) {
+        return super.visit(node, data);
+    }
+
+    @Override
+    public Object visit(ASTAssignmentExpression node, Object data) {
+        if (node.hasDescendantOfType(ASTInfixExpression.class)) {
+            ASTVariableAccess variableAccess = node.getFirstChildOfType(ASTVariableAccess.class);
+            if (variableAccess != null && TypeTestUtil.isA(String.class, variableAccess)) {
+                addViolation(data, node);
+            }
+        }
+        return super.visit(node, data);
+    }
+}
+```

@@ -3692,3 +3692,44 @@ bad 6
 结束
 
 规则执行完毕，时间总花销： 1351.069503545761 秒
+
+final checker
+```java
+package net.sourceforge.pmd.lang.java.rule.errorprone;
+import java.util.HashMap;
+import java.util.Map;
+
+import net.sourceforge.pmd.lang.java.rule.AbstractJavaRulechainRule;
+import net.sourceforge.pmd.lang.java.ast. *;
+import net.sourceforge.pmd.lang.java.ast.internal. *;
+import net.sourceforge.pmd.lang.java.types. *;
+import net.sourceforge.pmd.lang.java.symbols. *;
+import net.sourceforge.pmd.lang.ast.NodeStream;
+public class AvoidDuplicateLiteralsRule extends AbstractJavaRulechainRule {
+
+    private static final int THRESHOLD = 4;
+    private static final int STRING_LENGTH = 3;
+    private Map<String, Integer> stringOccurrences;
+
+    public AvoidDuplicateLiteralsRule() {
+        super(ASTStringLiteral.class);
+        stringOccurrences = new HashMap<>();
+    }
+
+    @Override
+    public Object visit(ASTStringLiteral node, Object data) {
+        String stringLiteral = node.getImage();
+
+        if (stringLiteral.length() >= STRING_LENGTH) {
+            int count = stringOccurrences.getOrDefault(stringLiteral, 0);
+            stringOccurrences.put(stringLiteral, count + 1);
+
+            if (stringOccurrences.get(stringLiteral) >= THRESHOLD) {
+                addViolation(data, node);
+            }
+        }
+
+        return super.visit(node, data);
+    }
+}
+```

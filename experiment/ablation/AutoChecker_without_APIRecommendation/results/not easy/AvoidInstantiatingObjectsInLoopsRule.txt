@@ -23775,3 +23775,102 @@ True
 结束
 
 规则执行完毕，时间总花销： 6806.891155719757 秒
+
+final checker
+```java
+package net.sourceforge.pmd.lang.java.rule.performance;
+
+
+import net.sourceforge.pmd.lang.java.rule.AbstractJavaRulechainRule;
+import net.sourceforge.pmd.lang.java.ast. *;
+import net.sourceforge.pmd.lang.java.ast.internal. *;
+import net.sourceforge.pmd.lang.java.types. *;
+import net.sourceforge.pmd.lang.java.symbols. *;
+import net.sourceforge.pmd.lang.ast.NodeStream;
+public class AvoidInstantiatingObjectsInLoopsRule extends AbstractJavaRulechainRule {
+
+    public AvoidInstantiatingObjectsInLoopsRule() {
+        super(ASTWhileStatement.class, ASTDoStatement.class, ASTForeachStatement.class, ASTForStatement.class);
+    }
+
+    @Override
+    public Object visit(ASTWhileStatement node, Object data) {
+        if (hasConstructorCallOutsideCatch(node)) {
+            addViolation(data, node);
+        }
+        return super.visit(node, data);
+    }
+
+    @Override
+    public Object visit(ASTDoStatement node, Object data) {
+        if (hasConstructorCallOutsideCatch(node)) {
+            addViolation(data, node);
+        }
+        return super.visit(node, data);
+    }
+
+    @Override
+    public Object visit(ASTForeachStatement node, Object data) {
+        if (hasConstructorCallOutsideCatch(node)) {
+            addViolation(data, node);
+        }
+        return super.visit(node, data);
+    }
+
+    @Override
+    public Object visit(ASTForStatement node, Object data) {
+        if (hasConstructorCallOutsideCatch(node)) {
+            addViolation(data, node);
+        }
+        return super.visit(node, data);
+    }
+
+    private boolean hasConstructorCallOutsideCatch(ASTWhileStatement node) {
+        return hasConstructorCallOutsideCatchAndThrow(node);
+    }
+
+    private boolean hasConstructorCallOutsideCatch(ASTDoStatement node) {
+        return hasConstructorCallOutsideCatchAndThrow(node);
+    }
+
+    private boolean hasConstructorCallOutsideCatch(ASTForeachStatement node) {
+        return hasConstructorCallOutsideCatchAndThrow(node);
+    }
+
+    private boolean hasConstructorCallOutsideCatch(ASTForStatement node) {
+        return hasConstructorCallOutsideCatchAndThrow(node);
+    }
+
+    private boolean hasConstructorCallOutsideCatchAndThrow(ASTWhileStatement node) {
+        return node.findDescendantsOfType(ASTConstructorCall.class).stream()
+                .anyMatch(call -> call.getFirstParentOfType(ASTCatchClause.class) == null
+                          && call.getFirstParentOfType(ASTThrowStatement.class) == null
+                          && call.getFirstParentOfType(ASTReturnStatement.class) == null
+                          && call.getFirstParentOfType(ASTAssignmentExpression.class) == null);
+    }
+
+    private boolean hasConstructorCallOutsideCatchAndThrow(ASTDoStatement node) {
+        return node.findDescendantsOfType(ASTConstructorCall.class).stream()
+                .anyMatch(call -> call.getFirstParentOfType(ASTCatchClause.class) == null
+                          && call.getFirstParentOfType(ASTThrowStatement.class) == null
+                          && call.getFirstParentOfType(ASTReturnStatement.class) == null
+                          && call.getFirstParentOfType(ASTAssignmentExpression.class) == null);
+    }
+
+    private boolean hasConstructorCallOutsideCatchAndThrow(ASTForeachStatement node) {
+        return node.findDescendantsOfType(ASTConstructorCall.class).stream()
+                .anyMatch(call -> call.getFirstParentOfType(ASTCatchClause.class) == null
+                          && call.getFirstParentOfType(ASTThrowStatement.class) == null
+                          && call.getFirstParentOfType(ASTReturnStatement.class) == null
+                          && call.getFirstParentOfType(ASTAssignmentExpression.class) == null);
+    }
+
+    private boolean hasConstructorCallOutsideCatchAndThrow(ASTForStatement node) {
+        return node.findDescendantsOfType(ASTConstructorCall.class).stream()
+                .anyMatch(call -> call.getFirstParentOfType(ASTCatchClause.class) == null
+                          && call.getFirstParentOfType(ASTThrowStatement.class) == null
+                          && call.getFirstParentOfType(ASTReturnStatement.class) == null
+                          && call.getFirstParentOfType(ASTAssignmentExpression.class) == null);
+    }
+}
+```

@@ -6831,3 +6831,55 @@ ok 5
 结束
 
 规则执行完毕，时间总花销： 2939.9180223941803 秒
+
+final checker
+```java
+package net.sourceforge.pmd.lang.java.rule.codestyle;
+
+import java.util.*;
+
+
+import net.sourceforge.pmd.lang.java.rule.AbstractJavaRulechainRule;
+import net.sourceforge.pmd.lang.java.ast. *;
+import net.sourceforge.pmd.lang.java.ast.internal. *;
+import net.sourceforge.pmd.lang.java.types. *;
+import net.sourceforge.pmd.lang.java.symbols. *;
+import net.sourceforge.pmd.lang.ast.NodeStream;
+public class IdenticalCatchBranchesRule extends AbstractJavaRulechainRule {
+
+    public IdenticalCatchBranchesRule() {
+        super(ASTTryStatement.class);
+    }
+
+    @Override
+    public Object visit(ASTTryStatement node, Object data) {
+        List<ASTCatchClause> catchClauses = node.findChildrenOfType(ASTCatchClause.class);
+        Map<String, Integer> catchBlocks = new HashMap<>();
+
+        for (ASTCatchClause catchClause : catchClauses) {
+            String catchBlock = catchClause.getFirstChildOfType(ASTBlock.class).getImage();
+
+            // Get the exception type and error message
+            String exceptionType = catchClause.getFirstChildOfType(ASTCatchParameter.class).getFirstChildOfType(ASTClassOrInterfaceType.class).getImage();
+            String errorMessage = catchClause.getFirstDescendantOfType(ASTStringLiteral.class) == null ? "" : catchClause.getFirstDescendantOfType(ASTStringLiteral.class).getImage();
+
+            // Get the method call
+            String methodCall = catchClause.getFirstDescendantOfType(ASTMethodCall.class) == null ? "" : catchClause.getFirstDescendantOfType(ASTMethodCall.class).getMethodName();
+
+            // Include the exception type, error message and method call in the key
+            String key = catchBlock + exceptionType + errorMessage + methodCall;
+
+            catchBlocks.put(key, catchBlocks.getOrDefault(key, 0) + 1);
+        }
+
+        for (Map.Entry<String, Integer> entry : catchBlocks.entrySet()) {
+            if (entry.getValue() > 1) {
+                addViolation(data, node);
+                break;
+            }
+        }
+
+        return super.visit(node, data);
+    }
+}
+```

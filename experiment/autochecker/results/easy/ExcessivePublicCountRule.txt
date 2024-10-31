@@ -423,3 +423,47 @@ True
 结束
 
 规则执行完毕，时间总花销： 861.2697112560272 秒
+
+```java
+package net.sourceforge.pmd.lang.java.rule.design;
+
+
+import net.sourceforge.pmd.lang.java.rule.AbstractJavaRulechainRule;
+import net.sourceforge.pmd.lang.java.ast. *;
+import net.sourceforge.pmd.lang.java.ast.internal. *;
+import net.sourceforge.pmd.lang.java.rule.internal. *;
+import net.sourceforge.pmd.lang.java.types. *;
+import net.sourceforge.pmd.lang.java.symbols. *;
+import net.sourceforge.pmd.lang.ast.NodeStream;
+public class ExcessivePublicCountRule extends AbstractJavaRulechainRule {
+
+    private static final int FIELD_METHOD_THRESHOLD = 2;
+
+    public ExcessivePublicCountRule() {
+        super(ASTClassOrInterfaceDeclaration.class);
+    }
+
+    @Override
+    public Object visit(ASTClassOrInterfaceDeclaration node, Object data) {
+        int publicCount = 0;
+
+        for (ASTFieldDeclaration field : node.getDeclarations(ASTFieldDeclaration.class)) {
+            if (field.isPublic() && !(field.isStatic() && field.isFinal())) {
+                publicCount++;
+            }
+        }
+
+        for (ASTMethodDeclaration method : node.getDeclarations(ASTMethodDeclaration.class)) {
+            if (method.isPublic()) {
+                publicCount++;
+            }
+        }
+
+        if (publicCount > FIELD_METHOD_THRESHOLD) {
+            addViolation(data, node);
+        }
+
+        return super.visit(node, data);
+    }
+}
+```

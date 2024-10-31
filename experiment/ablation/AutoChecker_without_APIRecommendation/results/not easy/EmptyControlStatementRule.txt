@@ -19475,3 +19475,113 @@ bad 22
 结束
 
 规则执行完毕，时间总花销： 9004.655060052872 秒
+
+final checker
+```java
+package net.sourceforge.pmd.lang.java.rule.codestyle;
+
+
+import net.sourceforge.pmd.lang.java.rule.AbstractJavaRulechainRule;
+import net.sourceforge.pmd.lang.java.ast. *;
+import net.sourceforge.pmd.lang.java.ast.internal. *;
+import net.sourceforge.pmd.lang.java.types. *;
+import net.sourceforge.pmd.lang.java.symbols. *;
+import net.sourceforge.pmd.lang.ast.NodeStream;
+public class EmptyControlStatementRule extends AbstractJavaRulechainRule {
+
+    public EmptyControlStatementRule() {
+        super(ASTTryStatement.class, ASTCatchClause.class, ASTFinallyClause.class, ASTSynchronizedStatement.class, ASTSwitchStatement.class, ASTInitializer.class, ASTBlock.class, ASTForStatement.class, ASTDoStatement.class, ASTForeachStatement.class, ASTWhileStatement.class);
+    }
+
+    @Override
+    public Object visit(ASTTryStatement node, Object data) {
+        if (node.hasDescendantOfType(ASTResourceList.class)) {
+            return data;
+        }
+        if (node.getFirstDescendantOfType(ASTBlock.class).getNumChildren() == 0) {
+            addViolation(data, node);
+        }
+        return super.visit(node, data);
+    }
+
+    @Override
+    public Object visit(ASTCatchClause node, Object data) {
+        if (node.getFirstDescendantOfType(ASTBlock.class).getNumChildren() == 0) {
+            addViolation(data, node);
+        }
+        return super.visit(node, data);
+    }
+
+    @Override
+    public Object visit(ASTFinallyClause node, Object data) {
+        if (node.getFirstDescendantOfType(ASTBlock.class).getNumChildren() == 0) {
+            addViolation(data, node);
+        }
+        return super.visit(node, data);
+    }
+
+    @Override
+    public Object visit(ASTSynchronizedStatement node, Object data) {
+        if (node.getFirstDescendantOfType(ASTBlock.class).getNumChildren() == 0) {
+            addViolation(data, node);
+        }
+        return super.visit(node, data);
+    }
+
+    @Override
+    public Object visit(ASTSwitchStatement node, Object data) {
+        if (node.getNumChildren() == 1) {
+            addViolation(data, node);
+        }
+        return super.visit(node, data);
+    }
+
+    @Override
+    public Object visit(ASTInitializer node, Object data) {
+        if (node.getFirstDescendantOfType(ASTBlock.class).getNumChildren() == 0) {
+            addViolation(data, node);
+        }
+        return super.visit(node, data);
+    }
+
+    @Override
+    public Object visit(ASTBlock node, Object data) {
+        if(node.getParent() instanceof ASTBlock && node.getNumChildren() == 0){
+            addViolation(data, node);
+        }
+        return super.visit(node, data);
+    }
+
+    @Override
+    public Object visit(ASTForStatement node, Object data) {
+        if (node.getFirstDescendantOfType(ASTBlock.class).getNumChildren() == 0) {
+            addViolation(data, node);
+        }
+        return super.visit(node, data);
+    }
+
+    @Override
+    public Object visit(ASTDoStatement node, Object data) {
+        if (node.getFirstDescendantOfType(ASTBlock.class).getNumChildren() == 0) {
+            addViolation(data, node);
+        }
+        return super.visit(node, data);
+    }
+
+    @Override
+    public Object visit(ASTForeachStatement node, Object data) {
+        if (node.getFirstDescendantOfType(ASTBlock.class).getNumChildren() == 0) {
+            addViolation(data, node);
+        }
+        return super.visit(node, data);
+    }
+
+    @Override
+    public Object visit(ASTWhileStatement node, Object data) {
+        if (node.getNumChildren() == 2 && node.getChild(1) instanceof ASTEmptyStatement) {
+            addViolation(data, node);
+        }
+        return super.visit(node, data);
+    }
+}
+```

@@ -8355,3 +8355,68 @@ True
 结束
 
 规则执行完毕，时间总花销： 3935.9941124916077 秒
+
+final checker
+```java
+package net.sourceforge.pmd.lang.java.rule.design;
+
+
+import net.sourceforge.pmd.lang.java.rule.AbstractJavaRulechainRule;
+import net.sourceforge.pmd.lang.java.ast. *;
+import net.sourceforge.pmd.lang.java.ast.internal. *;
+import net.sourceforge.pmd.lang.java.rule.internal. *;
+import net.sourceforge.pmd.lang.java.types. *;
+import net.sourceforge.pmd.lang.java.symbols. *;
+import net.sourceforge.pmd.lang.ast.NodeStream;
+public class SignatureDeclareThrowsExceptionRule extends AbstractJavaRulechainRule {
+    public SignatureDeclareThrowsExceptionRule() {
+        super(ASTMethodDeclaration.class, ASTConstructorDeclaration.class);
+    }
+
+    @Override
+    public Object visit(ASTMethodDeclaration node, Object data) {
+        if (throwsGenericException(node) && !isJUnitTearDown(node) && !isJUnit3Test(node) && !node.isOverridden()) {
+            addViolation(data, node);
+        }
+        return super.visit(node, data);
+    }
+
+    @Override
+    public Object visit(ASTConstructorDeclaration node, Object data) {
+        if (throwsGenericException(node)) {
+            addViolation(data, node);
+        }
+        return super.visit(node, data);
+    }
+
+    public boolean throwsGenericException(ASTMethodOrConstructorDeclaration node){
+        ASTThrowsList list = node.getThrowsList();
+        if(list == null){
+            return false;
+        }else{
+            for(ASTClassOrInterfaceType classOrInterfaceType : list){
+                if(TypeTestUtil.isExactlyA(Exception.class, classOrInterfaceType)){
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+
+    private boolean isJUnitTearDown(ASTMethodDeclaration node) {
+        ASTClassOrInterfaceDeclaration classNode = node.getFirstParentOfType(ASTClassOrInterfaceDeclaration.class);
+        return "tearDown".equals(node.getName())
+                && classNode != null
+                && classNode.getSuperClassTypeNode() != null
+                && "TestCase".equals(classNode.getSuperClassTypeNode().getSimpleName());
+    }
+
+    private boolean isJUnit3Test(ASTMethodDeclaration node) {
+        ASTClassOrInterfaceDeclaration classNode = node.getFirstParentOfType(ASTClassOrInterfaceDeclaration.class);
+        return node.getName().startsWith("test")
+                && classNode != null
+                && classNode.getSuperClassTypeNode() != null
+                && "TestCase".equals(classNode.getSuperClassTypeNode().getSimpleName());
+    }
+}
+```

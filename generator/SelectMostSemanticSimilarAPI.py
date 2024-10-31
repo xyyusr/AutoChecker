@@ -19,7 +19,7 @@ def split_camel_case(method_name: str):
 
 def get_API(nodes: list):
     i = 0
-    with open("../base/ASTAndUtilAndEdgeClassAllAPInfoWithCommon.json", 'r', encoding='utf-8') as file:
+    with open("../base/PMD_Custom_API_DB.json", 'r', encoding='utf-8') as file:
         data = json.load(file)
     separator = ' '
     apilist = {}
@@ -84,8 +84,8 @@ def get_API(nodes: list):
     return apilist
 
 # Load model from HuggingFace Hub
-tokenizer = AutoTokenizer.from_pretrained('D:/JetBrains/pycharm/bge-large-en-v1.5')
-model = AutoModel.from_pretrained('D:/JetBrains/pycharm/bge-large-en-v1.5')
+tokenizer = AutoTokenizer.from_pretrained('xx/bge-large-en-v1.5')
+model = AutoModel.from_pretrained('xx/bge-large-en-v1.5')
 # tokenizer = AutoTokenizer.from_pretrained('/pub/data/xieyy/bge-large-en-v1.5')
 # model = AutoModel.from_pretrained('/pub/data/xieyy/bge-large-en-v1.5')
 model.eval()
@@ -140,7 +140,7 @@ def get_most_similar_api(query: str, nodes: list):
     most_similar_sentence = part[most_similar_index]['sentence']
 
     if float(cosine_similarities[most_similar_index].item()) > 0.8:
-        with open("../base/ASTAndUtilAndEdgeClassAllAPInfoWithCommon.json", 'r', encoding='utf-8') as file:
+        with open("../base/PMD_Custom_API_DB.json", 'r', encoding='utf-8') as file:
             data = json.load(file)
         apis = []
         separator = ' '

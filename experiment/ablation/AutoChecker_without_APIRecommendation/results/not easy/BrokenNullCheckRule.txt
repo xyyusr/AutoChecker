@@ -13662,3 +13662,47 @@ ok 15
 结束
 
 规则执行完毕，时间总花销： 6239.0820748806 秒
+
+final checker
+```java
+package net.sourceforge.pmd.lang.java.rule.errorprone;
+
+
+import net.sourceforge.pmd.lang.java.rule.AbstractJavaRulechainRule;
+import net.sourceforge.pmd.lang.java.ast. *;
+import net.sourceforge.pmd.lang.java.ast.internal. *;
+import net.sourceforge.pmd.lang.java.types. *;
+import net.sourceforge.pmd.lang.java.symbols. *;
+import net.sourceforge.pmd.lang.ast.NodeStream;
+public class BrokenNullCheckRule extends AbstractJavaRulechainRule {
+
+    public BrokenNullCheckRule() {
+        super(ASTClassOrInterfaceDeclaration.class, ASTMethodDeclaration.class, ASTInfixExpression.class);
+    }
+
+    @Override
+    public Object visit(ASTInfixExpression node, Object data) {
+        if (node.hasDescendantOfType(ASTNullLiteral.class)) {
+            ASTMethodCall methodCall = node.getFirstDescendantOfType(ASTMethodCall.class);
+            if (methodCall != null) {
+                ASTUnaryExpression unaryExpression = node.getFirstDescendantOfType(ASTUnaryExpression.class);
+                if (unaryExpression != null) {
+                    ASTMethodCall equalsMethodCall = unaryExpression.getFirstDescendantOfType(ASTMethodCall.class);
+                    if (equalsMethodCall != null && "equals".equals(equalsMethodCall.getMethodName())) {
+                        addViolation(data, node);
+                    } else if ("length".equals(methodCall.getMethodName())) {
+                        addViolation(data, node);
+                    }
+                } else if ("length".equals(methodCall.getMethodName())) {
+                    addViolation(data, node);
+                }
+            } else if (node.getParent() instanceof ASTAssignmentExpression &&
+                       (node.hasDescendantOfType(ASTPrimaryExpression.class) ||
+                        node.hasDescendantOfType(ASTBooleanLiteral.class))) {
+                addViolation(data, node);
+            }
+        }
+        return super.visit(node, data);
+    }
+}
+```

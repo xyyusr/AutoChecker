@@ -1729,3 +1729,41 @@ True
 结束
 
 规则执行完毕，时间总花销： 711.109890460968 秒
+
+final checker
+```java
+package net.sourceforge.pmd.lang.java.rule.design;
+
+import java.util.Objects;
+
+import net.sourceforge.pmd.lang.java.rule.AbstractJavaRulechainRule;
+import net.sourceforge.pmd.lang.java.ast. *;
+import net.sourceforge.pmd.lang.java.ast.internal. *;
+import net.sourceforge.pmd.lang.java.types. *;
+import net.sourceforge.pmd.lang.java.symbols. *;
+import net.sourceforge.pmd.lang.ast.NodeStream;
+public class ExcessivePublicCountRule extends AbstractJavaRulechainRule {
+
+    private static final int PUBLIC_METHOD_THRESHOLD = 2;
+
+    public ExcessivePublicCountRule() {
+        super(ASTClassOrInterfaceDeclaration.class);
+    }
+
+    @Override
+    public Object visit(final ASTClassOrInterfaceDeclaration node, Object data) {
+        int publicMethodCount = (int) node.findDescendantsOfType(ASTMethodDeclaration.class)
+                .stream()
+                .filter(methodDeclaration -> isPublicMethod(methodDeclaration))
+                .count();
+        if (publicMethodCount > PUBLIC_METHOD_THRESHOLD) {
+            addViolation(data, node);
+        }
+        return super.visit(node, data);
+    }
+
+    private boolean isPublicMethod(ASTMethodDeclaration methodDeclaration) {
+        return methodDeclaration.isPublic() && !methodDeclaration.isAbstract();
+    }
+}
+```

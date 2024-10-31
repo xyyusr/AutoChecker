@@ -1653,3 +1653,51 @@ ok 2
 结束
 
 规则执行完毕，时间总花销： 942.4794933795929 秒
+
+final checker
+```java
+package net.sourceforge.pmd.lang.java.rule.errorprone;
+
+
+import net.sourceforge.pmd.lang.java.rule.AbstractJavaRulechainRule;
+import net.sourceforge.pmd.lang.java.ast. *;
+import net.sourceforge.pmd.lang.java.ast.internal. *;
+import net.sourceforge.pmd.lang.java.types. *;
+import net.sourceforge.pmd.lang.java.symbols. *;
+import net.sourceforge.pmd.lang.ast.NodeStream;
+public class AssignmentToNonFinalStaticRule extends AbstractJavaRulechainRule {
+
+    public AssignmentToNonFinalStaticRule() {
+        super(ASTAssignmentExpression.class, ASTFieldDeclaration.class);
+    }
+
+    @Override
+    public Object visit(ASTAssignmentExpression node, Object data) {
+        ASTVariableAccess varAccess = node.getFirstDescendantOfType(ASTVariableAccess.class);
+        if (varAccess != null && varAccess.getFirstParentOfType(ASTConstructorDeclaration.class) != null) {
+            ASTVariableDeclaratorId varId = varAccess.getFirstDescendantOfType(ASTVariableDeclaratorId.class);
+            if (varId != null) {
+                ASTFieldDeclaration field = varId.getFirstParentOfType(ASTFieldDeclaration.class);
+                if (field != null && field.isStatic() && !field.isFinal()) {
+                    addViolation(data, node);
+                }
+            }
+        }
+        return super.visit(node, data);
+    }
+
+    @Override
+    public Object visit(ASTFieldDeclaration node, Object data) {
+        if (node.isStatic() && !node.isFinal()) {
+            ASTVariableDeclaratorId varId = node.getFirstDescendantOfType(ASTVariableDeclaratorId.class);
+            if (varId != null) {
+                ASTClassOrInterfaceBody classBody = node.getFirstParentOfType(ASTClassOrInterfaceBody.class);
+                if (classBody != null) {
+                    addViolation(data, node);
+                }
+            }
+        }
+        return super.visit(node, data);
+    }
+}
+```

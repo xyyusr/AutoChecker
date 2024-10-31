@@ -5121,3 +5121,47 @@ ok 5
 结束
 
 规则执行完毕，时间总花销： 2967.224030017853 秒
+
+final checker
+```java
+package net.sourceforge.pmd.lang.java.rule.performance;
+
+
+import net.sourceforge.pmd.lang.java.rule.AbstractJavaRulechainRule;
+import net.sourceforge.pmd.lang.java.ast. *;
+import net.sourceforge.pmd.lang.java.ast.internal. *;
+import net.sourceforge.pmd.lang.java.types. *;
+import net.sourceforge.pmd.lang.java.symbols. *;
+import net.sourceforge.pmd.lang.ast.NodeStream;
+public class StringInstantiationRule extends AbstractJavaRulechainRule {
+
+    public StringInstantiationRule() {
+        super(ASTFieldDeclaration.class, ASTMethodDeclaration.class);
+    }
+
+    @Override
+    public Object visit(ASTFieldDeclaration node, Object data) {
+        return processNode(node, data);
+    }
+
+    @Override
+    public Object visit(ASTMethodDeclaration node, Object data) {
+        return processNode(node, data);
+    }
+
+    private Object processNode(Object node, Object data) {
+        ASTClassOrInterfaceType type = ((net.sourceforge.pmd.lang.ast.Node) node).getFirstDescendantOfType(ASTClassOrInterfaceType.class);
+
+        if (type != null && type.getTypeImage().equals("String")) {
+            ASTConstructorCall constructorCall = ((net.sourceforge.pmd.lang.ast.Node) node).getFirstDescendantOfType(ASTConstructorCall.class);
+            if (constructorCall != null) {
+                ASTArgumentList argumentList = constructorCall.getFirstDescendantOfType(ASTArgumentList.class);
+                if (argumentList == null || argumentList.size() < 2) {
+                    addViolation(data, (net.sourceforge.pmd.lang.ast.Node) node);
+                }
+            }
+        }
+        return data;
+    }
+}
+```

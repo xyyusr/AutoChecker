@@ -241,17 +241,3 @@ def finderrorsourcecode():
     testcase = testcase + "\n" + "The number of violating the rule in this test case is: " + expected_problems + "\n"
 
     return testcase
-
-# select(1, "D:/JetBrains/IdeaProjects/pmd-pmd_releases-7.0.0-rc4/pmd-java/src/test/resources/net/sourceforge/pmd/lang/java/rule/design/xml/SingularField.xml")
-# print(findsourccode())
-
-# selecterrorcase(
-#     ['error_rules_info: failed test cases','error_rules_info: "appending single char, should be ok" resulted in wrong number of failures, ==> expected: <1> but was: <0>','error_rules_info: "appending single character string, should fail" resulted in wrong number of failures, ==> expected: <0> but was: <1>'],
-#     "/Users/xyy/Desktop/PMD/pmd-pmd_releases-7.0.0-rc4/pmd-java/src/test/resources/net/sourceforge/pmd/lang/java/rule/performance/xml/AppendCharacterWithChar.xml"
-# )
-# print(finderrorsourcecode())
-# ERROR_AST_command = os.path.join("/Library/Java/JavaVirtualMachines/jdk-17.jdk/Contents/Home/bin",
-#                                  "java -jar CodeToAST.jar /Users/xyy/PycharmProjects/ChatRuleGen/testcase/errorcode.xml /Users/xyy/PycharmProjects/ChatRuleGen/testcase/errorast.txt")
-# jar_run([ERROR_AST_command], "/Users/xyy/PycharmProjects/ChatRuleGen")
-# delete_fail5round_testcase_from_xml("appending single character string, should fail", "D:/JetBrains/IdeaProjects/pmd-pmd_releases-7.0.0-rc4/pmd-java/src/test/resources/net/sourceforge/pmd/lang/java/rule/performance/xml/AppendCharacterWithChar.xml")
-# print(findsourccode())

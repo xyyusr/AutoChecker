@@ -23726,3 +23726,45 @@ bad 10
 结束
 
 规则执行完毕，时间总花销： 12692.992452144623 秒
+
+final checker
+```java
+package net.sourceforge.pmd.lang.java.rule.bestpractices;
+
+
+import net.sourceforge.pmd.lang.java.rule.AbstractJavaRulechainRule;
+import net.sourceforge.pmd.lang.java.ast. *;
+import net.sourceforge.pmd.lang.java.ast.internal. *;
+import net.sourceforge.pmd.lang.java.types. *;
+import net.sourceforge.pmd.lang.java.symbols. *;
+import net.sourceforge.pmd.lang.ast.NodeStream;
+public class LiteralsFirstInComparisonsRule extends AbstractJavaRulechainRule {
+
+    public LiteralsFirstInComparisonsRule() {
+        super(ASTMethodCall.class);
+    }
+
+    @Override
+    public Object visit(ASTMethodCall node, Object data) {
+        String methodName = node.getMethodName();
+
+        if (methodName.equals("equals") || methodName.equals("equalsIgnoreCase") || methodName.equals("compareTo")
+                || methodName.equals("compareToIgnoreCase") || methodName.equals("contentEquals")) {
+
+            ASTArgumentList argList = node.getFirstDescendantOfType(ASTArgumentList.class);
+            ASTExpression firstArg = argList.getFirstChildOfType(ASTExpression.class);
+
+            if (firstArg.getFirstChildOfType(ASTStringLiteral.class) == null) {
+                if (!isConstant(firstArg) && node.getFirstChildOfType(ASTStringLiteral.class) == null) {
+                    addViolation(data, node);
+                }
+            }
+        }
+        return super.visit(node, data);
+    }
+
+    private boolean isConstant(ASTExpression expr) {
+        return expr.getImage() != null && expr.getImage().matches("^[A-Z_]+$");
+    }
+}
+```

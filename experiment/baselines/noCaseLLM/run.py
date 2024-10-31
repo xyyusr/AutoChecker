@@ -17,9 +17,9 @@ generator = CheckerGenerator(
     ''  # model, like GPT-4
 )
 
-checker_test = TestChecker("D:/JetBrains/IdeaProjects/pmd-pmd_releases-7.0.0-rc4/pmd-java")
+checker_test = TestChecker("your-pmd-loc/pmd-java")
 checker_single_test = TestChecker(
-                "D:/JetBrains/IdeaProjects/pmd-pmd_releases-7.0.0-rc4-testsingle/pmd-pmd_releases-7.0.0-rc4/pmd-java")
+                "your-another-pmd-loc/pmd-java")
 
 # 保存原始的标准输出流
 original_stdout = sys.stdout
@@ -32,14 +32,15 @@ for rule in easy_rules:
     file = "results/easy/"+rule+".txt"
 
     full_rule = "public class " + rule + " extends AbstractJavaRulechainRule"
-    method_data = get_rule("../base/generatecheckerrulejson.json", full_rule)
+    method_data = get_rule("../base/Experimental_20rules.json", full_rule)
     rule_testcase_xml_filepath = method_data["rule_testcase_xml_filepath"]
 
-    # 原文件夹路径
-    src_folder = "D:/JetBrains/IdeaProjects/pmd-pmd_releases-7.0.0-rc4/pmd-java/src/main/java/net/sourceforge/pmd/lang/java/rule"
+    # 恢复rule文件夹至修改前数据
+    # your pmd rule路径
+    src_folder = "your-pmd-loc/pmd-java/src/main/java/net/sourceforge/pmd/lang/java/rule"
 
-    # 新文件夹路径
-    dest_folder = "C:/Users/XYY/Desktop/rule"
+    # official rule路径
+    dest_folder = "xx/rule"
 
     # 删除原文件夹
     shutil.rmtree(src_folder)
@@ -47,10 +48,10 @@ for rule in easy_rules:
     # 复制新文件夹到原文件夹位置
     shutil.copytree(dest_folder, src_folder)
 
-    # 原文件夹路径
-    src_folder = "D:/JetBrains/IdeaProjects/pmd-pmd_releases-7.0.0-rc4-testsingle/pmd-pmd_releases-7.0.0-rc4/pmd-java/src/main/java/net/sourceforge/pmd/lang/java/rule"
+    # your another pmd rule路径
+    src_folder = "your-another-pmd-loc/pmd-java/src/main/java/net/sourceforge/pmd/lang/java/rule"
 
-    # 删除原文件夹
+    # official rule路径
     shutil.rmtree(src_folder)
 
     # 复制新文件夹到原文件夹位置
@@ -61,7 +62,7 @@ for rule in easy_rules:
 
     index = rule.find("Rule")
     # 新XML文件路径
-    dest_xml = "../../../rules/easy/"+rule[:index]+".xml"
+    dest_xml = "../../../experimental-20rules-test-suite/easy/"+rule[:index]+".xml"
 
     # 复制新XML文件到原XML文件位置，实现替换
     shutil.copyfile(dest_xml, src_xml)
@@ -114,14 +115,15 @@ for rule in not_easy_rules:
     file = "results/not easy/"+rule+".txt"
 
     full_rule = "public class " + rule + " extends AbstractJavaRulechainRule"
-    method_data = get_rule("../base/generatecheckerrulejson.json", full_rule)
+    method_data = get_rule("../base/Experimental_20rules.json", full_rule)
     rule_testcase_xml_filepath = method_data["rule_testcase_xml_filepath"]
 
-    # 原文件夹路径
-    src_folder = "D:/JetBrains/IdeaProjects/pmd-pmd_releases-7.0.0-rc4/pmd-java/src/main/java/net/sourceforge/pmd/lang/java/rule"
+    # 恢复rule文件夹至修改前数据
+    # your pmd rule路径
+    src_folder = "your-pmd-loc/pmd-java/src/main/java/net/sourceforge/pmd/lang/java/rule"
 
-    # 新文件夹路径
-    dest_folder = "C:/Users/XYY/Desktop/rule"
+    # official rule路径
+    dest_folder = "xx/rule"
 
     # 删除原文件夹
     shutil.rmtree(src_folder)
@@ -129,10 +131,10 @@ for rule in not_easy_rules:
     # 复制新文件夹到原文件夹位置
     shutil.copytree(dest_folder, src_folder)
 
-    # 原文件夹路径
-    src_folder = "D:/JetBrains/IdeaProjects/pmd-pmd_releases-7.0.0-rc4-testsingle/pmd-pmd_releases-7.0.0-rc4/pmd-java/src/main/java/net/sourceforge/pmd/lang/java/rule"
+    # your another pmd rule路径
+    src_folder = "your-another-pmd-loc/pmd-java/src/main/java/net/sourceforge/pmd/lang/java/rule"
 
-    # 删除原文件夹
+    # official rule路径
     shutil.rmtree(src_folder)
 
     # 复制新文件夹到原文件夹位置
@@ -143,7 +145,7 @@ for rule in not_easy_rules:
 
     index = rule.find("Rule")
     # 新XML文件路径
-    dest_xml = "../../../rules/not easy/"+rule[:index]+".xml"
+    dest_xml = "../../../experimental-20rules-test-suite/not easy/"+rule[:index]+".xml"
 
     # 复制新XML文件到原XML文件位置，实现替换
     shutil.copyfile(dest_xml, src_xml)

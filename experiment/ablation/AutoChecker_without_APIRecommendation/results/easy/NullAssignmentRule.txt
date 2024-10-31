@@ -4016,3 +4016,47 @@ ok 12
 结束
 
 规则执行完毕，时间总花销： 1744.6158394813538 秒
+
+final checker
+```java
+package net.sourceforge.pmd.lang.java.rule.errorprone;
+
+
+import net.sourceforge.pmd.lang.java.rule.AbstractJavaRulechainRule;
+import net.sourceforge.pmd.lang.java.ast. *;
+import net.sourceforge.pmd.lang.java.ast.internal. *;
+import net.sourceforge.pmd.lang.java.types. *;
+import net.sourceforge.pmd.lang.java.symbols. *;
+import net.sourceforge.pmd.lang.ast.NodeStream;
+public class NullAssignmentRule extends AbstractJavaRulechainRule {
+    public NullAssignmentRule() {
+        super(ASTAssignmentExpression.class);
+    }
+
+    @Override
+    public Object visit(ASTAssignmentExpression node, Object data) {
+        checkForNullAssignment(node, data);
+        return super.visit(node, data);
+    }
+
+    private void checkForNullAssignment(ASTAssignmentExpression node, Object data) {
+        if (node.getChild(1) instanceof ASTNullLiteral) {
+            addViolation(data, node);
+        } else if (node.getChild(1) instanceof ASTConditionalExpression) {
+            checkInConditionalExpression((ASTConditionalExpression) node.getChild(1), data);
+        }
+    }
+
+    private void checkInConditionalExpression(ASTConditionalExpression condExpr, Object data) {
+        for (int i = 0; i < condExpr.getNumChildren(); i++) {
+            if (condExpr.getChild(i) instanceof ASTNullLiteral) {
+                addViolation(data, condExpr);
+                break;
+            }
+            if (condExpr.getChild(i) instanceof ASTConditionalExpression) {
+                checkInConditionalExpression((ASTConditionalExpression) condExpr.getChild(i), data);
+            }
+        }
+    }
+}
+```

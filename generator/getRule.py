@@ -23,6 +23,3 @@ def get_rule(json_file, name):
             }
 
     return method_data
-
-
-# print(get_rule("../needtrainrulejson.json", 1))

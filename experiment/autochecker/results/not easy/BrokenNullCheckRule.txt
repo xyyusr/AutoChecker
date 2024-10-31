@@ -11415,3 +11415,39 @@ ok 15
 结束
 
 规则执行完毕，时间总花销： 13353.325025320053 秒
+
+final checker
+```java
+package net.sourceforge.pmd.lang.java.rule.errorprone;
+
+
+import net.sourceforge.pmd.lang.java.rule.AbstractJavaRulechainRule;
+import net.sourceforge.pmd.lang.java.ast. *;
+import net.sourceforge.pmd.lang.java.ast.internal. *;
+import net.sourceforge.pmd.lang.java.rule.internal. *;
+import net.sourceforge.pmd.lang.java.types. *;
+import net.sourceforge.pmd.lang.java.symbols. *;
+import net.sourceforge.pmd.lang.ast.NodeStream;
+public class BrokenNullCheckRule extends AbstractJavaRulechainRule {
+
+    public BrokenNullCheckRule() {
+        super(ASTInfixExpression.class);
+    }
+
+    @Override
+    public Object visit(ASTInfixExpression node, Object data) {
+        if (node.hasDescendantOfType(ASTVariableAccess.class) && node.hasDescendantOfType(ASTNullLiteral.class)) {
+            if (JavaAstUtils.isInfixExprWithOperator(node, BinaryOp.CONDITIONAL_AND)) {
+                ASTVariableAccess variableAccess = node.getFirstDescendantOfType(ASTVariableAccess.class);
+                if (variableAccess != null) {
+                    ASTAssignmentExpression assignmentExpression = variableAccess.getFirstParentOfType(ASTAssignmentExpression.class);
+                    if (assignmentExpression != null && assignmentExpression.getRightOperand().equals(node)) {
+                        addViolation(data, assignmentExpression);
+                    }
+                }
+            }
+        }
+        return super.visit(node, data);
+    }
+}
+```

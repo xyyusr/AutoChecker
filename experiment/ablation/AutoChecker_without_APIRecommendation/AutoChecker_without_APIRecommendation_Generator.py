@@ -766,7 +766,7 @@ Please give me the complete checker code including the import info, do not conta
 
     def iterative_generate(self, ruleGen: str):
         ast_classes = []
-        checker_test = TestChecker("D:/JetBrains/IdeaProjects/pmd-pmd_releases-7.0.0-rc4/pmd-java")
+        checker_test = TestChecker("your-pmd-loc/pmd-java")
 
         with open("../base/astnodeswithpackageinfo.txt", 'r', encoding='gbk') as file:
             content = file.readlines()
@@ -778,16 +778,14 @@ Please give me the complete checker code including the import info, do not conta
         print("========================================== Rule " + str(
             rule) + " ===========================================")
         full_rule = "public class " + rule + " extends AbstractJavaRulechainRule"
-        method_data = get_rule("../base/generatecheckerrulejson.json", full_rule)
+        method_data = get_rule("../base/Experimental_20rules.json", full_rule)
         rule_category = method_data["rule_category"]
         rule_name = method_data["rule_name"]
         rule_description = method_data["rule_description"]
         rule_testcase_xml_filepath = method_data["rule_testcase_xml_filepath"]
-        # jar_run(["java", "-jar", "AnalyzeSourceCodeASTComplexity.jar", rule_testcase_xml_filepath],
-        #         "D:/JetBrains/pycharm/project/CheckerAutoGen/base")
         rule_package_path = rule_category.replace('.', '/')
-        rule_path = "D:/JetBrains/IdeaProjects/pmd-pmd_releases-7.0.0-rc4/pmd-java/src/main/java/" + rule_package_path + "/"
-        rule_path2 = "D:/JetBrains/IdeaProjects/pmd-pmd_releases-7.0.0-rc4-testsingle/pmd-pmd_releases-7.0.0-rc4/pmd-java/src/main/java/" + rule_package_path + "/"
+        rule_path = "your-pmd-loc/pmd-java/src/main/java/" + rule_package_path + "/"
+        rule_path2 = "your-another-pmd-loc/pmd-java/src/main/java/" + rule_package_path + "/"
         start_index = rule_name.find(" ") + 1
         start_index = rule_name.find(" ", start_index) + 1
         end_index = rule_name.find(" ", start_index)
@@ -811,10 +809,10 @@ Please give me the complete checker code including the import info, do not conta
             test_case = findsourccode()
             description = finddescription()
             # 解析成语法树存入testcase/ast.txt
-            jar_run(["java", "-jar", "CodeToAST.jar", "testcase",
-                     "D:/JetBrains/pycharm/project/CheckerAutoGen/testcase/onecode.xml",
-                     "D:/JetBrains/pycharm/project/CheckerAutoGen/testcase/ast.txt"],
-                    "D:/JetBrains/pycharm/project/CheckerAutoGen/base")
+            jar_run(["java", "-jar", "PMD-Style-ASTParser.jar", "testcase",
+                     "CheckerAutoGen/testcase/onecode.xml",
+                     "CheckerAutoGen/testcase/ast.txt"],
+                    "CheckerAutoGen/base")
             test_case_ast = self.readAST()
 
             # embeddingapis(get_API(nodes))
@@ -828,7 +826,7 @@ Please give me the complete checker code including the import info, do not conta
             select_repaired_testcase_toxml_to_test(passed_testcase, rule_testcase_xml_filepath)
             # 测试新项目
             checker_single_test = TestChecker(
-                "D:\JetBrains\IdeaProjects\pmd-pmd_releases-7.0.0-rc4-testsingle\pmd-pmd_releases-7.0.0-rc4\pmd-java")
+                "your-another-pmd-loc\pmd-java")
             while not single_success:
                 if round > 5:
                     print("5轮生成的都没通过第一个测试用例，删除此测试用例，换一个生成first checker")
@@ -863,9 +861,9 @@ Please give me the complete checker code including the import info, do not conta
 
                 self.savechecker(checker)
                 run_result = jar_run(
-                    ["java", "-jar", "CodeToAST.jar", "checker", "D:/JetBrains/pycharm/project/CheckerAutoGen/base/checker.txt",
-                     "D:/JetBrains/pycharm/project/CheckerAutoGen/base/checker_ast.txt"],
-                    "D:/JetBrains/pycharm/project/CheckerAutoGen/base")
+                    ["java", "-jar", "PMD-Style-ASTParser.jar", "checker", "CheckerAutoGen/base/checker.txt",
+                     "CheckerAutoGen/base/checker_ast.txt"],
+                    "CheckerAutoGen/base")
 
                 if not run_result:
                     single_success = False
@@ -915,10 +913,10 @@ Please give me the complete checker code including the import info, do not conta
                             checker = self.generate_checker_with_query(repair_query)
                             self.savechecker(checker)
                             run_result = jar_run(
-                                ["java", "-jar", "CodeToAST.jar", "checker",
-                                 "D:/JetBrains/pycharm/project/CheckerAutoGen/base/checker.txt",
-                                 "D:/JetBrains/pycharm/project/CheckerAutoGen/base/checker_ast.txt"],
-                                "D:/JetBrains/pycharm/project/CheckerAutoGen/base")
+                                ["java", "-jar", "PMD-Style-ASTParser.jar", "checker",
+                                 "CheckerAutoGen/base/checker.txt",
+                                 "CheckerAutoGen/base/checker_ast.txt"],
+                                "CheckerAutoGen/base")
 
                             if run_result:
                                 print("第 " + str(i) + "轮修复编译错误的结果")
@@ -967,13 +965,6 @@ Please give me the complete checker code including the import info, do not conta
                 if length_over_max:
                     print("测试用例太多了，超出了最大长度")
                     break
-                # if test_round > 20:
-                    # print("===================20轮内没有成功迭代修复所有测试用例====================")
-                    # print("最后通过的测试用例数：")
-                    # print(len(already_passed_testcase))
-                    # print("没有修复成功的测试用例：")
-                    # print(error_des)
-                    # break
                 test_round += 1
                 mvn_parser = MavenOutputParser()
                 parsed_output = mvn_parser.parse(test_output)
@@ -996,10 +987,10 @@ Please give me the complete checker code including the import info, do not conta
                             error_one = fail_rule[i]["error_rules_info"]
                 print(error_one + "不通过")
                 selecterrorcase(error_one, rule_testcase_xml_filepath)
-                jar_run(["java", "-jar", "CodeToAST.jar", "testcase",
-                         "D:/JetBrains/pycharm/project/CheckerAutoGen/testcase/errorcode.xml",
-                         "D:/JetBrains/pycharm/project/CheckerAutoGen/testcase/errorast.txt"],
-                        "D:/JetBrains/pycharm/project/CheckerAutoGen/base")
+                jar_run(["java", "-jar", "PMD-Style-ASTParser.jar", "testcase",
+                         "CheckerAutoGen/testcase/errorcode.xml",
+                         "CheckerAutoGen/testcase/errorast.txt"],
+                        "CheckerAutoGen/base")
                 error_case = finderrorsourcecode()
                 error_test_case_ast = self.readerrorAST()
                 error_prob_num = finderrornumber()
@@ -1064,10 +1055,10 @@ Please give me the complete checker code including the import info, do not conta
                     checker = self.generate_checker_with_query(repair_testcase_query)
                     self.savechecker(checker)
                     run_result = jar_run(
-                        ["java", "-jar", "CodeToAST.jar", "checker",
-                         "D:/JetBrains/pycharm/project/CheckerAutoGen/base/checker.txt",
-                         "D:/JetBrains/pycharm/project/CheckerAutoGen/base/checker_ast.txt"],
-                        "D:/JetBrains/pycharm/project/CheckerAutoGen/base")
+                        ["java", "-jar", "PMD-Style-ASTParser.jar", "checker",
+                         "CheckerAutoGen/base/checker.txt",
+                         "CheckerAutoGen/base/checker_ast.txt"],
+                        "CheckerAutoGen/base")
 
                     if run_result:
 
@@ -1120,10 +1111,10 @@ Please give me the complete checker code including the import info, do not conta
                             checker = self.generate_checker_with_query(repair_compile_error_when_testing_query)
                             self.savechecker(checker)
                             run_result = jar_run(
-                                ["java", "-jar", "CodeToAST.jar", "checker",
-                                 "D:/JetBrains/pycharm/project/CheckerAutoGen/base/checker.txt",
-                                 "D:/JetBrains/pycharm/project/CheckerAutoGen/base/checker_ast.txt"],
-                                "D:/JetBrains/pycharm/project/CheckerAutoGen/base")
+                                ["java", "-jar", "PMD-Style-ASTParser.jar", "checker",
+                                 "CheckerAutoGen/base/checker.txt",
+                                 "CheckerAutoGen/base/checker_ast.txt"],
+                                "CheckerAutoGen/base")
                             if run_result:
                                 print("第" + str(k) + "轮修复编译错误的结果")
 

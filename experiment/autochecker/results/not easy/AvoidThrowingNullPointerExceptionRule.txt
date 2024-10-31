@@ -3307,3 +3307,34 @@ bad 3
 结束
 
 规则执行完毕，时间总花销： 3018.0477085113525 秒
+
+final checker
+```java
+package net.sourceforge.pmd.lang.java.rule.design;
+
+
+import net.sourceforge.pmd.lang.java.rule.AbstractJavaRulechainRule;
+import net.sourceforge.pmd.lang.java.ast. *;
+import net.sourceforge.pmd.lang.java.ast.internal. *;
+import net.sourceforge.pmd.lang.java.rule.internal. *;
+import net.sourceforge.pmd.lang.java.types. *;
+import net.sourceforge.pmd.lang.java.symbols. *;
+import net.sourceforge.pmd.lang.ast.NodeStream;
+public class AvoidThrowingNullPointerExceptionRule extends AbstractJavaRulechainRule {
+
+    public AvoidThrowingNullPointerExceptionRule() {
+        super(ASTThrowStatement.class);
+    }
+
+    @Override
+    public Object visit(ASTThrowStatement node, Object data) {
+        // Get the type of exception thrown in throw statement
+        JTypeMirror thrownType = node.getExpr().getTypeMirror();
+        // Check whether the exception type thrown by the throw statement is NullPointerException
+        if(TypeTestUtil.isA(NullPointerException.class, thrownType)){
+            addViolation(data, node);
+        }
+        return super.visit(node, data);
+    }
+}
+```

@@ -120,3 +120,34 @@ True
 结束
 
 规则执行完毕，时间总花销： 131.60604095458984 秒
+
+final checker
+```java
+package net.sourceforge.pmd.lang.java.rule.design;
+
+import java.util.Objects;
+
+import net.sourceforge.pmd.lang.java.rule.AbstractJavaRulechainRule;
+import net.sourceforge.pmd.lang.java.ast. *;
+import net.sourceforge.pmd.lang.java.ast.internal. *;
+import net.sourceforge.pmd.lang.java.types. *;
+import net.sourceforge.pmd.lang.java.symbols. *;
+import net.sourceforge.pmd.lang.ast.NodeStream;
+public class ExcessiveImportsRule extends AbstractJavaRulechainRule {
+
+    private static final int IMPORTS_THRESHOLD = 3;
+
+    public ExcessiveImportsRule() {
+        super(ASTCompilationUnit.class);
+    }
+
+    @Override
+    public Object visit(ASTCompilationUnit node, Object data) {
+        int count = node.findDescendantsOfType(ASTImportDeclaration.class).size();
+        if (count > IMPORTS_THRESHOLD) {
+            addViolation(data, node);
+        }
+        return super.visit(node, data);
+    }
+}
+```

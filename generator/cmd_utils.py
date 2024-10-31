@@ -2,7 +2,7 @@ import os
 from subprocess import check_output, CalledProcessError, STDOUT
 
 
-project_path = "D:/JetBrains/IdeaProjects/pmd-pmd_releases-7.0.0-rc4/pmd-java"
+project_path = "your-pmd-loc/pmd-java"
 
 def maven_run(command, cwd):
     pwd = os.getcwd()
@@ -33,10 +33,3 @@ def jar_run(command, cwd):
     finally:
         os.chdir(pwd)
     return success
-
-
-# jar_run(["java", "-jar", "AnalyzeSourceCodeASTComplexity.jar", "D:/JetBrains/IdeaProjects/pmd-pmd_releases-7.0.0-rc4/pmd-java/src/test/resources/net/sourceforge/pmd/lang/java/rule/errorprone/xml/OverrideBothEqualsAndHashcode.xml"],
-#                 "D:/JetBrains/pycharm/project/CheckerAutoGen/base")
-# jar_run(["java", "-jar", "CodeToAST.jar", "D:/JetBrains/pycharm/project/CheckerAutoGen/testcase/onecode.xml",
-#                  "D:/JetBrains/pycharm/project/CheckerAutoGen/testcase/ast.txt"],
-#                 "D:/JetBrains/pycharm/project/CheckerAutoGen/base")

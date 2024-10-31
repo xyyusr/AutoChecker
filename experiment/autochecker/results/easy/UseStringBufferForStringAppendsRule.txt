@@ -27538,3 +27538,62 @@ ok 17
 结束
 
 规则执行完毕，时间总花销： 13701.821612358093 秒
+
+final checker
+```java
+package net.sourceforge.pmd.lang.java.rule.performance;
+
+import java.util.HashMap;
+import java.util.Map;
+
+import net.sourceforge.pmd.lang.java.rule.AbstractJavaRulechainRule;
+import net.sourceforge.pmd.lang.java.ast. *;
+import net.sourceforge.pmd.lang.java.ast.internal. *;
+import net.sourceforge.pmd.lang.java.rule.internal. *;
+import net.sourceforge.pmd.lang.java.types. *;
+import net.sourceforge.pmd.lang.java.symbols. *;
+import net.sourceforge.pmd.lang.ast.NodeStream;
+public class UseStringBufferForStringAppendsRule extends AbstractJavaRulechainRule {
+    private Map<String, Integer> variables = new HashMap<>();
+
+    public UseStringBufferForStringAppendsRule() {
+        super(ASTAssignmentExpression.class);
+    }
+
+    @Override
+    public Object visit(ASTAssignmentExpression node, Object data) {
+        if(node.getRightOperand() instanceof ASTConditionalExpression) {
+            return super.visit(node, data);
+        }
+
+        if(node.getLeftOperand() instanceof ASTVariableAccess) {
+            String variableName = ((ASTVariableAccess)node.getLeftOperand()).getImage();
+            if(variables.containsKey(variableName)) {
+                int count = variables.get(variableName);
+                if(count >= 1 || node.getRightOperand() instanceof ASTInfixExpression) {
+                    // Check the type of the variable to avoid flagging += operations on numeric types
+                    if (TypeTestUtil.isA(String.class, node.getTypeMirror()) &&
+                        !(node.getRightOperand() instanceof ASTMethodCall)) { // Added this condition
+                        addViolation(data, node);
+                    }
+                }
+                variables.put(variableName, count + 1);
+            } else {
+                variables.put(variableName, 1);
+            }
+        } else if(node.getLeftOperand() instanceof ASTVariableAccess && node.getRightOperand() instanceof ASTMethodCall) {
+            ASTMethodCall methodCall = (ASTMethodCall) node.getRightOperand();
+            if(isMethodCallArgumentStringType(methodCall)) {
+                addViolation(data, node);
+            }
+        }
+        return super.visit(node, data);
+    }
+
+    public boolean isMethodCallArgumentStringType(ASTMethodCall node) {
+        ASTArgumentList astArgumentList = node.getArguments();
+        ASTExpression expression = astArgumentList.get(0);
+        return TypeTestUtil.isA(String.class, expression.getTypeMirror());
+    }
+}
+```

@@ -9708,3 +9708,51 @@ ok 21
 结束
 
 规则执行完毕，时间总花销： 5870.192247629166 秒
+
+final checker
+```java
+package net.sourceforge.pmd.lang.java.rule.bestpractices;
+
+import java.util.Arrays;
+import java.util.List;
+
+
+import net.sourceforge.pmd.lang.java.rule.AbstractJavaRulechainRule;
+import net.sourceforge.pmd.lang.java.ast. *;
+import net.sourceforge.pmd.lang.java.ast.internal. *;
+import net.sourceforge.pmd.lang.java.rule.internal. *;
+import net.sourceforge.pmd.lang.java.types. *;
+import net.sourceforge.pmd.lang.java.symbols. *;
+import net.sourceforge.pmd.lang.ast.NodeStream;
+public class LiteralsFirstInComparisonsRule extends AbstractJavaRulechainRule {
+
+    public LiteralsFirstInComparisonsRule() {
+        super(ASTMethodCall.class);
+    }
+
+    @Override
+    public Object visit(ASTMethodCall node, Object data) {
+        List<String> stringComparisonMethods = Arrays.asList("equals", "equalsIgnoreCase", "compareTo", "compareToIgnoreCase", "contentEquals");
+        if (stringComparisonMethods.contains(node.getMethodName())) {
+            if (isMethodCallerStringType(node) && isMethodCallArgumentStringType(node)) {
+                if ((node.getArguments().get(0) instanceof ASTStringLiteral || isCompileTimeConstant(node)) && !(node.getQualifier() instanceof ASTStringLiteral)) {
+                    addViolation(data, node);
+                }
+            }
+        }
+        return super.visit(node, data);
+    }
+
+    private boolean isMethodCallerStringType(ASTMethodCall node){
+        return TypeTestUtil.isA(String.class, node.getQualifier());
+    }
+
+    private boolean isMethodCallArgumentStringType(ASTMethodCall node) {
+        return TypeTestUtil.isA(String.class, node.getArguments().get(0).getTypeMirror());
+    }
+
+    private boolean isCompileTimeConstant(ASTMethodCall node) {
+        return node.getArguments().get(0) instanceof ASTVariableAccess && ((ASTVariableAccess) node.getArguments().get(0)).isCompileTimeConstant();
+    }
+}
+```

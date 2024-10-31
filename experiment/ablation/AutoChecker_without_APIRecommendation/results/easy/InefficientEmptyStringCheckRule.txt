@@ -9466,3 +9466,52 @@ ok 6
 结束
 
 规则执行完毕，时间总花销： 4048.228884458542 秒
+
+final checker
+```java
+package net.sourceforge.pmd.lang.java.rule.performance;
+
+
+import net.sourceforge.pmd.lang.java.rule.AbstractJavaRulechainRule;
+import net.sourceforge.pmd.lang.java.ast. *;
+import net.sourceforge.pmd.lang.java.ast.internal. *;
+import net.sourceforge.pmd.lang.java.types. *;
+import net.sourceforge.pmd.lang.java.symbols. *;
+import net.sourceforge.pmd.lang.ast.NodeStream;
+public class InefficientEmptyStringCheckRule extends AbstractJavaRulechainRule {
+
+    public InefficientEmptyStringCheckRule() {
+        super(ASTMethodCall.class);
+    }
+
+    @Override
+    public Object visit(final ASTMethodCall node, Object data) {
+        String methodName = node.getMethodName();
+
+        if (methodName.equals("trim")) {
+            ASTMethodCall parent = node.getFirstParentOfType(ASTMethodCall.class);
+
+            if (parent != null && (parent.getMethodName().equals("length") || parent.getMethodName().equals("isEmpty"))) {
+                // Check if the trim method is used in a conditional expression or method argument
+                if (parent.getFirstParentOfType(ASTConditionalExpression.class) != null ||
+                    parent.getFirstParentOfType(ASTIfStatement.class) != null ||
+                    parent.getFirstParentOfType(ASTWhileStatement.class) != null ||
+                    parent.getFirstParentOfType(ASTForStatement.class) != null ||
+                    parent.getFirstParentOfType(ASTArgumentList.class) != null) {
+                    ASTClassOrInterfaceDeclaration coid = node.getFirstParentOfType(ASTClassOrInterfaceDeclaration.class);
+                    ASTMethodDeclaration methodDeclaration = node.getFirstParentOfType(ASTMethodDeclaration.class);
+
+                    if (coid != null && methodDeclaration != null) {
+                        String className = coid.getImage();
+                        String methodNameInClass = methodDeclaration.getName();
+
+                        String message = "Inefficient usage of string trim detected in class: " + className + ", method: " + methodNameInClass;
+                        addViolationWithMessage(data, node, message);
+                    }
+                }
+            }
+        }
+        return super.visit(node, data);
+    }
+}
+```

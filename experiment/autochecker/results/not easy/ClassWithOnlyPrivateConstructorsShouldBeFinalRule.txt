@@ -10008,3 +10008,51 @@ True
 结束
 
 规则执行完毕，时间总花销： 6495.979206562042 秒
+
+final checker
+```java
+package net.sourceforge.pmd.lang.java.rule.design;
+
+import java.util.List;
+
+
+import net.sourceforge.pmd.lang.java.rule.AbstractJavaRulechainRule;
+import net.sourceforge.pmd.lang.java.ast. *;
+import net.sourceforge.pmd.lang.java.ast.internal. *;
+import net.sourceforge.pmd.lang.java.rule.internal. *;
+import net.sourceforge.pmd.lang.java.types. *;
+import net.sourceforge.pmd.lang.java.symbols. *;
+import net.sourceforge.pmd.lang.ast.NodeStream;
+public class ClassWithOnlyPrivateConstructorsShouldBeFinalRule extends AbstractJavaRulechainRule {
+
+    public ClassWithOnlyPrivateConstructorsShouldBeFinalRule() {
+        super(ASTClassOrInterfaceDeclaration.class);
+    }
+
+    @Override
+    public Object visit(ASTClassOrInterfaceDeclaration node, Object data) {
+        if (!node.isFinal() && node.isPublic() && !hasAnnotations(node)) {
+            boolean allConstructorsPrivate = node.findDescendantsOfType(ASTConstructorDeclaration.class)
+                    .stream()
+                    .allMatch(ASTConstructorDeclaration::isPrivate);
+
+            if (allConstructorsPrivate) {
+                // Check if there is any class in the same compilation unit that extends the class
+                List<ASTClassOrInterfaceDeclaration> otherClasses = node.getParent().findDescendantsOfType(ASTClassOrInterfaceDeclaration.class);
+                boolean isExtended = otherClasses.stream().anyMatch(c -> c.getSuperClassTypeNode() != null && c.getSuperClassTypeNode().getSimpleName().equals(node.getSimpleName()));
+                if (!isExtended) {
+                    addViolation(data, node);
+                }
+            }
+        }
+
+        return super.visit(node, data);
+    }
+
+    //Check whether class has declared annotations
+    public boolean hasAnnotations(ASTClassOrInterfaceDeclaration node){
+        NodeStream<ASTAnnotation> annotations = node.getDeclaredAnnotations();
+        return annotations.nonEmpty();
+    }
+}
+```

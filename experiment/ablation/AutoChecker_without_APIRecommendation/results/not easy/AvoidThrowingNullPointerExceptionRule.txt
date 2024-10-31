@@ -10108,3 +10108,52 @@ ok 6
 结束
 
 规则执行完毕，时间总花销： 5041.171446561813 秒
+
+final checker
+```java
+package net.sourceforge.pmd.lang.java.rule.design;
+
+
+import net.sourceforge.pmd.lang.java.rule.AbstractJavaRulechainRule;
+import net.sourceforge.pmd.lang.java.ast. *;
+import net.sourceforge.pmd.lang.java.ast.internal. *;
+import net.sourceforge.pmd.lang.java.types. *;
+import net.sourceforge.pmd.lang.java.symbols. *;
+import net.sourceforge.pmd.lang.ast.NodeStream;
+public class AvoidThrowingNullPointerExceptionRule extends AbstractJavaRulechainRule {
+
+    public AvoidThrowingNullPointerExceptionRule() {
+        super(ASTLocalVariableDeclaration.class, ASTThrowStatement.class, ASTAssignmentExpression.class);
+    }
+
+    @Override
+    public Object visit(ASTLocalVariableDeclaration node, Object data) {
+        ASTVariableDeclarator variableDeclarator = node.getFirstDescendantOfType(ASTVariableDeclarator.class);
+        if (variableDeclarator != null) {
+            ASTClassOrInterfaceType type = variableDeclarator.getFirstDescendantOfType(ASTClassOrInterfaceType.class);
+            if (type != null && type.getTypeImage().equals("NullPointerException")) {
+                addViolation(data, node);
+            }
+        }
+        return super.visit(node, data);
+    }
+
+    @Override
+    public Object visit(ASTThrowStatement node, Object data) {
+        ASTClassOrInterfaceType type = node.getFirstDescendantOfType(ASTClassOrInterfaceType.class);
+        if (type != null && type.getTypeImage().equals("NullPointerException")) {
+            addViolation(data, node);
+        }
+        return super.visit(node, data);
+    }
+
+    @Override
+    public Object visit(ASTAssignmentExpression node, Object data) {
+        ASTClassOrInterfaceType type = node.getFirstDescendantOfType(ASTClassOrInterfaceType.class);
+        if (type != null && type.getTypeImage().equals("NullPointerException")) {
+            addViolation(data, node);
+        }
+        return super.visit(node, data);
+    }
+}
+```

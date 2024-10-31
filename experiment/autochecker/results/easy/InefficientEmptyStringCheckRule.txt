@@ -8404,3 +8404,49 @@ ok 6
 结束
 
 规则执行完毕，时间总花销： 4809.278070688248 秒
+
+final checker
+```java
+package net.sourceforge.pmd.lang.java.rule.performance;
+
+import java.util.Objects;
+
+import net.sourceforge.pmd.lang.java.rule.AbstractJavaRulechainRule;
+import net.sourceforge.pmd.lang.java.ast. *;
+import net.sourceforge.pmd.lang.java.ast.internal. *;
+import net.sourceforge.pmd.lang.java.rule.internal. *;
+import net.sourceforge.pmd.lang.java.types. *;
+import net.sourceforge.pmd.lang.java.symbols. *;
+import net.sourceforge.pmd.lang.ast.NodeStream;
+public class InefficientEmptyStringCheckRule extends AbstractJavaRulechainRule {
+
+    public InefficientEmptyStringCheckRule() {
+        super(ASTMethodCall.class);
+    }
+
+    @Override
+    public Object visit(ASTMethodCall node, Object data) {
+        if (isMethodCallerStringType(node) && isMethodInefficient(node)) {
+            addViolation(data, node);
+        }
+        return super.visit(node, data);
+    }
+
+    private boolean isMethodCallerStringType(ASTMethodCall node){
+        return TypeTestUtil.isA(String.class, node.getQualifier());
+    }
+
+    private boolean isMethodInefficient(ASTMethodCall node){
+        String methodName = node.getMethodName();
+        ASTExpression qualifier = node.getQualifier();
+        if(qualifier != null){
+            if(qualifier instanceof ASTMethodCall){
+                ASTMethodCall methodCall = (ASTMethodCall) qualifier;
+                return (methodName.equals("length") || methodName.equals("isEmpty"))
+                  && methodCall.getMethodName().equals("trim");
+            }
+        }
+        return false;
+    }
+}
+```

@@ -5463,3 +5463,40 @@ True
 结束
 
 规则执行完毕，时间总花销： 3150.291538476944 秒
+
+final checker
+```java
+package net.sourceforge.pmd.lang.java.rule.design;
+
+
+import net.sourceforge.pmd.lang.java.rule.AbstractJavaRulechainRule;
+import net.sourceforge.pmd.lang.java.ast. *;
+import net.sourceforge.pmd.lang.java.ast.internal. *;
+import net.sourceforge.pmd.lang.java.types. *;
+import net.sourceforge.pmd.lang.java.symbols. *;
+import net.sourceforge.pmd.lang.ast.NodeStream;
+public class SignatureDeclareThrowsExceptionRule extends AbstractJavaRulechainRule {
+
+    public SignatureDeclareThrowsExceptionRule() {
+        super(ASTMethodDeclaration.class);
+    }
+
+    @Override
+    public Object visit(ASTMethodDeclaration node, Object data) {
+        if (node.hasDescendantOfType(ASTClassOrInterfaceType.class)) {
+            ASTClassOrInterfaceType type = node.getFirstDescendantOfType(ASTClassOrInterfaceType.class);
+            if ("Exception".equals(type.getTypeImage())) {
+                // Check if the method is a Junit setup method and its superclass is TestCase
+                if ((node.getName().equals("setUp") || node.getName().startsWith("test")) && node.getParent().getParent().hasDescendantOfType(ASTExtendsList.class)) {
+                    ASTClassOrInterfaceType superClassType = node.getParent().getParent().getFirstDescendantOfType(ASTExtendsList.class).getFirstDescendantOfType(ASTClassOrInterfaceType.class);
+                    if (superClassType.getTypeImage().endsWith("TestCase")) {
+                        return super.visit(node, data);
+                    }
+                }
+                addViolation(data, node);
+            }
+        }
+        return super.visit(node, data);
+    }
+}
+```

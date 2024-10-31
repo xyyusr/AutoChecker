@@ -701,7 +701,7 @@ Below are some code snippets that maybe useful to you to repair this checker con
         unique_matches = list(set(matches))
 
         # 与工具类也进行匹配
-        with open("../base/ASTAndUtilAndEdgeClassAllAPInfoWithCommon.json", 'r', encoding='utf-8') as file:
+        with open("../base/PMD_Custom_API_DB.json", 'r', encoding='utf-8') as file:
             data = json.load(file)
         for class_info in data["classes_contained_in_project_detail"]:
             class_name = str(class_info["class_name"])
@@ -857,7 +857,7 @@ Below are some code snippets that maybe useful to you to repair this checker con
 
     def iterative_generate(self, ruleGen: str):
         ast_classes = []
-        checker_test = TestChecker("D:/JetBrains/IdeaProjects/pmd-pmd_releases-7.0.0-rc4/pmd-java")
+        checker_test = TestChecker("your-pmd-loc/pmd-java")
 
         with open("../base/astnodeswithpackageinfo.txt", 'r', encoding='gbk') as file:
             content = file.readlines()
@@ -869,15 +869,15 @@ Below are some code snippets that maybe useful to you to repair this checker con
         print("========================================== Rule " + str(
             rule) + " ===========================================")
         full_rule = "public class " + rule + " extends AbstractJavaRulechainRule"
-        method_data = get_rule("../base/generatecheckerrulejson.json", full_rule)
+        method_data = get_rule("../base/Experimental_20rules.json", full_rule)
         rule_category = method_data["rule_category"]
         rule_name = method_data["rule_name"]
         rule_description = method_data["rule_description"]
         rule_testcase_xml_filepath = method_data["rule_testcase_xml_filepath"]
 
         rule_package_path = rule_category.replace('.', '/')
-        rule_path = "D:/JetBrains/IdeaProjects/pmd-pmd_releases-7.0.0-rc4/pmd-java/src/main/java/" + rule_package_path + "/"
-        rule_path2 = "D:/JetBrains/IdeaProjects/pmd-pmd_releases-7.0.0-rc4-testsingle/pmd-pmd_releases-7.0.0-rc4/pmd-java/src/main/java/" + rule_package_path + "/"
+        rule_path = "your-pmd-loc/pmd-java/src/main/java/" + rule_package_path + "/"
+        rule_path2 = "your-another-pmd-loc/pmd-java/src/main/java/" + rule_package_path + "/"
         start_index = rule_name.find(" ") + 1
         start_index = rule_name.find(" ", start_index) + 1
         end_index = rule_name.find(" ", start_index)
@@ -931,10 +931,10 @@ Below are some code snippets that maybe useful to you to repair this checker con
 
             self.savechecker(checker)
             run_result = jar_run(
-                ["java", "-jar", "CodeToAST.jar", "checker",
-                 "D:/JetBrains/pycharm/project/CheckerAutoGen/base/checker.txt",
-                 "D:/JetBrains/pycharm/project/CheckerAutoGen/base/checker_ast.txt"],
-                "D:/JetBrains/pycharm/project/CheckerAutoGen/base")
+                ["java", "-jar", "PMD-Style-ASTParser.jar", "checker",
+                 "CheckerAutoGen/base/checker.txt",
+                 "CheckerAutoGen/base/checker_ast.txt"],
+                "CheckerAutoGen/base")
 
             if not run_result:
                 single_success = False
@@ -982,10 +982,10 @@ Below are some code snippets that maybe useful to you to repair this checker con
                         checker = self.generate_checker_with_query(repair_query)
                         self.savechecker(checker)
                         run_result = jar_run(
-                            ["java", "-jar", "CodeToAST.jar", "checker",
-                             "D:/JetBrains/pycharm/project/CheckerAutoGen/base/checker.txt",
-                             "D:/JetBrains/pycharm/project/CheckerAutoGen/base/checker_ast.txt"],
-                            "D:/JetBrains/pycharm/project/CheckerAutoGen/base")
+                            ["java", "-jar", "PMD-Style-ASTParser.jar", "checker",
+                             "CheckerAutoGen/base/checker.txt",
+                             "CheckerAutoGen/base/checker_ast.txt"],
+                            "CheckerAutoGen/base")
 
                         if run_result:
                             print("第 " + str(i) + "轮修复编译错误的结果")

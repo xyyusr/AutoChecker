@@ -7141,3 +7141,89 @@ True
 结束
 
 规则执行完毕，时间总花销： 4277.024858474731 秒
+
+final checker
+```java
+package net.sourceforge.pmd.lang.java.rule.design;
+
+import java.util.List;
+
+import net.sourceforge.pmd.lang.java.rule.AbstractJavaRulechainRule;
+import net.sourceforge.pmd.lang.java.ast. *;
+import net.sourceforge.pmd.lang.java.ast.internal. *;
+import net.sourceforge.pmd.lang.java.types. *;
+import net.sourceforge.pmd.lang.java.symbols. *;
+import net.sourceforge.pmd.lang.ast.NodeStream;
+public class ClassWithOnlyPrivateConstructorsShouldBeFinalRule extends AbstractJavaRulechainRule {
+
+    public ClassWithOnlyPrivateConstructorsShouldBeFinalRule() {
+        super(ASTClassOrInterfaceDeclaration.class);
+    }
+
+    @Override
+    public Object visit(ASTClassOrInterfaceDeclaration node, Object data) {
+        if (!node.isFinal() && (!node.isAbstract() || !hasAbstractMethods(node))) {
+            List<ASTConstructorDeclaration> constructors = node.findDescendantsOfType(ASTConstructorDeclaration.class);
+
+            boolean hasOnlyPrivateConstructors = true;
+
+            if (constructors.isEmpty()) {
+                hasOnlyPrivateConstructors = node.isPrivate();
+            } else {
+                for (ASTConstructorDeclaration constructor : constructors) {
+                    if (!constructor.isPrivate()) {
+                        hasOnlyPrivateConstructors = false;
+                        break;
+                    }
+                }
+            }
+
+            if (hasOnlyPrivateConstructors && !isSubclassed(node) && !hasNoArgsConstructorAnnotation(node) && !hasValueAnnotation(node)) {
+                addViolation(data, node);
+            }
+        }
+
+        return super.visit(node, data);
+    }
+
+    private boolean isSubclassed(ASTClassOrInterfaceDeclaration node) {
+        List<ASTClassOrInterfaceDeclaration> allClasses = node.getRoot().findDescendantsOfType(ASTClassOrInterfaceDeclaration.class);
+        for (ASTClassOrInterfaceDeclaration clazz : allClasses) {
+            if (clazz.getSuperClassTypeNode() != null && clazz.getSuperClassTypeNode().getType() == node.getType()) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    private boolean hasNoArgsConstructorAnnotation(ASTClassOrInterfaceDeclaration node) {
+        List<ASTAnnotation> annotations = node.findDescendantsOfType(ASTAnnotation.class);
+        for (ASTAnnotation annotation : annotations) {
+            if ("NoArgsConstructor".equals(annotation.getAnnotationName())) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    private boolean hasValueAnnotation(ASTClassOrInterfaceDeclaration node) {
+        List<ASTAnnotation> annotations = node.findDescendantsOfType(ASTAnnotation.class);
+        for (ASTAnnotation annotation : annotations) {
+            if ("Value".equals(annotation.getAnnotationName())) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    private boolean hasAbstractMethods(ASTClassOrInterfaceDeclaration node) {
+        List<ASTMethodDeclaration> methods = node.findDescendantsOfType(ASTMethodDeclaration.class);
+        for (ASTMethodDeclaration method : methods) {
+            if (method.isAbstract()) {
+                return true;
+            }
+        }
+        return false;
+    }
+}
+```

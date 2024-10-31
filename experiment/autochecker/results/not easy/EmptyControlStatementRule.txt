@@ -23333,3 +23333,108 @@ True
 结束
 
 规则执行完毕，时间总花销： 12045.63833808899 秒
+
+final checker
+```java
+package net.sourceforge.pmd.lang.java.rule.codestyle;
+
+
+import net.sourceforge.pmd.lang.java.rule.AbstractJavaRulechainRule;
+import net.sourceforge.pmd.lang.java.ast. *;
+import net.sourceforge.pmd.lang.java.ast.internal. *;
+import net.sourceforge.pmd.lang.java.rule.internal. *;
+import net.sourceforge.pmd.lang.java.types. *;
+import net.sourceforge.pmd.lang.java.symbols. *;
+import net.sourceforge.pmd.lang.ast.NodeStream;
+public class EmptyControlStatementRule extends AbstractJavaRulechainRule {
+
+    public EmptyControlStatementRule() {
+        super(ASTTryStatement.class, ASTSynchronizedStatement.class, ASTSwitchStatement.class, ASTInitializer.class, ASTBlock.class, ASTDoStatement.class, ASTForeachStatement.class, ASTWhileStatement.class, ASTIfStatement.class);
+    }
+
+    @Override
+    public Object visit(ASTIfStatement node, Object data) {
+        ASTStatement thenBranch = node.getThenBranch();
+        if (thenBranch instanceof ASTEmptyStatement || (thenBranch instanceof ASTBlock && ((ASTBlock) thenBranch).isEmpty())) {
+            addViolation(data, node);
+        }
+        return super.visit(node, data);
+    }
+
+    @Override
+    public Object visit(ASTTryStatement node, Object data) {
+        if (node.getFirstChild() instanceof ASTResourceList) {
+            return super.visit(node, data);
+        }
+        ASTBlock tryBlock = node.getBody();
+        if (tryBlock != null && tryBlock.isEmpty()) {
+            addViolation(data, node);
+        }
+        ASTFinallyClause finallyClause = node.getFinallyClause();
+        if (finallyClause != null && finallyClause.getFirstChildOfType(ASTBlock.class).isEmpty()) {
+            addViolation(data, node);
+        }
+        return super.visit(node, data);
+    }
+
+    @Override
+    public Object visit(ASTSynchronizedStatement node, Object data) {
+        ASTBlock synchronizedBlock = node.getFirstChildOfType(ASTBlock.class);
+        if (synchronizedBlock != null && synchronizedBlock.isEmpty()) {
+            addViolation(data, node);
+        }
+        return super.visit(node, data);
+    }
+
+    @Override
+    public Object visit(ASTSwitchStatement node, Object data) {
+        if (node.getBranches().isEmpty()) {
+            addViolation(data, node);
+        }
+        return super.visit(node, data);
+    }
+
+    @Override
+    public Object visit(ASTInitializer node, Object data) {
+        ASTBlock initializerBlock = node.getFirstChildOfType(ASTBlock.class);
+        if (initializerBlock != null && initializerBlock.isEmpty()) {
+            addViolation(data, node);
+        }
+        return super.visit(node, data);
+    }
+
+    @Override
+    public Object visit(ASTBlock node, Object data) {
+        if (node.isEmpty() && node.getParent() instanceof ASTBlock) {
+            addViolation(data, node);
+        }
+        return super.visit(node, data);
+    }
+
+    @Override
+    public Object visit(ASTDoStatement node, Object data) {
+        if (node.getFirstChildOfType(ASTBlock.class).isEmpty()) {
+            addViolation(data, node);
+        }
+        return super.visit(node, data);
+    }
+
+    @Override
+    public Object visit(ASTForeachStatement node, Object data) {
+        ASTBlock foreachBlock = node.getFirstChildOfType(ASTBlock.class);
+        if (foreachBlock != null && foreachBlock.isEmpty()) {
+            addViolation(data, node);
+        }
+        return super.visit(node, data);
+    }
+
+    @Override
+    public Object visit(ASTWhileStatement node, Object data) {
+        ASTStatement body = node.getBody();
+        if (body instanceof ASTEmptyStatement || (body instanceof ASTBlock && ((ASTBlock) body).isEmpty())) {
+            addViolation(data, node);
+        }
+        return super.visit(node, data);
+    }
+}
+```

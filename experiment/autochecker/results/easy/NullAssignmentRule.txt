@@ -1566,3 +1566,52 @@ True
 结束
 
 规则执行完毕，时间总花销： 3139.004482269287 秒
+
+final checker
+```java
+package net.sourceforge.pmd.lang.java.rule.errorprone;
+
+
+import net.sourceforge.pmd.lang.java.rule.AbstractJavaRulechainRule;
+import net.sourceforge.pmd.lang.java.ast. *;
+import net.sourceforge.pmd.lang.java.ast.internal. *;
+import net.sourceforge.pmd.lang.java.rule.internal. *;
+import net.sourceforge.pmd.lang.java.types. *;
+import net.sourceforge.pmd.lang.java.symbols. *;
+import net.sourceforge.pmd.lang.ast.NodeStream;
+public class NullAssignmentRule extends AbstractJavaRulechainRule {
+
+    public NullAssignmentRule() {
+        super(ASTAssignmentExpression.class);
+    }
+
+    @Override
+    public Object visit(ASTAssignmentExpression node, Object data) {
+        checkForNullAssignment(node.getRightOperand(), data, node);
+        return super.visit(node, data);
+    }
+
+    private void checkForNullAssignment(Object node, Object data, ASTAssignmentExpression originalNode) {
+        if (node instanceof ASTNullLiteral) {
+            ASTVariableAccess varAccess = (ASTVariableAccess) originalNode.getLeftOperand();
+            ASTVariableDeclaratorId declaratorId = getVariableDeclaration(varAccess);
+            if (declaratorId != null && !declaratorId.isFinal()) {
+                addViolationWithMessage(data, originalNode, "Assigning null to a variable is usually bad form.");
+            }
+        } else if (node instanceof ASTConditionalExpression) {
+            ASTConditionalExpression conditionalExpression = (ASTConditionalExpression) node;
+            checkForNullAssignment(conditionalExpression.getThenBranch(), data, originalNode);
+            checkForNullAssignment(conditionalExpression.getElseBranch(), data, originalNode);
+        }
+    }
+
+    private ASTVariableDeclaratorId getVariableDeclaration(ASTVariableAccess var) {
+        JVariableSymbol symbol = var.getReferencedSym();
+        if(symbol != null){
+            ASTVariableDeclaratorId declaratorId = symbol.tryGetNode();
+            return declaratorId;
+        }
+        return null;
+    }
+}
+```

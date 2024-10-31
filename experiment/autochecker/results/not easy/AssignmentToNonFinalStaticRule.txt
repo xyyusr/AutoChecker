@@ -2627,3 +2627,96 @@ True
 结束
 
 规则执行完毕，时间总花销： 2204.5616941452026 秒
+
+final checker
+```java
+package net.sourceforge.pmd.lang.java.rule.errorprone;
+
+
+import net.sourceforge.pmd.lang.java.rule.AbstractJavaRulechainRule;
+import net.sourceforge.pmd.lang.java.ast. *;
+import net.sourceforge.pmd.lang.java.ast.internal. *;
+import net.sourceforge.pmd.lang.java.rule.internal. *;
+import net.sourceforge.pmd.lang.java.types. *;
+import net.sourceforge.pmd.lang.java.symbols. *;
+import net.sourceforge.pmd.lang.ast.NodeStream;
+public class AssignmentToNonFinalStaticRule extends AbstractJavaRulechainRule {
+    public AssignmentToNonFinalStaticRule() {
+        super(ASTConstructorDeclaration.class);
+    }
+
+    @Override
+    public Object visit(ASTConstructorDeclaration node, Object data) {
+        NodeStream<JavaNode> descendants = node.descendants(ASTAssignmentExpression.class);
+        descendants.forEach(descendant -> {
+            ASTAssignableExpr leftOperand = ((ASTAssignmentExpression) descendant).getLeftOperand();
+            ASTExpression rightOperand = ((ASTAssignmentExpression) descendant).getRightOperand();
+            if (leftOperand instanceof ASTVariableAccess) {
+                ASTVariableAccess var = (ASTVariableAccess) leftOperand;
+                if (isVariableAccessStatic(var) && !isVariableAccessFinal(var)) {
+                    addViolation(data, var);
+                }
+            } else if (leftOperand instanceof ASTFieldAccess) {
+                ASTFieldAccess field = (ASTFieldAccess) leftOperand;
+                if (isFieldAccessStatic(field) && !isFieldAccessFinal(field)) {
+                    addViolation(data, field);
+                }
+            }
+            if (rightOperand instanceof ASTUnaryExpression) {
+                ASTVariableAccess var = ((ASTUnaryExpression) rightOperand).getFirstDescendantOfType(ASTVariableAccess.class);
+                if (var != null && isVariableAccessField(var) && isVariableAccessStatic(var) && !isVariableAccessFinal(var)) {
+                    addViolation(data, var);
+                }
+            }
+        });
+        return super.visit(node, data);
+    }
+
+    public boolean isVariableAccessStatic(ASTVariableAccess node) {
+        JVariableSymbol sym = node.getReferencedSym();
+        if (sym != null && sym.tryGetNode().hasModifiers(JModifier.STATIC)) {
+            return true;
+        }
+        return false;
+    }
+
+    public boolean isVariableAccessFinal(ASTVariableAccess var) {
+        JVariableSymbol symbol = var.getReferencedSym();
+        if (symbol == null) {
+            return false;
+        }
+        if (var.getReferencedSym().isFinal()) {
+            return true;
+        }
+        return false;
+    }
+
+    public boolean isFieldAccessStatic(ASTFieldAccess node) {
+        JVariableSymbol sym = node.getReferencedSym();
+        if (sym != null && sym.tryGetNode().hasModifiers(JModifier.STATIC)) {
+            return true;
+        }
+        return false;
+    }
+
+    public boolean isFieldAccessFinal(ASTFieldAccess node) {
+        JVariableSymbol sym = node.getReferencedSym();
+        if (sym == null) {
+            return false;
+        }
+        if (sym.isFinal()) {
+            return true;
+        }
+        return false;
+    }
+
+    public boolean isVariableAccessField(ASTVariableAccess node) {
+        JVariableSymbol sym = node.getReferencedSym();
+        if (sym instanceof JFieldSymbol) {
+            JFieldSymbol fieldSym = (JFieldSymbol) sym;
+            return true;
+        }
+        return false;
+    }
+}
+```

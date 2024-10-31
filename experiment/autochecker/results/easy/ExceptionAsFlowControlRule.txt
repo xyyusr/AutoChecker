@@ -7254,3 +7254,54 @@ True
 结束
 
 规则执行完毕，时间总花销： 6221.644245147705 秒
+
+final checker
+```java
+package net.sourceforge.pmd.lang.java.rule.design;
+
+
+import java.util.List;
+
+import net.sourceforge.pmd.lang.java.rule.AbstractJavaRulechainRule;
+import net.sourceforge.pmd.lang.java.ast. *;
+import net.sourceforge.pmd.lang.java.ast.internal. *;
+import net.sourceforge.pmd.lang.java.rule.internal. *;
+import net.sourceforge.pmd.lang.java.types. *;
+import net.sourceforge.pmd.lang.java.symbols. *;
+import net.sourceforge.pmd.lang.ast.NodeStream;
+public class ExceptionAsFlowControlRule extends AbstractJavaRulechainRule {
+
+    public ExceptionAsFlowControlRule() {
+        super(ASTTryStatement.class);
+    }
+
+    @Override
+    public Object visit(ASTTryStatement node, Object data) {
+        ASTBlock tryBlock = node.getBody();
+        List<ASTThrowStatement> throwStatements = tryBlock.findDescendantsOfType(ASTThrowStatement.class);
+
+        for (ASTThrowStatement throwStatement : throwStatements) {
+            JTypeMirror thrownType = getThrownExceptionType(throwStatement);
+
+            NodeStream<ASTCatchClause> catchClauses = node.getCatchClauses();
+            for (ASTCatchClause catchClause : catchClauses) {
+                ASTCatchParameter catchParameter = catchClause.getParameter();
+                NodeStream<ASTClassOrInterfaceType> exceptionTypes = catchParameter.getAllExceptionTypes();
+
+                for (ASTClassOrInterfaceType exceptionType : exceptionTypes) {
+                    JTypeMirror caughtType = exceptionType.getTypeMirror();
+                    if (TypeTestUtil.isA(caughtType, thrownType) && !TypeTestUtil.isA(thrownType, caughtType)) {
+                        addViolation(data, node);
+                    }
+                }
+            }
+        }
+        return super.visit(node, data);
+    }
+
+    public JTypeMirror getThrownExceptionType(ASTThrowStatement node) {
+        JTypeMirror thrownType = node.getExpr().getTypeMirror();
+        return thrownType;
+    }
+}
+```

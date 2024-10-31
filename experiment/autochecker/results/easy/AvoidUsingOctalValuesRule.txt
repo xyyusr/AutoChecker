@@ -1906,3 +1906,64 @@ True
 结束
 
 规则执行完毕，时间总花销： 1470.8983507156372 秒
+
+final checker:
+```java
+package net.sourceforge.pmd.lang.java.rule.errorprone;
+
+
+import net.sourceforge.pmd.lang.java.rule.AbstractJavaRulechainRule;
+import net.sourceforge.pmd.lang.java.ast. *;
+import net.sourceforge.pmd.lang.java.ast.internal. *;
+import net.sourceforge.pmd.lang.java.rule.internal. *;
+import net.sourceforge.pmd.lang.java.types. *;
+import net.sourceforge.pmd.lang.java.symbols. *;
+import net.sourceforge.pmd.lang.ast.NodeStream;
+public class AvoidUsingOctalValuesRule extends AbstractJavaRulechainRule {
+
+    public AvoidUsingOctalValuesRule() {
+        super(ASTFieldDeclaration.class);
+    }
+
+    @Override
+    public Object visit(ASTFieldDeclaration node, Object data) {
+        if (isFieldIntType(node) || isFieldLongType(node)) {
+            ASTLiteral literal = getInitializedValue(node);
+            if (literal != null && literal instanceof ASTNumericLiteral) {
+                ASTNumericLiteral numericLiteral = (ASTNumericLiteral) literal;
+                if ((numericLiteral.isIntLiteral() || numericLiteral.isLongLiteral())
+                    && numericLiteral.getBase() == 8
+                    && numericLiteral.getValueAsInt() > 7) {
+                    addViolation(data, node);
+                }
+            }
+        }
+        return super.visit(node, data);
+    }
+
+    public boolean isFieldIntType(ASTFieldDeclaration node) {
+        ASTType type = node.getTypeNode();
+        JTypeMirror t = type.getTypeMirror();
+        return t.isPrimitive(JPrimitiveType.PrimitiveTypeKind.INT);
+    }
+
+    public boolean isFieldLongType(ASTFieldDeclaration node) {
+        ASTType type = node.getTypeNode();
+        JTypeMirror t = type.getTypeMirror();
+        return t.isPrimitive(JPrimitiveType.PrimitiveTypeKind.LONG);
+    }
+
+    public ASTLiteral getInitializedValue(ASTFieldDeclaration node){
+        NodeStream<ASTVariableDeclaratorId> varIds = node.getVarIds();
+        for(ASTVariableDeclaratorId varId : varIds){
+            if(varId.getName().equals("x")){
+                ASTExpression init = varId.getInitializer();
+                if (init != null && init instanceof ASTLiteral) {
+                    return (ASTLiteral)init;
+                }
+            }
+        }
+        return null;
+    }
+}
+```

@@ -1539,3 +1539,30 @@ True
 结束
 
 规则执行完毕，时间总花销： 902.9927408695221 秒
+
+final checker
+```java
+package net.sourceforge.pmd.lang.java.rule.codestyle;
+
+
+import net.sourceforge.pmd.lang.java.rule.AbstractJavaRulechainRule;
+import net.sourceforge.pmd.lang.java.ast. *;
+import net.sourceforge.pmd.lang.java.ast.internal. *;
+import net.sourceforge.pmd.lang.java.types. *;
+import net.sourceforge.pmd.lang.java.symbols. *;
+import net.sourceforge.pmd.lang.ast.NodeStream;
+public class MethodNamingConventionsRule extends AbstractJavaRulechainRule {
+
+    public MethodNamingConventionsRule() {
+        super(ASTClassOrInterfaceDeclaration.class, ASTMethodDeclaration.class);
+    }
+
+    @Override
+    public Object visit(ASTMethodDeclaration node, Object data) {
+        if (!node.getMethodName().matches("^[_a-z][a-zA-Z0-9]*$")) {
+            addViolation(data, node);
+        }
+        return super.visit(node, data);
+    }
+}
+```

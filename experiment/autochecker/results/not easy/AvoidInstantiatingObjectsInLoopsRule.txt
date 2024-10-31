@@ -16861,3 +16861,96 @@ ok 13
 结束
 
 规则执行完毕，时间总花销： 11046.535331726074 秒
+
+final checker
+```java
+package net.sourceforge.pmd.lang.java.rule.performance;
+
+
+import net.sourceforge.pmd.lang.java.rule.AbstractJavaRulechainRule;
+import net.sourceforge.pmd.lang.java.ast. *;
+import net.sourceforge.pmd.lang.java.ast.internal. *;
+import net.sourceforge.pmd.lang.java.rule.internal. *;
+import net.sourceforge.pmd.lang.java.types. *;
+import net.sourceforge.pmd.lang.java.symbols. *;
+import net.sourceforge.pmd.lang.ast.NodeStream;
+public class AvoidInstantiatingObjectsInLoopsRule extends AbstractJavaRulechainRule {
+
+    public AvoidInstantiatingObjectsInLoopsRule() {
+        super(ASTForStatement.class, ASTWhileStatement.class, ASTDoStatement.class, ASTForeachStatement.class);
+    }
+
+    @Override
+    public Object visit(ASTForStatement node, Object data) {
+        return processNode(node.getFirstDescendantOfType(ASTBlock.class), data);
+    }
+
+    @Override
+    public Object visit(ASTWhileStatement node, Object data) {
+        return processNode(node.getFirstDescendantOfType(ASTBlock.class), data);
+    }
+
+    @Override
+    public Object visit(ASTDoStatement node, Object data) {
+        return processNode(node.getFirstDescendantOfType(ASTBlock.class), data);
+    }
+
+    @Override
+    public Object visit(ASTForeachStatement node, Object data) {
+        return processNode(node.getFirstDescendantOfType(ASTBlock.class), data);
+    }
+
+    private Object processNode(ASTBlock block, Object data) {
+        if (block != null) {
+            block.descendants(ASTConstructorCall.class).forEach(constructorCall -> {
+                if (isNotInThrowStatement(constructorCall) && isNotInReturnStatement(constructorCall) && isNotInCatchBlockOfTryStatement(constructorCall) && isNotInArrayAssignment(constructorCall) && isNotInMethodCall(constructorCall)) {
+                    addViolation(data, constructorCall);
+                }
+            });
+
+            block.descendants(ASTArrayAllocation.class).forEach(arrayAllocation -> {
+                if (isNotInMethodArgument(arrayAllocation) && isNotInArrayAssignment(arrayAllocation)) {
+                    addViolation(data, arrayAllocation);
+                }
+            });
+        }
+        return data;
+    }
+
+    private boolean isNotInThrowStatement(ASTConstructorCall constructorCall) {
+        return constructorCall.getFirstParentOfType(ASTThrowStatement.class) == null;
+    }
+
+    private boolean isNotInReturnStatement(ASTConstructorCall constructorCall) {
+        return constructorCall.getFirstParentOfType(ASTReturnStatement.class) == null;
+    }
+
+    private boolean isNotInCatchBlockOfTryStatement(ASTConstructorCall constructorCall) {
+        return constructorCall.getFirstParentOfType(ASTCatchClause.class) == null;
+    }
+
+    private boolean isNotInArrayAssignment(ASTConstructorCall constructorCall) {
+        ASTAssignmentExpression assignmentExpression = constructorCall.getFirstParentOfType(ASTAssignmentExpression.class);
+        if (assignmentExpression != null) {
+            return assignmentExpression.getFirstDescendantOfType(ASTArrayAccess.class) == null;
+        }
+        return true;
+    }
+
+    private boolean isNotInArrayAssignment(ASTArrayAllocation arrayAllocation) {
+        ASTAssignmentExpression assignmentExpression = arrayAllocation.getFirstParentOfType(ASTAssignmentExpression.class);
+        if (assignmentExpression != null) {
+            return assignmentExpression.getFirstDescendantOfType(ASTArrayAccess.class) == null;
+        }
+        return true;
+    }
+
+    private boolean isNotInMethodCall(ASTConstructorCall constructorCall) {
+        return constructorCall.getFirstParentOfType(ASTMethodCall.class) == null;
+    }
+
+    private boolean isNotInMethodArgument(ASTArrayAllocation arrayAllocation) {
+        return arrayAllocation.getFirstParentOfType(ASTArgumentList.class) == null;
+    }
+}
+```

@@ -1,7 +1,7 @@
 {
     "project_name": "pmd-java",
     "project_version": "7.0.0-rc4-release",
-    "project_path": "/Users/xyy/Desktop/PMD/pmd-pmd_releases-7.0.0-rc4/pmd-java/src/main/java/net/sourceforge/pmd/lang/java",
+    "project_path": "your-pmd-loc/pmd-java/src/main/java/net/sourceforge/pmd/lang/java",
     "classes_contained_in_project_count": 148,
     "APIs_contained_in_project_count": 11642,
     "classes_contained_in_project_detail": [
