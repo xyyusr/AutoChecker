@@ -86,8 +86,7 @@ def get_API(nodes: list):
 # Load model from HuggingFace Hub
 tokenizer = AutoTokenizer.from_pretrained('xx/bge-large-en-v1.5')
 model = AutoModel.from_pretrained('xx/bge-large-en-v1.5')
-# tokenizer = AutoTokenizer.from_pretrained('/pub/data/xieyy/bge-large-en-v1.5')
-# model = AutoModel.from_pretrained('/pub/data/xieyy/bge-large-en-v1.5')
+
 model.eval()
 
 # Database to store embeddings and corresponding sentences
