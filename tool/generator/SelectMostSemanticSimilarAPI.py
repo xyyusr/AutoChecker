@@ -19,7 +19,7 @@ def split_camel_case(method_name: str):
 
 def get_API(nodes: list):
     i = 0
-    with open("../base/PMD_Custom_API_DB.json", 'r', encoding='utf-8') as file:
+    with open("../PMD_Custom_API_DB.json", 'r', encoding='utf-8') as file:
         data = json.load(file)
     separator = ' '
     apilist = {}
@@ -139,7 +139,7 @@ def get_most_similar_api(query: str, nodes: list):
     most_similar_sentence = part[most_similar_index]['sentence']
 
     if float(cosine_similarities[most_similar_index].item()) > 0.8:
-        with open("../base/PMD_Custom_API_DB.json", 'r', encoding='utf-8') as file:
+        with open("../PMD_Custom_API_DB.json", 'r', encoding='utf-8') as file:
             data = json.load(file)
         apis = []
         separator = ' '

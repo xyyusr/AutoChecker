@@ -3,16 +3,16 @@ import re
 from langchain.prompts import PromptTemplate
 from langchain_openai import ChatOpenAI
 from langchain_core.prompts import ChatPromptTemplate, FewShotChatMessagePromptTemplate
-from generator.SelectMostSemanticSimilarAPI import embeddingapis, get_API, cleardata
-from generator.SelectMostSemanticSimilarMetaOp import embeddingsentences, get_impl
-from generator.cmd_utils import jar_run
-from generator.getRule import get_rule
-from generator.parseranswer import parse_java_code_from_answer
-from generator.parsererror import MavenOutputParser
-from generator.select_testcase_to_xml import select, selecterrorcase, finderrorsourcecode, \
+from tool.generator.SelectMostSemanticSimilarAPI import embeddingapis, get_API, cleardata
+from tool.generator.SelectMostSemanticSimilarMetaOp import embeddingsentences, get_impl
+from tool.generator.cmd_utils import jar_run
+from tool.generator.getRule import get_rule
+from tool.generator.parseranswer import parse_java_code_from_answer
+from tool.generator.parsererror import MavenOutputParser
+from tool.generator.select_testcase_to_xml import select, selecterrorcase, finderrorsourcecode, \
     select_repaired_testcase_toxml_to_test, finddescription, finderrordescription, finderrornumber, findCodeInTestCase, \
     findsourccode, delete_fail5round_testcase_from_xml, countNegative, countTestcases
-from generator.testrule import TestChecker
+from tool.generator.testrule import TestChecker
 import tiktoken
 
 class CheckerGenerator(object):
@@ -743,7 +743,7 @@ Below are some code snippets that maybe useful to you to repair this checker con
         unique_matches = list(set(matches))
 
         # 与工具类也进行匹配
-        with open("../base/PMD_Custom_API_DB.json", 'r', encoding='utf-8') as file:
+        with open("../PMD_Custom_API_DB.json", 'r', encoding='utf-8') as file:
             data = json.load(file)
         for class_info in data["classes_contained_in_project_detail"]:
             class_name = str(class_info["class_name"])

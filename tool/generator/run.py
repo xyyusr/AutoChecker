@@ -1,9 +1,9 @@
 import sys
 import time
-from generator.AutoCheckerGenerator import CheckerGenerator
+from tool.generator.AutoCheckerGenerator import CheckerGenerator
 import shutil
-from generator.getRule import get_rule
-from generator.testrule import TestChecker
+from tool.generator.getRule import get_rule
+from tool.generator.testrule import TestChecker
 
 easy_rules = ["AvoidUsingOctalValuesRule","ExcessiveImportsRule","NullAssignmentRule","IdenticalCatchBranchesRule",
           "InefficientEmptyStringCheckRule","SignatureDeclareThrowsExceptionRule","StringInstantiationRule","UseStringBufferForStringAppendsRule",

@@ -3,14 +3,14 @@ import re
 from langchain.prompts import PromptTemplate
 from langchain_openai import ChatOpenAI
 from langchain_core.prompts import ChatPromptTemplate, FewShotChatMessagePromptTemplate
-from generator.SelectMostSemanticSimilarAPI import embeddingapis, get_API, cleardata
-from generator.SelectMostSemanticSimilarMetaOp import embeddingsentences, get_impl
-from generator.cmd_utils import jar_run
-from generator.getRule import get_rule
-from generator.parseranswer import parse_java_code_from_answer
-from generator.parsererror import MavenOutputParser
-from generator.select_testcase_to_xml import findsourccode, countNegative, countTestcases, selectOne, findonesourccode
-from generator.testrule import TestChecker
+from tool.generator.SelectMostSemanticSimilarAPI import embeddingapis, get_API, cleardata
+from tool.generator.SelectMostSemanticSimilarMetaOp import embeddingsentences, get_impl
+from tool.generator.cmd_utils import jar_run
+from tool.generator.getRule import get_rule
+from tool.generator.parseranswer import parse_java_code_from_answer
+from tool.generator.parsererror import MavenOutputParser
+from tool.generator.select_testcase_to_xml import findsourccode, countNegative, countTestcases, selectOne, findonesourccode
+from tool.generator.testrule import TestChecker
 import tiktoken
 
 class CheckerGenerator(object):

@@ -9,7 +9,7 @@ import json
 from transformers import AutoTokenizer, AutoModel
 import torch
 
-from generator.SelectMostSemanticSimilarAPI import get_most_similar_api
+from tool.generator.SelectMostSemanticSimilarAPI import get_most_similar_api
 
 
 def get_data(file_path: str):
@@ -32,7 +32,7 @@ model.eval()
 def embeddingsentences():
     database.clear()
     # Sentences we want sentence embeddings for
-    sentences = get_data("../base/Meta_Op_DB.json")
+    sentences = get_data("../Meta_Op_DB.json")
 
     # Tokenize sentences
     encoded_input = tokenizer(sentences, padding=True, truncation=True, return_tensors='pt')
@@ -51,7 +51,7 @@ def embeddingsentences():
         database.append({'sentence': sent, 'embedding': emb})
 
 def findopimpl(op_name: str):
-    with open("../base/Meta_Op_DB.json", 'r', encoding='utf-8') as file:
+    with open("../Meta_Op_DB.json", 'r', encoding='utf-8') as file:
         data = json.load(file)
 
     # 遍历所有类

@@ -1,4 +1,4 @@
-from generator.cmd_utils import maven_run
+from tool.generator.cmd_utils import maven_run
 import os
 
 class TestChecker(object):

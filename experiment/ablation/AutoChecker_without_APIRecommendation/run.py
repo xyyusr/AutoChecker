@@ -3,8 +3,8 @@ import time
 import shutil
 from experiment.ablation.AutoChecker_without_APIRecommendation.AutoChecker_without_APIRecommendation_Generator import \
     CheckerGenerator
-from generator.getRule import get_rule
-from generator.testrule import TestChecker
+from tool.generator.getRule import get_rule
+from tool.generator.testrule import TestChecker
 
 easy_rules = ["AvoidUsingOctalValuesRule","ExcessiveImportsRule","NullAssignmentRule","IdenticalCatchBranchesRule",
           "InefficientEmptyStringCheckRule","SignatureDeclareThrowsExceptionRule","StringInstantiationRule","UseStringBufferForStringAppendsRule",

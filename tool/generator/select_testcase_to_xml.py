@@ -1,8 +1,6 @@
 
 import xml.etree.ElementTree as ET
 
-from generator.cmd_utils import jar_run
-
 
 def select_repaired_testcase_toxml_to_test(test_case: list, rule_testcase_xml_filepath: str):
     # XML文件路径
