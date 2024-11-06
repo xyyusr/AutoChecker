@@ -6,7 +6,7 @@ AutoChecker is a tool to automatically generate checker for static analyzers sup
 
 ## Files
 + **Meta-op Set.xlsx**: The Meta-Op Set that only contains meta-operation natural language description.
-+ **overview**: The overview of our approach.
++ **overview.png**: The overview of our approach.
 + **requirement.txt**: Runtime dependencies of this repository.
 + **statistics.xlsx**: The original data of answering RQ1,RQ2,RQ3 in paper.
 
