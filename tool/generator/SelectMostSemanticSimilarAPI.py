@@ -12,23 +12,20 @@ def split_camel_case(method_name: str):
             if i - start_index >= 2:
                 words.append(method_name[start_index:i].lower())
                 start_index = i
-    # 添加最后一个单词
     words.append(method_name[start_index:].lower())
 
     return words
 
 def get_API(nodes: list):
     i = 0
-    with open("../PMD_Custom_API_DB.json", 'r', encoding='utf-8') as file:
+    with open("../PMD_FullAPI_DB.json", 'r', encoding='utf-8') as file:
         data = json.load(file)
     separator = ' '
     apilist = {}
-    # 遍历所有类
 
     for class_info in data["classes_contained_in_project_detail"]:
         class_name = str(class_info["class_name"])
         if class_name in nodes:
-            # 如果是节点类，去头去尾，工具类因为不使用类名所以不对类名进行操作
             if class_name.startswith("AST"):
                 if class_name.endswith("Declaration"):
                     class_name = class_name[3:]
@@ -43,9 +40,8 @@ def get_API(nodes: list):
                 api_name = str(API_info["method_name"])
                 api_sig = str(API_info["method_signature"])
 
-                # 如果是节点类，方法全是实例方法
                 if str(class_info["class_name"]).startswith("AST"):
-                    # 返回值类型
+
                     returnType = str(api_sig.split(" ")[1])
 
                     if returnType == "boolean":
@@ -63,7 +59,7 @@ def get_API(nodes: list):
                         apilist[api_comment] = str(class_info["class_name"])
                         i += 1
                 else:
-                    # 返回值类型
+
                     returnType = str(api_sig.split(" ")[2])
                     if returnType == "boolean":
                         api_name = separator.join(split_camel_case(api_name))
@@ -80,7 +76,7 @@ def get_API(nodes: list):
                         i += 1
 
     print(i)
-    print(len(apilist))  # 比i少，因为有一些重载方法会被去重
+    print(len(apilist))
     return apilist
 
 # Load model from HuggingFace Hub
@@ -112,9 +108,7 @@ def cleardata():
     database.clear()
 
 def get_most_similar_api(query: str, nodes: list):
-    # sentences = get_API(nodes)
-    # embeddingapis(sentences)
-    # 特定句子
+
     query_sentence = query
 
     # Tokenize query sentence
@@ -134,20 +128,17 @@ def get_most_similar_api(query: str, nodes: list):
     cosine_similarities = torch.nn.functional.cosine_similarity(query_embedding,
                                                                 torch.stack([entry['embedding'] for entry in part]),
                                                                 dim=1)
-    # 找到最相似的句子索引
     most_similar_index = torch.argmax(cosine_similarities).item()
     most_similar_sentence = part[most_similar_index]['sentence']
 
     if float(cosine_similarities[most_similar_index].item()) > 0.8:
-        with open("../PMD_Custom_API_DB.json", 'r', encoding='utf-8') as file:
+        with open("../PMD_FullAPI_DB.json", 'r', encoding='utf-8') as file:
             data = json.load(file)
         apis = []
         separator = ' '
-        # 遍历所有相关类
         for class_info in data["classes_contained_in_project_detail"]:
             class_name = str(class_info["class_name"])
             if class_name in nodes:
-                # 如果是节点类，去头去尾，工具类因为不使用类名所以不对类名进行操作
                 if class_name.startswith("AST"):
                     if class_name.endswith("Declaration"):
                         class_name = class_name[3:]
@@ -160,9 +151,7 @@ def get_most_similar_api(query: str, nodes: list):
                 for API_info in class_info["APIs_contained_in_class_detail"]:
                     api_name = str(API_info["method_name"])
                     api_sig = str(API_info["method_signature"])
-                    # 如果是节点类，方法全是实例方法
                     if str(class_info["class_name"]).startswith("AST"):
-                        # 返回值类型
                         returnType = str(api_sig.split(" ")[1])
                         if returnType == "boolean":
                             api_name = separator.join(split_camel_case(api_name))
@@ -194,7 +183,6 @@ def get_most_similar_api(query: str, nodes: list):
                                 apis.append(meta_data)
                                 return apis
                     else:
-                        # 返回值类型
                         returnType = str(api_sig.split(" ")[2])
                         if returnType == "boolean":
                             api_name = separator.join(split_camel_case(api_name))

@@ -6,15 +6,15 @@ def get_rule(json_file, name):
 
     method_data = []
 
-    # 遍历所有类
+
     for rule_info in data["ruleList"]:
-        # 检查当前类是否是目标类
+
         if rule_info["rule_Name"] == name:
             rule_category = rule_info["rule_Package"]
             rule_name = rule_info["rule_Name"]
             rule_description = rule_info["rule_Description"]
             rule_testcase_xml_filepath = rule_info["xml_Path"]
-            # 构建方法信息字典并添加到结果列表中
+
             method_data = {
                 "rule_category": rule_category,
                 "rule_name": rule_name,

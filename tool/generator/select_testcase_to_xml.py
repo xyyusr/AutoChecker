@@ -3,11 +3,9 @@ import xml.etree.ElementTree as ET
 
 
 def select_repaired_testcase_toxml_to_test(test_case: list, rule_testcase_xml_filepath: str):
-    # XML文件路径
     xml_file_path = rule_testcase_xml_filepath[
                     :26] + "pmd-pmd_releases-7.0.0-rc4-testsingle/" + rule_testcase_xml_filepath[26:]
 
-    # 解析XML文件
     tree = ET.parse(rule_testcase_xml_filepath, parser=ET.XMLParser(encoding="utf-8"))
     root = tree.getroot()
 
@@ -16,12 +14,10 @@ def select_repaired_testcase_toxml_to_test(test_case: list, rule_testcase_xml_fi
         if problem not in test_case:
             root.remove(test_code_elem)
 
-    # 将修改后的XML写回文件
     tree.write(xml_file_path)
 
 def delete_fail5round_testcase_from_xml(test_case: str, rule_testcase_xml_filepath: str):
 
-    # 解析XML文件
     tree = ET.parse(rule_testcase_xml_filepath, parser=ET.XMLParser(encoding="utf-8"))
     root = tree.getroot()
 
@@ -30,15 +26,12 @@ def delete_fail5round_testcase_from_xml(test_case: str, rule_testcase_xml_filepa
         if problem == test_case:
             root.remove(test_code_elem)
 
-    # 将修改后的XML写回文件
     tree.write(rule_testcase_xml_filepath)
 
 def findCodeInTestCase(passed_testcase: list, rule_testcase_xml_filepath: str):
-    # XML文件路径
     xml_file_path = rule_testcase_xml_filepath[
                     :26] + "pmd-pmd_releases-7.0.0-rc4-testsingle/" + rule_testcase_xml_filepath[26:]
 
-    # 解析XML文件
     tree = ET.parse(xml_file_path, parser=ET.XMLParser(encoding="utf-8"))
     root = tree.getroot()
     passed_testcase_code = ""
@@ -58,10 +51,8 @@ def findCodeInTestCase(passed_testcase: list, rule_testcase_xml_filepath: str):
 
 
 def select(id: int, xml_path: str):
-    # XML文件路径
     xml_file_path = xml_path
 
-    # 解析XML文件
     tree = ET.parse(xml_file_path, parser=ET.XMLParser(encoding="utf-8"))
     root = tree.getroot()
     i = 0
@@ -71,15 +62,12 @@ def select(id: int, xml_path: str):
         if problem != "0":
             i = i + 1
             if i == id:
-                # 创建一个新的XML文件
                 code_elem = ET.ElementTree(test_code_elem)
                 code_elem.write("../testcase/onecode.xml", encoding="utf-8", xml_declaration=True)
 
 def selectOne(id: int, xml_path: str):
-    # XML文件路径
     xml_file_path = xml_path
 
-    # 解析XML文件
     tree = ET.parse(xml_file_path, parser=ET.XMLParser(encoding="utf-8"))
     root = tree.getroot()
     i = 0
@@ -87,15 +75,12 @@ def selectOne(id: int, xml_path: str):
     for test_code_elem in root.findall('.//test-code'):
         i = i + 1
         if i == id:
-            # 创建一个新的XML文件
             code_elem = ET.ElementTree(test_code_elem)
             code_elem.write("../testcase/onecode.xml", encoding="utf-8", xml_declaration=True)
 
 def countNegative(xml_path: str):
-    # XML文件路径
     xml_file_path = xml_path
 
-    # 解析XML文件
     tree = ET.parse(xml_file_path, parser=ET.XMLParser(encoding="utf-8"))
     root = tree.getroot()
     i = 0
@@ -107,10 +92,8 @@ def countNegative(xml_path: str):
     return i
 
 def countTestcases(xml_path: str):
-    # XML文件路径
     xml_file_path = xml_path
 
-    # 解析XML文件
     tree = ET.parse(xml_file_path, parser=ET.XMLParser(encoding="utf-8"))
     root = tree.getroot()
     i = 0
@@ -120,16 +103,13 @@ def countTestcases(xml_path: str):
     return i
 
 def findsourccode():
-    # XML文件路径
     xml_file_path = "../testcase/onecode.xml"
 
-    # 解析XML文件
     tree = ET.parse(xml_file_path)
     root = tree.getroot()
 
-    # 获取 <code> 元素
     code_elem = root.find('code')
-    # 获取 Java 代码内容
+
     testcase = code_elem.text.strip() if code_elem is not None and code_elem.text is not None else ""
     description = root.find('description').text
     expected_problems = root.find('expected-problems').text
@@ -138,16 +118,13 @@ def findsourccode():
     return testcase
 
 def findonesourccode(test_case_ast : str):
-    # XML文件路径
     xml_file_path = "../testcase/onecode.xml"
 
-    # 解析XML文件
     tree = ET.parse(xml_file_path)
     root = tree.getroot()
 
-    # 获取 <code> 元素
     code_elem = root.find('code')
-    # 获取 Java 代码内容
+
     testcase = code_elem.text.strip() if code_elem is not None and code_elem.text is not None else ""
     description = root.find('description').text
     expected_problems = root.find('expected-problems').text
@@ -160,10 +137,8 @@ def findonesourccode(test_case_ast : str):
     return testcase
 
 def finddescription():
-    # XML文件路径
     xml_file_path = "../testcase/onecode.xml"
 
-    # 解析XML文件
     tree = ET.parse(xml_file_path)
     root = tree.getroot()
 
@@ -173,10 +148,8 @@ def finddescription():
 
 
 def finderrordescription():
-    # XML文件路径
     xml_file_path = "../testcase/errorcode.xml"
 
-    # 解析XML文件
     tree = ET.parse(xml_file_path)
     root = tree.getroot()
 
@@ -186,10 +159,8 @@ def finderrordescription():
 
 
 def finderrornumber():
-    # XML文件路径
     xml_file_path = "../testcase/errorcode.xml"
 
-    # 解析XML文件
     tree = ET.parse(xml_file_path)
     root = tree.getroot()
 
@@ -202,38 +173,28 @@ def selecterrorcase(error: str, xml_path: str):
     error_des = ""
 
     if error != "":
-        # 找到第一个引号的索引
         first_quote_index = error.find('"')
-        # 找到第二个引号的索引，从第一个引号之后开始搜索
         second_quote_index = error.find('"', first_quote_index + 1)
-        # 提取两个引号之间的子字符串
         error_des = error[first_quote_index + 1:second_quote_index]
 
 
-    # XML文件路径
     xml_file_path = xml_path
-    # 解析XML文件
     tree = ET.parse(xml_file_path, parser=ET.XMLParser(encoding="utf-8"))
     root = tree.getroot()
     for test_code_elem in root.findall('.//test-code'):
         description = test_code_elem.find('description')
         if description.text == error_des:
-            # 创建一个新的XML文件
             code_elem = ET.ElementTree(test_code_elem)
             code_elem.write("../testcase/errorcode.xml", encoding="utf-8", xml_declaration=True)
 
 
 def finderrorsourcecode():
-    # XML文件路径
     xml_file_path = "../testcase/errorcode.xml"
 
-    # 解析XML文件
     tree = ET.parse(xml_file_path)
     root = tree.getroot()
 
-    # 获取 <code> 元素
     code_elem = root.find('code')
-    # 获取 Java 代码内容
     testcase = code_elem.text.strip() if code_elem is not None and code_elem.text is not None else ""
     expected_problems = root.find('expected-problems').text
     testcase = testcase + "\n" + "The number of violating the rule in this test case is: " + expected_problems + "\n"

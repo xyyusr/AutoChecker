@@ -19,8 +19,8 @@ class CheckerGenerator(object):
     def __init__(self, openai_api_key: str, model_name: str) -> None:
         self.model_name = model_name
         self.openai_key = openai_api_key
-        self.client = ChatOpenAI(model=self.model_name, api_key=self.openai_key, base_url="https://api2.aigcbest.top/v1")
-        self.encoding = tiktoken.encoding_for_model("gpt-4-0613")
+        self.client = ChatOpenAI(model=self.model_name, api_key=self.openai_key, base_url="")
+        self.encoding = tiktoken.encoding_for_model("")
         self.input_num_tokens = 0
         self.output_num_tokens = 0
         self.examples = [
@@ -685,7 +685,7 @@ Below are some code snippets that maybe useful to you to repair this checker con
         return answer
 
     def readAST(self):
-        # 读取文件内容
+
         with open("../testcase/ast.txt", 'r', encoding='gbk') as file:
             content = file.readlines()
         ast = ""
@@ -696,12 +696,12 @@ Below are some code snippets that maybe useful to you to repair this checker con
                 ast = ast + line
             elif line.startswith(" "):
                 ast = ast + line
-            elif line.startswith("输出为xml结构"):
+            elif line.startswith("xml:"):
                 # print(ast)
                 return ast
 
     def readAST2(self):
-        # 读取文件内容
+
         with open("../testcase/ast.txt", 'r', encoding='gbk') as file:
             content = file.readlines()
         content = [line.strip() for line in content]
@@ -710,7 +710,7 @@ Below are some code snippets that maybe useful to you to repair this checker con
                 return line
 
     def readerrorAST2(self):
-        # 读取文件内容
+
         with open("../testcase/errorast.txt", 'r', encoding='gbk') as file:
             content = file.readlines()
         content = [line.strip() for line in content]
@@ -719,7 +719,7 @@ Below are some code snippets that maybe useful to you to repair this checker con
                 return line
 
     def readerrorAST(self):
-        # 读取文件内容
+
         with open("../testcase/errorast.txt", 'r', encoding='gbk') as file:
             content = file.readlines()
         ast = ""
@@ -730,20 +730,19 @@ Below are some code snippets that maybe useful to you to repair this checker con
                 ast = ast + line
             elif line.startswith(" "):
                 ast = ast + line
-            elif line.startswith("输出为xml结构"):
+            elif line.startswith("xml:"):
                 # print(ast)
                 return ast
 
     def getNodes(self, ast: str):
-        # 找语法树上的所有节点进行匹配
-        # 使用正则表达式提取尖括号里的字符串
+
         matches = re.findall(r'</([^<>]+)>', ast)
-        # 使用集合去重
+
         result = []
         unique_matches = list(set(matches))
 
-        # 与工具类也进行匹配
-        with open("../PMD_Custom_API_DB.json", 'r', encoding='utf-8') as file:
+
+        with open("../PMD_FullAPI_DB.json", 'r', encoding='utf-8') as file:
             data = json.load(file)
         for class_info in data["classes_contained_in_project_detail"]:
             class_name = str(class_info["class_name"])
@@ -770,18 +769,18 @@ Below are some code snippets that maybe useful to you to repair this checker con
         return logic
 
     def get_Most_Semantic_Similar_API_and_Snippet(self, logics: str, nodes: list):
-        ## 对logics做一些操作，筛选出步骤存入logic列表
+
         logics = logics.strip()
         logic = self.getLogic(logics)
         print(logic)
         print(nodes)
-        API_tips = []  #可加入prompt的格式
+        API_tips = []
         snippet_tips = []
 
-        ### 对每一句逻辑
+
         for sentence in logic:
             sentence = sentence.strip()
-            print("*"+sentence+"* 匹配到的元操作或API：")
+            print("*"+sentence+"* matched metaop or API：")
             meta_impl = get_impl(sentence, nodes)
 
             if len(meta_impl) > 0:
@@ -791,15 +790,15 @@ Below are some code snippets that maybe useful to you to repair this checker con
                     else:
                         API_tips.append(i)
             else:
-                print("未匹配成功元操作或API")
+                print("match failed")
 
-        # 使用字典进行去重
+
         unique_methods = {}
         for method in API_tips:
             method_impl = method["op_impl"]
             unique_methods[method_impl] = method
 
-        # 将去重后的字典的值转换为列表形式
+
         API_tips = list(unique_methods.values())
         APItipsString = ""
         f = 1
@@ -808,13 +807,13 @@ Below are some code snippets that maybe useful to you to repair this checker con
                 APItipsString = APItipsString + str(f) + ". " + i["op_impl"] + "\n"
                 f += 1
 
-        # 使用字典进行去重
+
         unique_methods = {}
         for method in snippet_tips:
             method_id = method["op_impl"]
             unique_methods[method_id] = method
 
-        # 将去重后的字典的值转换为列表形式
+
         snippet_tips = list(unique_methods.values())
         snippetstipsString = ""
         f = 1
@@ -879,16 +878,13 @@ Below are some code snippets that maybe useful to you to repair this checker con
         error_class = [entry for entry in parsed_output if "notfound_class" in entry]
         error_API = [entry for entry in parsed_output if "notfound_API" in entry]
         error_API_loc = [entry for entry in parsed_output if "notfound_API_location" in entry]
-        # print(error_class)
-        # print(error_API)
-        # print(error_API_loc)
         error_info = ""
 
         if len(error_class) > 0:
             error_info = error_class[0]["notfound_class"] + " class is not correctly imported"
         elif len(error_API) > 0 and len(error_API_loc) > 0:
             error_info = error_API_loc[0]["notfound_API_location"]
-            error_info = error_info + " 调用的API " + error_API[0]["notfound_API"] + " 不存在"
+            error_info = error_info + " called API " + error_API[0]["notfound_API"] + " 不存在"
 
         # print(error_info)
         return error_info
@@ -940,9 +936,9 @@ Below are some code snippets that maybe useful to you to repair this checker con
         negativeNumber = countNegative(rule_testcase_xml_filepath)
         totalNumber = countTestcases(rule_testcase_xml_filepath)
         positiveNumber = totalNumber-negativeNumber
-        print("一共 "+str(totalNumber)+" 个测试用例")
-        print("正例 " + str(positiveNumber) + " 个")
-        print("反例 " + str(negativeNumber) + " 个")
+        print(str(totalNumber)+" test cases in total")
+        print("positive case " + str(positiveNumber) + " 个")
+        print("negative case " + str(negativeNumber) + " 个")
 
         baknodes = []
 
@@ -951,7 +947,7 @@ Below are some code snippets that maybe useful to you to repair this checker con
             select(1, rule_testcase_xml_filepath)
             test_case = findsourccode()
             description = finddescription()
-            # 解析成语法树存入testcase/ast.txt
+
             jar_run(["java", "-jar", "PMD-Style-ASTParser.jar", "testcase",
                      "CheckerAutoGen/testcase/onecode.xml",
                      "CheckerAutoGen/testcase/ast.txt"],
@@ -969,19 +965,19 @@ Below are some code snippets that maybe useful to you to repair this checker con
             # single_success = True
             checker = ""
             passed_testcase = [description]
-            # 测试针对的第一个测试用例是否通过
+
             select_repaired_testcase_toxml_to_test(passed_testcase, rule_testcase_xml_filepath)
-            # 测试新项目
+
             checker_single_test = TestChecker(
                 "your-another-pmd-loc\pmd-java")
             while not single_success:
                 if round > 5:
-                    print("5轮生成的都没通过第一个测试用例，删除此测试用例，换一个生成first checker")
-                    print("删除此测试用例: "+description)
+                    print("5 attempts failed，skip this test case")
+                    print("delete this test case: "+description)
                     delete_fail5round_testcase_from_xml(description, rule_testcase_xml_filepath)
                     break
 
-                print("==========================第" + str(round) + "轮为第一个测试用例生成checker========================")
+                print("==========================" + str(round) + " round to generate checker========================")
                 round += 1
                 logics = self.run_logic(rule_description, test_case)
                 print("=========================logics=========================")
@@ -989,7 +985,7 @@ Below are some code snippets that maybe useful to you to repair this checker con
 
                 APItipsString, snippetstipsString = self.get_Most_Semantic_Similar_API_and_Snippet(logics, nodes)
 
-                # 第一次生成checker
+
                 avoid_error_API_info = ""
                 avoid_error_API = list(set(avoid_error_API))
                 error_API_i = 1
@@ -1004,14 +1000,14 @@ Below are some code snippets that maybe useful to you to repair this checker con
                     The_AST_corresponding_to_this_test_case=test_case_ast,
                     rule_package=rule_category,
                     rule_name=rule_name,
-                    related_APIinfo=APItipsString + "\n" + snippetstipsString,  # 将API和代码段的提示融成一个字符串
+                    related_APIinfo=APItipsString + "\n" + snippetstipsString,
                     avoid_error_API=avoid_error_API_info
                 )
 
                 print("==========================The_first_checker_query=========================")
                 print(checker_query)
                 checker = self.generate_checker_with_query(checker_query)
-                # 确保代码段使用引用正确
+
                 repair_code_snippet_query = self.repair_code_snippet_prompt.format(
                     code=checker,
                     code_snippet=snippetstipsString
@@ -1026,19 +1022,19 @@ Below are some code snippets that maybe useful to you to repair this checker con
 
                 if not run_result:
                     single_success = False
-                    print("出现语法错误，这一轮舍弃，直接重新生成")
+                    print("syntax error")
                 else:
 
                     checker = self.class_is_correctly_imported(checker, ast_classes)
                     checker = self.super_is_correctly_used(checker)
                     checker = self.name_is_correctly_used(checker, rule_name)
-                    print("==========5轮中每一轮为第一个测试用例生成的checker===============")
+                    print("==========checker code===============")
                     print(checker)
                     checker_test.create_test(rule_path, checker)
-                    print("第一个测试用例生成的checker开始编译")
+                    print("start compile")
                     output, compile_success = checker_test.run_compile()
                     # print(output)
-                    print("一开始编译是否通过：")
+                    print("compile success?")
                     print(compile_success)
                     i = 1
                     bak_checker = checker
@@ -1048,17 +1044,17 @@ Below are some code snippets that maybe useful to you to repair this checker con
                         if i > 2 or (i <= 2 and error_info == ""):
                             if i > 2:
                                 print(
-                                    " ======================第一个测试用例生成的checker 2轮 内编译修复不成功，重新来一轮生成checker============")
+                                    " ======================2 attempts to repair compile error failed，start another round to generate checker============")
                             else:
                                 print(
-                                    "编译错误不在预期范围内，重新生成")
+                                    "unexpected compile failed info")
                             compile_success = False
                             single_success = False
                             break
 
                         if error_info != "":
                             i = i + 1
-                            if "调用的API" in str(error_info):
+                            if "called API" in str(error_info):
                                 avoid_error_API.append(error_info)
                             repair_query = self.repair_compile_error_prompt.format(
                                 Rule_description=rule_description,
@@ -1066,7 +1062,7 @@ Below are some code snippets that maybe useful to you to repair this checker con
                                 failed_info=error_info
                             )
                             print(
-                                "=======================第一个测试用例生成的checker repair_compile_error_query======================")
+                                "=======================repair_compile_error_query======================")
                             print(repair_query)
 
                             checker = self.generate_checker_with_query(repair_query)
@@ -1078,42 +1074,42 @@ Below are some code snippets that maybe useful to you to repair this checker con
                                 "CheckerAutoGen/base")
 
                             if run_result:
-                                print("第 " + str(i) + "轮修复编译错误的结果")
+                                print("after repair compilation")
 
                                 checker = self.class_is_correctly_imported(checker, ast_classes)
                                 checker = self.super_is_correctly_used(checker)
                                 checker = self.name_is_correctly_used(checker, rule_name)
 
                                 print(
-                                    "==========修复编译错误后的checker===============")
+                                    "==========checker===============")
                                 print(checker)
                                 checker_test.create_test(rule_path, checker)
                                 output, compile_success = checker_test.run_compile()
                                 bak_checker = checker
                                 bak_output = output
                                 if not compile_success:
-                                    print("编译错误")
+                                    print("compile failed")
                             else:
-                                print("出现语法错误，重新修复编译错误")
+                                print("syntax error")
                                 checker = bak_checker
                                 output = bak_output
                                 compile_success = False
 
                     if compile_success:
-                        print("编译通过")
+                        print("compile success")
                         checker_single_test.create_test(rule_path2, checker)
                         single_output, single_success = checker_single_test.run_tests(testClass)
-                        print("测试用例是否通过：")
+                        print("pass test case?")
                         print(single_success)
             if single_success:
-                print("此测试用例生成了first checker: " + description)
+                print("this test case generates initial checker: " + description)
                 break
 
-        # 接下来开始迭代
+
         print()
         print()
-        print("======================接下来开始迭代=====================")
-        if single_success:  # 第一个测试用例已经通过
+        print("======================begin iteration=====================")
+        if single_success:
             checker_test.create_test(rule_path, checker)
             test_output, test_success = checker_test.run_tests(testClass)
             already_passed_testcase = list(passed_testcase)
@@ -1123,7 +1119,7 @@ Below are some code snippets that maybe useful to you to repair this checker con
 
             while not test_success:
                 if length_over_max:
-                    print("测试用例太多了，超出了最大长度")
+                    print("reach token limit")
                     break
                 test_round += 1
                 mvn_parser = MavenOutputParser()
@@ -1135,17 +1131,17 @@ Below are some code snippets that maybe useful to you to repair this checker con
                 if len(fail_rule) > 0:
                     for i in range(len(fail_rule)):
                         error_output = fail_rule[i]["error_rules_info"]
-                        # 找到第一个引号的索引
+
                         first_quote_index = error_output.find('"')
                         first_space_index = error_output.find(' ', first_quote_index + 1)
-                        # 找到第二个引号的索引，从第一个引号之后开始搜索
+
                         second_quote_index = error_output.find('"', first_quote_index + 1)
-                        # 提取两个引号之间的子字符串
+
                         error_order = error_output[first_space_index + 1:second_quote_index]
                         if int(error_order) < min:
                             min = int(error_order)
                             error_one = fail_rule[i]["error_rules_info"]
-                print(error_one + "不通过")
+                print(error_one + "failed")
                 selecterrorcase(error_one, rule_testcase_xml_filepath)
                 jar_run(["java", "-jar", "PMD-Style-ASTParser.jar", "testcase",
                          "CheckerAutoGen/testcase/errorcode.xml",
@@ -1165,24 +1161,24 @@ Below are some code snippets that maybe useful to you to repair this checker con
                 select_repaired_testcase_toxml_to_test(passed_testcase, rule_testcase_xml_filepath)
                 single_test_success = False
                 r = 1
-                # 备份准备修复下一个测试用例前的checker
+
                 bak_repair_test_checker = checker
                 # ！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！
                 while not single_test_success:
 
                     if r > 5:
-                        print("==========5轮都没修复成功一个后面新加的一个测试用例，换一个测试用例进行修复")
+                        print("==========5 attempts to augment checker for this test case failed")
                         checker = bak_repair_test_checker
                         checker_test.create_test(rule_path, checker)
                         passed_testcase.remove(error_des)
                         delete_fail5round_testcase_from_xml(error_des, rule_testcase_xml_filepath)
                         test_output, test_success = checker_test.run_tests(testClass)
-                        print("这个测试用例 5 round 没有修复成功：")
+                        print("skip this test case: ")
                         print(error_des)
                         break
                     r += 1
-                    # 修复，编译，测试
-                    if int(error_prob_num) > 0:  # 如果是反例
+
+                    if int(error_prob_num) > 0:
                         logics = self.run_logic(rule_description, error_case)
                         print("=========================error_testcase_logics=========================")
                         print(logics)
@@ -1198,14 +1194,14 @@ Below are some code snippets that maybe useful to you to repair this checker con
                             # failed_reason=failed_reason,
                             related_APIinfo=APItipsString + "\n" + snippetstipsString
                         )
-                    else:  # 如果是正例
+                    else:
                         logics = self.run_logic(rule_description, error_case)
                         print("=========================error_testcase_logics=========================")
                         print(logics)
                         APItipsString, snippetstipsString = self.get_Most_Semantic_Similar_API_and_Snippet(logics,
                                                                                                            nodes)
                         passed_testcase_info = findCodeInTestCase(already_passed_testcase, rule_testcase_xml_filepath)
-                        # 正例的修复query说法，加上已经通过了passed_testcase里的测试用例
+
                         repair_testcase_query = self.repair_positive_test_error_prompt.format(
                             Rule_description=rule_description,
                             source_code=checker,
@@ -1215,10 +1211,10 @@ Below are some code snippets that maybe useful to you to repair this checker con
                             related_APIinfo=APItipsString + "\n" + snippetstipsString
                         )
                     print(
-                        "===============================新加一个测试用例生成的checker repair_test_error_query_when_testing==========================")
+                        "===============================repair_test_error_query_when_testing==========================")
                     print(repair_testcase_query)
                     if len(self.encoding.encode(repair_testcase_query)) > 8192:
-                        print("执行到这里，测试用例太多了，超出了最大长度")
+                        print("reach token limit")
                         length_over_max = True
                         break
 
@@ -1236,16 +1232,16 @@ Below are some code snippets that maybe useful to you to repair this checker con
                         checker = self.super_is_correctly_used(checker)
                         checker = self.name_is_correctly_used(checker, rule_name)
 
-                        print("================修复新加测试用例后生成的checker===================")
+                        print("================checker===================")
                         print(checker)
                         checker_single_test.create_test(rule_path2, checker)
                         single_output, single_compile_success = checker_single_test.run_compile()
-                        print("编译是否通过？")
+                        print("compile success?")
                         print(single_compile_success)
                     else:
                         single_test_success = False
-                        checker = bak_repair_test_checker  # 重新修复
-                        print("出现了语法错误，重新修复测试修复错误")
+                        checker = bak_repair_test_checker
+                        print("syntax error")
                         print()
                         continue
 
@@ -1257,14 +1253,13 @@ Below are some code snippets that maybe useful to you to repair this checker con
                         if k > 2 or (k <= 2 and error_info == ""):
                             if k > 2:
                                 print(
-                                    " ======================第一个测试用例生成的checker 2轮 内编译修复不成功，重新来一轮生成checker============")
+                                    " ======================2 attempts to repair compile error failed，start another round to generate checker============")
                             else:
                                 print(
-                                    "编译错误不在预期范围内，重新生成")
+                                    "unexpected compile failed info")
                             single_compile_success = False
                             single_test_success = False
-                            checker = bak_repair_test_checker  # 重新修复
-                            print("迭代测试用例时， 2轮内编译不通过，pass，重新来一轮编译修复生成修复测试用例后的checker")
+                            checker = bak_repair_test_checker
                             break
 
                         if error_info != "":
@@ -1286,29 +1281,28 @@ Below are some code snippets that maybe useful to you to repair this checker con
                                  "CheckerAutoGen/base/checker_ast.txt"],
                                 "CheckerAutoGen/base")
                             if run_result:
-                                print("第" + str(k) + "轮修复编译错误的结果")
 
                                 checker = self.class_is_correctly_imported(checker, ast_classes)
                                 checker = self.super_is_correctly_used(checker)
                                 checker = self.name_is_correctly_used(checker, rule_name)
-                                print("================修复新加测试用例后的编译错误后的checker===================")
+                                print("================checker===================")
                                 print(checker)
                                 checker_single_test.create_test(rule_path2, checker)
                                 single_output, single_compile_success = checker_single_test.run_compile()
                                 bak_checker = checker
                                 bak_output = single_output
                             elif not run_result:
-                                print("出现了语法错误")
+                                print("syntax error")
                                 checker = bak_checker
                                 single_output = bak_output
                                 single_compile_success = False
 
                     if single_compile_success:
                         single_output1, single_test_success = checker_single_test.run_tests(testClass)
-                        print("测试是否通过")
+                        print("pass test case?")
                         print(single_test_success)
                         if not single_test_success:
-                            checker = bak_repair_test_checker  # 重新修复
+                            checker = bak_repair_test_checker
                             mvn_parser = MavenOutputParser()
                             parsed_output = mvn_parser.parse(single_output1)
                             fail_rule = [entry for entry in parsed_output if "error_rules_info" in entry]
@@ -1318,33 +1312,33 @@ Below are some code snippets that maybe useful to you to repair this checker con
                                 error_one = fail_rule[0]["error_rules_info"]
                                 for i in range(len(fail_rule)):
                                     error_output = fail_rule[i]["error_rules_info"]
-                                    # 找到第一个引号的索引
+
                                     first_quote_index = error_output.find('"')
                                     first_space_index = error_output.find(' ', first_quote_index + 1)
-                                    # 找到第二个引号的索引，从第一个引号之后开始搜索
+
                                     second_quote_index = error_output.find('"', first_quote_index + 1)
-                                    # 提取两个引号之间的子字符串
+
                                     error_order = error_output[first_space_index + 1:second_quote_index]
                                     if int(error_order) < min:
                                         min = int(error_order)
                                         error_one = fail_rule[i]["error_rules_info"]
-                                print("修复后有没通过的测试用例，不通过的是：")
-                                print(error_one + "不通过")
+                                print("this test case failed：")
+                                print(error_one + "failed")
                 if single_test_success:
                     already_passed_testcase = list(passed_testcase)
                     checker_test.create_test(rule_path, checker)
                     test_output, test_success = checker_test.run_tests(testClass)
             if test_success:
-                print("测试用例全部通过")
+                print("pass all test cases!")
 
             if not length_over_max:
                 finalnegativeNumber = countNegative(rule_testcase_xml_filepath)
                 finaltotalNumber = countTestcases(rule_testcase_xml_filepath)
                 finalpositiveNumber = finaltotalNumber - finalnegativeNumber
-                print("最终通过 " + str(finaltotalNumber) + " 个测试用例")
-                print("正例 " + str(finalpositiveNumber) + " 个")
-                print("反例 " + str(finalnegativeNumber) + " 个")
-                print("输入token："+str(self.input_num_tokens))
-                print("输出token：" + str(self.output_num_tokens))
+                print("finally pass " + str(finaltotalNumber) + " test cases")
+                print("positive case " + str(finalpositiveNumber))
+                print("negative case " + str(finalnegativeNumber))
+                print("input token："+str(self.input_num_tokens))
+                print("output token：" + str(self.output_num_tokens))
         else:
-            print("为反例生成first checker失败")
+            print("initial checker generation failed, stop the execution")

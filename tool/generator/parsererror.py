@@ -7,14 +7,11 @@ class MavenOutputParser(object):
         for line in lines:
             line = line.strip()
             if line.startswith("符号:   类 "):
-                # print({"notfound_class": line[8:].strip()})
                 out.append({"notfound_class": line[8:].strip()})
                 break
             elif line.startswith("符号:   方法 "):
-                # print({"notfound_API": line[9:].strip()})
                 out.append({"notfound_API": line[9:].strip()})
             elif line.startswith("位置: 类"):
-                # print({"notfound_API_location": line[3:].strip()})
                 out.append({"notfound_API_location": line[3:].strip()})
                 break
             elif line.startswith("[ERROR] Tests run"):
