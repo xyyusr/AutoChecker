@@ -7,8 +7,8 @@ AutoChecker is a tool to automatically generate checker for static analyzers sup
 ### Directory `tool`
 + `Classified_128rules.md` lists PMD's built-in all 128 rules.
 + `Meta-op Set.xlsx`: The Meta-Op Set that only contains meta-operation natural language description.
-+ `PMD_MetaAPI_DB.json`: Content of Meta-Op DB.
-+ `PMD_FullAPI_DB.json`: Content of Custom-API DB.
++ `PMD_MetaAPI_DB.json`: Content of MetaAPI DB.
++ `PMD_FullAPI_DB.json`: Content of FullAPI DB.
 + `PMD-Style-ASTParser.jar`: The PMD-Style AST parser which is used to parse source code to its AST.
 + `generator`: The source code of AutoChecker.
 
