@@ -837,7 +837,7 @@
     },
     {
         "meta_op": "Check whether the method signature throws x Exception",
-        "meta_impl": "```java\nimport net.sourceforge.pmd.lang.java.ast.*;\nimport net.sourceforge.pmd.lang.java.types.TypeTestUtil;\npublic boolean throwsSpecificException(ASTMethodDeclaration node){\n    ASTThrowsList list = node.getThrowsList();\n    if(list == null){\n        return false;\n    }else{\n        for(ASTClassOrInterfaceType classOrInterfaceType : list){\n            if(TypeTestUtil.isA(x.class, classOrInterfaceType)){\n                return true;\n            }\n        }\n    }\n    return false;\n}\n```"
+        "meta_impl": "```java\nimport net.sourceforge.pmd.lang.java.ast.*;\nimport net.sourceforge.pmd.lang.java.types.TypeTestUtil;\npublic boolean throwsSpecificException(ASTMethodDeclaration node){\n    ASTThrowsList list = node.getThrowsList();\n    if(list == null){\n        return false;\n    }else{\n        for(ASTClassOrInterfaceType classOrInterfaceType : list){\n            if(TypeTestUtil.isExactlyA(x.class, classOrInterfaceType)){\n                return true;\n            }\n        }\n    }\n    return false;\n}\n```"
     },
     {
         "meta_op": "Check whether method has declared annotations",

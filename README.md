@@ -615,51 +615,6 @@ AutoChecker is a tool to automatically generate checker for static analyzers sup
     <td>55.83</td>
   </tr>
   <tr>
-    <td rowspan="6">AutoChecker<sup>RIF</sup></td>
-    <td rowspan="3">GPT-4</td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
-  </tr>
-  <tr>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
-  </tr>
-  <tr>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
-  </tr>
-  <tr>
-    <td rowspan="3">DeepSeek-V3</td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
-  </tr>
-  <tr>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
-  </tr>
-  <tr>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
-  </tr>
-  <tr>
     <td rowspan="6">AutoChecker<sup>WoI</sup></td>
     <td rowspan="3">GPT-4</td>
     <td>6</td>
@@ -704,4 +659,23 @@ AutoChecker is a tool to automatically generate checker for static analyzers sup
     <td>110</td>
     <td>42.96</td>
   </tr>
+<tr>
+    <td rowspan="2">AutoChecker<sup>WoM</sup></td>
+    <td>GPT-4</td>
+    <td>17</td>
+    <td>17</td>
+    <td>3</td>
+    <td>256</td>
+    <td>66.42</td>
+  </tr>
+  
+  <tr>
+    <td>DeepSeek-V3</td>
+    <td>18</td>
+    <td>18</td>
+    <td>1</td>
+    <td>258</td>
+    <td>72.92</td>
+  </tr>
+  
 </table>
