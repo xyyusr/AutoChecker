@@ -2,6 +2,10 @@
 
 AutoChecker is a tool to automatically generate checker for static analyzers supported by LLM with textual description and test suite inputted.
 
+## Tool Playground
+
+We provide a tool demonstration website at https://autochecker.maskeduser.party.
+
 ## Repository Contents
 
 ### Directory `tool`
