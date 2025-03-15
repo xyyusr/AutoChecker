@@ -7,7 +7,7 @@ AutoChecker is a tool to automatically generate checker for static analyzers sup
 
 
 
-***Logic-guided API-Context Retrieval***:
+***Logic-guided API-Context Retrieval*** in overview:
 
 ![Logic-guided API-Context Retrieval](retrieval.png)
 
@@ -18,7 +18,7 @@ We provide a tool demonstration website at https://autochecker.maskeduser.party.
 
 ## Repository Contents
 
-### Directory `tool`
+### Directory  `tool`  -- Tool Implementation
 + `Classified_128rules.md` lists PMD's built-in all 128 rules.
 + `Meta-op Set.xlsx`: The Meta-Op Set that only contains meta-operation natural language description.
 + `PMD_MetaAPI_DB.json`: Content of MetaAPI DB.
@@ -27,13 +27,13 @@ We provide a tool demonstration website at https://autochecker.maskeduser.party.
 + `generator`: The source code of AutoChecker.
 
 
-### Directory `experiment`
-+ experimental rules: `Experimental_20rules.json`.
-+ rules-related test case set: `experimental-20rules-test-suite`.
-+ `ablation`: Results of ablation experiment.
-+ `baselines`: Results of baselines experiment.
-+ `autochecker`: Results of AutoChecker evaluation experiment.
-+ `practice`: Detailed data about RQ4. 
+### Directory `experiment` -- Experimental Results
++ (Setup) experimental rules: `Experimental_20rules.json`.
++ (Setup) rules-related test case set: `experimental-20rules-test-suite`.
++ (RQ1) `baselines`: Results of baselines experiment.
++ (RQ1) `autochecker`: Results of AutoChecker evaluation experiment.
++ (RQ2) `ablation`: Results of ablation experiment.
++ (RQ4) `practice`: Detailed data about RQ4. 
   + Files ended with ".xml": Additionally added test cases in practice.
   + Files ended with ".txt": The augmented checker after iterating those added test cases.
 
