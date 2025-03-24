@@ -674,22 +674,54 @@ We provide a tool demonstration website at https://autochecker.maskeduser.party.
     <td>42.96</td>
   </tr>
 <tr>
-    <td rowspan="2">AutoChecker<sup>WoM</sup></td>
-    <td>GPT-4</td>
-    <td>17</td>
-    <td>17</td>
+    <td rowspan="6">AutoChecker<sup>WoM</sup></td>
+    <td rowspan="3">GPT-4</td>
+    <td><span style="color: purple;"><b>17</b></span></td>
+    <td><span style="color: purple;"><b>17</b></span></td>
+    <td><span style="color: purple;"><b>3</b></span></td>
+    <td><span style="color: purple;"><b>256</b></span></td>
+    <td><span style="color: purple;"><b>66.42</b></span></td>
+  </tr>
+
+<tr>
+    <td>16</td>
+    <td>16</td>
+    <td>1</td>
+    <td>189</td>
+    <td>54.15</td>
+  </tr>
+
+<tr>
+    <td>16</td>
+    <td>16</td>
     <td>3</td>
-    <td>256</td>
-    <td>66.42</td>
+    <td>239</td>
+    <td>60.09</td>
   </tr>
   
   <tr>
-    <td>DeepSeek-V3</td>
-    <td>18</td>
-    <td>18</td>
+    <td rowspan="3">DeepSeek-V3</td>
+    <td><span style="color: purple;"><b>18</b></span></td>
+    <td><span style="color: purple;"><b>18</b></span></td>
+    <td><span style="color: purple;"><b>1</b></span></td>
+    <td><span style="color: purple;"><b>258</b></span></td>
+    <td><span style="color: purple;"><b>72.92</b></span></td>
+  </tr>
+
+<tr>
+    <td>15</td>
+    <td>15</td>
+    <td>2</td>
+    <td>215</td>
+    <td>60.30</td>
+  </tr>
+
+<tr>
+    <td>15</td>
+    <td>15</td>
     <td>1</td>
-    <td>258</td>
-    <td>72.92</td>
+    <td>209</td>
+    <td>59.13</td>
   </tr>
   
 </table>
