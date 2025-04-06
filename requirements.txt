@@ -1,0 +1,5 @@
+langchain==0.2.1
+langchain_openai==0.1.7
+transformers==4.41.1
+sympy==1.13.3
+torch==2.6.0

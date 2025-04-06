@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="Encoding">
+    <file url="file://$PROJECT_DIR$/experiment/ablation/AutoChecker_without_APIRecommendation/GPT-4-results/1st/easy/AvoidUsingOctalValuesRule.txt" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/experiment/ablation/AutoChecker_without_APIRecommendation/GPT-4-results/1st/easy/ExceptionAsFlowControlRule.txt" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/experiment/ablation/AutoChecker_without_APIRecommendation/GPT-4-results/1st/easy/ExcessiveImportsRule.txt" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/experiment/ablation/AutoChecker_without_APIRecommendation/GPT-4-results/1st/easy/ExcessivePublicCountRule.txt" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/experiment/ablation/AutoChecker_without_APIRecommendation/GPT-4-results/1st/easy/IdenticalCatchBranchesRule.txt" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/experiment/ablation/AutoChecker_without_APIRecommendation/GPT-4-results/1st/easy/InefficientEmptyStringCheckRule.txt" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/experiment/ablation/AutoChecker_without_APIRecommendation/GPT-4-results/1st/easy/NullAssignmentRule.txt" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/experiment/ablation/AutoChecker_without_APIRecommendation/GPT-4-results/1st/easy/SignatureDeclareThrowsExceptionRule.txt" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/experiment/ablation/AutoChecker_without_APIRecommendation/GPT-4-results/1st/easy/StringInstantiationRule.txt" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/experiment/ablation/AutoChecker_without_APIRecommendation/GPT-4-results/1st/easy/UseStringBufferForStringAppendsRule.txt" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/experiment/ablation/AutoChecker_without_APIRecommendation/GPT-4-results/1st/not easy/AssignmentToNonFinalStaticRule.txt" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/experiment/ablation/AutoChecker_without_APIRecommendation/GPT-4-results/1st/not easy/AvoidDuplicateLiteralsRule.txt" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/experiment/ablation/AutoChecker_without_APIRecommendation/GPT-4-results/1st/not easy/AvoidInstantiatingObjectsInLoopsRule.txt" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/experiment/ablation/AutoChecker_without_APIRecommendation/GPT-4-results/1st/not easy/AvoidThrowingNullPointerExceptionRule.txt" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/experiment/ablation/AutoChecker_without_APIRecommendation/GPT-4-results/1st/not easy/BrokenNullCheckRule.txt" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/experiment/ablation/AutoChecker_without_APIRecommendation/GPT-4-results/1st/not easy/ClassWithOnlyPrivateConstructorsShouldBeFinalRule.txt" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/experiment/ablation/AutoChecker_without_APIRecommendation/GPT-4-results/1st/not easy/EmptyControlStatementRule.txt" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/experiment/ablation/AutoChecker_without_APIRecommendation/GPT-4-results/1st/not easy/LiteralsFirstInComparisonsRule.txt" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/experiment/ablation/AutoChecker_without_APIRecommendation/GPT-4-results/1st/not easy/MethodNamingConventionsRule.txt" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/experiment/ablation/AutoChecker_without_APIRecommendation/GPT-4-results/1st/not easy/UnnecessaryImportRule.txt" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/experiment/ablation/AutoChecker_without_APIRecommendation/GPT-4-results/1st/not easy/UnnecessaryImportRule2.txt" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/experiment/ablation/AutoChecker_without_Iteration/GPT-4-results/1st/easy/AvoidUsingOctalValuesRule.txt" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/experiment/ablation/AutoChecker_without_Iteration/GPT-4-results/1st/easy/ExceptionAsFlowControlRule.txt" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/experiment/ablation/AutoChecker_without_Iteration/GPT-4-results/1st/easy/ExcessiveImportsRule.txt" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/experiment/ablation/AutoChecker_without_Iteration/GPT-4-results/1st/easy/ExcessivePublicCountRule.txt" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/experiment/ablation/AutoChecker_without_Iteration/GPT-4-results/1st/easy/IdenticalCatchBranchesRule.txt" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/experiment/ablation/AutoChecker_without_Iteration/GPT-4-results/1st/easy/InefficientEmptyStringCheckRule.txt" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/experiment/ablation/AutoChecker_without_Iteration/GPT-4-results/1st/easy/NullAssignmentRule.txt" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/experiment/ablation/AutoChecker_without_Iteration/GPT-4-results/1st/easy/SignatureDeclareThrowsExceptionRule.txt" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/experiment/ablation/AutoChecker_without_Iteration/GPT-4-results/1st/easy/StringInstantiationRule.txt" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/experiment/ablation/AutoChecker_without_Iteration/GPT-4-results/1st/easy/UseStringBufferForStringAppendsRule.txt" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/experiment/ablation/AutoChecker_without_Iteration/GPT-4-results/1st/not easy/AssignmentToNonFinalStaticRule.txt" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/experiment/ablation/AutoChecker_without_Iteration/GPT-4-results/1st/not easy/AvoidDuplicateLiteralsRule.txt" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/experiment/ablation/AutoChecker_without_Iteration/GPT-4-results/1st/not easy/AvoidInstantiatingObjectsInLoopsRule.txt" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/experiment/ablation/AutoChecker_without_Iteration/GPT-4-results/1st/not easy/AvoidThrowingNullPointerExceptionRule.txt" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/experiment/ablation/AutoChecker_without_Iteration/GPT-4-results/1st/not easy/BrokenNullCheckRule.txt" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/experiment/ablation/AutoChecker_without_Iteration/GPT-4-results/1st/not easy/ClassWithOnlyPrivateConstructorsShouldBeFinalRule.txt" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/experiment/ablation/AutoChecker_without_Iteration/GPT-4-results/1st/not easy/EmptyControlStatementRule.txt" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/experiment/ablation/AutoChecker_without_Iteration/GPT-4-results/1st/not easy/LiteralsFirstInComparisonsRule.txt" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/experiment/ablation/AutoChecker_without_Iteration/GPT-4-results/1st/not easy/MethodNamingConventionsRule.txt" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/experiment/ablation/AutoChecker_without_Iteration/GPT-4-results/1st/not easy/UnnecessaryImportRule.txt" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/experiment/autochecker/GPT-4-results/1st/easy/AvoidUsingOctalValuesRule.txt" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/experiment/autochecker/GPT-4-results/1st/easy/ExceptionAsFlowControlRule.txt" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/experiment/autochecker/GPT-4-results/1st/easy/ExcessiveImportsRule.txt" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/experiment/autochecker/GPT-4-results/1st/easy/ExcessivePublicCountRule.txt" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/experiment/autochecker/GPT-4-results/1st/easy/IdenticalCatchBranchesRule.txt" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/experiment/autochecker/GPT-4-results/1st/easy/InefficientEmptyStringCheckRule.txt" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/experiment/autochecker/GPT-4-results/1st/easy/NullAssignmentRule.txt" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/experiment/autochecker/GPT-4-results/1st/easy/SignatureDeclareThrowsExceptionRule.txt" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/experiment/autochecker/GPT-4-results/1st/easy/StringInstantiationRule.txt" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/experiment/autochecker/GPT-4-results/1st/easy/UseStringBufferForStringAppendsRule.txt" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/experiment/autochecker/GPT-4-results/1st/not easy/AssignmentToNonFinalStaticRule.txt" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/experiment/autochecker/GPT-4-results/1st/not easy/AvoidDuplicateLiteralsRule.txt" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/experiment/autochecker/GPT-4-results/1st/not easy/AvoidInstantiatingObjectsInLoopsRule.txt" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/experiment/autochecker/GPT-4-results/1st/not easy/AvoidThrowingNullPointerExceptionRule.txt" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/experiment/autochecker/GPT-4-results/1st/not easy/BrokenNullCheckRule.txt" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/experiment/autochecker/GPT-4-results/1st/not easy/ClassWithOnlyPrivateConstructorsShouldBeFinalRule.txt" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/experiment/autochecker/GPT-4-results/1st/not easy/EmptyControlStatementRule.txt" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/experiment/autochecker/GPT-4-results/1st/not easy/LiteralsFirstInComparisonsRule.txt" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/experiment/autochecker/GPT-4-results/1st/not easy/MethodNamingConventionsRule.txt" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/experiment/autochecker/GPT-4-results/1st/not easy/UnnecessaryImportRule.txt" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/experiment/autochecker/GPT-4-results/1st/not easy/UnnecessaryImportRule2.txt" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/experiment/baselines/NoCaseLLM/GPT-4-results/1st/easy/AvoidUsingOctalValuesRule.txt" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/experiment/baselines/NoCaseLLM/GPT-4-results/1st/easy/ExceptionAsFlowControlRule.txt" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/experiment/baselines/NoCaseLLM/GPT-4-results/1st/easy/ExcessiveImportsRule.txt" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/experiment/baselines/NoCaseLLM/GPT-4-results/1st/easy/ExcessivePublicCountRule.txt" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/experiment/baselines/NoCaseLLM/GPT-4-results/1st/easy/IdenticalCatchBranchesRule.txt" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/experiment/baselines/NoCaseLLM/GPT-4-results/1st/easy/InefficientEmptyStringCheckRule.txt" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/experiment/baselines/NoCaseLLM/GPT-4-results/1st/easy/NullAssignmentRule.txt" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/experiment/baselines/NoCaseLLM/GPT-4-results/1st/easy/SignatureDeclareThrowsExceptionRule.txt" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/experiment/baselines/NoCaseLLM/GPT-4-results/1st/easy/StringInstantiationRule.txt" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/experiment/baselines/NoCaseLLM/GPT-4-results/1st/easy/UseStringBufferForStringAppendsRule.txt" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/experiment/baselines/NoCaseLLM/GPT-4-results/1st/not easy/AssignmentToNonFinalStaticRule.txt" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/experiment/baselines/NoCaseLLM/GPT-4-results/1st/not easy/AvoidDuplicateLiteralsRule.txt" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/experiment/baselines/NoCaseLLM/GPT-4-results/1st/not easy/AvoidInstantiatingObjectsInLoopsRule.txt" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/experiment/baselines/NoCaseLLM/GPT-4-results/1st/not easy/AvoidThrowingNullPointerExceptionRule.txt" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/experiment/baselines/NoCaseLLM/GPT-4-results/1st/not easy/BrokenNullCheckRule.txt" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/experiment/baselines/NoCaseLLM/GPT-4-results/1st/not easy/ClassWithOnlyPrivateConstructorsShouldBeFinalRule.txt" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/experiment/baselines/NoCaseLLM/GPT-4-results/1st/not easy/EmptyControlStatementRule.txt" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/experiment/baselines/NoCaseLLM/GPT-4-results/1st/not easy/LiteralsFirstInComparisonsRule.txt" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/experiment/baselines/NoCaseLLM/GPT-4-results/1st/not easy/MethodNamingConventionsRule.txt" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/experiment/baselines/NoCaseLLM/GPT-4-results/1st/not easy/UnnecessaryImportRule.txt" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/experiment/baselines/nCasesLLM/GPT-4-results/1st/easy/AvoidUsingOctalValuesRule.txt" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/experiment/baselines/nCasesLLM/GPT-4-results/1st/easy/ExceptionAsFlowControlRule.txt" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/experiment/baselines/nCasesLLM/GPT-4-results/1st/easy/ExcessiveImportsRule.txt" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/experiment/baselines/nCasesLLM/GPT-4-results/1st/easy/ExcessivePublicCountRule.txt" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/experiment/baselines/nCasesLLM/GPT-4-results/1st/easy/IdenticalCatchBranchesRule.txt" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/experiment/baselines/nCasesLLM/GPT-4-results/1st/easy/InefficientEmptyStringCheckRule.txt" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/experiment/baselines/nCasesLLM/GPT-4-results/1st/easy/NullAssignmentRule.txt" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/experiment/baselines/nCasesLLM/GPT-4-results/1st/easy/SignatureDeclareThrowsExceptionRule.txt" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/experiment/baselines/nCasesLLM/GPT-4-results/1st/easy/StringInstantiationRule.txt" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/experiment/baselines/nCasesLLM/GPT-4-results/1st/easy/UseStringBufferForStringAppendsRule.txt" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/experiment/baselines/nCasesLLM/GPT-4-results/1st/not easy/AssignmentToNonFinalStaticRule.txt" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/experiment/baselines/nCasesLLM/GPT-4-results/1st/not easy/AvoidDuplicateLiteralsRule.txt" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/experiment/baselines/nCasesLLM/GPT-4-results/1st/not easy/AvoidInstantiatingObjectsInLoopsRule.txt" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/experiment/baselines/nCasesLLM/GPT-4-results/1st/not easy/AvoidThrowingNullPointerExceptionRule.txt" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/experiment/baselines/nCasesLLM/GPT-4-results/1st/not easy/BrokenNullCheckRule.txt" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/experiment/baselines/nCasesLLM/GPT-4-results/1st/not easy/ClassWithOnlyPrivateConstructorsShouldBeFinalRule.txt" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/experiment/baselines/nCasesLLM/GPT-4-results/1st/not easy/EmptyControlStatementRule.txt" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/experiment/baselines/nCasesLLM/GPT-4-results/1st/not easy/LiteralsFirstInComparisonsRule.txt" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/experiment/baselines/nCasesLLM/GPT-4-results/1st/not easy/MethodNamingConventionsRule.txt" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/experiment/baselines/nCasesLLM/GPT-4-results/1st/not easy/UnnecessaryImportRule.txt" charset="GBK" />
+  </component>
+</project>

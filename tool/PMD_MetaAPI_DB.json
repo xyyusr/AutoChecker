@@ -1,0 +1,1418 @@
+[
+    {
+        "meta_op": "Get the name of class",
+        "meta_impl": "net.sourceforge.pmd.lang.java.ast.ASTClassOrInterfaceDeclaration: public java.lang.String getSimpleName()"
+    },
+    {
+        "meta_op": "Get a declared annotation of class",
+        "meta_impl": "net.sourceforge.pmd.lang.java.ast.ASTClassOrInterfaceDeclaration: public net.sourceforge.pmd.lang.ast.NodeStream<ASTAnnotation> getDeclaredAnnotations()"
+    },
+    {
+        "meta_op": "Check whether the class has x annotation",
+        "meta_impl": "net.sourceforge.pmd.lang.java.ast.ASTClassOrInterfaceDeclaration: public boolean isAnyAnnotationPresent(java.util.Collection)"
+    },
+    {
+        "meta_op": "Get the javadoc comment of class",
+        "meta_impl": "net.sourceforge.pmd.lang.java.ast.ASTClassOrInterfaceDeclaration: public net.sourceforge.pmd.lang.java.ast.JavadocComment getJavadocComment()"
+    },
+    {
+        "meta_op": "Check whether the class is abstract",
+        "meta_impl": "net.sourceforge.pmd.lang.java.ast.ASTClassOrInterfaceDeclaration: public boolean isAbstract()"
+    },
+    {
+        "meta_op": "Check whether the class is public",
+        "meta_impl": "net.sourceforge.pmd.lang.java.ast.ASTClassOrInterfaceDeclaration: public boolean isPublic()"
+    },
+    {
+        "meta_op": "Check whether the class is private",
+        "meta_impl": "net.sourceforge.pmd.lang.java.ast.ASTClassOrInterfaceDeclaration: public boolean isPrivate()"
+    },
+    {
+        "meta_op": "Check whether the class is protected",
+        "meta_impl": "net.sourceforge.pmd.lang.java.ast.ASTClassOrInterfaceDeclaration: public boolean isProtected()"
+    },
+    {
+        "meta_op": "Check whether the class is default package-private",
+        "meta_impl": "net.sourceforge.pmd.lang.java.ast.ASTClassOrInterfaceDeclaration: public boolean isPackagePrivate()"
+    },
+    {
+        "meta_op": "Check whether the class is final",
+        "meta_impl": "net.sourceforge.pmd.lang.java.ast.ASTClassOrInterfaceDeclaration: public boolean isFinal()"
+    },
+    {
+        "meta_op": "Check whether the class is static",
+        "meta_impl": "net.sourceforge.pmd.lang.java.ast.ASTClassOrInterfaceDeclaration: public boolean isStatic()"
+    },
+    {
+        "meta_op": "Get the super class of class",
+        "meta_impl": "net.sourceforge.pmd.lang.java.ast.ASTClassOrInterfaceDeclaration: public net.sourceforge.pmd.lang.java.ast.ASTClassOrInterfaceType getSuperClassTypeNode()"
+    },
+    {
+        "meta_op": "Get a implemented interface of class",
+        "meta_impl": "net.sourceforge.pmd.lang.java.ast.ASTClassOrInterfaceDeclaration: public net.sourceforge.pmd.lang.ast.NodeStream<ASTClassOrInterfaceType> getSuperInterfaceTypeNodes()"
+    },
+    {
+        "meta_op": "Get the name of the package where the class is located",
+        "meta_impl": "net.sourceforge.pmd.lang.java.ast.ASTClassOrInterfaceDeclaration: public java.lang.String getPackageName()"
+    },
+    {
+        "meta_op": "Check whether the class is interface",
+        "meta_impl": "net.sourceforge.pmd.lang.java.ast.ASTClassOrInterfaceDeclaration: public boolean isInterface()"
+    },
+    {
+        "meta_op": "Check whether the class is inner class",
+        "meta_impl": "net.sourceforge.pmd.lang.java.ast.ASTClassOrInterfaceDeclaration: public boolean isNested()"
+    },
+    {
+        "meta_op": "Check whether the class is anonymous class",
+        "meta_impl": "net.sourceforge.pmd.lang.java.ast.ASTClassOrInterfaceDeclaration: public boolean isAnonymous()"
+    },
+    {
+        "meta_op": "Get the name of interface",
+        "meta_impl": "net.sourceforge.pmd.lang.java.ast.ASTClassOrInterfaceDeclaration: public java.lang.String getSimpleName()"
+    },
+    {
+        "meta_op": "Get a declared annotation of interface",
+        "meta_impl": "net.sourceforge.pmd.lang.java.ast.ASTClassOrInterfaceDeclaration: public net.sourceforge.pmd.lang.ast.NodeStream<ASTAnnotation> getDeclaredAnnotations()"
+    },
+    {
+        "meta_op": "Check whether the interface has x annotation",
+        "meta_impl": "net.sourceforge.pmd.lang.java.ast.ASTClassOrInterfaceDeclaration: public boolean isAnyAnnotationPresent(java.util.Collection)"
+    },
+    {
+        "meta_op": "Get the javadoc comment of interface",
+        "meta_impl": "net.sourceforge.pmd.lang.java.ast.ASTClassOrInterfaceDeclaration: public net.sourceforge.pmd.lang.java.ast.JavadocComment getJavadocComment()"
+    },
+    {
+        "meta_op": "Check whether the interface is abstract",
+        "meta_impl": "net.sourceforge.pmd.lang.java.ast.ASTClassOrInterfaceDeclaration: public boolean isAbstract()"
+    },
+    {
+        "meta_op": "Check whether the interface is public",
+        "meta_impl": "net.sourceforge.pmd.lang.java.ast.ASTClassOrInterfaceDeclaration: public boolean isPublic()"
+    },
+    {
+        "meta_op": "Check whether the interface is private",
+        "meta_impl": "net.sourceforge.pmd.lang.java.ast.ASTClassOrInterfaceDeclaration: public boolean isPrivate()"
+    },
+    {
+        "meta_op": "Check whether the interface is protected",
+        "meta_impl": "net.sourceforge.pmd.lang.java.ast.ASTClassOrInterfaceDeclaration: public boolean isProtected()"
+    },
+    {
+        "meta_op": "Check whether the interface is default package-private",
+        "meta_impl": "net.sourceforge.pmd.lang.java.ast.ASTClassOrInterfaceDeclaration: public boolean isPackagePrivate()"
+    },
+    {
+        "meta_op": "Check whether the interface is final",
+        "meta_impl": "net.sourceforge.pmd.lang.java.ast.ASTClassOrInterfaceDeclaration: public boolean isFinal()"
+    },
+    {
+        "meta_op": "Check whether the interface is static",
+        "meta_impl": "net.sourceforge.pmd.lang.java.ast.ASTClassOrInterfaceDeclaration: public boolean isStatic()"
+    },
+    {
+        "meta_op": "Get the super interface of interface",
+        "meta_impl": "net.sourceforge.pmd.lang.java.ast.ASTClassOrInterfaceDeclaration: public net.sourceforge.pmd.lang.ast.NodeStream<ASTClassOrInterfaceType> getSuperInterfaceTypeNodes()"
+    },
+    {
+        "meta_op": "Get the name of the package where the interface is located",
+        "meta_impl": "net.sourceforge.pmd.lang.java.ast.ASTClassOrInterfaceDeclaration: public java.lang.String getPackageName()"
+    },
+    {
+        "meta_op": "Check whether the interface is inner interface",
+        "meta_impl": "net.sourceforge.pmd.lang.java.ast.ASTClassOrInterfaceDeclaration: public boolean isNested()"
+    },
+    {
+        "meta_op": "Get the name of method",
+        "meta_impl": "net.sourceforge.pmd.lang.java.ast.ASTMethodDeclaration: public java.lang.String getName()"
+    },
+    {
+        "meta_op": "Get the signature of method",
+        "meta_impl": "net.sourceforge.pmd.lang.java.ast.ASTMethodDeclaration: public net.sourceforge.pmd.lang.java.types.JMethodSig getGenericSignature()"
+    },
+    {
+        "meta_op": "Get the javadoc comment of method",
+        "meta_impl": "net.sourceforge.pmd.lang.java.ast.ASTMethodDeclaration: public net.sourceforge.pmd.lang.java.ast.JavadocComment getJavadocComment()"
+    },
+    {
+        "meta_op": "Check whether the method is abstract",
+        "meta_impl": "net.sourceforge.pmd.lang.java.ast.ASTMethodDeclaration: public boolean isAbstract()"
+    },
+    {
+        "meta_op": "Check whether the method is private",
+        "meta_impl": "net.sourceforge.pmd.lang.java.ast.ASTMethodDeclaration: public boolean isPrivate()"
+    },
+    {
+        "meta_op": "Check whether the method is public",
+        "meta_impl": "net.sourceforge.pmd.lang.java.ast.ASTMethodDeclaration: public boolean isPublic()"
+    },
+    {
+        "meta_op": "Check whether the method is default package-private",
+        "meta_impl": "net.sourceforge.pmd.lang.java.ast.ASTMethodDeclaration: public boolean isPackagePrivate()"
+    },
+    {
+        "meta_op": "Check whether the method is protected",
+        "meta_impl": "net.sourceforge.pmd.lang.java.ast.ASTMethodDeclaration: public boolean isProtected()"
+    },
+    {
+        "meta_op": "Check whether the method is main method",
+        "meta_impl": "net.sourceforge.pmd.lang.java.ast.ASTMethodDeclaration: public boolean isMainMethod()"
+    },
+    {
+        "meta_op": "Get a formal parameter of method",
+        "meta_impl": "net.sourceforge.pmd.lang.java.ast.ASTMethodDeclaration: public net.sourceforge.pmd.lang.java.ast.ASTFormalParameters getFormalParameters()"
+    },
+    {
+        "meta_op": "Get the type of formal parameter",
+        "meta_impl": "net.sourceforge.pmd.lang.java.ast.ASTFormalParameter: public net.sourceforge.pmd.lang.java.ast.ASTType getTypeNode()"
+    },
+    {
+        "meta_op": "Get a declared annotation of formal parameter",
+        "meta_impl": "net.sourceforge.pmd.lang.java.ast.ASTFormalParameter: public net.sourceforge.pmd.lang.ast.NodeStream<ASTAnnotation> getDeclaredAnnotations()"
+    },
+    {
+        "meta_op": "Check whether the formal parameter has x annotation",
+        "meta_impl": "net.sourceforge.pmd.lang.java.ast.ASTFormalParameter: public boolean isAnyAnnotationPresent(java.util.Collection)"
+    },
+    {
+        "meta_op": "Check whether the formal parameter is final",
+        "meta_impl": "net.sourceforge.pmd.lang.java.ast.ASTFormalParameter: public boolean isFinal()"
+    },
+    {
+        "meta_op": "Get the return type of method",
+        "meta_impl": "net.sourceforge.pmd.lang.java.ast.ASTMethodDeclaration: public net.sourceforge.pmd.lang.java.ast.ASTType getResultTypeNode()"
+    },
+    {
+        "meta_op": "Check whether the return type of method is void",
+        "meta_impl": "net.sourceforge.pmd.lang.java.ast.ASTMethodDeclaration: public boolean isVoid()"
+    },
+    {
+        "meta_op": "Get a throw exception in method signature",
+        "meta_impl": "net.sourceforge.pmd.lang.java.ast.ASTMethodDeclaration: public net.sourceforge.pmd.lang.java.ast.ASTThrowsList getThrowsList()"
+    },
+    {
+        "meta_op": "Get a declared annotation of method",
+        "meta_impl": "net.sourceforge.pmd.lang.java.ast.ASTMethodDeclaration: public net.sourceforge.pmd.lang.ast.NodeStream<ASTAnnotation> getDeclaredAnnotations()"
+    },
+    {
+        "meta_op": "Check whether the method has x annotation",
+        "meta_impl": "net.sourceforge.pmd.lang.java.ast.ASTMethodDeclaration: public boolean isAnyAnnotationPresent(java.util.Collection)"
+    },
+    {
+        "meta_op": "Get the name of constructor",
+        "meta_impl": "net.sourceforge.pmd.lang.java.ast.ASTConstructorDeclaration: public java.lang.String getName()"
+    },
+    {
+        "meta_op": "Get the signature of constructor",
+        "meta_impl": "net.sourceforge.pmd.lang.java.ast.ASTConstructorDeclaration: public net.sourceforge.pmd.lang.java.types.JMethodSig getGenericSignature()"
+    },
+    {
+        "meta_op": "Get the javadoc comment of constructor",
+        "meta_impl": "net.sourceforge.pmd.lang.java.ast.ASTConstructorDeclaration: public net.sourceforge.pmd.lang.java.ast.JavadocComment getJavadocComment()"
+    },
+    {
+        "meta_op": "Check whether the constructor is private",
+        "meta_impl": "net.sourceforge.pmd.lang.java.ast.ASTConstructorDeclaration: public boolean isPrivate()"
+    },
+    {
+        "meta_op": "Check whether the constructor is public",
+        "meta_impl": "net.sourceforge.pmd.lang.java.ast.ASTConstructorDeclaration: public boolean isPublic()"
+    },
+    {
+        "meta_op": "Check whether the constructor is default package-private",
+        "meta_impl": "net.sourceforge.pmd.lang.java.ast.ASTConstructorDeclaration: public boolean isPackagePrivate()"
+    },
+    {
+        "meta_op": "Check whether the constructor is protected",
+        "meta_impl": "net.sourceforge.pmd.lang.java.ast.ASTConstructorDeclaration: public boolean isProtected()"
+    },
+    {
+        "meta_op": "Get a formal parameter of constructor",
+        "meta_impl": "net.sourceforge.pmd.lang.java.ast.ASTConstructorDeclaration: public net.sourceforge.pmd.lang.java.ast.ASTFormalParameters getFormalParameters()"
+    },
+    {
+        "meta_op": "Get a throw exception in constructor signature",
+        "meta_impl": "net.sourceforge.pmd.lang.java.ast.ASTConstructorDeclaration: public net.sourceforge.pmd.lang.java.ast.ASTThrowsList getThrowsList()"
+    },
+    {
+        "meta_op": "Get a declared annotation of constructor",
+        "meta_impl": "net.sourceforge.pmd.lang.java.ast.ASTConstructorDeclaration: public net.sourceforge.pmd.lang.ast.NodeStream<ASTAnnotation> getDeclaredAnnotations()"
+    },
+    {
+        "meta_op": "Check whether the constructor has x annotation",
+        "meta_impl": "net.sourceforge.pmd.lang.java.ast.ASTConstructorDeclaration: public boolean isAnyAnnotationPresent(java.util.Collection)"
+    },
+    {
+        "meta_op": "Check whether the method is synchronized",
+        "meta_impl": "net.sourceforge.pmd.lang.java.ast.ASTMethodDeclaration: public boolean isSynchronized()"
+    },
+    {
+        "meta_op": "Check whether the method is static",
+        "meta_impl": "net.sourceforge.pmd.lang.java.ast.ASTMethodDeclaration: public boolean isStatic()"
+    },
+    {
+        "meta_op": "Check whether the method is final",
+        "meta_impl": "net.sourceforge.pmd.lang.java.ast.ASTMethodDeclaration: public boolean isFinal()"
+    },
+    {
+        "meta_op": "Check whether the method is native",
+        "meta_impl": "net.sourceforge.pmd.lang.java.ast.ASTMethodDeclaration: public boolean isNative()"
+    },
+    {
+        "meta_op": "Check whether the method is overridden",
+        "meta_impl": "net.sourceforge.pmd.lang.java.ast.ASTMethodDeclaration: public boolean isOverridden()"
+    },
+    {
+        "meta_op": "Get the original method of this overridden method",
+        "meta_impl": "net.sourceforge.pmd.lang.java.ast.ASTMethodDeclaration: public net.sourceforge.pmd.lang.java.types.JMethodSig getOverriddenMethod()"
+    },
+    {
+        "meta_op": "Get the class that method located in",
+        "meta_impl": "net.sourceforge.pmd.lang.java.ast.ASTMethodDeclaration: public net.sourceforge.pmd.lang.java.ast.ASTAnyTypeDeclaration getEnclosingType()"
+    },
+    {
+        "meta_op": "Check whether the method is a junit method",
+        "meta_impl": "net.sourceforge.pmd.lang.java.rule.internal.TestFrameworksUtil: static public boolean isJUnitMethod(net.sourceforge.pmd.lang.java.ast.ASTMethodDeclaration)"
+    },
+    {
+        "meta_op": "Get the return expression in return statement",
+        "meta_impl": "net.sourceforge.pmd.lang.java.ast.ASTReturnStatement: public net.sourceforge.pmd.lang.java.ast.ASTExpression getExpr()"
+    },
+    {
+        "meta_op": "Get the javadoc comment of field",
+        "meta_impl": "net.sourceforge.pmd.lang.java.ast.ASTFieldDeclaration: public net.sourceforge.pmd.lang.java.ast.JavadocComment getJavadocComment()"
+    },
+    {
+        "meta_op": "Check whether the field is private",
+        "meta_impl": "net.sourceforge.pmd.lang.java.ast.ASTFieldDeclaration: public boolean isPrivate()"
+    },
+    {
+        "meta_op": "Check whether the field is public",
+        "meta_impl": "net.sourceforge.pmd.lang.java.ast.ASTFieldDeclaration: public boolean isPublic()"
+    },
+    {
+        "meta_op": "Check whether the field is default package-private",
+        "meta_impl": "net.sourceforge.pmd.lang.java.ast.ASTFieldDeclaration: public boolean isPackagePrivate()"
+    },
+    {
+        "meta_op": "Check whether the field is protected",
+        "meta_impl": "net.sourceforge.pmd.lang.java.ast.ASTFieldDeclaration: public boolean isProtected()"
+    },
+    {
+        "meta_op": "Check whether the field is static",
+        "meta_impl": "net.sourceforge.pmd.lang.java.ast.ASTFieldDeclaration: public boolean isStatic()"
+    },
+    {
+        "meta_op": "Check whether the field is final",
+        "meta_impl": "net.sourceforge.pmd.lang.java.ast.ASTFieldDeclaration: public boolean isFinal()"
+    },
+    {
+        "meta_op": "Check whether the field is volatile",
+        "meta_impl": "net.sourceforge.pmd.lang.java.ast.ASTFieldDeclaration: public boolean isVolatile()"
+    },
+    {
+        "meta_op": "Check whether the field is transient",
+        "meta_impl": "net.sourceforge.pmd.lang.java.ast.ASTFieldDeclaration: public boolean isTransient()"
+    },
+    {
+        "meta_op": "Get the type of field",
+        "meta_impl": "net.sourceforge.pmd.lang.java.ast.ASTFieldDeclaration: public net.sourceforge.pmd.lang.java.ast.ASTType getTypeNode()"
+    },
+    {
+        "meta_op": "Get a declared annotation of field",
+        "meta_impl": "net.sourceforge.pmd.lang.java.ast.ASTFieldDeclaration: public net.sourceforge.pmd.lang.ast.NodeStream<ASTAnnotation> getDeclaredAnnotations()"
+    },
+    {
+        "meta_op": "Check whether the field has x annotation",
+        "meta_impl": "net.sourceforge.pmd.lang.java.ast.ASTFieldDeclaration: public boolean isAnyAnnotationPresent(java.util.Collection)"
+    },
+    {
+        "meta_op": "Get the type of local variable",
+        "meta_impl": "net.sourceforge.pmd.lang.java.ast.ASTLocalVariableDeclaration: public net.sourceforge.pmd.lang.java.ast.ASTType getTypeNode()"
+    },
+    {
+        "meta_op": "Check whether the local variable is final",
+        "meta_impl": "net.sourceforge.pmd.lang.java.ast.ASTLocalVariableDeclaration: public boolean isFinal()"
+    },
+    {
+        "meta_op": "Check whether the local variable is volatile",
+        "meta_impl": "net.sourceforge.pmd.lang.java.ast.ASTLocalVariableDeclaration: public boolean isVolatile()"
+    },
+    {
+        "meta_op": "Get a declared annotation of local variable",
+        "meta_impl": "net.sourceforge.pmd.lang.java.ast.ASTLocalVariableDeclaration: public net.sourceforge.pmd.lang.ast.NodeStream<ASTAnnotation> getDeclaredAnnotations()"
+    },
+    {
+        "meta_op": "Check whether the local variable has x annotation",
+        "meta_impl": "net.sourceforge.pmd.lang.java.ast.ASTLocalVariableDeclaration: public boolean isAnyAnnotationPresent(java.util.Collection)"
+    },
+    {
+        "meta_op": "Get the name of accessed variable",
+        "meta_impl": "net.sourceforge.pmd.lang.java.ast.ASTVariableAccess: public java.lang.String getName()"
+    },
+    {
+        "meta_op": "Get the type of accessed variable",
+        "meta_impl": "net.sourceforge.pmd.lang.java.ast.ASTVariableAccess: public net.sourceforge.pmd.lang.java.types.JTypeMirror getTypeMirror()"
+    },
+    {
+        "meta_op": "Get the name of called method",
+        "meta_impl": "net.sourceforge.pmd.lang.java.ast.ASTMethodCall: public java.lang.String getMethodName()"
+    },
+    {
+        "meta_op": "Get an argument of called method",
+        "meta_impl": "net.sourceforge.pmd.lang.java.ast.ASTMethodCall: public net.sourceforge.pmd.lang.java.ast.ASTArgumentList getArguments()"
+    },
+    {
+        "meta_op": "Get the method caller",
+        "meta_impl": "net.sourceforge.pmd.lang.java.ast.ASTMethodCall: public net.sourceforge.pmd.lang.java.ast.ASTExpression getQualifier()"
+    },
+    {
+        "meta_op": "Get the signature of the called method",
+        "meta_impl": "net.sourceforge.pmd.lang.java.ast.ASTMethodCall: public net.sourceforge.pmd.lang.java.types.JMethodSig getMethodType()"
+    },
+    {
+        "meta_op": "Get a loop variable of for loop",
+        "meta_impl": "net.sourceforge.pmd.lang.java.ast.internal.JavaAstUtils: static public net.sourceforge.pmd.lang.ast.NodeStream<ASTVariableDeclaratorId> getLoopVariables(net.sourceforge.pmd.lang.java.ast.ASTForStatement)"
+    },
+    {
+        "meta_op": "Get the loop variable of for-each loop",
+        "meta_impl": "net.sourceforge.pmd.lang.java.ast.ASTForeachStatement: public net.sourceforge.pmd.lang.java.ast.ASTVariableDeclaratorId getVarId()"
+    },
+    {
+        "meta_op": "Get the condition of while statement",
+        "meta_impl": "net.sourceforge.pmd.lang.java.ast.ASTWhileStatement: public net.sourceforge.pmd.lang.java.ast.ASTExpression getCondition()"
+    },
+    {
+        "meta_op": "Get the condition of do-while statement",
+        "meta_impl": "net.sourceforge.pmd.lang.java.ast.ASTDoStatement: public net.sourceforge.pmd.lang.java.ast.ASTStatement getBody()"
+    },
+    {
+        "meta_op": "Get the condition of if statement",
+        "meta_impl": "net.sourceforge.pmd.lang.java.ast.ASTIfStatement: public net.sourceforge.pmd.lang.java.ast.ASTExpression getCondition()"
+    },
+    {
+        "meta_op": "Get the else branch of if statement",
+        "meta_impl": "net.sourceforge.pmd.lang.java.ast.ASTIfStatement: public net.sourceforge.pmd.lang.java.ast.ASTStatement getElseBranch()"
+    },
+    {
+        "meta_op": "Check whether the if statement has else branch",
+        "meta_impl": "net.sourceforge.pmd.lang.java.ast.ASTIfStatement: public boolean hasElse()"
+    },
+    {
+        "meta_op": "Get the condition of switch statement",
+        "meta_impl": "net.sourceforge.pmd.lang.java.ast.ASTSwitchStatement: public net.sourceforge.pmd.lang.java.ast.ASTExpression getTestedExpression()"
+    },
+    {
+        "meta_op": "Get a branch of switch statement",
+        "meta_impl": "net.sourceforge.pmd.lang.java.ast.ASTSwitchStatement: public net.sourceforge.pmd.lang.ast.NodeStream<ASTSwitchBranch> getBranches()"
+    },
+    {
+        "meta_op": "Check whether the switch branch is default",
+        "meta_impl": "net.sourceforge.pmd.lang.java.ast.ASTSwitchBranch: public boolean isDefault()"
+    },
+    {
+        "meta_op": "Get the label of switch statement branch",
+        "meta_impl": "net.sourceforge.pmd.lang.java.ast.ASTSwitchBranch: public net.sourceforge.pmd.lang.java.ast.ASTSwitchLabel getLabel()"
+    },
+    {
+        "meta_op": "Get the expression of switch label",
+        "meta_impl": "net.sourceforge.pmd.lang.java.ast.ASTSwitchLabel: public NodeStream<ASTExpression> getExprList()"
+    },
+    {
+        "meta_op": "Get the right hand side of the switch statement arrow branch",
+        "meta_impl": "net.sourceforge.pmd.lang.java.ast.ASTSwitchArrowBranch: public net.sourceforge.pmd.lang.java.ast.ASTSwitchArrowRHS getRightHandSide()"
+    },
+    {
+        "meta_op": "Check whether the switch statement uses fallthrough branches",
+        "meta_impl": "net.sourceforge.pmd.lang.java.ast.ASTSwitchStatement: public boolean isFallthroughSwitch()"
+    },
+    {
+        "meta_op": "Get a parameter of catch clause",
+        "meta_impl": "net.sourceforge.pmd.lang.java.ast.ASTCatchClause: public net.sourceforge.pmd.lang.java.ast.ASTCatchParameter getParameter()"
+    },
+    {
+        "meta_op": "Get the name of catch parameter",
+        "meta_impl": "net.sourceforge.pmd.lang.java.ast.ASTCatchParameter: public java.lang.String getName()"
+    },
+    {
+        "meta_op": "Get an exception type of  catch parameter",
+        "meta_impl": "net.sourceforge.pmd.lang.java.ast.ASTCatchParameter: public net.sourceforge.pmd.lang.ast.NodeStream<ASTClassOrInterfaceType> getAllExceptionTypes()"
+    },
+    {
+        "meta_op": "Get a catch branch of try statement",
+        "meta_impl": "net.sourceforge.pmd.lang.java.ast.ASTTryStatement: public net.sourceforge.pmd.lang.ast.NodeStream<ASTCatchClause> getCatchClauses()"
+    },
+    {
+        "meta_op": "Get the finally branch of try statement",
+        "meta_impl": "net.sourceforge.pmd.lang.java.ast.ASTTryStatement: public net.sourceforge.pmd.lang.java.ast.ASTFinallyClause getFinallyClause()"
+    },
+    {
+        "meta_op": "Get the expression in throw statement",
+        "meta_impl": "net.sourceforge.pmd.lang.java.ast.ASTThrowStatement: public net.sourceforge.pmd.lang.java.ast.ASTExpression getExpr()"
+    },
+    {
+        "meta_op": "Get the type of object created by constructor call",
+        "meta_impl": "net.sourceforge.pmd.lang.java.ast.ASTConstructorCall: public net.sourceforge.pmd.lang.java.ast.ASTClassOrInterfaceType getTypeNode()"
+    },
+    {
+        "meta_op": "Get the left operand of assignment expression",
+        "meta_impl": "net.sourceforge.pmd.lang.java.ast.ASTAssignmentExpression: public net.sourceforge.pmd.lang.java.ast.ASTAssignableExpr getLeftOperand()"
+    },
+    {
+        "meta_op": "Get the right operand of assignment expression",
+        "meta_impl": "net.sourceforge.pmd.lang.java.ast.ASTAssignmentExpression: public net.sourceforge.pmd.lang.java.ast.ASTExpression getRightOperand()"
+    },
+    {
+        "meta_op": "Get the left operand of infix expression",
+        "meta_impl": "net.sourceforge.pmd.lang.java.ast.ASTInfixExpression: public net.sourceforge.pmd.lang.java.ast.ASTExpression getLeftOperand()"
+    },
+    {
+        "meta_op": "Get the right operand of infix expression",
+        "meta_impl": "net.sourceforge.pmd.lang.java.ast.ASTInfixExpression: public net.sourceforge.pmd.lang.java.ast.ASTExpression getRightOperand()"
+    },
+    {
+        "meta_op": "Get the operator of infix expression",
+        "meta_impl": "net.sourceforge.pmd.lang.java.ast.ASTInfixExpression: public net.sourceforge.pmd.lang.java.ast.BinaryOp getOperator()"
+    },
+    {
+        "meta_op": "Get the operand of cast expression",
+        "meta_impl": "net.sourceforge.pmd.lang.java.ast.ASTCastExpression: public net.sourceforge.pmd.lang.java.ast.ASTExpression getOperand()"
+    },
+    {
+        "meta_op": "Get the type after casting in cast expression",
+        "meta_impl": "net.sourceforge.pmd.lang.java.ast.ASTCastExpression: public net.sourceforge.pmd.lang.java.ast.ASTType getCastType()"
+    },
+    {
+        "meta_op": "Get the operand of unary expression",
+        "meta_impl": "net.sourceforge.pmd.lang.java.ast.ASTUnaryExpression: public net.sourceforge.pmd.lang.java.ast.ASTExpression getOperand()"
+    },
+    {
+        "meta_op": "Get the condition of ternary expression",
+        "meta_impl": "net.sourceforge.pmd.lang.java.ast.ASTConditionalExpression: public net.sourceforge.pmd.lang.java.ast.ASTExpression getCondition()"
+    },
+    {
+        "meta_op": "Get the expression if the condition of ternary expression is true",
+        "meta_impl": "net.sourceforge.pmd.lang.java.ast.ASTConditionalExpression: public net.sourceforge.pmd.lang.java.ast.ASTExpression getThenBranch()"
+    },
+    {
+        "meta_op": "Get the expression if the condition of ternary expression is false",
+        "meta_impl": "net.sourceforge.pmd.lang.java.ast.ASTConditionalExpression: public net.sourceforge.pmd.lang.java.ast.ASTExpression getElseBranch()"
+    },
+    {
+        "meta_op": "Get a formal parameter of lambda expression",
+        "meta_impl": "net.sourceforge.pmd.lang.java.ast.ASTLambdaExpression: public net.sourceforge.pmd.lang.java.ast.ASTLambdaParameterList getParameters()"
+    },
+    {
+        "meta_op": "Check whether lambda expression has an expression for body",
+        "meta_impl": "net.sourceforge.pmd.lang.java.ast.ASTLambdaExpression: public boolean isExpressionBody()"
+    },
+    {
+        "meta_op": "Get the body of lambda if it is an expression",
+        "meta_impl": "net.sourceforge.pmd.lang.java.ast.ASTLambdaExpression: public net.sourceforge.pmd.lang.java.ast.ASTExpression getExpressionBody()"
+    },
+    {
+        "meta_op": "Check whether lambda expression has a block for body",
+        "meta_impl": "net.sourceforge.pmd.lang.java.ast.ASTLambdaExpression: public boolean isBlockBody()"
+    },
+    {
+        "meta_op": "Get the body of lambda if it is a block",
+        "meta_impl": "net.sourceforge.pmd.lang.java.ast.ASTLambdaExpression: public net.sourceforge.pmd.lang.java.ast.ASTBlock getBlockBody()"
+    },
+    {
+        "meta_op": "Get the type of formal parameter of lambda expression",
+        "meta_impl": "net.sourceforge.pmd.lang.java.ast.ASTLambdaParameter: public net.sourceforge.pmd.lang.java.ast.ASTType getTypeNode()"
+    },
+    {
+        "meta_op": "Get the name of annotation declaration",
+        "meta_impl": "net.sourceforge.pmd.lang.java.ast.ASTAnnotationTypeDeclaration: public java.lang.String getSimpleName()"
+    },
+    {
+        "meta_op": "Get the javadoc comment of annotation declaration",
+        "meta_impl": "net.sourceforge.pmd.lang.java.ast.ASTAnnotationTypeDeclaration: public net.sourceforge.pmd.lang.java.ast.JavadocComment getJavadocComment()"
+    },
+    {
+        "meta_op": "Get the name of the package where the annotation declaration is located",
+        "meta_impl": "net.sourceforge.pmd.lang.java.ast.ASTAnnotationTypeDeclaration: public java.lang.String getPackageName()"
+    },
+    {
+        "meta_op": "Check whether the annotation declaration is public",
+        "meta_impl": "net.sourceforge.pmd.lang.java.ast.ASTAnnotationTypeDeclaration: public boolean isPublic()"
+    },
+    {
+        "meta_op": "Check whether the annotation declaration is private",
+        "meta_impl": "net.sourceforge.pmd.lang.java.ast.ASTAnnotationTypeDeclaration: public boolean isPrivate()"
+    },
+    {
+        "meta_op": "Check whether the annotation declaration is package private",
+        "meta_impl": "net.sourceforge.pmd.lang.java.ast.ASTAnnotationTypeDeclaration: public boolean isPackagePrivate()"
+    },
+    {
+        "meta_op": "Get a member of annotation declaration",
+        "meta_impl": "net.sourceforge.pmd.lang.java.ast.ASTAnnotationTypeDeclaration: public net.sourceforge.pmd.lang.ast.NodeStream<ASTBodyDeclaration> getDeclarations()"
+    },
+    {
+        "meta_op": "Get the name of record",
+        "meta_impl": "net.sourceforge.pmd.lang.java.ast.ASTRecordDeclaration: public java.lang.String getSimpleName()"
+    },
+    {
+        "meta_op": "Get the javadoc comment of record",
+        "meta_impl": "net.sourceforge.pmd.lang.java.ast.ASTRecordDeclaration: public net.sourceforge.pmd.lang.java.ast.JavadocComment getJavadocComment()"
+    },
+    {
+        "meta_op": "Get the name of the package where the record is located",
+        "meta_impl": "net.sourceforge.pmd.lang.java.ast.ASTRecordDeclaration: public java.lang.String getPackageName()"
+    },
+    {
+        "meta_op": "Check whether the record is public",
+        "meta_impl": "net.sourceforge.pmd.lang.java.ast.ASTRecordDeclaration: public boolean isPublic()"
+    },
+    {
+        "meta_op": "Check whether the record is private",
+        "meta_impl": "net.sourceforge.pmd.lang.java.ast.ASTRecordDeclaration: public boolean isPrivate()"
+    },
+    {
+        "meta_op": "Get a component of record",
+        "meta_impl": "net.sourceforge.pmd.lang.java.ast.ASTRecordDeclaration: public net.sourceforge.pmd.lang.java.ast.ASTRecordComponentList getRecordComponents()"
+    },
+    {
+        "meta_op": "Get a declared annotation of record",
+        "meta_impl": "net.sourceforge.pmd.lang.java.ast.ASTRecordDeclaration: public net.sourceforge.pmd.lang.ast.NodeStream<ASTAnnotation> getDeclaredAnnotations()"
+    },
+    {
+        "meta_op": "Check whether the record has x annotation",
+        "meta_impl": "net.sourceforge.pmd.lang.java.ast.ASTRecordDeclaration: public boolean isAnyAnnotationPresent(java.util.Collection)"
+    },
+    {
+        "meta_op": "Get the name of enum",
+        "meta_impl": "net.sourceforge.pmd.lang.java.ast.ASTEnumDeclaration: public java.lang.String getSimpleName()"
+    },
+    {
+        "meta_op": "Get the javadoc comment of enum",
+        "meta_impl": "net.sourceforge.pmd.lang.java.ast.ASTEnumDeclaration: public net.sourceforge.pmd.lang.java.ast.JavadocComment getJavadocComment()"
+    },
+    {
+        "meta_op": "Get the name of the package where the enum is located",
+        "meta_impl": "net.sourceforge.pmd.lang.java.ast.ASTEnumDeclaration: public java.lang.String getPackageName()"
+    },
+    {
+        "meta_op": "Check whether the enum is public",
+        "meta_impl": "net.sourceforge.pmd.lang.java.ast.ASTEnumDeclaration: public boolean isPublic()"
+    },
+    {
+        "meta_op": "Check whether the enum is private",
+        "meta_impl": "net.sourceforge.pmd.lang.java.ast.ASTEnumDeclaration: public boolean isPrivate()"
+    },
+    {
+        "meta_op": "Get an enum constant declared by this enum",
+        "meta_impl": "net.sourceforge.pmd.lang.java.ast.ASTEnumDeclaration: public net.sourceforge.pmd.lang.ast.NodeStream<ASTEnumConstant> getEnumConstants()"
+    },
+    {
+        "meta_op": "Get the name of enum constant",
+        "meta_impl": "net.sourceforge.pmd.lang.java.ast.ASTEnumConstant: public java.lang.String getName()"
+    },
+    {
+        "meta_op": "Get an argument of enum constant",
+        "meta_impl": "net.sourceforge.pmd.lang.java.ast.ASTEnumConstant: public net.sourceforge.pmd.lang.java.ast.ASTArgumentList getArguments()"
+    },
+    {
+        "meta_op": "Get a declared annotation of enum",
+        "meta_impl": "net.sourceforge.pmd.lang.java.ast.ASTEnumDeclaration: public net.sourceforge.pmd.lang.ast.NodeStream<ASTAnnotation> getDeclaredAnnotations()"
+    },
+    {
+        "meta_op": "Check whether the enum has x annotation",
+        "meta_impl": "net.sourceforge.pmd.lang.java.ast.ASTEnumDeclaration: public boolean isAnyAnnotationPresent(java.util.Collection)"
+    },
+    {
+        "meta_op": "Get the length of string literal",
+        "meta_impl": "net.sourceforge.pmd.lang.java.ast.ASTStringLiteral: public int length()"
+    },
+    {
+        "meta_op": "Check whether the string is empty",
+        "meta_impl": "net.sourceforge.pmd.lang.java.ast.ASTStringLiteral: public boolean isEmpty()"
+    },
+    {
+        "meta_op": "Get the value of string literal",
+        "meta_impl": "net.sourceforge.pmd.lang.java.ast.ASTStringLiteral: public java.lang.String getConstValue()"
+    },
+    {
+        "meta_op": "Check whether the boolean literal is true",
+        "meta_impl": "net.sourceforge.pmd.lang.java.ast.ASTBooleanLiteral: public boolean isTrue()"
+    },
+    {
+        "meta_op": "Get the value of boolean literal",
+        "meta_impl": "net.sourceforge.pmd.lang.java.ast.ASTBooleanLiteral: public java.lang.Boolean getConstValue()"
+    },
+    {
+        "meta_op": "Check whether the numeric literal is int literal",
+        "meta_impl": "net.sourceforge.pmd.lang.java.ast.ASTNumericLiteral: public boolean isIntLiteral()"
+    },
+    {
+        "meta_op": "Check whether the numeric literal is long literal",
+        "meta_impl": "net.sourceforge.pmd.lang.java.ast.ASTNumericLiteral: public boolean isLongLiteral()"
+    },
+    {
+        "meta_op": "Check whether the numeric literal is float literal",
+        "meta_impl": "net.sourceforge.pmd.lang.java.ast.ASTNumericLiteral: public boolean isFloatLiteral()"
+    },
+    {
+        "meta_op": "Check whether the numeric literal is double literal",
+        "meta_impl": "net.sourceforge.pmd.lang.java.ast.ASTNumericLiteral: public boolean isDoubleLiteral()"
+    },
+    {
+        "meta_op": "Get the base of numeric literal",
+        "meta_impl": "net.sourceforge.pmd.lang.java.ast.ASTNumericLiteral: public int getBase()"
+    },
+    {
+        "meta_op": "Get the value of int literal",
+        "meta_impl": "net.sourceforge.pmd.lang.java.ast.ASTNumericLiteral: public int getValueAsInt()"
+    },
+    {
+        "meta_op": "Get the value of long literal",
+        "meta_impl": "net.sourceforge.pmd.lang.java.ast.ASTNumericLiteral: public long getValueAsLong()"
+    },
+    {
+        "meta_op": "Get the value of double literal",
+        "meta_impl": "net.sourceforge.pmd.lang.java.ast.ASTNumericLiteral: public double getValueAsDouble()"
+    },
+    {
+        "meta_op": "Get the value of float literal",
+        "meta_impl": "net.sourceforge.pmd.lang.java.ast.ASTNumericLiteral: public float getValueAsFloat()"
+    },
+    {
+        "meta_op": "Get the value of char literal",
+        "meta_impl": "net.sourceforge.pmd.lang.java.ast.ASTCharLiteral: public java.lang.Character getConstValue()"
+    },
+    {
+        "meta_op": "Get the lock of synchronized statement",
+        "meta_impl": "net.sourceforge.pmd.lang.java.ast.ASTSynchronizedStatement: public net.sourceforge.pmd.lang.java.ast.ASTExpression getLockExpression()"
+    },
+    {
+        "meta_op": "Check whether class has declared annotations",
+        "meta_impl": "```java\nimport net.sourceforge.pmd.lang.java.ast.*;\nimport net.sourceforge.pmd.lang.ast.NodeStream;\npublic boolean hasAnnotations(ASTClassOrInterfaceDeclaration node){\n    NodeStream<ASTAnnotation> annotations = node.getDeclaredAnnotations();\n    return annotations.nonEmpty();\n}\n```"
+    },
+    {
+        "meta_op": "Check whether the class has extended x class",
+        "meta_impl": "```java\nimport net.sourceforge.pmd.lang.java.ast.*;\nimport net.sourceforge.pmd.lang.java.types.TypeTestUtil;\npublic boolean extendsSpecificClass(ASTClassOrInterfaceDeclaration node){\n    ASTClassOrInterfaceType classOrInterfaceType = node.getSuperClassTypeNode();\n    return TypeTestUtil.isA(x.class, classOrInterfaceType);\n}\n```"
+    },
+    {
+        "meta_op": "Check whether the class has implemented x interface",
+        "meta_impl": "```java\nimport net.sourceforge.pmd.lang.java.ast.*;\nimport net.sourceforge.pmd.lang.java.types.TypeTestUtil;\npublic boolean hasImplementComparable(ASTClassOrInterfaceDeclaration node) {\n    if (TypeTestUtil.isA(interfaceName.class, node)) {\n        return true;\n    }\n    return false;\n}\n```"
+    },
+    {
+        "meta_op": "Check whether interface has declared annotations",
+        "meta_impl": "```java\nimport net.sourceforge.pmd.lang.java.ast.*;\nimport net.sourceforge.pmd.lang.ast.NodeStream;\npublic boolean hasAnnotations(ASTClassOrInterfaceDeclaration node){\n    NodeStream<ASTAnnotation> annotations = node.getDeclaredAnnotations();\n    return annotations.nonEmpty();\n}\n```"
+    },
+    {
+        "meta_op": "Check whether the interface has extended x interface",
+        "meta_impl": "```java\nimport net.sourceforge.pmd.lang.java.ast.*;\nimport net.sourceforge.pmd.lang.java.types.TypeTestUtil;\npublic boolean extendsSpecificClass(ASTClassOrInterfaceDeclaration node){\n    ASTClassOrInterfaceType classOrInterfaceType = node.getSuperClassTypeNode();\n    return TypeTestUtil.isA(x.class, classOrInterfaceType);\n}\n```"
+    },
+    {
+        "meta_op": "Get the number of formal parameters of method",
+        "meta_impl": "```java\nimport net.sourceforge.pmd.lang.java.ast.*;\npublic int getFormalParametersNumber(ASTMethodDeclaration node){\n    ASTFormalParameters formalParameters = node.getFormalParameters();\n    return formalParameters.size();\n}\n```"
+    },
+    {
+        "meta_op": "Get the name of formal parameter",
+        "meta_impl": "```java\nimport net.sourceforge.pmd.lang.java.ast.*;\npublic String getFormalParameterName(ASTFormalParameter node) {\n    return node.getVarId().getName();\n}\n```"
+    },
+    {
+        "meta_op": "Check whether the formal parameter is string type",
+        "meta_impl": "```java\nimport net.sourceforge.pmd.lang.java.ast.ASTFormalParameter;\nimport net.sourceforge.pmd.lang.java.types.TypeTestUtil;\npublic boolean isFormalParameterStringType(ASTFormalParameter node) {\n    return TypeTestUtil.isA(String.class, node.getTypeNode());\n}\n```"
+    },
+    {
+        "meta_op": "Check whether the formal parameter is boolean type",
+        "meta_impl": "```java\nimport net.sourceforge.pmd.lang.java.ast.ASTFormalParameter;\nimport net.sourceforge.pmd.lang.java.ast.ASTType;\nimport net.sourceforge.pmd.lang.java.types.JTypeMirror;\nimport net.sourceforge.pmd.lang.java.types.JPrimitiveType;\npublic boolean isFormalParameterBooleanType(ASTFormalParameter node) {\n    ASTType type = node.getTypeNode();\n    JTypeMirror t = type.getTypeMirror();\n    return t.isPrimitive(JPrimitiveType.PrimitiveTypeKind.BOOLEAN);\n}\n```"
+    },
+    {
+        "meta_op": "Check whether the formal parameter is char type",
+        "meta_impl": "```java\nimport net.sourceforge.pmd.lang.java.ast.ASTFormalParameter;\nimport net.sourceforge.pmd.lang.java.ast.ASTType;\nimport net.sourceforge.pmd.lang.java.types.JTypeMirror;\nimport net.sourceforge.pmd.lang.java.types.JPrimitiveType;\npublic boolean isFormalParameterCharType(ASTFormalParameter node) {\n    ASTType type = node.getTypeNode();\n    JTypeMirror t = type.getTypeMirror();\n    return t.isPrimitive(JPrimitiveType.PrimitiveTypeKind.CHAR);\n}\n```"
+    },
+    {
+        "meta_op": "Check whether the formal parameter is byte type",
+        "meta_impl": "```java\nimport net.sourceforge.pmd.lang.java.ast.ASTFormalParameter;\nimport net.sourceforge.pmd.lang.java.ast.ASTType;\nimport net.sourceforge.pmd.lang.java.types.JTypeMirror;\nimport net.sourceforge.pmd.lang.java.types.JPrimitiveType;\npublic boolean isFormalParameterByteType(ASTFormalParameter node) {\n    ASTType type = node.getTypeNode();\n    JTypeMirror t = type.getTypeMirror();\n    return t.isPrimitive(JPrimitiveType.PrimitiveTypeKind.BYTE);\n}\n```"
+    },
+    {
+        "meta_op": "Check whether the formal parameter is short type",
+        "meta_impl": "```java\nimport net.sourceforge.pmd.lang.java.ast.ASTFormalParameter;\nimport net.sourceforge.pmd.lang.java.ast.ASTType;\nimport net.sourceforge.pmd.lang.java.types.JTypeMirror;\nimport net.sourceforge.pmd.lang.java.types.JPrimitiveType;\npublic boolean isFormalParameterShortType(ASTFormalParameter node) {\n    ASTType type = node.getTypeNode();\n    JTypeMirror t = type.getTypeMirror();\n    return t.isPrimitive(JPrimitiveType.PrimitiveTypeKind.SHORT);\n}\n```"
+    },
+    {
+        "meta_op": "Check whether the formal parameter is int type",
+        "meta_impl": "```java\nimport net.sourceforge.pmd.lang.java.ast.ASTFormalParameter;\nimport net.sourceforge.pmd.lang.java.ast.ASTType;\nimport net.sourceforge.pmd.lang.java.types.JTypeMirror;\nimport net.sourceforge.pmd.lang.java.types.JPrimitiveType;\npublic boolean isFormalParameterIntType(ASTFormalParameter node) {\n    ASTType type = node.getTypeNode();\n    JTypeMirror t = type.getTypeMirror();\n    return t.isPrimitive(JPrimitiveType.PrimitiveTypeKind.INT);\n}\n```"
+    },
+    {
+        "meta_op": "Check whether the formal parameter is long type",
+        "meta_impl": "```java\nimport net.sourceforge.pmd.lang.java.ast.ASTFormalParameter;\nimport net.sourceforge.pmd.lang.java.ast.ASTType;\nimport net.sourceforge.pmd.lang.java.types.JTypeMirror;\nimport net.sourceforge.pmd.lang.java.types.JPrimitiveType;\npublic boolean isFormalParameterLongType(ASTFormalParameter node) {\n    ASTType type = node.getTypeNode();\n    JTypeMirror t = type.getTypeMirror();\n    return t.isPrimitive(JPrimitiveType.PrimitiveTypeKind.LONG);\n}\n```"
+    },
+    {
+        "meta_op": "Check whether the formal parameter is float type",
+        "meta_impl": "```java\nimport net.sourceforge.pmd.lang.java.ast.ASTFormalParameter;\nimport net.sourceforge.pmd.lang.java.ast.ASTType;\nimport net.sourceforge.pmd.lang.java.types.JTypeMirror;\nimport net.sourceforge.pmd.lang.java.types.JPrimitiveType;\npublic boolean isFormalParameterFloatType(ASTFormalParameter node) {\n    ASTType type = node.getTypeNode();\n    JTypeMirror t = type.getTypeMirror();\n    return t.isPrimitive(JPrimitiveType.PrimitiveTypeKind.FLOAT);\n}\n```"
+    },
+    {
+        "meta_op": "Check whether the formal parameter is double type",
+        "meta_impl": "```java\nimport net.sourceforge.pmd.lang.java.ast.ASTFormalParameter;\nimport net.sourceforge.pmd.lang.java.ast.ASTType;\nimport net.sourceforge.pmd.lang.java.types.JTypeMirror;\nimport net.sourceforge.pmd.lang.java.types.JPrimitiveType;\npublic boolean isFormalParameterDoubleType(ASTFormalParameter node) {\n    ASTType type = node.getTypeNode();\n    JTypeMirror t = type.getTypeMirror();\n    return t.isPrimitive(JPrimitiveType.PrimitiveTypeKind.DOUBLE);\n}\n```"
+    },
+    {
+        "meta_op": "Check whether the formal parameter is boxed primitive type",
+        "meta_impl": "```java\nimport net.sourceforge.pmd.lang.java.ast.ASTFormalParameter;\nimport net.sourceforge.pmd.lang.java.ast.ASTType;\nimport net.sourceforge.pmd.lang.java.types.JTypeMirror;\npublic boolean isFormalParameterBoxedPrimitiveType(ASTFormalParameter node) {\n    ASTType type = node.getTypeNode();\n    JTypeMirror t = type.getTypeMirror();\n    return t.isBoxedPrimitive();\n}\n```"
+    },
+    {
+        "meta_op": "Check whether the formal parameter is a x class type",
+        "meta_impl": "```java\nimport net.sourceforge.pmd.lang.java.ast.ASTFormalParameter;\nimport net.sourceforge.pmd.lang.java.types.TypeTestUtil;\npublic boolean isFormalParameterClassType(ASTFormalParameter node) {\n    return TypeTestUtil.isA(x.class, node.getTypeNode());\n}\n```"
+    },
+    {
+        "meta_op": "Check whether the formal parameter is array type",
+        "meta_impl": "```java\nimport net.sourceforge.pmd.lang.java.ast.ASTFormalParameter;\nimport net.sourceforge.pmd.lang.java.ast.ASTType;\npublic boolean isFormalParameterArrayType(ASTFormalParameter node) {\n    ASTType type = node.getTypeNode();\n    return type.getTypeMirror().isArray();\n}\n```"
+    },
+    {
+        "meta_op": "Check whether the formal parameter is enum type",
+        "meta_impl": "```java\nimport net.sourceforge.pmd.lang.java.ast.ASTFormalParameter;\nimport net.sourceforge.pmd.lang.java.ast.ASTType;\nimport net.sourceforge.pmd.lang.java.symbols.JClassSymbol;\npublic boolean isFormalParameterEnumType(ASTFormalParameter node) {\n    ASTType type = node.getTypeNode();\n    return type.getTypeMirror().getSymbol() instanceof JClassSymbol && ((JClassSymbol) type.getTypeMirror().getSymbol()).isEnum();\n}\n```"
+    },
+    {
+        "meta_op": "Check whether the formal parameter is record type",
+        "meta_impl": "```java\nimport net.sourceforge.pmd.lang.java.ast.ASTFormalParameter;\nimport net.sourceforge.pmd.lang.java.ast.ASTType;\nimport net.sourceforge.pmd.lang.java.symbols.JClassSymbol;\npublic boolean isFormalParameterRecordType(ASTFormalParameter node) {\n    ASTType type = node.getTypeNode();\n    return type.getTypeMirror().getSymbol() instanceof JClassSymbol && ((JClassSymbol) type.getTypeMirror().getSymbol()).isRecord();\n}\n```"
+    },
+    {
+        "meta_op": "Check whether formal parameter has declared annotations",
+        "meta_impl": "```java\nimport net.sourceforge.pmd.lang.java.ast.*;\nimport net.sourceforge.pmd.lang.ast.NodeStream;\npublic boolean hasAnnotation(ASTFormalParameter node){\n    NodeStream<ASTAnnotation> declaredAnnotations = node.getDeclaredAnnotations();\n    return declaredAnnotations.nonEmpty();\n}\n```"
+    },
+    {
+        "meta_op": "Get an usage of formal parameter",
+        "meta_impl": "```java\nimport net.sourceforge.pmd.lang.java.ast.*;\nimport net.sourceforge.pmd.lang.java.ast.ASTAssignableExpr;\nimport java.util.List;\npublic List<ASTAssignableExpr.ASTNamedReferenceExpr> getAUsage(ASTFormalParameter node){\n    List<ASTAssignableExpr.ASTNamedReferenceExpr> localUsages = node.getVarId().getLocalUsages();\n    return localUsages;\n}\n```"
+    },
+    {
+        "meta_op": "Check whether the return type of method is string type",
+        "meta_impl": "```java\nimport net.sourceforge.pmd.lang.java.ast.ASTMethodDeclaration;\nimport net.sourceforge.pmd.lang.java.types.TypeTestUtil;\npublic boolean isReturnValueStringType(ASTMethodDeclaration method) {\n    return TypeTestUtil.isA(String.class, method.getResultTypeNode());\n}\n```"
+    },
+    {
+        "meta_op": "Check whether the return type of method is boolean",
+        "meta_impl": "```java\nimport net.sourceforge.pmd.lang.java.ast.ASTMethodDeclaration;\nimport net.sourceforge.pmd.lang.java.types.JPrimitiveType;\npublic boolean isReturnValueBooleanType(ASTMethodDeclaration method) {\n    if (method.getResultTypeNode().getTypeMirror().isPrimitive(JPrimitiveType.PrimitiveTypeKind.BOOLEAN)) {\n        return true;\n    }\n    return false;\n}\n```"
+    },
+    {
+        "meta_op": "Check whether the return type of method is char",
+        "meta_impl": "```java\nimport net.sourceforge.pmd.lang.java.ast.ASTMethodDeclaration;\nimport net.sourceforge.pmd.lang.java.types.JPrimitiveType;\npublic boolean isReturnValueCharType(ASTMethodDeclaration method) {\n    if (method.getResultTypeNode().getTypeMirror().isPrimitive(JPrimitiveType.PrimitiveTypeKind.CHAR)) {\n        return true;\n    }\n    return false;\n}\n```"
+    },
+    {
+        "meta_op": "Check whether the return type of method is byte",
+        "meta_impl": "```java\nimport net.sourceforge.pmd.lang.java.ast.ASTMethodDeclaration;\nimport net.sourceforge.pmd.lang.java.types.JPrimitiveType;\npublic boolean isReturnValueByteType(ASTMethodDeclaration method) {\n    if (method.getResultTypeNode().getTypeMirror().isPrimitive(JPrimitiveType.PrimitiveTypeKind.BYTE)) {\n        return true;\n    }\n    return false;\n}\n```"
+    },
+    {
+        "meta_op": "Check whether the return type of method is short",
+        "meta_impl": "```java\nimport net.sourceforge.pmd.lang.java.ast.ASTMethodDeclaration;\nimport net.sourceforge.pmd.lang.java.types.JPrimitiveType;\npublic boolean isReturnValueShortType(ASTMethodDeclaration method) {\n    if (method.getResultTypeNode().getTypeMirror().isPrimitive(JPrimitiveType.PrimitiveTypeKind.SHORT)) {\n        return true;\n    }\n    return false;\n}\n```"
+    },
+    {
+        "meta_op": "Check whether the return type of method is int",
+        "meta_impl": "```java\nimport net.sourceforge.pmd.lang.java.ast.ASTMethodDeclaration;\nimport net.sourceforge.pmd.lang.java.types.JPrimitiveType;\npublic boolean isReturnValueIntType(ASTMethodDeclaration method) {\n    if (method.getResultTypeNode().getTypeMirror().isPrimitive(JPrimitiveType.PrimitiveTypeKind.INT)) {\n        return true;\n    }\n    return false;\n}\n```"
+    },
+    {
+        "meta_op": "Check whether the return type of method is long",
+        "meta_impl": "```java\nimport net.sourceforge.pmd.lang.java.ast.ASTMethodDeclaration;\nimport net.sourceforge.pmd.lang.java.types.JPrimitiveType;\npublic boolean isReturnValueLongType(ASTMethodDeclaration method) {\n    if (method.getResultTypeNode().getTypeMirror().isPrimitive(JPrimitiveType.PrimitiveTypeKind.LONG)) {\n        return true;\n    }\n    return false;\n}\n```"
+    },
+    {
+        "meta_op": "Check whether the return type of method is float",
+        "meta_impl": "```java\nimport net.sourceforge.pmd.lang.java.ast.ASTMethodDeclaration;\nimport net.sourceforge.pmd.lang.java.types.JPrimitiveType;\npublic boolean isReturnValueFloatType(ASTMethodDeclaration method) {\n    if (method.getResultTypeNode().getTypeMirror().isPrimitive(JPrimitiveType.PrimitiveTypeKind.FLOAT)) {\n        return true;\n    }\n    return false;\n}\n```"
+    },
+    {
+        "meta_op": "Check whether the return type of method is double",
+        "meta_impl": "```java\nimport net.sourceforge.pmd.lang.java.ast.ASTMethodDeclaration;\nimport net.sourceforge.pmd.lang.java.types.JPrimitiveType;\npublic boolean isReturnValueDoubleType(ASTMethodDeclaration method) {\n    if (method.getResultTypeNode().getTypeMirror().isPrimitive(JPrimitiveType.PrimitiveTypeKind.DOUBLE)) {\n        return true;\n    }\n    return false;\n}\n```"
+    },
+    {
+        "meta_op": "Check whether the return type of method is boxed primitive type",
+        "meta_impl": "```java\nimport net.sourceforge.pmd.lang.java.ast.ASTMethodDeclaration;\nimport net.sourceforge.pmd.lang.java.types.JPrimitiveType;\npublic boolean isReturnValueBoxedPrimitiveType(ASTMethodDeclaration method) {\n    if (method.getResultTypeNode().getTypeMirror().isBoxedPrimitive()) {\n        return true;\n    }\n    return false;\n}\n```"
+    },
+    {
+        "meta_op": "Check whether the return type of method is x class type",
+        "meta_impl": "```java\nimport net.sourceforge.pmd.lang.java.ast.ASTMethodDeclaration;\nimport net.sourceforge.pmd.lang.java.types.TypeTestUtil;\npublic boolean isReturnValueClassType(ASTMethodDeclaration method) {\n    return TypeTestUtil.isA(x.class, method.getResultTypeNode());\n}\n```"
+    },
+    {
+        "meta_op": "Check whether the return type of method is array type",
+        "meta_impl": "```java\nimport net.sourceforge.pmd.lang.java.ast.ASTMethodDeclaration;\npublic boolean isReturnValueArrayType(ASTMethodDeclaration method) {\n    if (method.getResultTypeNode().getTypeMirror().isArray()) {\n        return true;\n    }\n    return false;\n}\n```"
+    },
+    {
+        "meta_op": "Check whether the return type of method is enum type",
+        "meta_impl": "```java\nimport net.sourceforge.pmd.lang.java.ast.ASTMethodDeclaration;\nimport net.sourceforge.pmd.lang.java.symbols.JClassSymbol;\npublic boolean isReturnValueEnumType(ASTMethodDeclaration method) {\n    return method.getResultTypeNode().getTypeMirror().getSymbol() instanceof JClassSymbol && ((JClassSymbol) method.getResultTypeNode().getTypeMirror().getSymbol()).isEnum();\n}\n```"
+    },
+    {
+        "meta_op": "Check whether the return type of method is record type",
+        "meta_impl": "```java\nimport net.sourceforge.pmd.lang.java.ast.ASTMethodDeclaration;\nimport net.sourceforge.pmd.lang.java.symbols.JClassSymbol;\npublic boolean isReturnValueRecordType(ASTMethodDeclaration method) {\n    return method.getResultTypeNode().getTypeMirror().getSymbol() instanceof JClassSymbol && ((JClassSymbol) method.getResultTypeNode().getTypeMirror().getSymbol()).isRecord();\n}\n```"
+    },
+    {
+        "meta_op": "Check whether the method signature throws x Exception",
+        "meta_impl": "```java\nimport net.sourceforge.pmd.lang.java.ast.*;\nimport net.sourceforge.pmd.lang.java.types.TypeTestUtil;\npublic boolean throwsSpecificException(ASTMethodDeclaration node){\n    ASTThrowsList list = node.getThrowsList();\n    if(list == null){\n        return false;\n    }else{\n        for(ASTClassOrInterfaceType classOrInterfaceType : list){\n            if(TypeTestUtil.isExactlyA(x.class, classOrInterfaceType)){\n                return true;\n            }\n        }\n    }\n    return false;\n}\n```"
+    },
+    {
+        "meta_op": "Check whether method has declared annotations",
+        "meta_impl": "```java\nimport net.sourceforge.pmd.lang.ast.NodeStream;\nimport net.sourceforge.pmd.lang.java.ast.*;\npublic boolean hasAnnotation(ASTMethodDeclaration node){\n    NodeStream<ASTAnnotation> declaredAnnotations = node.getDeclaredAnnotations();\n    return declaredAnnotations.nonEmpty();\n}\n```"
+    },
+    {
+        "meta_op": "Get the number of formal parameters of constructor",
+        "meta_impl": "```java\nimport net.sourceforge.pmd.lang.java.ast.*;\npublic int getFormalParametersNumber(ASTConstructorDeclaration node){\n    ASTFormalParameters formalParameters = node.getFormalParameters();\n    return formalParameters.size();\n}\n```"
+    },
+    {
+        "meta_op": "Check whether the constructor signature throws x Exception",
+        "meta_impl": "```java\nimport net.sourceforge.pmd.lang.java.ast.*;\nimport net.sourceforge.pmd.lang.java.types.TypeTestUtil;\npublic boolean throwsSpecificException(ASTConstructorDeclaration node){\n    ASTThrowsList list = node.getThrowsList();\n    if(list == null){\n        return false;\n    }else{\n        for(ASTClassOrInterfaceType classOrInterfaceType : list){\n            if(TypeTestUtil.isA(x.class, classOrInterfaceType)){\n                return true;\n            }\n        }\n    }\n    return false;\n}\n```"
+    },
+    {
+        "meta_op": "Check whether constructor has declared annotations",
+        "meta_impl": "```java\nimport net.sourceforge.pmd.lang.ast.NodeStream;\nimport net.sourceforge.pmd.lang.java.ast.*;\npublic boolean hasAnnotation(ASTConstructorDeclaration node){\n    NodeStream<ASTAnnotation> declaredAnnotations = node.getDeclaredAnnotations();\n    return declaredAnnotations.nonEmpty();\n}\n```"
+    },
+    {
+        "meta_op": "Check whether the method is overridable",
+        "meta_impl": "```java\nimport net.sourceforge.pmd.lang.java.ast.ASTMethodDeclaration;\nimport net.sourceforge.pmd.lang.java.ast.JModifier;\npublic boolean isOverridable(ASTMethodDeclaration method){\n    return method.hasModifiers(JModifier.STATIC, JModifier.PRIVATE, JModifier.FINAL);\n}\n```"
+    },
+    {
+        "meta_op": "Get the name of field",
+        "meta_impl": "```java\nimport net.sourceforge.pmd.lang.java.ast.ASTFieldDeclaration;\nimport net.sourceforge.pmd.lang.java.ast.ASTVariableDeclaratorId;\nimport net.sourceforge.pmd.lang.ast.NodeStream;\npublic String getFieldName(ASTFieldDeclaration node){\n    NodeStream<ASTVariableDeclaratorId> varIds = node.getVarIds();\n    for(ASTVariableDeclaratorId variableDeclaratorId : varIds){\n        // a field declaration may have several variables, choose which one we want, here we use name to filter, you can also select other ways\n        if(variableDeclaratorId.getName().equals(\"x\")){\n            String variableName = variableDeclaratorId.getName();\n            return variableName;\n        }\n    }\n    return null;\n}\n```"
+    },
+    {
+        "meta_op": "Check whether the field is string type",
+        "meta_impl": "```java\nimport net.sourceforge.pmd.lang.java.ast.ASTFieldDeclaration;\nimport net.sourceforge.pmd.lang.java.types.TypeTestUtil;\npublic boolean isFieldStringType(ASTFieldDeclaration node) {\n    return TypeTestUtil.isA(String.class, node.getTypeNode());\n}\n```"
+    },
+    {
+        "meta_op": "Check whether the field is boolean type",
+        "meta_impl": "```java\nimport net.sourceforge.pmd.lang.java.ast.ASTFieldDeclaration;\nimport net.sourceforge.pmd.lang.java.ast.ASTType;\nimport net.sourceforge.pmd.lang.java.types.JTypeMirror;\nimport net.sourceforge.pmd.lang.java.types.JPrimitiveType;\npublic boolean isFieldBooleanType(ASTFieldDeclaration node) {\n    ASTType type = node.getTypeNode();\n    JTypeMirror t = type.getTypeMirror();\n    return t.isPrimitive(JPrimitiveType.PrimitiveTypeKind.BOOLEAN);\n}\n```"
+    },
+    {
+        "meta_op": "Check whether the field is char type",
+        "meta_impl": "```java\nimport net.sourceforge.pmd.lang.java.ast.ASTFieldDeclaration;\nimport net.sourceforge.pmd.lang.java.ast.ASTType;\nimport net.sourceforge.pmd.lang.java.types.JTypeMirror;\nimport net.sourceforge.pmd.lang.java.types.JPrimitiveType;\npublic boolean isFieldCharType(ASTFieldDeclaration node) {\n    ASTType type = node.getTypeNode();\n    JTypeMirror t = type.getTypeMirror();\n    return t.isPrimitive(JPrimitiveType.PrimitiveTypeKind.CHAR);\n}\n```"
+    },
+    {
+        "meta_op": "Check whether the field is byte type",
+        "meta_impl": "```java\nimport net.sourceforge.pmd.lang.java.ast.ASTFieldDeclaration;\nimport net.sourceforge.pmd.lang.java.ast.ASTType;\nimport net.sourceforge.pmd.lang.java.types.JTypeMirror;\nimport net.sourceforge.pmd.lang.java.types.JPrimitiveType;\npublic boolean isFieldByteType(ASTFieldDeclaration node) {\n    ASTType type = node.getTypeNode();\n    JTypeMirror t = type.getTypeMirror();\n    return t.isPrimitive(JPrimitiveType.PrimitiveTypeKind.BYTE);\n}\n```"
+    },
+    {
+        "meta_op": "Check whether the field is short type",
+        "meta_impl": "```java\nimport net.sourceforge.pmd.lang.java.ast.ASTFieldDeclaration;\nimport net.sourceforge.pmd.lang.java.ast.ASTType;\nimport net.sourceforge.pmd.lang.java.types.JTypeMirror;\nimport net.sourceforge.pmd.lang.java.types.JPrimitiveType;\npublic boolean isFieldShortType(ASTFieldDeclaration node) {\n    ASTType type = node.getTypeNode();\n    JTypeMirror t = type.getTypeMirror();\n    return t.isPrimitive(JPrimitiveType.PrimitiveTypeKind.SHORT);\n}\n```"
+    },
+    {
+        "meta_op": "Check whether the field is int type",
+        "meta_impl": "```java\nimport net.sourceforge.pmd.lang.java.ast.ASTFieldDeclaration;\nimport net.sourceforge.pmd.lang.java.ast.ASTType;\nimport net.sourceforge.pmd.lang.java.types.JTypeMirror;\nimport net.sourceforge.pmd.lang.java.types.JPrimitiveType;\npublic boolean isFieldIntType(ASTFieldDeclaration node) {\n    ASTType type = node.getTypeNode();\n    JTypeMirror t = type.getTypeMirror();\n    return t.isPrimitive(JPrimitiveType.PrimitiveTypeKind.INT);\n}\n```"
+    },
+    {
+        "meta_op": "Check whether the field is long type",
+        "meta_impl": "```java\nimport net.sourceforge.pmd.lang.java.ast.ASTFieldDeclaration;\nimport net.sourceforge.pmd.lang.java.ast.ASTType;\nimport net.sourceforge.pmd.lang.java.types.JTypeMirror;\nimport net.sourceforge.pmd.lang.java.types.JPrimitiveType;\npublic boolean isFieldLongType(ASTFieldDeclaration node) {\n    ASTType type = node.getTypeNode();\n    JTypeMirror t = type.getTypeMirror();\n    return t.isPrimitive(JPrimitiveType.PrimitiveTypeKind.LONG);\n}\n```"
+    },
+    {
+        "meta_op": "Check whether the field is float type",
+        "meta_impl": "```java\nimport net.sourceforge.pmd.lang.java.ast.ASTFieldDeclaration;\nimport net.sourceforge.pmd.lang.java.ast.ASTType;\nimport net.sourceforge.pmd.lang.java.types.JTypeMirror;\nimport net.sourceforge.pmd.lang.java.types.JPrimitiveType;\npublic boolean isFieldFloatType(ASTFieldDeclaration node) {\n    ASTType type = node.getTypeNode();\n    JTypeMirror t = type.getTypeMirror();\n    return t.isPrimitive(JPrimitiveType.PrimitiveTypeKind.FLOAT);\n}\n```"
+    },
+    {
+        "meta_op": "Check whether the field is double type",
+        "meta_impl": "```java\nimport net.sourceforge.pmd.lang.java.ast.ASTFieldDeclaration;\nimport net.sourceforge.pmd.lang.java.ast.ASTType;\nimport net.sourceforge.pmd.lang.java.types.JTypeMirror;\nimport net.sourceforge.pmd.lang.java.types.JPrimitiveType;\npublic boolean isFieldDoubleType(ASTFieldDeclaration node) {\n    ASTType type = node.getTypeNode();\n    JTypeMirror t = type.getTypeMirror();\n    return t.isPrimitive(JPrimitiveType.PrimitiveTypeKind.DOUBLE);\n}\n```"
+    },
+    {
+        "meta_op": "Check whether the field is boxed primitive type",
+        "meta_impl": "```java\nimport net.sourceforge.pmd.lang.java.ast.ASTFieldDeclaration;\nimport net.sourceforge.pmd.lang.java.ast.ASTType;\nimport net.sourceforge.pmd.lang.java.types.JTypeMirror;\npublic boolean isFieldBoxedPrimitiveType(ASTFieldDeclaration node) {\n    ASTType type = node.getTypeNode();\n    JTypeMirror t = type.getTypeMirror();\n    return t.isBoxedPrimitive();\n}\n```"
+    },
+    {
+        "meta_op": "Check whether the field is a x class type",
+        "meta_impl": "```java\nimport net.sourceforge.pmd.lang.java.ast.ASTFieldDeclaration;\nimport net.sourceforge.pmd.lang.java.types.TypeTestUtil;\npublic boolean isFieldClassType(ASTFieldDeclaration node) {\n    return TypeTestUtil.isA(x.class, node.getTypeNode());\n}\n```"
+    },
+    {
+        "meta_op": "Check whether the field is array type",
+        "meta_impl": "```java\nimport net.sourceforge.pmd.lang.java.ast.ASTFieldDeclaration;\nimport net.sourceforge.pmd.lang.java.ast.ASTType;\npublic boolean isFieldArrayType(ASTFieldDeclaration node) {\n    ASTType type = node.getTypeNode();\n    return type.getTypeMirror().isArray();\n}\n```"
+    },
+    {
+        "meta_op": "Check whether the field is enum type",
+        "meta_impl": "```java\nimport net.sourceforge.pmd.lang.java.ast.ASTFieldDeclaration;\nimport net.sourceforge.pmd.lang.java.ast.ASTType;\nimport net.sourceforge.pmd.lang.java.symbols.JClassSymbol;\npublic boolean isFieldEnumType(ASTFieldDeclaration node) {\n    ASTType type = node.getTypeNode();\n    return type.getTypeMirror().getSymbol() instanceof JClassSymbol && ((JClassSymbol) type.getTypeMirror().getSymbol()).isEnum();\n}\n```"
+    },
+    {
+        "meta_op": "Check whether the field is record type",
+        "meta_impl": "```java\nimport net.sourceforge.pmd.lang.java.ast.ASTFieldDeclaration;\nimport net.sourceforge.pmd.lang.java.ast.ASTType;\nimport net.sourceforge.pmd.lang.java.symbols.JClassSymbol;\npublic boolean isFieldRecordType(ASTFieldDeclaration node) {\n    ASTType type = node.getTypeNode();\n    return type.getTypeMirror().getSymbol() instanceof JClassSymbol && ((JClassSymbol) type.getTypeMirror().getSymbol()).isRecord();\n}\n```"
+    },
+    {
+        "meta_op": "Check whether field has declared annotations",
+        "meta_impl": "```java\nimport net.sourceforge.pmd.lang.ast.NodeStream;\nimport net.sourceforge.pmd.lang.java.ast.*;\npublic boolean hasAnnotation(ASTFieldDeclaration node){\n    NodeStream<ASTAnnotation> declaredAnnotations = node.getDeclaredAnnotations();\n    return declaredAnnotations.nonEmpty();\n}\n```"
+    },
+    {
+        "meta_op": "Check whether the field is initialized",
+        "meta_impl": "```java\nimport net.sourceforge.pmd.lang.java.ast.ASTFieldDeclaration;\nimport net.sourceforge.pmd.lang.java.ast.ASTVariableDeclaratorId;\nimport net.sourceforge.pmd.lang.java.ast.ASTExpression;\nimport net.sourceforge.pmd.lang.ast.NodeStream;\npublic boolean isInitialized(ASTFieldDeclaration node){\n    NodeStream<ASTVariableDeclaratorId> varIds = node.getVarIds();\n    for(ASTVariableDeclaratorId varId : varIds){\n        // a field declaration may have several variables, choose which one we want, here we use name to filter, you can also select other ways\n        if(varId.getName().equals(\"x\")){\n            ASTExpression init = varId.getInitializer();\n            if (init != null) {\n                return true;\n            }\n        }\n    }\n    return false;\n}\n```"
+    },
+    {
+        "meta_op": "Check whether the field is initialized to default value",
+        "meta_impl": "```java\nimport net.sourceforge.pmd.lang.java.ast.ASTFieldDeclaration;\nimport net.sourceforge.pmd.lang.java.ast.ASTVariableDeclaratorId;\nimport net.sourceforge.pmd.lang.java.ast.ASTExpression;\nimport net.sourceforge.pmd.lang.java.ast.internal.JavaAstUtils;\nimport net.sourceforge.pmd.lang.ast.NodeStream;\npublic boolean isInitializedToDefaultValue(ASTFieldDeclaration node){\n    NodeStream<ASTVariableDeclaratorId> varIds = node.getVarIds();\n    for(ASTVariableDeclaratorId varId : varIds){\n        // a field declaration may have several variables, choose which one we want, here we use name to filter, you can also select other ways\n        if(varId.getName().equals(\"x\")){\n            ASTExpression init = varId.getInitializer();\n            if (init != null) {\n                if (JavaAstUtils.isDefaultValue(node.getTypeNode().getTypeMirror(), init)) {\n                    return true;\n                }\n            }\n        }\n    }\n    return false;\n}\n```"
+    },
+    {
+        "meta_op": "Check whether the field is initialized to variable value",
+        "meta_impl": "```java\nimport net.sourceforge.pmd.lang.java.ast.ASTFieldDeclaration;\nimport net.sourceforge.pmd.lang.java.ast.ASTVariableDeclaratorId;\nimport net.sourceforge.pmd.lang.java.ast.ASTExpression;\nimport net.sourceforge.pmd.lang.java.ast.ASTVariableAccess;\nimport net.sourceforge.pmd.lang.ast.NodeStream;\npublic boolean isInitializedToVariableValue(ASTFieldDeclaration node){\n    NodeStream<ASTVariableDeclaratorId> varIds = node.getVarIds();\n    for(ASTVariableDeclaratorId varId : varIds){\n        // a field declaration may have several variables, choose which one we want, here we use name to filter, you can also select other ways\n        if(varId.getName().equals(\"x\")){\n            ASTExpression init = varId.getInitializer();\n            if (init != null) {\n                if (init instanceof ASTVariableAccess) {\n                    return true;\n                }\n            }\n        }\n    }\n    return false;\n}\n```"
+    },
+    {
+        "meta_op": "Get the literal value that the field is initialized to",
+        "meta_impl": "```java\nimport net.sourceforge.pmd.lang.java.ast.ASTFieldDeclaration;\nimport net.sourceforge.pmd.lang.java.ast.ASTVariableDeclaratorId;\nimport net.sourceforge.pmd.lang.java.ast.ASTExpression;\nimport net.sourceforge.pmd.lang.java.ast.ASTLiteral;\nimport net.sourceforge.pmd.lang.ast.NodeStream;\npublic ASTLiteral getInitializedValue(ASTFieldDeclaration node){\n    NodeStream<ASTVariableDeclaratorId> varIds = node.getVarIds();\n    for(ASTVariableDeclaratorId varId : varIds){\n        // a field declaration may have several variables, choose which one we want, here we use name to filter, you can also select other ways\n        if(varId.getName().equals(\"x\")){\n            ASTExpression init = varId.getInitializer();\n            if (init != null) {\n                if (init instanceof ASTLiteral) {\n                    return (ASTLiteral)init;\n                }\n            }\n        }\n    }\n    return null;\n}\n```"
+    },
+    {
+        "meta_op": "Get an access of field",
+        "meta_impl": "```java\nimport net.sourceforge.pmd.lang.java.ast.*;\nimport net.sourceforge.pmd.lang.java.ast.ASTAssignableExpr;\nimport java.util.List;\npublic List<ASTAssignableExpr.ASTNamedReferenceExpr> getAUsage(ASTFieldDeclaration node){\n    NodeStream<ASTVariableDeclaratorId> varIds = node.getVarIds();\n    for(ASTVariableDeclaratorId var : varIds){\n        if(var.getName().equals(\"x\")){\n            List<ASTAssignableExpr.ASTNamedReferenceExpr> localUsages = var.getLocalUsages();\n            return localUsages;\n        }\n    }\n    return null;\n}\n```"
+    },
+    {
+        "meta_op": "Get the name of local variable",
+        "meta_impl": "```java\nimport net.sourceforge.pmd.lang.java.ast.ASTLocalVariableDeclaration;\nimport net.sourceforge.pmd.lang.java.ast.ASTVariableDeclaratorId;\nimport net.sourceforge.pmd.lang.ast.NodeStream;\npublic String getLocalVariableName(ASTLocalVariableDeclaration node){\n    NodeStream<ASTVariableDeclaratorId> varIds = node.getVarIds();\n    for(ASTVariableDeclaratorId variableDeclaratorId : varIds){\n        // a local declaration may have several variables, choose which one we want, here we use name to filter, you can also select other ways\n        if(variableDeclaratorId.getName().equals(\"x\")){\n            String variableName = variableDeclaratorId.getName();\n            return variableName;\n        }\n    }\n    return null;\n}\n```"
+    },
+    {
+        "meta_op": "Check whether the local variable is string type",
+        "meta_impl": "```java\nimport net.sourceforge.pmd.lang.java.ast.ASTLocalVariableDeclaration;\nimport net.sourceforge.pmd.lang.java.types.TypeTestUtil;\npublic boolean isLocalVariableStringType(ASTLocalVariableDeclaration node) {\n    return TypeTestUtil.isA(String.class, node.getTypeNode());\n}\n```"
+    },
+    {
+        "meta_op": "Check whether the local variable is boolean type",
+        "meta_impl": "```java\nimport net.sourceforge.pmd.lang.java.ast.ASTLocalVariableDeclaration;\nimport net.sourceforge.pmd.lang.java.ast.ASTType;\nimport net.sourceforge.pmd.lang.java.types.JTypeMirror;\nimport net.sourceforge.pmd.lang.java.types.JPrimitiveType;\npublic boolean isLocalVariableBooleanType(ASTLocalVariableDeclaration node) {\n    ASTType type = node.getTypeNode();\n    JTypeMirror t = type.getTypeMirror();\n    return t.isPrimitive(JPrimitiveType.PrimitiveTypeKind.BOOLEAN);\n}\n```"
+    },
+    {
+        "meta_op": "Check whether the local variable is char type",
+        "meta_impl": "```java\nimport net.sourceforge.pmd.lang.java.ast.ASTLocalVariableDeclaration;\nimport net.sourceforge.pmd.lang.java.ast.ASTType;\nimport net.sourceforge.pmd.lang.java.types.JTypeMirror;\nimport net.sourceforge.pmd.lang.java.types.JPrimitiveType;\npublic boolean isLocalVariableCharType(ASTLocalVariableDeclaration node) {\n    ASTType type = node.getTypeNode();\n    JTypeMirror t = type.getTypeMirror();\n    return t.isPrimitive(JPrimitiveType.PrimitiveTypeKind.CHAR);\n}\n```"
+    },
+    {
+        "meta_op": "Check whether the local variable is byte type",
+        "meta_impl": "```java\nimport net.sourceforge.pmd.lang.java.ast.ASTLocalVariableDeclaration;\nimport net.sourceforge.pmd.lang.java.ast.ASTType;\nimport net.sourceforge.pmd.lang.java.types.JTypeMirror;\nimport net.sourceforge.pmd.lang.java.types.JPrimitiveType;\npublic boolean isLocalVariableByteType(ASTLocalVariableDeclaration node) {\n    ASTType type = node.getTypeNode();\n    JTypeMirror t = type.getTypeMirror();\n    return t.isPrimitive(JPrimitiveType.PrimitiveTypeKind.BYTE);\n}\n```"
+    },
+    {
+        "meta_op": "Check whether the local variable is short type",
+        "meta_impl": "```java\nimport net.sourceforge.pmd.lang.java.ast.ASTLocalVariableDeclaration;\nimport net.sourceforge.pmd.lang.java.ast.ASTType;\nimport net.sourceforge.pmd.lang.java.types.JTypeMirror;\nimport net.sourceforge.pmd.lang.java.types.JPrimitiveType;\npublic boolean isLocalVariableShortType(ASTLocalVariableDeclaration node) {\n    ASTType type = node.getTypeNode();\n    JTypeMirror t = type.getTypeMirror();\n    return t.isPrimitive(JPrimitiveType.PrimitiveTypeKind.SHORT);\n}\n```"
+    },
+    {
+        "meta_op": "Check whether the local variable is int type",
+        "meta_impl": "```java\nimport net.sourceforge.pmd.lang.java.ast.ASTLocalVariableDeclaration;\nimport net.sourceforge.pmd.lang.java.ast.ASTType;\nimport net.sourceforge.pmd.lang.java.types.JTypeMirror;\nimport net.sourceforge.pmd.lang.java.types.JPrimitiveType;\npublic boolean isLocalVariableIntType(ASTLocalVariableDeclaration node) {\n    ASTType type = node.getTypeNode();\n    JTypeMirror t = type.getTypeMirror();\n    return t.isPrimitive(JPrimitiveType.PrimitiveTypeKind.INT);\n}\n```"
+    },
+    {
+        "meta_op": "Check whether the local variable is long type",
+        "meta_impl": "```java\nimport net.sourceforge.pmd.lang.java.ast.ASTLocalVariableDeclaration;\nimport net.sourceforge.pmd.lang.java.ast.ASTType;\nimport net.sourceforge.pmd.lang.java.types.JTypeMirror;\nimport net.sourceforge.pmd.lang.java.types.JPrimitiveType;\npublic boolean isLocalVariableLongType(ASTLocalVariableDeclaration node) {\n    ASTType type = node.getTypeNode();\n    JTypeMirror t = type.getTypeMirror();\n    return t.isPrimitive(JPrimitiveType.PrimitiveTypeKind.LONG);\n}\n```"
+    },
+    {
+        "meta_op": "Check whether the local variable is float type",
+        "meta_impl": "```java\nimport net.sourceforge.pmd.lang.java.ast.ASTLocalVariableDeclaration;\nimport net.sourceforge.pmd.lang.java.ast.ASTType;\nimport net.sourceforge.pmd.lang.java.types.JTypeMirror;\nimport net.sourceforge.pmd.lang.java.types.JPrimitiveType;\npublic boolean isLocalVariableFloatType(ASTLocalVariableDeclaration node) {\n    ASTType type = node.getTypeNode();\n    JTypeMirror t = type.getTypeMirror();\n    return t.isPrimitive(JPrimitiveType.PrimitiveTypeKind.FLOAT);\n}\n```"
+    },
+    {
+        "meta_op": "Check whether the local variable is double type",
+        "meta_impl": "```java\nimport net.sourceforge.pmd.lang.java.ast.ASTLocalVariableDeclaration;\nimport net.sourceforge.pmd.lang.java.ast.ASTType;\nimport net.sourceforge.pmd.lang.java.types.JTypeMirror;\nimport net.sourceforge.pmd.lang.java.types.JPrimitiveType;\npublic boolean isLocalVariableDoubleType(ASTLocalVariableDeclaration node) {\n    ASTType type = node.getTypeNode();\n    JTypeMirror t = type.getTypeMirror();\n    return t.isPrimitive(JPrimitiveType.PrimitiveTypeKind.DOUBLE);\n}\n```"
+    },
+    {
+        "meta_op": "Check whether the local variable is boxed primitive type",
+        "meta_impl": "```java\nimport net.sourceforge.pmd.lang.java.ast.ASTLocalVariableDeclaration;\nimport net.sourceforge.pmd.lang.java.ast.ASTType;\nimport net.sourceforge.pmd.lang.java.types.JTypeMirror;\npublic boolean isLocalVariableBoxedPrimitiveType(ASTLocalVariableDeclaration node) {\n    ASTType type = node.getTypeNode();\n    JTypeMirror t = type.getTypeMirror();\n    return t.isBoxedPrimitive();\n}\n```"
+    },
+    {
+        "meta_op": "Check whether the local variable is a x class type",
+        "meta_impl": "```java\nimport net.sourceforge.pmd.lang.java.ast.ASTLocalVariableDeclaration;\nimport net.sourceforge.pmd.lang.java.types.TypeTestUtil;\npublic boolean isLocalVariableClassType(ASTLocalVariableDeclaration node) {\n    return TypeTestUtil.isA(x.class, node.getTypeNode());\n}\n```"
+    },
+    {
+        "meta_op": "Check whether the local variable is array type",
+        "meta_impl": "```java\nimport net.sourceforge.pmd.lang.java.ast.ASTLocalVariableDeclaration;\nimport net.sourceforge.pmd.lang.java.ast.ASTType;\npublic boolean isLocalVariableArrayType(ASTLocalVariableDeclaration node) {\n    ASTType type = node.getTypeNode();\n    return type.getTypeMirror().isArray();\n}\n```"
+    },
+    {
+        "meta_op": "Check whether the local variable is enum type",
+        "meta_impl": "```java\nimport net.sourceforge.pmd.lang.java.ast.ASTLocalVariableDeclaration;\nimport net.sourceforge.pmd.lang.java.ast.ASTType;\nimport net.sourceforge.pmd.lang.java.symbols.JClassSymbol;\npublic boolean isLocalVariableEnumType(ASTLocalVariableDeclaration node) {\n    ASTType type = node.getTypeNode();\n    return type.getTypeMirror().getSymbol() instanceof JClassSymbol && ((JClassSymbol) type.getTypeMirror().getSymbol()).isEnum();\n}\n```"
+    },
+    {
+        "meta_op": "Check whether the local variable is record type",
+        "meta_impl": "```java\nimport net.sourceforge.pmd.lang.java.ast.ASTLocalVariableDeclaration;\nimport net.sourceforge.pmd.lang.java.ast.ASTType;\nimport net.sourceforge.pmd.lang.java.symbols.JClassSymbol;\npublic boolean isLocalVariableRecordType(ASTLocalVariableDeclaration node) {\n    ASTType type = node.getTypeNode();\n    return type.getTypeMirror().getSymbol() instanceof JClassSymbol && ((JClassSymbol) type.getTypeMirror().getSymbol()).isRecord();\n}\n```"
+    },
+    {
+        "meta_op": "Check whether the local variable is initialized",
+        "meta_impl": "```java\nimport net.sourceforge.pmd.lang.java.ast.ASTLocalVariableDeclaration;\nimport net.sourceforge.pmd.lang.java.ast.ASTVariableDeclaratorId;\nimport net.sourceforge.pmd.lang.java.ast.ASTExpression;\nimport net.sourceforge.pmd.lang.ast.NodeStream;\npublic boolean isInitialized(ASTLocalVariableDeclaration node){\n    NodeStream<ASTVariableDeclaratorId> varIds = node.getVarIds();\n    for(ASTVariableDeclaratorId varId : varIds){\n        // a local declaration may have several variables, choose which one we want, here we use name to filter, you can also select other ways\n        if(varId.getName().equals(\"x\")){\n            ASTExpression init = varId.getInitializer();\n            if (init != null) {\n                return true;\n            }\n        }\n    }\n    return false;\n}\n```"
+    },
+    {
+        "meta_op": "Check whether the local variable is initialized to default value",
+        "meta_impl": "```java\nimport net.sourceforge.pmd.lang.java.ast.ASTLocalVariableDeclaration;\nimport net.sourceforge.pmd.lang.java.ast.ASTVariableDeclaratorId;\nimport net.sourceforge.pmd.lang.java.ast.ASTExpression;\nimport net.sourceforge.pmd.lang.java.ast.internal.JavaAstUtils;\nimport net.sourceforge.pmd.lang.ast.NodeStream;\npublic boolean isInitializedToDefaultValue(ASTLocalVariableDeclaration node){\n    NodeStream<ASTVariableDeclaratorId> varIds = node.getVarIds();\n    for(ASTVariableDeclaratorId varId : varIds){\n        // a local declaration may have several variables, choose which one we want, here we use name to filter, you can also select other ways\n        if(varId.getName().equals(\"x\")){\n            ASTExpression init = varId.getInitializer();\n            if (init != null) {\n                if (JavaAstUtils.isDefaultValue(node.getTypeNode().getTypeMirror(), init)) {\n                    return true;\n                }\n            }\n        }\n    }\n    return false;\n}\n```"
+    },
+    {
+        "meta_op": "Check whether the local variable is initialized to variable value",
+        "meta_impl": "```java\nimport net.sourceforge.pmd.lang.java.ast.ASTLocalVariableDeclaration;\nimport net.sourceforge.pmd.lang.java.ast.ASTVariableDeclaratorId;\nimport net.sourceforge.pmd.lang.java.ast.ASTExpression;\nimport net.sourceforge.pmd.lang.java.ast.ASTVariableAccess;\nimport net.sourceforge.pmd.lang.ast.NodeStream;\npublic boolean isInitializedToVariableValue(ASTLocalVariableDeclaration node){\n    NodeStream<ASTVariableDeclaratorId> varIds = node.getVarIds();\n    for(ASTVariableDeclaratorId varId : varIds){\n        // a local declaration may have several variables, choose which one we want, here we use name to filter, you can also select other ways\n        if(varId.getName().equals(\"x\")){\n            ASTExpression init = varId.getInitializer();\n            if (init != null) {\n                if (init instanceof ASTVariableAccess) {\n                    return true;\n                }\n            }\n        }\n    }\n    return false;\n}\n```"
+    },
+    {
+        "meta_op": "Get the literal value that the local variable is initialized to",
+        "meta_impl": "```java\nimport net.sourceforge.pmd.lang.java.ast.ASTLocalVariableDeclaration;\nimport net.sourceforge.pmd.lang.java.ast.ASTVariableDeclaratorId;\nimport net.sourceforge.pmd.lang.java.ast.ASTExpression;\nimport net.sourceforge.pmd.lang.java.ast.ASTLiteral;\nimport net.sourceforge.pmd.lang.ast.NodeStream;\npublic ASTLiteral getInitializedValue(ASTLocalVariableDeclaration node){\n    NodeStream<ASTVariableDeclaratorId> varIds = node.getVarIds();\n    for(ASTVariableDeclaratorId varId : varIds){\n        // a local declaration may have several variables, choose which one we want, here we use name to filter, you can also select other ways\n        if(varId.getName().equals(\"x\")){\n            ASTExpression init = varId.getInitializer();\n            if (init != null) {\n                if (init instanceof ASTLiteral) {\n                    return (ASTLiteral)init;\n                }\n            }\n        }\n    }\n    return null;\n}\n```"
+    },
+    {
+        "meta_op": "Check whether local variable has declared annotations",
+        "meta_impl": "```java\nimport net.sourceforge.pmd.lang.ast.NodeStream;\nimport net.sourceforge.pmd.lang.java.ast.*;\npublic boolean hasAnnotation(ASTLocalVariableDeclaration node){\n    NodeStream<ASTAnnotation> declaredAnnotations = node.getDeclaredAnnotations();\n    return declaredAnnotations.nonEmpty();\n}\n```"
+    },
+    {
+        "meta_op": "Get an access of local variable",
+        "meta_impl": "```java\nimport net.sourceforge.pmd.lang.java.ast.*;\nimport net.sourceforge.pmd.lang.java.ast.ASTAssignableExpr;\nimport java.util.List;\npublic List<ASTAssignableExpr.ASTNamedReferenceExpr> getAUsage(ASTLocalVariableDeclaration node){\n    NodeStream<ASTVariableDeclaratorId> varIds = node.getVarIds();\n    for(ASTVariableDeclaratorId var : varIds){\n        if(var.getName().equals(\"x\")){\n            List<ASTAssignableExpr.ASTNamedReferenceExpr> localUsages = var.getLocalUsages();\n            return localUsages;\n        }\n    }\n    return null;\n}\n```"
+    },
+    {
+        "meta_op": "Check whether the accessed variable is string type",
+        "meta_impl": "```java\nimport net.sourceforge.pmd.lang.java.ast.ASTVariableAccess;\nimport net.sourceforge.pmd.lang.java.types.TypeTestUtil;\npublic boolean isVariableAccessStringType(ASTVariableAccess var){\n    return TypeTestUtil.isA(String.class, var.getTypeMirror());\n}\n```"
+    },
+    {
+        "meta_op": "Check whether the accessed variable is boolean type",
+        "meta_impl": "```java\nimport net.sourceforge.pmd.lang.java.ast.ASTVariableAccess;\nimport net.sourceforge.pmd.lang.java.types.JPrimitiveType;\npublic boolean isVariableAccessBooleanType(ASTVariableAccess var) {\n    return var.getTypeMirror().isPrimitive(JPrimitiveType.PrimitiveTypeKind.BOOLEAN);\n}\n```"
+    },
+    {
+        "meta_op": "Check whether the accessed variable is char type",
+        "meta_impl": "```java\nimport net.sourceforge.pmd.lang.java.ast.ASTVariableAccess;\nimport net.sourceforge.pmd.lang.java.types.JPrimitiveType;\npublic boolean isVariableAccessCharType(ASTVariableAccess var) {\n    return var.getTypeMirror().isPrimitive(JPrimitiveType.PrimitiveTypeKind.CHAR);\n}\n```"
+    },
+    {
+        "meta_op": "Check whether the accessed variable is byte type",
+        "meta_impl": "```java\nimport net.sourceforge.pmd.lang.java.ast.ASTVariableAccess;\nimport net.sourceforge.pmd.lang.java.types.JPrimitiveType;\npublic boolean isVariableAccessByteType(ASTVariableAccess var) {\n    return var.getTypeMirror().isPrimitive(JPrimitiveType.PrimitiveTypeKind.BYTE);\n}\n```"
+    },
+    {
+        "meta_op": "Check whether the accessed variable is short type",
+        "meta_impl": "```java\nimport net.sourceforge.pmd.lang.java.ast.ASTVariableAccess;\nimport net.sourceforge.pmd.lang.java.types.JPrimitiveType;\npublic boolean isVariableAccessShortType(ASTVariableAccess var) {\n    return var.getTypeMirror().isPrimitive(JPrimitiveType.PrimitiveTypeKind.SHORT);\n}\n```"
+    },
+    {
+        "meta_op": "Check whether the accessed variable is int type",
+        "meta_impl": "```java\nimport net.sourceforge.pmd.lang.java.ast.ASTVariableAccess;\nimport net.sourceforge.pmd.lang.java.types.JPrimitiveType;\npublic boolean isVariableAccessIntType(ASTVariableAccess var) {\n    return var.getTypeMirror().isPrimitive(JPrimitiveType.PrimitiveTypeKind.INT);\n}\n```"
+    },
+    {
+        "meta_op": "Check whether the accessed variable is long type",
+        "meta_impl": "```java\nimport net.sourceforge.pmd.lang.java.ast.ASTVariableAccess;\nimport net.sourceforge.pmd.lang.java.types.JPrimitiveType;\npublic boolean isVariableAccessLongType(ASTVariableAccess var) {\n    return var.getTypeMirror().isPrimitive(JPrimitiveType.PrimitiveTypeKind.LONG);\n}\n```"
+    },
+    {
+        "meta_op": "Check whether the accessed variable is float type",
+        "meta_impl": "```java\nimport net.sourceforge.pmd.lang.java.ast.ASTVariableAccess;\nimport net.sourceforge.pmd.lang.java.types.JPrimitiveType;\npublic boolean isVariableAccessFloatType(ASTVariableAccess var) {\n    return var.getTypeMirror().isPrimitive(JPrimitiveType.PrimitiveTypeKind.FLOAT);\n}\n```"
+    },
+    {
+        "meta_op": "Check whether the accessed variable is double type",
+        "meta_impl": "```java\nimport net.sourceforge.pmd.lang.java.ast.ASTVariableAccess;\nimport net.sourceforge.pmd.lang.java.types.JPrimitiveType;\npublic boolean isVariableAccessDoubleType(ASTVariableAccess var) {\n    return var.getTypeMirror().isPrimitive(JPrimitiveType.PrimitiveTypeKind.DOUBLE);\n}\n```"
+    },
+    {
+        "meta_op": "Check whether the accessed variable is boxed primitive type",
+        "meta_impl": "```java\nimport net.sourceforge.pmd.lang.java.ast.ASTVariableAccess;\nimport net.sourceforge.pmd.lang.java.types.JTypeMirror;\npublic boolean isFieldBoxedPrimitiveType(ASTVariableAccess var) {\n    JTypeMirror t = var.getTypeMirror();\n    return t.isBoxedPrimitive();\n}\n```"
+    },
+    {
+        "meta_op": "Check whether the accessed variable is a x class type",
+        "meta_impl": "```java\nimport net.sourceforge.pmd.lang.java.ast.ASTVariableAccess;\nimport net.sourceforge.pmd.lang.java.types.TypeTestUtil;\npublic boolean isVariableAccessStringType(ASTVariableAccess var){\n    return TypeTestUtil.isA(x.class, var.getTypeMirror());\n}\n```"
+    },
+    {
+        "meta_op": "Check whether the accessed variable is array type",
+        "meta_impl": "```java\nimport net.sourceforge.pmd.lang.java.ast.ASTVariableAccess;\npublic boolean isVariableAccessArrayType(ASTVariableAccess var) {\n    return var.getTypeMirror().isArray();\n}\n```"
+    },
+    {
+        "meta_op": "Check whether the accessed variable is enum type",
+        "meta_impl": "```java\nimport net.sourceforge.pmd.lang.java.ast.ASTVariableAccess;\nimport net.sourceforge.pmd.lang.java.symbols.JClassSymbol;\nimport net.sourceforge.pmd.lang.java.symbols.JTypeDeclSymbol;\npublic boolean isVariableAccessEnumType(ASTVariableAccess var){\n    JTypeDeclSymbol symbol = var.getTypeMirror().getSymbol();\n    return symbol instanceof JClassSymbol && ((JClassSymbol) symbol).isEnum();\n}\n```"
+    },
+    {
+        "meta_op": "Check whether the accessed variable is record type",
+        "meta_impl": "```java\nimport net.sourceforge.pmd.lang.java.ast.ASTVariableAccess;\nimport net.sourceforge.pmd.lang.java.symbols.JClassSymbol;\nimport net.sourceforge.pmd.lang.java.symbols.JTypeDeclSymbol;\npublic boolean isVariableAccessRecordType(ASTVariableAccess var){\n    JTypeDeclSymbol symbol = var.getTypeMirror().getSymbol();\n    return symbol instanceof JClassSymbol && ((JClassSymbol) symbol).isRecord();\n}\n```"
+    },
+    {
+        "meta_op": "Get the variable declaration of the accessed variable",
+        "meta_impl": "```java\nimport net.sourceforge.pmd.lang.java.ast.ASTVariableAccess;\nimport net.sourceforge.pmd.lang.java.ast.ASTVariableDeclaratorId;\nimport net.sourceforge.pmd.lang.java.symbols.JVariableSymbol;\npublic ASTVariableDeclaratorId getVariableDeclaration(ASTVariableAccess var) {\n    JVariableSymbol symbol = var.getReferencedSym();\n    if(symbol != null){\n        ASTVariableDeclaratorId declaratorId = symbol.tryGetNode();\n        return declaratorId;\n    }\n    return null;\n}\n```"
+    },
+    {
+        "meta_op": "Check whether the accessed variable is being read",
+        "meta_impl": "```java\nimport net.sourceforge.pmd.lang.java.ast.ASTVariableAccess;\nimport net.sourceforge.pmd.lang.java.ast.ASTAssignableExpr;\npublic boolean variableIsBeingRead(ASTVariableAccess var) {\n    if(var.getAccessType() == ASTAssignableExpr.AccessType.READ){\n        return true;\n    }\n    return false;\n}\n```"
+    },
+    {
+        "meta_op": "Check whether the accessed variable is being written",
+        "meta_impl": "```java\nimport net.sourceforge.pmd.lang.java.ast.ASTVariableAccess;\nimport net.sourceforge.pmd.lang.java.ast.ASTAssignableExpr;\npublic boolean variableIsBeingRead(ASTVariableAccess var) {\n    if(var.getAccessType() == ASTAssignableExpr.AccessType.WRITE){\n        return true;\n    }\n    return false;\n}\n```"
+    },
+    {
+        "meta_op": "Check whether the accessed variable is a field",
+        "meta_impl": "```java\nimport net.sourceforge.pmd.lang.java.ast.ASTVariableAccess;\nimport net.sourceforge.pmd.lang.java.symbols.JVariableSymbol;\nimport net.sourceforge.pmd.lang.java.symbols.JFieldSymbol;\npublic boolean isVariableAccessField(ASTVariableAccess node) {\n    JVariableSymbol sym = node.getReferencedSym();\n    if (sym instanceof JFieldSymbol) {\n        JFieldSymbol fieldSym = (JFieldSymbol) sym;\n        return true;\n    }\n    return false;\n}\n```"
+    },
+    {
+        "meta_op": "Check whether the accessed variable is a local variable",
+        "meta_impl": "```java\nimport net.sourceforge.pmd.lang.java.ast.ASTVariableAccess;\nimport net.sourceforge.pmd.lang.java.symbols.JVariableSymbol;\nimport net.sourceforge.pmd.lang.java.symbols.JLocalVariableSymbol;\npublic boolean isVariableAccessLocalVariable(ASTVariableAccess node) {\n    JVariableSymbol sym = node.getReferencedSym();\n    if (sym instanceof JLocalVariableSymbol) {\n        JLocalVariableSymbol localVariableSymbol = (JLocalVariableSymbol) sym;\n        return true;\n    }\n    return false;\n}\n```"
+    },
+    {
+        "meta_op": "Check whether the accessed variable is a formal parameter",
+        "meta_impl": "```java\nimport net.sourceforge.pmd.lang.java.ast.ASTVariableDeclaratorId;\nimport net.sourceforge.pmd.lang.java.ast.ASTVariableAccess;\nimport net.sourceforge.pmd.lang.java.symbols.JVariableSymbol;\npublic boolean isFormalParameter(ASTVariableAccess node) {\n    JVariableSymbol sym = node.getReferencedSym();\n    if(sym == null)\n        return false;\n    ASTVariableDeclaratorId varDecl = sym.tryGetNode();\n    assert varDecl != null;\n    return varDecl.isFormalParameter();\n}\n```"
+    },
+    {
+        "meta_op": "Check whether the accessed variable is static",
+        "meta_impl": "```java\nimport net.sourceforge.pmd.lang.java.ast.ASTVariableAccess;\nimport net.sourceforge.pmd.lang.java.ast.JModifier;\nimport net.sourceforge.pmd.lang.java.symbols.JVariableSymbol;\npublic boolean isVariableAccessStatic(ASTVariableAccess node) {\n    JVariableSymbol sym = node.getReferencedSym();\n    if (sym.tryGetNode().hasModifiers(JModifier.STATIC)) {\n        return true;\n    }\n    return false;\n}\n```"
+    },
+    {
+        "meta_op": "Check whether the accessed variable is volatile",
+        "meta_impl": "```java\nimport net.sourceforge.pmd.lang.java.ast.ASTVariableAccess;\nimport net.sourceforge.pmd.lang.java.ast.JModifier;\nimport net.sourceforge.pmd.lang.java.symbols.JVariableSymbol;\npublic boolean isVolatile(ASTVariableAccess var){\n    JVariableSymbol sym = var.getReferencedSym();\n    if (sym.tryGetNode().hasModifiers(JModifier.VOLATILE)) {\n        return true;\n    }\n    return false;\n}\n```"
+    },
+    {
+        "meta_op": "Check whether the accessed variable is transient",
+        "meta_impl": "```java\nimport net.sourceforge.pmd.lang.java.ast.ASTVariableAccess;\nimport net.sourceforge.pmd.lang.java.ast.JModifier;\nimport net.sourceforge.pmd.lang.java.symbols.JVariableSymbol;\npublic boolean isVolatile(ASTVariableAccess var){\n    JVariableSymbol sym = var.getReferencedSym();\n    if (sym.tryGetNode().hasModifiers(JModifier.TRANSIENT)) {\n        return true;\n    }\n    return false;\n}\n```"
+    },
+    {
+        "meta_op": "Check whether the accessed variable is final",
+        "meta_impl": "```java\nimport net.sourceforge.pmd.lang.java.ast.ASTVariableAccess;\nimport net.sourceforge.pmd.lang.java.symbols.JVariableSymbol;\npublic boolean isVariableAccessFinal(ASTVariableAccess var){\n    JVariableSymbol symbol = var.getReferencedSym();\n    if (symbol == null) {\n        return false;\n    }\n    if (var.getReferencedSym().isFinal()) {\n        return true;\n    }\n    return false;\n}\n```"
+    },
+    {
+        "meta_op": "Check whether the accessed variable is private",
+        "meta_impl": "```java\nimport net.sourceforge.pmd.lang.java.ast.ASTVariableAccess;\nimport net.sourceforge.pmd.lang.java.ast.JModifier;\nimport net.sourceforge.pmd.lang.java.symbols.JVariableSymbol;\npublic boolean isVariableAccessPrivate(ASTVariableAccess node) {\n    JVariableSymbol sym = node.getReferencedSym();\n    if (sym.tryGetNode().hasModifiers(JModifier.PRIVATE)){\n        return true;\n    }\n    return false;\n}\n```"
+    },
+    {
+        "meta_op": "Check whether the accessed variable is public",
+        "meta_impl": "```java\nimport net.sourceforge.pmd.lang.java.ast.ASTVariableAccess;\nimport net.sourceforge.pmd.lang.java.ast.JModifier;\nimport net.sourceforge.pmd.lang.java.symbols.JVariableSymbol;\npublic boolean isVariableAccessPublic(ASTVariableAccess node) {\n    JVariableSymbol sym = node.getReferencedSym();\n    if (sym.tryGetNode().hasModifiers(JModifier.PUBLIC)){\n        return true;\n    }\n    return false;\n}\n```"
+    },
+    {
+        "meta_op": "Check whether the accessed variable is default package",
+        "meta_impl": "```java\nimport net.sourceforge.pmd.lang.java.ast.ASTVariableAccess;\nimport net.sourceforge.pmd.lang.java.ast.JModifier;\nimport net.sourceforge.pmd.lang.java.symbols.JVariableSymbol;\npublic boolean isVariableAccessDefault(ASTVariableAccess node) {\n    JVariableSymbol sym = node.getReferencedSym();\n    if (sym.tryGetNode().hasModifiers(JModifier.DEFAULT)){\n        return true;\n    }\n    return false;\n}\n```"
+    },
+    {
+        "meta_op": "Check whether the accessed variable is protected",
+        "meta_impl": "```java\nimport net.sourceforge.pmd.lang.java.ast.ASTVariableAccess;\nimport net.sourceforge.pmd.lang.java.ast.JModifier;\nimport net.sourceforge.pmd.lang.java.symbols.JVariableSymbol;\npublic boolean isVariableAccessProtected(ASTVariableAccess node) {\n    JVariableSymbol sym = node.getReferencedSym();\n    if (sym.tryGetNode().hasModifiers(JModifier.PROTECTED)){\n        return true;\n    }\n    return false;\n}\n```"
+    },
+    {
+        "meta_op": "Get the return type of called method",
+        "meta_impl": "```java\nimport net.sourceforge.pmd.lang.java.ast.ASTMethodCall;\nimport net.sourceforge.pmd.lang.java.types.JMethodSig;\nimport net.sourceforge.pmd.lang.java.types.JTypeMirror;\npublic JTypeMirror getReturnType(ASTMethodCall call) {\n    JMethodSig m = call.getMethodType();\n    return m.getReturnType();\n}\n```"
+    },
+    {
+        "meta_op": "Check whether the return type of called method is string",
+        "meta_impl": "```java\nimport net.sourceforge.pmd.lang.java.ast.ASTMethodCall;\nimport net.sourceforge.pmd.lang.java.types.JMethodSig;\nimport net.sourceforge.pmd.lang.java.types.TypeTestUtil;\npublic boolean isReturnStringType(ASTMethodCall call) {\n    JMethodSig m = call.getMethodType();\n    return TypeTestUtil.isA(String.class, m.getReturnType());\n}\n```"
+    },
+    {
+        "meta_op": "Check whether the return type of called method is boolean type",
+        "meta_impl": "```java\nimport net.sourceforge.pmd.lang.java.ast.ASTMethodCall;\nimport net.sourceforge.pmd.lang.java.types.JMethodSig;\nimport net.sourceforge.pmd.lang.java.types.JPrimitiveType;\npublic boolean isReturnBooleanType(ASTMethodCall call) {\n    JMethodSig m = call.getMethodType();\n    return m.getReturnType().isPrimitive(JPrimitiveType.PrimitiveTypeKind.BOOLEAN);\n}\n```"
+    },
+    {
+        "meta_op": "Check whether the return type of called method is char type",
+        "meta_impl": "```java\nimport net.sourceforge.pmd.lang.java.ast.ASTMethodCall;\nimport net.sourceforge.pmd.lang.java.types.JMethodSig;\nimport net.sourceforge.pmd.lang.java.types.JPrimitiveType;\npublic boolean isReturnCharType(ASTMethodCall call) {\n    JMethodSig m = call.getMethodType();\n    return m.getReturnType().isPrimitive(JPrimitiveType.PrimitiveTypeKind.CHAR);\n}\n```"
+    },
+    {
+        "meta_op": "Check whether the return type of called method is byte type",
+        "meta_impl": "```java\nimport net.sourceforge.pmd.lang.java.ast.ASTMethodCall;\nimport net.sourceforge.pmd.lang.java.types.JMethodSig;\nimport net.sourceforge.pmd.lang.java.types.JPrimitiveType;\npublic boolean isReturnByteType(ASTMethodCall call) {\n    JMethodSig m = call.getMethodType();\n    return m.getReturnType().isPrimitive(JPrimitiveType.PrimitiveTypeKind.BYTE);\n}\n```"
+    },
+    {
+        "meta_op": "Check whether the return type of called method is short type",
+        "meta_impl": "```java\nimport net.sourceforge.pmd.lang.java.ast.ASTMethodCall;\nimport net.sourceforge.pmd.lang.java.types.JMethodSig;\nimport net.sourceforge.pmd.lang.java.types.JPrimitiveType;\npublic boolean isReturnShortType(ASTMethodCall call) {\n    JMethodSig m = call.getMethodType();\n    return m.getReturnType().isPrimitive(JPrimitiveType.PrimitiveTypeKind.SHORT);\n}\n```"
+    },
+    {
+        "meta_op": "Check whether the return type of called method is int type",
+        "meta_impl": "```java\nimport net.sourceforge.pmd.lang.java.ast.ASTMethodCall;\nimport net.sourceforge.pmd.lang.java.types.JMethodSig;\nimport net.sourceforge.pmd.lang.java.types.JPrimitiveType;\npublic boolean isReturnIntType(ASTMethodCall call) {\n    JMethodSig m = call.getMethodType();\n    return m.getReturnType().isPrimitive(JPrimitiveType.PrimitiveTypeKind.INT);\n}\n```"
+    },
+    {
+        "meta_op": "Check whether the return type of called method is long type",
+        "meta_impl": "```java\nimport net.sourceforge.pmd.lang.java.ast.ASTMethodCall;\nimport net.sourceforge.pmd.lang.java.types.JMethodSig;\nimport net.sourceforge.pmd.lang.java.types.JPrimitiveType;\npublic boolean isReturnLongType(ASTMethodCall call) {\n    JMethodSig m = call.getMethodType();\n    return m.getReturnType().isPrimitive(JPrimitiveType.PrimitiveTypeKind.LONG);\n}\n```"
+    },
+    {
+        "meta_op": "Check whether the return type of called method is float type",
+        "meta_impl": "```java\nimport net.sourceforge.pmd.lang.java.ast.ASTMethodCall;\nimport net.sourceforge.pmd.lang.java.types.JMethodSig;\nimport net.sourceforge.pmd.lang.java.types.JPrimitiveType;\npublic boolean isReturnFloatType(ASTMethodCall call) {\n    JMethodSig m = call.getMethodType();\n    return m.getReturnType().isPrimitive(JPrimitiveType.PrimitiveTypeKind.FLOAT);\n}\n```"
+    },
+    {
+        "meta_op": "Check whether the return type of called method is double type",
+        "meta_impl": "```java\nimport net.sourceforge.pmd.lang.java.ast.ASTMethodCall;\nimport net.sourceforge.pmd.lang.java.types.JMethodSig;\nimport net.sourceforge.pmd.lang.java.types.JPrimitiveType;\npublic boolean isReturnDoubleType(ASTMethodCall call) {\n    JMethodSig m = call.getMethodType();\n    return m.getReturnType().isPrimitive(JPrimitiveType.PrimitiveTypeKind.DOUBLE);\n}\n```"
+    },
+    {
+        "meta_op": "Check whether the return type of called method is boxed type",
+        "meta_impl": "```java\nimport net.sourceforge.pmd.lang.java.ast.ASTMethodCall;\nimport net.sourceforge.pmd.lang.java.types.JMethodSig;\npublic boolean isReturnBoxedPrimitiveType(ASTMethodCall call) {\n    JMethodSig m = call.getMethodType();\n    return m.getReturnType().isBoxedPrimitive();\n}\n```"
+    },
+    {
+        "meta_op": "Check whether the return type of called method is x class type",
+        "meta_impl": "```java\nimport net.sourceforge.pmd.lang.java.ast.ASTMethodCall;\nimport net.sourceforge.pmd.lang.java.types.JMethodSig;\nimport net.sourceforge.pmd.lang.java.types.TypeTestUtil;\npublic boolean isReturnClassType(ASTMethodCall call) {\n    JMethodSig m = call.getMethodType();\n    return TypeTestUtil.isA(x.class, m.getReturnType());\n}\n```"
+    },
+    {
+        "meta_op": "Check whether the return type of called method is array type",
+        "meta_impl": "```java\nimport net.sourceforge.pmd.lang.java.ast.ASTMethodCall;\nimport net.sourceforge.pmd.lang.java.types.JMethodSig;\npublic boolean isReturnArrayType(ASTMethodCall call) {\n    JMethodSig m = call.getMethodType();\n    return m.getReturnType().isArray();\n}\n```"
+    },
+    {
+        "meta_op": "Check whether the return type of called method is enum type",
+        "meta_impl": "```java\nimport net.sourceforge.pmd.lang.java.ast.ASTMethodCall;\nimport net.sourceforge.pmd.lang.java.types.JMethodSig;\nimport net.sourceforge.pmd.lang.java.symbols.JClassSymbol;\npublic boolean isReturnEnumType(ASTMethodCall call) {\n    JMethodSig m = call.getMethodType();\n    return m.getReturnType().getSymbol() instanceof JClassSymbol && ((JClassSymbol) m.getReturnType().getSymbol()).isEnum();\n}\n```"
+    },
+    {
+        "meta_op": "Check whether the return type of called method is record type",
+        "meta_impl": "```java\nimport net.sourceforge.pmd.lang.java.ast.ASTMethodCall;\nimport net.sourceforge.pmd.lang.java.types.JMethodSig;\nimport net.sourceforge.pmd.lang.java.symbols.JClassSymbol;\npublic boolean isReturnEnumType(ASTMethodCall call) {\n    JMethodSig m = call.getMethodType();\n    return m.getReturnType().getSymbol() instanceof JClassSymbol && ((JClassSymbol) m.getReturnType().getSymbol()).isRecord();\n}\n```"
+    },
+    {
+        "meta_op": "Check whether the called method is private",
+        "meta_impl": "```java\nimport net.sourceforge.pmd.lang.java.ast.ASTMethodCall;\nimport net.sourceforge.pmd.lang.java.types.JMethodSig;\nimport java.lang.reflect.Modifier;\npublic boolean isMethodCallPrivate(ASTMethodCall node) {\n    JMethodSig m = node.getMethodType();\n    return Modifier.isPrivate(m.getModifiers());\n}\n```"
+    },
+    {
+        "meta_op": "Check whether the called method is public",
+        "meta_impl": "```java\nimport net.sourceforge.pmd.lang.java.ast.ASTMethodCall;\nimport net.sourceforge.pmd.lang.java.types.JMethodSig;\nimport java.lang.reflect.Modifier;\npublic boolean isMethodCallPublic(ASTMethodCall node) {\n    JMethodSig m = node.getMethodType();\n    return Modifier.isPublic(m.getModifiers());\n}\n```"
+    },
+    {
+        "meta_op": "Check whether the called method is protected",
+        "meta_impl": "```java\nimport net.sourceforge.pmd.lang.java.ast.ASTMethodCall;\nimport net.sourceforge.pmd.lang.java.types.JMethodSig;\nimport java.lang.reflect.Modifier;\npublic boolean isMethodCallProtected(ASTMethodCall node) {\n    JMethodSig m = node.getMethodType();\n    return Modifier.isProtected(m.getModifiers());\n}\n```"
+    },
+    {
+        "meta_op": "Check whether the called method is static",
+        "meta_impl": "```java\nimport net.sourceforge.pmd.lang.java.ast.ASTMethodCall;\nimport net.sourceforge.pmd.lang.java.types.JMethodSig;\npublic boolean isMethodCallStatic(ASTMethodCall node) {\n    JMethodSig m = node.getMethodType();\n    return m.isStatic();\n}\n```"
+    },
+    {
+        "meta_op": "Get the number of arguments of called method",
+        "meta_impl": "```java\nimport net.sourceforge.pmd.lang.java.ast.*;\npublic int getArgumentNumber(ASTMethodCall node){\n    ASTArgumentList arguments = node.getArguments();\n    return arguments.size();\n}\n```"
+    },
+    {
+        "meta_op": "Get the type of argument",
+        "meta_impl": "```java\nimport net.sourceforge.pmd.lang.java.ast.ASTMethodCall;\nimport net.sourceforge.pmd.lang.java.ast.ASTArgumentList;\nimport net.sourceforge.pmd.lang.java.ast.ASTExpression;\nimport net.sourceforge.pmd.lang.java.types.JTypeMirror;\npublic JTypeMirror getMethodCallArgumentType(ASTMethodCall node) {\n    ASTArgumentList astArgumentList = node.getArguments();\n    //select which argument to judge\n    ASTExpression expression = astArgumentList.get(0);\n    return expression.getTypeMirror();\n}\n```"
+    },
+    {
+        "meta_op": "Check whether the argument is string type",
+        "meta_impl": "```java\nimport net.sourceforge.pmd.lang.java.ast.ASTMethodCall;\nimport net.sourceforge.pmd.lang.java.ast.ASTArgumentList;\nimport net.sourceforge.pmd.lang.java.ast.ASTExpression;\nimport net.sourceforge.pmd.lang.java.types.TypeTestUtil;\npublic boolean isMethodCallArgumentStringType(ASTMethodCall node) {\n    ASTArgumentList astArgumentList = node.getArguments();\n    //select which argument to judge\n    ASTExpression expression = astArgumentList.get(0);\n    return TypeTestUtil.isA(String.class, expression.getTypeMirror());\n}\n```"
+    },
+    {
+        "meta_op": "Check whether the argument is boolean type",
+        "meta_impl": "```java\nimport net.sourceforge.pmd.lang.java.ast.ASTMethodCall;\nimport net.sourceforge.pmd.lang.java.ast.ASTArgumentList;\nimport net.sourceforge.pmd.lang.java.ast.ASTExpression;\nimport net.sourceforge.pmd.lang.java.types.JPrimitiveType;\npublic boolean isMethodCallArgumentStringType(ASTMethodCall call) {\n    ASTArgumentList astArgumentList = node.getArguments();\n    //select which argument to judge\n    ASTExpression expression = astArgumentList.get(0);\n    return expression.getTypeMirror().isPrimitive(JPrimitiveType.PrimitiveTypeKind.BOOLEAN);\n}\n```"
+    },
+    {
+        "meta_op": "Check whether the argument is char type",
+        "meta_impl": "```java\nimport net.sourceforge.pmd.lang.java.ast.ASTMethodCall;\nimport net.sourceforge.pmd.lang.java.ast.ASTArgumentList;\nimport net.sourceforge.pmd.lang.java.ast.ASTExpression;\nimport net.sourceforge.pmd.lang.java.types.JPrimitiveType;\npublic boolean isMethodCallArgumentCharType(ASTMethodCall call) {\n    ASTArgumentList astArgumentList = node.getArguments();\n    //select which argument to judge\n    ASTExpression expression = astArgumentList.get(0);\n    return expression.getTypeMirror().isPrimitive(JPrimitiveType.PrimitiveTypeKind.CHAR);\n}\n```"
+    },
+    {
+        "meta_op": "Check whether the argument is byte type",
+        "meta_impl": "```java\nimport net.sourceforge.pmd.lang.java.ast.ASTMethodCall;\nimport net.sourceforge.pmd.lang.java.ast.ASTArgumentList;\nimport net.sourceforge.pmd.lang.java.ast.ASTExpression;\nimport net.sourceforge.pmd.lang.java.types.JPrimitiveType;\npublic boolean isMethodCallArgumentByteType(ASTMethodCall call) {\n    ASTArgumentList astArgumentList = node.getArguments();\n    //select which argument to judge\n    ASTExpression expression = astArgumentList.get(0);\n    return expression.getTypeMirror().isPrimitive(JPrimitiveType.PrimitiveTypeKind.BYTE);\n}\n```"
+    },
+    {
+        "meta_op": "Check whether the argument is short type",
+        "meta_impl": "```java\nimport net.sourceforge.pmd.lang.java.ast.ASTMethodCall;\nimport net.sourceforge.pmd.lang.java.ast.ASTArgumentList;\nimport net.sourceforge.pmd.lang.java.ast.ASTExpression;\nimport net.sourceforge.pmd.lang.java.types.JPrimitiveType;\npublic boolean isMethodCallArgumentShortType(ASTMethodCall call) {\n    ASTArgumentList astArgumentList = node.getArguments();\n    //select which argument to judge\n    ASTExpression expression = astArgumentList.get(0);\n    return expression.getTypeMirror().isPrimitive(JPrimitiveType.PrimitiveTypeKind.SHORT);\n}\n```"
+    },
+    {
+        "meta_op": "Check whether the argument is int type",
+        "meta_impl": "```java\nimport net.sourceforge.pmd.lang.java.ast.ASTMethodCall;\nimport net.sourceforge.pmd.lang.java.ast.ASTArgumentList;\nimport net.sourceforge.pmd.lang.java.ast.ASTExpression;\nimport net.sourceforge.pmd.lang.java.types.JPrimitiveType;\npublic boolean isMethodCallArgumentIntType(ASTMethodCall call) {\n    ASTArgumentList astArgumentList = node.getArguments();\n    //select which argument to judge\n    ASTExpression expression = astArgumentList.get(0);\n    return expression.getTypeMirror().isPrimitive(JPrimitiveType.PrimitiveTypeKind.INT);\n}\n```"
+    },
+    {
+        "meta_op": "Check whether the argument is long type",
+        "meta_impl": "```java\nimport net.sourceforge.pmd.lang.java.ast.ASTMethodCall;\nimport net.sourceforge.pmd.lang.java.ast.ASTArgumentList;\nimport net.sourceforge.pmd.lang.java.ast.ASTExpression;\nimport net.sourceforge.pmd.lang.java.types.JPrimitiveType;\npublic boolean isMethodCallArgumentLongType(ASTMethodCall call) {\n    ASTArgumentList astArgumentList = node.getArguments();\n    //select which argument to judge\n    ASTExpression expression = astArgumentList.get(0);\n    return expression.getTypeMirror().isPrimitive(JPrimitiveType.PrimitiveTypeKind.LONG);\n}\n```"
+    },
+    {
+        "meta_op": "Check whether the argument is float type",
+        "meta_impl": "```java\nimport net.sourceforge.pmd.lang.java.ast.ASTMethodCall;\nimport net.sourceforge.pmd.lang.java.ast.ASTArgumentList;\nimport net.sourceforge.pmd.lang.java.ast.ASTExpression;\nimport net.sourceforge.pmd.lang.java.types.JPrimitiveType;\npublic boolean isMethodCallArgumentFloatType(ASTMethodCall call) {\n    ASTArgumentList astArgumentList = node.getArguments();\n    //select which argument to judge\n    ASTExpression expression = astArgumentList.get(0);\n    return expression.getTypeMirror().isPrimitive(JPrimitiveType.PrimitiveTypeKind.FLOAT);\n}\n```"
+    },
+    {
+        "meta_op": "Check whether the argument is double type",
+        "meta_impl": "```java\nimport net.sourceforge.pmd.lang.java.ast.ASTMethodCall;\nimport net.sourceforge.pmd.lang.java.ast.ASTArgumentList;\nimport net.sourceforge.pmd.lang.java.ast.ASTExpression;\nimport net.sourceforge.pmd.lang.java.types.JPrimitiveType;\npublic boolean isMethodCallArgumentDoubleType(ASTMethodCall call) {\n    ASTArgumentList astArgumentList = node.getArguments();\n    //select which argument to judge\n    ASTExpression expression = astArgumentList.get(0);\n    return expression.getTypeMirror().isPrimitive(JPrimitiveType.PrimitiveTypeKind.DOUBLE);\n}\n```"
+    },
+    {
+        "meta_op": "Check whether the argument is boxed type",
+        "meta_impl": "```java\nimport net.sourceforge.pmd.lang.java.ast.ASTMethodCall;\nimport net.sourceforge.pmd.lang.java.ast.ASTArgumentList;\nimport net.sourceforge.pmd.lang.java.ast.ASTExpression;\npublic boolean isMethodCallArgumentBoxedPrimitiveType(ASTMethodCall call) {\n    ASTArgumentList astArgumentList = node.getArguments();\n    //select which argument to judge\n    ASTExpression expression = astArgumentList.get(0);\n    return expression.getTypeMirror().isBoxedPrimitive();\n}\n```"
+    },
+    {
+        "meta_op": "Check whether the argument is x class type",
+        "meta_impl": "```java\nimport net.sourceforge.pmd.lang.java.ast.ASTMethodCall;\nimport net.sourceforge.pmd.lang.java.ast.ASTArgumentList;\nimport net.sourceforge.pmd.lang.java.ast.ASTExpression;\nimport net.sourceforge.pmd.lang.java.types.TypeTestUtil;\npublic boolean isMethodCallArgumentClassType(ASTMethodCall node) {\n    ASTArgumentList astArgumentList = node.getArguments();\n    //select which argument to judge\n    ASTExpression expression = astArgumentList.get(0);\n    return TypeTestUtil.isA(x.class, expression.getTypeMirror());\n}\n```"
+    },
+    {
+        "meta_op": "Check whether the argument is array type",
+        "meta_impl": "```java\nimport net.sourceforge.pmd.lang.java.ast.ASTMethodCall;\nimport net.sourceforge.pmd.lang.java.ast.ASTArgumentList;\nimport net.sourceforge.pmd.lang.java.ast.ASTExpression;\npublic boolean isMethodCallArgumentArrayType(ASTMethodCall node) {\n   ASTArgumentList astArgumentList = node.getArguments();\n    //select which argument to judge\n    ASTExpression expression = astArgumentList.get(0);\n    return expression.getTypeMirror().isArray();\n}\n```"
+    },
+    {
+        "meta_op": "Check whether the argument is enum type",
+        "meta_impl": "```java\nimport net.sourceforge.pmd.lang.java.ast.ASTMethodCall;\nimport net.sourceforge.pmd.lang.java.ast.ASTArgumentList;\nimport net.sourceforge.pmd.lang.java.ast.ASTExpression;\nimport net.sourceforge.pmd.lang.java.symbols.JClassSymbol;\npublic boolean isMethodCallArgumentEnumType(ASTMethodCall node) {\n    ASTArgumentList astArgumentList = node.getArguments();\n    //select which argument to judge\n    ASTExpression expression = astArgumentList.get(0);\n    return expression.getTypeMirror().getSymbol() instanceof JClassSymbol && ((JClassSymbol) expression.getTypeMirror().getSymbol()).isEnum();\n}\n```"
+    },
+    {
+        "meta_op": "Check whether the argument is record type",
+        "meta_impl": "```java\nimport net.sourceforge.pmd.lang.java.ast.ASTMethodCall;\nimport net.sourceforge.pmd.lang.java.ast.ASTArgumentList;\nimport net.sourceforge.pmd.lang.java.ast.ASTExpression;\nimport net.sourceforge.pmd.lang.java.symbols.JClassSymbol;\npublic boolean isMethodCallArgumentRecordType(ASTMethodCall node) {\n    ASTArgumentList astArgumentList = node.getArguments();\n    //select which argument to judge\n    ASTExpression expression = astArgumentList.get(0);\n    return expression.getTypeMirror().getSymbol() instanceof JClassSymbol && ((JClassSymbol) expression.getTypeMirror().getSymbol()).isRecord();\n}\n```"
+    },
+    {
+        "meta_op": "Check whether the method caller is super",
+        "meta_impl": "```java\nimport net.sourceforge.pmd.lang.java.ast.ASTSuperExpression;\nimport net.sourceforge.pmd.lang.java.ast.ASTMethodCall;\npublic boolean isMethodCallerSuper(ASTMethodCall methodCall){\n    if (methodCall.getQualifier() instanceof ASTSuperExpression){\n        return true;\n    }\n    return false;\n}\n```"
+    },
+    {
+        "meta_op": "Get the type of method caller",
+        "meta_impl": "```java\nimport net.sourceforge.pmd.lang.java.ast.ASTMethodCall;\nimport net.sourceforge.pmd.lang.java.ast.ASTExpression;\nimport net.sourceforge.pmd.lang.java.types.JTypeMirror;\npublic JTypeMirror getMethodCallerType(ASTMethodCall node){\n    ASTExpression expression = node.getQualifier();\n    if(expression != null){\n        return expression.getTypeMirror();\n    }\n    return null;\n}\n```"
+    },
+    {
+        "meta_op": "Check whether the method caller is string type",
+        "meta_impl": "```java\nimport net.sourceforge.pmd.lang.java.ast.ASTMethodCall;\nimport net.sourceforge.pmd.lang.java.types.TypeTestUtil;\npublic boolean isMethodCallerStringType(ASTMethodCall node){\n    return TypeTestUtil.isA(String.class, node.getQualifier());\n}\n```"
+    },
+    {
+        "meta_op": "Check whether the method caller is x class type",
+        "meta_impl": "```java\nimport net.sourceforge.pmd.lang.java.ast.ASTMethodCall;\nimport net.sourceforge.pmd.lang.java.types.TypeTestUtil;\npublic boolean isMethodCallerClassType(ASTMethodCall node){\n    return TypeTestUtil.isA(x.class, node.getQualifier());\n}\n```"
+    },
+    {
+        "meta_op": "Check whether the method caller is enum type",
+        "meta_impl": "```java\nimport net.sourceforge.pmd.lang.java.ast.ASTMethodCall;\nimport net.sourceforge.pmd.lang.java.symbols.JClassSymbol;\npublic boolean isMethodCallerEnumType(ASTMethodCall node){\n    if(node.getQualifier() != null){\n        return node.getQualifier().getTypeMirror().getSymbol() instanceof JClassSymbol && ((JClassSymbol) node.getQualifier().getTypeMirror().getSymbol()).isEnum();\n    }\n    return false;\n}\n```"
+    },
+    {
+        "meta_op": "Check whether the method caller is record type",
+        "meta_impl": "```java\nimport net.sourceforge.pmd.lang.java.ast.ASTMethodCall;\nimport net.sourceforge.pmd.lang.java.symbols.JClassSymbol;\npublic boolean isMethodCallerEnumType(ASTMethodCall node){\n    if(node.getQualifier() != null){\n        return node.getQualifier().getTypeMirror().getSymbol() instanceof JClassSymbol && ((JClassSymbol) node.getQualifier().getTypeMirror().getSymbol()).isRecord();\n    }\n    return false;\n}\n```"
+    },
+    {
+        "meta_op": "Check whether the method caller is boxed type",
+        "meta_impl": "```java\nimport net.sourceforge.pmd.lang.java.ast.ASTMethodCall;\nimport net.sourceforge.pmd.lang.java.ast.ASTExpression;\npublic boolean isMethodCallerBoxedPrimitiveType(ASTMethodCall node){\n    ASTExpression expression = node.getQualifier();\n    if(expression != null){\n        return node.getTypeMirror().isBoxedPrimitive();\n    }\n    return false;\n}\n```"
+    },
+    {
+        "meta_op": "Get method declaration from method call",
+        "meta_impl": "```java\nimport net.sourceforge.pmd.lang.java.ast.ASTMethodCall;\nimport net.sourceforge.pmd.lang.java.ast.ASTMethodDeclaration;\nimport net.sourceforge.pmd.lang.java.symbols.JMethodSymbol;\npublic ASTMethodDeclaration getMethodFromMethodCall(ASTMethodCall method){\n    JMethodSymbol symbol = (JMethodSymbol)method.getMethodType().getSymbol();\n    ASTMethodDeclaration declaration = symbol.tryGetNode();\n    return declaration;\n}\n```"
+    },
+    {
+        "meta_op": "Get method declaration from method reference",
+        "meta_impl": "```java\nimport net.sourceforge.pmd.lang.java.ast.ASTMethodDeclaration;\nimport net.sourceforge.pmd.lang.java.ast.ASTMethodReference;\nimport net.sourceforge.pmd.lang.java.symbols.JMethodSymbol;\npublic ASTMethodDeclaration getMethodFromMethodReference(ASTMethodReference method){\n    JMethodSymbol symbol = (JMethodSymbol)method.getReferencedMethod().getSymbol();\n    ASTMethodDeclaration declaration = symbol.tryGetNode();\n    return declaration;\n}\n```"
+    },
+    {
+        "meta_op": "Check whether the catch parameter is x type",
+        "meta_impl": "```java\nimport net.sourceforge.pmd.lang.ast.NodeStream;\nimport net.sourceforge.pmd.lang.java.ast.*;\nimport net.sourceforge.pmd.lang.java.types.TypeTestUtil;\npublic boolean isSpecificType(ASTCatchParameter node){\n    NodeStream<ASTClassOrInterfaceType> allExceptionTypes = node.getAllExceptionTypes();\n    for(ASTClassOrInterfaceType type : allExceptionTypes){\n        if(TypeTestUtil.isA(x.class, type)){\n            return true;\n        }\n    }\n    return false;\n}\n```"
+    },
+    {
+        "meta_op": "Get the type of exception thrown in throw statement",
+        "meta_impl": "```java\nimport net.sourceforge.pmd.lang.java.ast.ASTThrowStatement;\nimport net.sourceforge.pmd.lang.java.types.JTypeMirror;\npublic JTypeMirror getThrownExceptionType(ASTThrowStatement node) {\n    JTypeMirror thrownType = node.getExpr().getTypeMirror();\n    return thrownType;\n}\n```"
+    },
+    {
+        "meta_op": "Check whether the exception type thrown by the throw statement is x",
+        "meta_impl": "```java\nimport net.sourceforge.pmd.lang.java.ast.ASTThrowStatement;\nimport net.sourceforge.pmd.lang.java.types.JTypeMirror;\nimport net.sourceforge.pmd.lang.java.types.TypeTestUtil;\npublic boolean isThrownExceptionxType(ASTThrowStatement node) {\n    JTypeMirror thrownType = node.getExpr().getTypeMirror();\n    if(TypeTestUtil.isA(x.class, thrownType)){\n        return true;\n    }\n    return false;\n}\n```"
+    },
+    {
+        "meta_op": "Check whether the operator in infix expression is ''",
+        "meta_impl": "```java\nimport net.sourceforge.pmd.lang.java.ast.*;\nimport net.sourceforge.pmd.lang.java.ast.internal.JavaAstUtils;\npublic boolean isInfixExpressionWithOperator(ASTInfixExpression node, BinaryOp op){\n    //enum BinaryOp{CONDITIONAL_OR(\"||\"), CONDITIONAL_AND(\"&&\"), OR(\"|\"), XOR(\"^\"), AND(\"&\"), EQ(\"==\"), NE(\"!=\"), LE(\"<=\"), GE(\">=\"), GT(\">\"), LT(\"<\"), INSTANCEOF(\"instanceof\"), LEFT_SHIFT(\"<<\"), RIGHT_SHIFT(\">>\"), UNSIGNED_RIGHT_SHIFT(\">>>\"), ADD(\"+\"), SUB(\"-\"), MUL(\"*\"), DIV(\"/\"), MOD(\"%\")}\n    return JavaAstUtils.isInfixExprWithOperator(node, op);\n}\n```"
+    },
+    {
+        "meta_op": "Get the type before casting in cast expression",
+        "meta_impl": "```java\nimport net.sourceforge.pmd.lang.java.types.JTypeMirror;\nimport net.sourceforge.pmd.lang.java.ast.ASTCastExpression;\nimport net.sourceforge.pmd.lang.java.ast.ASTExpression;\npublic JTypeMirror getPreCastType(ASTCastExpression castExpr) {\n    ASTExpression operand = castExpr.getOperand();\n    JTypeMirror operandType = operand.getTypeMirror();\n    return operandType;\n}\n```"
+    },
+    {
+        "meta_op": "Get the number of formal parameters of lambda expression",
+        "meta_impl": "```java\nimport net.sourceforge.pmd.lang.java.ast.*;\npublic int getParametersNumber(ASTLambdaExpression node){\n    ASTLambdaParameterList parameters = node.getParameters();\n    return parameters.size();\n}\n```"
+    },
+    {
+        "meta_op": "Get the name of formal parameter of lambda expression",
+        "meta_impl": "```java\nimport net.sourceforge.pmd.lang.java.ast.*;\npublic String getLambdaParameterName(ASTLambdaParameter node){\n    return node.getVarId().getName();\n}\n```"
+    },
+    {
+        "meta_op": "Check whether record has declared annotations",
+        "meta_impl": "```java\nimport net.sourceforge.pmd.lang.java.ast.*;\nimport net.sourceforge.pmd.lang.ast.NodeStream;\npublic boolean hasAnnotations(ASTRecordDeclaration node){\n    NodeStream<ASTAnnotation> annotations = node.getDeclaredAnnotations();\n    return annotations.nonEmpty();\n}\n```"
+    },
+    {
+        "meta_op": "Check whether enum has declared annotations",
+        "meta_impl": "```java\nimport net.sourceforge.pmd.lang.java.ast.*;\nimport net.sourceforge.pmd.lang.ast.NodeStream;\npublic boolean hasAnnotations(ASTEnumDeclaration node){\n    NodeStream<ASTAnnotation> annotations = node.getDeclaredAnnotations();\n    return annotations.nonEmpty();\n}\n```"
+    },
+    {
+        "meta_op": "Get the dimension of array",
+        "meta_impl": "```java\nimport net.sourceforge.pmd.lang.java.ast.ASTVariableDeclaratorId;\nimport net.sourceforge.pmd.lang.java.ast.ASTArrayType;\nimport net.sourceforge.pmd.lang.java.ast.ASTArrayDimensions;\npublic int getArrayDimension(ASTVariableDeclaratorId varId) {\n    int dimension = 0;\n    if(varId.getType().isArray()){\n        ASTArrayType arrayType = (ASTArrayType)varId.getTypeNode();\n        ASTArrayDimensions arrayTypeDimensions = arrayType.getDimensions();\n        dimension = arrayTypeDimensions.size();\n    }\n    return dimension;\n}\n```"
+    },
+    {
+        "meta_op": "Get the length of one dimension array",
+        "meta_impl": "```java\nimport net.sourceforge.pmd.lang.java.ast.ASTVariableDeclaratorId;\nimport net.sourceforge.pmd.lang.java.ast.ASTArrayType;\nimport net.sourceforge.pmd.lang.java.ast.ASTArrayDimensions;\nimport net.sourceforge.pmd.lang.java.ast.ASTArrayDimExpr;\nimport net.sourceforge.pmd.lang.java.ast.ASTArrayAllocation;\nimport net.sourceforge.pmd.lang.java.ast.ASTArrayInitializer;\nimport net.sourceforge.pmd.lang.java.ast.ASTNumericLiteral;\npublic int getLengthOfOneDimensionArray(ASTVariableDeclaratorId varId) {\n    int arrayLen = 0;\n    int dimension;\n    if (varId.getType().isArray()) {\n        ASTArrayType arrayType = (ASTArrayType) varId.getTypeNode();\n        ASTArrayDimensions arrayTypeDimensions = arrayType.getDimensions();\n        dimension = arrayTypeDimensions.size();\n        if (dimension == 1) {\n            ASTArrayAllocation arrayAllocation = varId.getParent().firstChild(ASTArrayAllocation.class);\n            if (arrayAllocation != null) {\n                ASTArrayInitializer arrayInitializer = arrayAllocation.firstChild(ASTArrayInitializer.class);\n                if (arrayInitializer != null) {\n                    arrayLen = arrayInitializer.length();\n                } else {\n                    ASTArrayDimensions astArrayTypeDims = arrayAllocation.descendants(ASTArrayDimensions.class).first();\n                    ASTArrayDimExpr arrayDimExpr = (ASTArrayDimExpr) astArrayTypeDims.get(0);\n                    if (arrayDimExpr.getLengthExpression() instanceof ASTNumericLiteral) {\n                        arrayLen = ((ASTNumericLiteral) arrayDimExpr.getLengthExpression()).getValueAsInt();\n                    }\n                }\n            }\n        }\n    }\n    return arrayLen;\n}\n```"
+    },
+    {
+        "meta_op": "Check whether the array is string type",
+        "meta_impl": "```java\nimport net.sourceforge.pmd.lang.java.ast.ASTVariableDeclaratorId;\nimport net.sourceforge.pmd.lang.java.ast.ASTArrayType;\nimport net.sourceforge.pmd.lang.java.ast.ASTType;\nimport net.sourceforge.pmd.lang.java.ast.ASTClassOrInterfaceType;\nimport net.sourceforge.pmd.lang.java.types.TypeTestUtil;\npublic boolean isArrayStringType(ASTVariableDeclaratorId node) {\n    if(node.getType().isArray()){\n        ASTArrayType arrayType = (ASTArrayType)node.getTypeNode();\n        ASTType astType = (ASTType) arrayType.getChild(0);\n        if(astType instanceof ASTClassOrInterfaceType){\n            ASTClassOrInterfaceType classOrInterfaceType = (ASTClassOrInterfaceType)astType;\n            return TypeTestUtil.isA(String.class, classOrInterfaceType);\n        }\n    }\n    return false;\n}\n```"
+    },
+    {
+        "meta_op": "Check whether the array is boolean type",
+        "meta_impl": "```java\nimport net.sourceforge.pmd.lang.java.ast.ASTVariableDeclaratorId;\nimport net.sourceforge.pmd.lang.java.ast.ASTArrayType;\nimport net.sourceforge.pmd.lang.java.ast.ASTType;\nimport net.sourceforge.pmd.lang.java.ast.ASTPrimitiveType;\nimport net.sourceforge.pmd.lang.java.types.JPrimitiveType;\npublic boolean isArrayBooleanType(ASTVariableDeclaratorId node) {\n    if(node.getType().isArray()){\n        ASTArrayType arrayType = (ASTArrayType)node.getTypeNode();\n        ASTType astType = (ASTType) arrayType.getChild(0);\n        if(astType instanceof ASTPrimitiveType){\n            ASTPrimitiveType primitiveType = (ASTPrimitiveType)astType;\n            if(primitiveType.getTypeMirror().isPrimitive(JPrimitiveType.PrimitiveTypeKind.BOOLEAN)){\n                return true;\n            }\n        }\n    }\n    return false;\n}\n```"
+    },
+    {
+        "meta_op": "Check whether the array is char type",
+        "meta_impl": "```java\nimport net.sourceforge.pmd.lang.java.ast.ASTVariableDeclaratorId;\nimport net.sourceforge.pmd.lang.java.ast.ASTArrayType;\nimport net.sourceforge.pmd.lang.java.ast.ASTType;\nimport net.sourceforge.pmd.lang.java.ast.ASTPrimitiveType;\nimport net.sourceforge.pmd.lang.java.types.JPrimitiveType;\npublic boolean isArrayCharType(ASTVariableDeclaratorId node) {\n    if(node.getType().isArray()){\n        ASTArrayType arrayType = (ASTArrayType)node.getTypeNode();\n        ASTType astType = (ASTType) arrayType.getChild(0);\n        if(astType instanceof ASTPrimitiveType){\n            ASTPrimitiveType primitiveType = (ASTPrimitiveType)astType;\n            if(primitiveType.getTypeMirror().isPrimitive(JPrimitiveType.PrimitiveTypeKind.CHAR)){\n                return true;\n            }\n        }\n    }\n    return false;\n}\n```"
+    },
+    {
+        "meta_op": "Check whether the array is byte type",
+        "meta_impl": "```java\nimport net.sourceforge.pmd.lang.java.ast.ASTVariableDeclaratorId;\nimport net.sourceforge.pmd.lang.java.ast.ASTArrayType;\nimport net.sourceforge.pmd.lang.java.ast.ASTType;\nimport net.sourceforge.pmd.lang.java.ast.ASTPrimitiveType;\nimport net.sourceforge.pmd.lang.java.types.JPrimitiveType;\npublic boolean isArrayByteType(ASTVariableDeclaratorId node) {\n    if(node.getType().isArray()){\n        ASTArrayType arrayType = (ASTArrayType)node.getTypeNode();\n        ASTType astType = (ASTType) arrayType.getChild(0);\n        if(astType instanceof ASTPrimitiveType){\n            ASTPrimitiveType primitiveType = (ASTPrimitiveType)astType;\n            if(primitiveType.getTypeMirror().isPrimitive(JPrimitiveType.PrimitiveTypeKind.BYTE)){\n                return true;\n            }\n        }\n    }\n    return false;\n}\n```"
+    },
+    {
+        "meta_op": "Check whether the array is short type",
+        "meta_impl": "```java\nimport net.sourceforge.pmd.lang.java.ast.ASTVariableDeclaratorId;\nimport net.sourceforge.pmd.lang.java.ast.ASTArrayType;\nimport net.sourceforge.pmd.lang.java.ast.ASTType;\nimport net.sourceforge.pmd.lang.java.ast.ASTPrimitiveType;\nimport net.sourceforge.pmd.lang.java.types.JPrimitiveType;\npublic boolean isArrayShortType(ASTVariableDeclaratorId node) {\n    if(node.getType().isArray()){\n        ASTArrayType arrayType = (ASTArrayType)node.getTypeNode();\n        ASTType astType = (ASTType) arrayType.getChild(0);\n        if(astType instanceof ASTPrimitiveType){\n            ASTPrimitiveType primitiveType = (ASTPrimitiveType)astType;\n            if(primitiveType.getTypeMirror().isPrimitive(JPrimitiveType.PrimitiveTypeKind.SHORT)){\n                return true;\n            }\n        }\n    }\n    return false;\n}\n```"
+    },
+    {
+        "meta_op": "Check whether the array is int type",
+        "meta_impl": "```java\nimport net.sourceforge.pmd.lang.java.ast.ASTVariableDeclaratorId;\nimport net.sourceforge.pmd.lang.java.ast.ASTArrayType;\nimport net.sourceforge.pmd.lang.java.ast.ASTType;\nimport net.sourceforge.pmd.lang.java.ast.ASTPrimitiveType;\nimport net.sourceforge.pmd.lang.java.types.JPrimitiveType;\npublic boolean isArrayIntType(ASTVariableDeclaratorId node) {\n    if(node.getType().isArray()){\n        ASTArrayType arrayType = (ASTArrayType)node.getTypeNode();\n        ASTType astType = (ASTType) arrayType.getChild(0);\n        if(astType instanceof ASTPrimitiveType){\n            ASTPrimitiveType primitiveType = (ASTPrimitiveType)astType;\n            if(primitiveType.getTypeMirror().isPrimitive(JPrimitiveType.PrimitiveTypeKind.INT)){\n                return true;\n            }\n        }\n    }\n    return false;\n}\n```"
+    },
+    {
+        "meta_op": "Check whether the array is long type",
+        "meta_impl": "```java\nimport net.sourceforge.pmd.lang.java.ast.ASTVariableDeclaratorId;\nimport net.sourceforge.pmd.lang.java.ast.ASTArrayType;\nimport net.sourceforge.pmd.lang.java.ast.ASTType;\nimport net.sourceforge.pmd.lang.java.ast.ASTPrimitiveType;\nimport net.sourceforge.pmd.lang.java.types.JPrimitiveType;\npublic boolean isArrayLongType(ASTVariableDeclaratorId node) {\n    if(node.getType().isArray()){\n        ASTArrayType arrayType = (ASTArrayType)node.getTypeNode();\n        ASTType astType = (ASTType) arrayType.getChild(0);\n        if(astType instanceof ASTPrimitiveType){\n            ASTPrimitiveType primitiveType = (ASTPrimitiveType)astType;\n            if(primitiveType.getTypeMirror().isPrimitive(JPrimitiveType.PrimitiveTypeKind.LONG)){\n                return true;\n            }\n        }\n    }\n    return false;\n}\n```"
+    },
+    {
+        "meta_op": "Check whether the array is float type",
+        "meta_impl": "```java\nimport net.sourceforge.pmd.lang.java.ast.ASTVariableDeclaratorId;\nimport net.sourceforge.pmd.lang.java.ast.ASTArrayType;\nimport net.sourceforge.pmd.lang.java.ast.ASTType;\nimport net.sourceforge.pmd.lang.java.ast.ASTPrimitiveType;\nimport net.sourceforge.pmd.lang.java.types.JPrimitiveType;\npublic boolean isArrayFloatType(ASTVariableDeclaratorId node) {\n    if(node.getType().isArray()){\n        ASTArrayType arrayType = (ASTArrayType)node.getTypeNode();\n        ASTType astType = (ASTType) arrayType.getChild(0);\n        if(astType instanceof ASTPrimitiveType){\n            ASTPrimitiveType primitiveType = (ASTPrimitiveType)astType;\n            if(primitiveType.getTypeMirror().isPrimitive(JPrimitiveType.PrimitiveTypeKind.FLOAT)){\n                return true;\n            }\n        }\n    }\n    return false;\n}\n```"
+    },
+    {
+        "meta_op": "Check whether the array is double type",
+        "meta_impl": "```java\nimport net.sourceforge.pmd.lang.java.ast.ASTVariableDeclaratorId;\nimport net.sourceforge.pmd.lang.java.ast.ASTArrayType;\nimport net.sourceforge.pmd.lang.java.ast.ASTType;\nimport net.sourceforge.pmd.lang.java.ast.ASTPrimitiveType;\nimport net.sourceforge.pmd.lang.java.types.JPrimitiveType;\npublic boolean isArrayDoubleType(ASTVariableDeclaratorId node) {\n    if(node.getType().isArray()){\n        ASTArrayType arrayType = (ASTArrayType)node.getTypeNode();\n        ASTType astType = (ASTType) arrayType.getChild(0);\n        if(astType instanceof ASTPrimitiveType){\n            ASTPrimitiveType primitiveType = (ASTPrimitiveType)astType;\n            if(primitiveType.getTypeMirror().isPrimitive(JPrimitiveType.PrimitiveTypeKind.DOUBLE)){\n                return true;\n            }\n        }\n    }\n    return false;\n}\n```"
+    },
+    {
+        "meta_op": "Check whether the array is boxed primitive type",
+        "meta_impl": "```java\nimport net.sourceforge.pmd.lang.java.ast.ASTVariableDeclaratorId;\nimport net.sourceforge.pmd.lang.java.ast.ASTArrayType;\nimport net.sourceforge.pmd.lang.java.ast.ASTType;\nimport net.sourceforge.pmd.lang.java.ast.ASTPrimitiveType;\npublic boolean isArrayBoxedPrimitiveType(ASTVariableDeclaratorId node) {\n    if(node.getType().isArray()){\n        ASTArrayType arrayType = (ASTArrayType)node.getTypeNode();\n        ASTType astType = (ASTType) arrayType.getChild(0);\n        if(astType instanceof ASTPrimitiveType){\n            ASTPrimitiveType primitiveType = (ASTPrimitiveType)astType;\n            if(primitiveType.getTypeMirror().isBoxedPrimitive()){\n                return true;\n            }\n        }\n    }\n    return false;\n}\n```"
+    },
+    {
+        "meta_op": "Check whether the array is x class type",
+        "meta_impl": "```java\nimport net.sourceforge.pmd.lang.java.ast.ASTVariableDeclaratorId;\nimport net.sourceforge.pmd.lang.java.ast.ASTArrayType;\nimport net.sourceforge.pmd.lang.java.ast.ASTType;\nimport net.sourceforge.pmd.lang.java.ast.ASTClassOrInterfaceType;\nimport net.sourceforge.pmd.lang.java.types.TypeTestUtil;\npublic boolean isArrayClassType(ASTVariableDeclaratorId node) {\n    if(node.getType().isArray()){\n        ASTArrayType arrayType = (ASTArrayType)node.getTypeNode();\n        ASTType astType = (ASTType) arrayType.getChild(0);\n        if(astType instanceof ASTClassOrInterfaceType){\n            ASTClassOrInterfaceType classOrInterfaceType = (ASTClassOrInterfaceType)astType;\n            return TypeTestUtil.isA(x.class, classOrInterfaceType);\n        }\n    }\n    return false;\n}\n```"
+    },
+    {
+        "meta_op": "Check whether the array is enum type",
+        "meta_impl": "```java\nimport net.sourceforge.pmd.lang.java.ast.ASTVariableDeclaratorId;\nimport net.sourceforge.pmd.lang.java.ast.ASTArrayType;\nimport net.sourceforge.pmd.lang.java.ast.ASTType;\nimport net.sourceforge.pmd.lang.java.symbols.JClassSymbol;\npublic boolean isArrayEnumType(ASTVariableDeclaratorId node) {\n    if(node.getType().isArray()){\n        ASTArrayType arrayType = (ASTArrayType)node.getTypeNode();\n        ASTType astType = (ASTType) arrayType.getChild(0);\n        return astType.getTypeMirror().getSymbol() instanceof JClassSymbol && ((JClassSymbol)astType.getTypeMirror().getSymbol()).isEnum();\n    }\n    return false;\n}\n```"
+    },
+    {
+        "meta_op": "Check whether the array is record type",
+        "meta_impl": "```java\nimport net.sourceforge.pmd.lang.java.ast.ASTVariableDeclaratorId;\nimport net.sourceforge.pmd.lang.java.ast.ASTArrayType;\nimport net.sourceforge.pmd.lang.java.ast.ASTType;\nimport net.sourceforge.pmd.lang.java.symbols.JClassSymbol;\npublic boolean isArrayRecordType(ASTVariableDeclaratorId node) {\n    if(node.getType().isArray()){\n        ASTArrayType arrayType = (ASTArrayType)node.getTypeNode();\n        ASTType astType = (ASTType) arrayType.getChild(0);\n        return astType.getTypeMirror().getSymbol() instanceof JClassSymbol && ((JClassSymbol)astType.getTypeMirror().getSymbol()).isRecord();\n    }\n    return false;\n}\n```"
+    },
+    {
+        "meta_op": "Check whether the type of object is x class type",
+        "meta_impl": "```java\nimport net.sourceforge.pmd.lang.java.ast.ASTConstructorCall;\nimport net.sourceforge.pmd.lang.java.types.TypeTestUtil;\npublic boolean isVariableAccessStringType(ASTConstructorCall node){\n    return TypeTestUtil.isA(x.class, node);\n}\n```"
+    }
+]
