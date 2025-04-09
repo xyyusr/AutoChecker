@@ -1,0 +1,2406 @@
+{
+    "name": "InefficientEmptyStringCheckRule",
+    "pass_rate": 94.44,
+    "description": "String.trim().length() == 0 and String.trim().isEmpty() are inefficient ways to check if a String is really blank. Prevent it.",
+    "steps": [
+        {
+            "status": "Preparing to use negative test case to generate initial checker"
+        },
+        {
+            "status": "Generating test case logic using (violate rule)test case 2 in attempt 1 / 5",
+            "logics": [
+                "Get the condition of the if statement.",
+                "Check whether the condition is an infix expression.",
+                "Get the operator of the infix expression.",
+                "Check whether the operator is \"==\".",
+                "Get the left operand of the infix expression.",
+                "Check whether the left operand is a method call.",
+                "Get the name of the called method.",
+                "Check whether the method name is \"length\".",
+                "Get the method caller of the called method.",
+                "Check whether the method caller is a method call.",
+                "Get the name of the method caller's called method.",
+                "Check whether the method name is \"trim\".",
+                "Get the method caller of the trim method.",
+                "Check whether the method caller is a string type.",
+                "Get the right operand of the infix expression.",
+                "Check whether the right operand is a numeric literal.",
+                "Get the value of the numeric literal.",
+                "Check whether the value is 0."
+            ],
+            "test_cases": [
+                {
+                    "name": "(violate rule)test case 2",
+                    "selected": true
+                }
+            ]
+        },
+        {
+            "status": "Querying API for checking using (violate rule)test case 2",
+            "api_info": [
+                {
+                    "type": "api",
+                    "data": "net.sourceforge.pmd.lang.java.ast.ASTIfStatement: public net.sourceforge.pmd.lang.java.ast.ASTExpression getCondition()"
+                },
+                {
+                    "type": "api",
+                    "data": "net.sourceforge.pmd.lang.java.ast.ASTInfixExpression: public net.sourceforge.pmd.lang.java.ast.BinaryOp getOperator()"
+                },
+                {
+                    "type": "api",
+                    "data": "net.sourceforge.pmd.lang.java.ast.ASTIfStatement: public boolean equals(java.lang.Object)"
+                },
+                {
+                    "type": "api",
+                    "data": "net.sourceforge.pmd.lang.java.ast.ASTInfixExpression: public net.sourceforge.pmd.lang.java.ast.ASTExpression getLeftOperand()"
+                },
+                {
+                    "type": "api",
+                    "data": "net.sourceforge.pmd.lang.java.ast.ASTMethodCall: public boolean isExpression()"
+                },
+                {
+                    "type": "api",
+                    "data": "net.sourceforge.pmd.lang.java.ast.ASTMethodCall: public java.lang.String getMethodName()"
+                },
+                {
+                    "type": "api",
+                    "data": "net.sourceforge.pmd.lang.java.ast.ASTMethodCall: public net.sourceforge.pmd.lang.java.ast.ASTExpression getQualifier()"
+                },
+                {
+                    "type": "api",
+                    "data": "net.sourceforge.pmd.lang.java.ast.ASTMethodCall: public boolean equals(java.lang.Object)"
+                },
+                {
+                    "type": "api",
+                    "data": "net.sourceforge.pmd.lang.java.ast.ASTInfixExpression: public net.sourceforge.pmd.lang.java.ast.ASTExpression getRightOperand()"
+                },
+                {
+                    "type": "api",
+                    "data": "net.sourceforge.pmd.lang.java.ast.ASTNumericLiteral: public boolean isDoubleLiteral()"
+                },
+                {
+                    "type": "api",
+                    "data": "net.sourceforge.pmd.lang.java.ast.ASTNumericLiteral: public double getValueAsDouble()"
+                },
+                {
+                    "type": "api",
+                    "data": "net.sourceforge.pmd.lang.java.rule.internal.JavaRuleUtil: static public boolean isZeroChecked(net.sourceforge.pmd.lang.java.ast.ASTExpression)"
+                },
+                {
+                    "type": "meta",
+                    "data": "Check whether the operator in infix expression is ''"
+                },
+                {
+                    "type": "meta",
+                    "data": "Check whether the method caller is string type"
+                }
+            ]
+        },
+        {
+            "status": "Success! Generate initial checker code using (violate rule)test case 2. Start to iterate other test cases!",
+            "checker_code": "package net.sourceforge.pmd.lang.java.rule.performance;\n\n\nimport net.sourceforge.pmd.lang.java.rule.AbstractJavaRulechainRule;\nimport net.sourceforge.pmd.lang.java.ast. *;\nimport net.sourceforge.pmd.lang.java.ast.internal. *;\nimport net.sourceforge.pmd.lang.java.types. *;\nimport net.sourceforge.pmd.lang.java.symbols. *;\nimport net.sourceforge.pmd.lang.ast.NodeStream;\npublic class InefficientEmptyStringCheckRule extends AbstractJavaRulechainRule {\n    public InefficientEmptyStringCheckRule() {\n        super(ASTIfStatement.class);\n    }\n\n    @Override\n    public Object visit(ASTIfStatement node, Object data) {\n        ASTExpression condition = node.getCondition();\n        if (condition instanceof ASTInfixExpression) {\n            ASTInfixExpression infixExpression = (ASTInfixExpression) condition;\n            if (isInfixExpressionWithOperator(infixExpression, BinaryOp.EQ)) {\n                ASTExpression leftOperand = infixExpression.getLeftOperand();\n                if (leftOperand instanceof ASTMethodCall) {\n                    ASTMethodCall methodCall = (ASTMethodCall) leftOperand;\n                    if (isMethodCallerStringType(methodCall) && \"length\".equals(methodCall.getMethodName())) {\n                        ASTExpression qualifier = methodCall.getQualifier();\n                        if (qualifier instanceof ASTMethodCall) {\n                            ASTMethodCall trimCall = (ASTMethodCall) qualifier;\n                            if (\"trim\".equals(trimCall.getMethodName())) {\n                                addViolation(data, node);\n                            }\n                        }\n                    }\n                }\n            }\n        }\n        return super.visit(node, data);\n    }\n\n    private boolean isInfixExpressionWithOperator(ASTInfixExpression node, BinaryOp op) {\n        return JavaAstUtils.isInfixExprWithOperator(node, op);\n    }\n\n    private boolean isMethodCallerStringType(ASTMethodCall node) {\n        return TypeTestUtil.isA(String.class, node.getQualifier());\n    }\n}",
+            "test_cases": [
+                {
+                    "name": "(violate rule)test case 2",
+                    "selected": true
+                }
+            ]
+        },
+        {
+            "status": "Running test cases...",
+            "test_cases": [
+                {
+                    "name": "(follow rule)test case 1",
+                    "status": "pending"
+                },
+                {
+                    "name": "(violate rule)test case 2",
+                    "status": "pending"
+                },
+                {
+                    "name": "(follow rule)test case 3",
+                    "status": "pending"
+                },
+                {
+                    "name": "(violate rule)test case 4",
+                    "status": "pending"
+                },
+                {
+                    "name": "(follow rule)test case 5",
+                    "status": "pending"
+                },
+                {
+                    "name": "(violate rule)test case 6",
+                    "status": "pending"
+                },
+                {
+                    "name": "(follow rule)test case 7",
+                    "status": "pending"
+                },
+                {
+                    "name": "(follow rule)test case 8",
+                    "status": "pending"
+                },
+                {
+                    "name": "(follow rule)test case 9",
+                    "status": "pending"
+                },
+                {
+                    "name": "(violate rule)test case 10",
+                    "status": "pending"
+                },
+                {
+                    "name": "(violate rule)test case 11",
+                    "status": "pending"
+                },
+                {
+                    "name": "(violate rule)test case 12",
+                    "status": "pending"
+                },
+                {
+                    "name": "(follow rule)test case 13",
+                    "status": "pending"
+                },
+                {
+                    "name": "(follow rule)test case 14",
+                    "status": "pending"
+                },
+                {
+                    "name": "(violate rule)test case 15",
+                    "status": "pending"
+                },
+                {
+                    "name": "(violate rule)test case 16",
+                    "status": "pending"
+                },
+                {
+                    "name": "(violate rule)test case 17",
+                    "status": "pending"
+                },
+                {
+                    "name": "(violate rule)test case 18",
+                    "status": "pending"
+                }
+            ]
+        },
+        {
+            "status": "Failed to pass (violate rule)test case 4, and trying fix, generating test case logic in attempt 1 / 5",
+            "test_cases": [
+                {
+                    "name": "(follow rule)test case 1",
+                    "status": "success"
+                },
+                {
+                    "name": "(violate rule)test case 2",
+                    "status": "success"
+                },
+                {
+                    "name": "(follow rule)test case 3",
+                    "status": "success"
+                },
+                {
+                    "name": "(violate rule)test case 4",
+                    "status": "failure",
+                    "selected": true
+                }
+            ],
+            "fixing": true,
+            "logics": [
+                "Get the condition of the while statement.",
+                "Get the left operand of the infix expression in the condition.",
+                "Check whether the left operand is a method call.",
+                "Get the name of the called method.",
+                "Check whether the method name is `length`.",
+                "Get the method caller of the `length` method call.",
+                "Check whether the method caller is a method call.",
+                "Get the name of the called method of the method caller.",
+                "Check whether the method name is `trim`.",
+                "Get the method caller of the `trim` method call.",
+                "Check whether the method caller is a variable access.",
+                "Get the type of the variable accessed.",
+                "Check whether the type is `String`.",
+                "Get the operator of the infix expression in the condition.",
+                "Check whether the operator is `==`.",
+                "Get the right operand of the infix expression in the condition.",
+                "Check whether the right operand is a numeric literal.",
+                "Get the value of the numeric literal.",
+                "Check whether the value is `0`."
+            ]
+        },
+        {
+            "status": "Querying API for checking using test logic",
+            "fixing": true,
+            "api_info": [
+                {
+                    "type": "api",
+                    "data": "net.sourceforge.pmd.lang.java.ast.ASTWhileStatement: public net.sourceforge.pmd.lang.java.ast.ASTExpression getCondition()"
+                },
+                {
+                    "type": "api",
+                    "data": "net.sourceforge.pmd.lang.java.ast.ASTInfixExpression: public net.sourceforge.pmd.lang.java.ast.ASTExpression getLeftOperand()"
+                },
+                {
+                    "type": "api",
+                    "data": "net.sourceforge.pmd.lang.java.ast.ASTMethodCall: public boolean isExpression()"
+                },
+                {
+                    "type": "api",
+                    "data": "net.sourceforge.pmd.lang.java.ast.ASTMethodCall: public java.lang.String getMethodName()"
+                },
+                {
+                    "type": "api",
+                    "data": "net.sourceforge.pmd.lang.java.ast.ASTMethodCall: public net.sourceforge.pmd.lang.java.ast.ASTExpression getQualifier()"
+                },
+                {
+                    "type": "api",
+                    "data": "net.sourceforge.pmd.lang.java.ast.ASTMethodCall: public boolean equals(java.lang.Object)"
+                },
+                {
+                    "type": "api",
+                    "data": "net.sourceforge.pmd.lang.java.ast.ASTVariableAccess: public boolean equals(java.lang.Object)"
+                },
+                {
+                    "type": "api",
+                    "data": "net.sourceforge.pmd.lang.java.ast.ASTVariableAccess: public net.sourceforge.pmd.lang.java.types.JTypeMirror getTypeMirror()"
+                },
+                {
+                    "type": "api",
+                    "data": "net.sourceforge.pmd.lang.java.ast.ASTInfixExpression: public net.sourceforge.pmd.lang.java.ast.BinaryOp getOperator()"
+                },
+                {
+                    "type": "api",
+                    "data": "net.sourceforge.pmd.lang.java.ast.ASTInfixExpression: public net.sourceforge.pmd.lang.java.ast.ASTExpression getRightOperand()"
+                },
+                {
+                    "type": "api",
+                    "data": "net.sourceforge.pmd.lang.java.ast.ASTNumericLiteral: public boolean isDoubleLiteral()"
+                },
+                {
+                    "type": "api",
+                    "data": "net.sourceforge.pmd.lang.java.ast.ASTNumericLiteral: public double getValueAsDouble()"
+                },
+                {
+                    "type": "api",
+                    "data": "net.sourceforge.pmd.lang.java.rule.internal.JavaRuleUtil: static public boolean isZeroChecked(net.sourceforge.pmd.lang.java.ast.ASTExpression)"
+                },
+                {
+                    "type": "meta",
+                    "data": "Check whether the argument is string type"
+                }
+            ]
+        },
+        {
+            "status": "Fix successfully! Generating checker code",
+            "checker_code": "package net.sourceforge.pmd.lang.java.rule.performance;\n\n\nimport net.sourceforge.pmd.lang.java.rule.AbstractJavaRulechainRule;\nimport net.sourceforge.pmd.lang.java.ast. *;\nimport net.sourceforge.pmd.lang.java.ast.internal. *;\nimport net.sourceforge.pmd.lang.java.types. *;\nimport net.sourceforge.pmd.lang.java.symbols. *;\nimport net.sourceforge.pmd.lang.ast.NodeStream;\npublic class InefficientEmptyStringCheckRule extends AbstractJavaRulechainRule {\n    public InefficientEmptyStringCheckRule() {\n        super(ASTIfStatement.class, ASTWhileStatement.class);\n    }\n\n    @Override\n    public Object visit(ASTIfStatement node, Object data) {\n        checkCondition(node.getCondition(), data);\n        return super.visit(node, data);\n    }\n\n    @Override\n    public Object visit(ASTWhileStatement node, Object data) {\n        checkCondition(node.getCondition(), data);\n        return super.visit(node, data);\n    }\n\n    private void checkCondition(ASTExpression condition, Object data) {\n        if (condition instanceof ASTInfixExpression) {\n            ASTInfixExpression infixExpression = (ASTInfixExpression) condition;\n            if (isInfixExpressionWithOperator(infixExpression, BinaryOp.EQ)) {\n                ASTExpression leftOperand = infixExpression.getLeftOperand();\n                if (leftOperand instanceof ASTMethodCall) {\n                    ASTMethodCall methodCall = (ASTMethodCall) leftOperand;\n                    if (isMethodCallerStringType(methodCall) && \"length\".equals(methodCall.getMethodName())) {\n                        ASTExpression qualifier = methodCall.getQualifier();\n                        if (qualifier instanceof ASTMethodCall) {\n                            ASTMethodCall trimCall = (ASTMethodCall) qualifier;\n                            if (\"trim\".equals(trimCall.getMethodName())) {\n                                addViolation(data, condition);\n                            }\n                        }\n                    }\n                }\n            }\n        }\n    }\n\n    private boolean isInfixExpressionWithOperator(ASTInfixExpression node, BinaryOp op) {\n        return JavaAstUtils.isInfixExprWithOperator(node, op);\n    }\n\n    private boolean isMethodCallerStringType(ASTMethodCall node) {\n        return TypeTestUtil.isA(String.class, node.getQualifier());\n    }\n}"
+        },
+        {
+            "status": "Running test cases...",
+            "test_cases": [
+                {
+                    "name": "(follow rule)test case 1",
+                    "status": "pending"
+                },
+                {
+                    "name": "(violate rule)test case 2",
+                    "status": "pending"
+                },
+                {
+                    "name": "(follow rule)test case 3",
+                    "status": "pending"
+                },
+                {
+                    "name": "(violate rule)test case 4",
+                    "status": "pending"
+                },
+                {
+                    "name": "(follow rule)test case 5",
+                    "status": "pending"
+                },
+                {
+                    "name": "(violate rule)test case 6",
+                    "status": "pending"
+                },
+                {
+                    "name": "(follow rule)test case 7",
+                    "status": "pending"
+                },
+                {
+                    "name": "(follow rule)test case 8",
+                    "status": "pending"
+                },
+                {
+                    "name": "(follow rule)test case 9",
+                    "status": "pending"
+                },
+                {
+                    "name": "(violate rule)test case 10",
+                    "status": "pending"
+                },
+                {
+                    "name": "(violate rule)test case 11",
+                    "status": "pending"
+                },
+                {
+                    "name": "(violate rule)test case 12",
+                    "status": "pending"
+                },
+                {
+                    "name": "(follow rule)test case 13",
+                    "status": "pending"
+                },
+                {
+                    "name": "(follow rule)test case 14",
+                    "status": "pending"
+                },
+                {
+                    "name": "(violate rule)test case 15",
+                    "status": "pending"
+                },
+                {
+                    "name": "(violate rule)test case 16",
+                    "status": "pending"
+                },
+                {
+                    "name": "(violate rule)test case 17",
+                    "status": "pending"
+                },
+                {
+                    "name": "(violate rule)test case 18",
+                    "status": "pending"
+                }
+            ]
+        },
+        {
+            "status": "Failed to pass (violate rule)test case 6, and trying fix, generating test case logic in attempt 1 / 5",
+            "test_cases": [
+                {
+                    "name": "(follow rule)test case 1",
+                    "status": "success"
+                },
+                {
+                    "name": "(violate rule)test case 2",
+                    "status": "success"
+                },
+                {
+                    "name": "(follow rule)test case 3",
+                    "status": "success"
+                },
+                {
+                    "name": "(violate rule)test case 4",
+                    "status": "success"
+                },
+                {
+                    "name": "(follow rule)test case 5",
+                    "status": "success"
+                },
+                {
+                    "name": "(violate rule)test case 6",
+                    "status": "failure",
+                    "selected": true
+                }
+            ],
+            "fixing": true,
+            "logics": [
+                "Get the right-hand side operand of the assignment expression.",
+                "Check whether the operand is an infix expression.",
+                "Get the operator of the infix expression.",
+                "Check whether the operator is `==`.",
+                "Get the left operand of the infix expression.",
+                "Check whether the left operand is a method call.",
+                "Get the name of the called method.",
+                "Check whether the name is `length`.",
+                "Get the method caller of the `length` method.",
+                "Check whether the method caller is a method call.",
+                "Get the name of the called method.",
+                "Check whether the name is `trim`.",
+                "Get the method caller of the `trim` method.",
+                "Check whether the method caller is a string type.",
+                "Get the right operand of the infix expression.",
+                "Check whether the right operand is a numeric literal.",
+                "Get the value of the numeric literal.",
+                "Check whether the value is `0`."
+            ]
+        },
+        {
+            "status": "Querying API for checking using test logic",
+            "fixing": true,
+            "api_info": [
+                {
+                    "type": "api",
+                    "data": "net.sourceforge.pmd.lang.java.ast.ASTAssignmentExpression: public net.sourceforge.pmd.lang.java.ast.ASTExpression getRightOperand()"
+                },
+                {
+                    "type": "api",
+                    "data": "net.sourceforge.pmd.lang.java.ast.ASTInfixExpression: public net.sourceforge.pmd.lang.java.ast.BinaryOp getOperator()"
+                },
+                {
+                    "type": "api",
+                    "data": "net.sourceforge.pmd.lang.java.ast.ASTInfixExpression: public net.sourceforge.pmd.lang.java.ast.ASTExpression getLeftOperand()"
+                },
+                {
+                    "type": "api",
+                    "data": "net.sourceforge.pmd.lang.java.ast.ASTMethodCall: public boolean isExpression()"
+                },
+                {
+                    "type": "api",
+                    "data": "net.sourceforge.pmd.lang.java.ast.ASTMethodCall: public java.lang.String getMethodName()"
+                },
+                {
+                    "type": "api",
+                    "data": "net.sourceforge.pmd.lang.java.ast.ASTMethodCall: public net.sourceforge.pmd.lang.java.ast.ASTExpression getQualifier()"
+                },
+                {
+                    "type": "api",
+                    "data": "net.sourceforge.pmd.lang.java.ast.ASTMethodCall: public boolean equals(java.lang.Object)"
+                },
+                {
+                    "type": "api",
+                    "data": "net.sourceforge.pmd.lang.java.ast.ASTInfixExpression: public net.sourceforge.pmd.lang.java.ast.ASTExpression getRightOperand()"
+                },
+                {
+                    "type": "api",
+                    "data": "net.sourceforge.pmd.lang.java.ast.ASTNumericLiteral: public boolean isDoubleLiteral()"
+                },
+                {
+                    "type": "api",
+                    "data": "net.sourceforge.pmd.lang.java.ast.ASTNumericLiteral: public double getValueAsDouble()"
+                },
+                {
+                    "type": "api",
+                    "data": "net.sourceforge.pmd.lang.java.rule.internal.JavaRuleUtil: static public boolean isZeroChecked(net.sourceforge.pmd.lang.java.ast.ASTExpression)"
+                },
+                {
+                    "type": "meta",
+                    "data": "Check whether the operator in infix expression is ''"
+                },
+                {
+                    "type": "meta",
+                    "data": "Check whether the method caller is string type"
+                }
+            ]
+        },
+        {
+            "status": "Generated checker fails to pass (violate rule)test case 6 in attempt: 1 / 5, preparing next attempt.",
+            "fixing": true
+        },
+        {
+            "status": "Failed to pass (violate rule)test case 6, and trying fix, generating test case logic in attempt 2 / 5",
+            "test_cases": [
+                {
+                    "name": "(follow rule)test case 1",
+                    "status": "success"
+                },
+                {
+                    "name": "(violate rule)test case 2",
+                    "status": "success"
+                },
+                {
+                    "name": "(follow rule)test case 3",
+                    "status": "success"
+                },
+                {
+                    "name": "(violate rule)test case 4",
+                    "status": "success"
+                },
+                {
+                    "name": "(follow rule)test case 5",
+                    "status": "success"
+                },
+                {
+                    "name": "(violate rule)test case 6",
+                    "status": "failure",
+                    "selected": true
+                }
+            ],
+            "fixing": true,
+            "logics": [
+                "Get the name of the class.",
+                "Get the name of the method.",
+                "Get the type of the local variable `foo`.",
+                "Check whether the type of `foo` is `String`.",
+                "Get the expression assigned to the local variable `b`.",
+                "Check whether the expression involves a method call.",
+                "Get the name of the called method.",
+                "Check whether the called method is `trim`.",
+                "Get the return type of the `trim` method.",
+                "Check whether the return type of `trim` is `String`.",
+                "Get the next method call in the expression.",
+                "Check whether the next method call is `length`.",
+                "Get the return type of the `length` method.",
+                "Check whether the return type of `length` is `int`.",
+                "Check whether the expression compares the result of `length` with `0`.",
+                "Check whether the comparison operator is `==`."
+            ]
+        },
+        {
+            "status": "Querying API for checking using test logic",
+            "fixing": true,
+            "api_info": [
+                {
+                    "type": "api",
+                    "data": "net.sourceforge.pmd.lang.java.ast.ASTClassOrInterfaceDeclaration: public java.lang.String getSimpleName()"
+                },
+                {
+                    "type": "api",
+                    "data": "net.sourceforge.pmd.lang.java.ast.ASTMethodDeclaration: public java.lang.String getName()"
+                },
+                {
+                    "type": "api",
+                    "data": "net.sourceforge.pmd.lang.java.ast.ASTLocalVariableDeclaration: public net.sourceforge.pmd.lang.java.ast.ASTType getTypeNode()"
+                },
+                {
+                    "type": "api",
+                    "data": "net.sourceforge.pmd.lang.java.ast.ASTMethodCall: public boolean isExpression()"
+                },
+                {
+                    "type": "api",
+                    "data": "net.sourceforge.pmd.lang.java.ast.ASTMethodCall: public java.lang.String getMethodName()"
+                },
+                {
+                    "type": "api",
+                    "data": "net.sourceforge.pmd.lang.java.ast.ASTMethodCall: public boolean equals(java.lang.Object)"
+                },
+                {
+                    "type": "api",
+                    "data": "net.sourceforge.pmd.lang.java.ast.ASTMethodCall: public net.sourceforge.pmd.lang.ast.Node getNextSibling()"
+                },
+                {
+                    "type": "meta",
+                    "data": "Check whether the argument is string type"
+                },
+                {
+                    "type": "meta",
+                    "data": "Check whether the return type of called method is string"
+                },
+                {
+                    "type": "meta",
+                    "data": "Check whether the return type of method is int"
+                }
+            ]
+        },
+        {
+            "status": "Generated checker fails to compile in attempt 2 / 5, preparing next attempt."
+        },
+        {
+            "status": "Failed to pass (violate rule)test case 6, and trying fix, generating test case logic in attempt 3 / 5",
+            "test_cases": [
+                {
+                    "name": "(follow rule)test case 1",
+                    "status": "success"
+                },
+                {
+                    "name": "(violate rule)test case 2",
+                    "status": "success"
+                },
+                {
+                    "name": "(follow rule)test case 3",
+                    "status": "success"
+                },
+                {
+                    "name": "(violate rule)test case 4",
+                    "status": "success"
+                },
+                {
+                    "name": "(follow rule)test case 5",
+                    "status": "success"
+                },
+                {
+                    "name": "(violate rule)test case 6",
+                    "status": "failure",
+                    "selected": true
+                }
+            ],
+            "fixing": true,
+            "logics": [
+                "Get the name of called method.",
+                "Check whether the name is trim.",
+                "Get the method caller.",
+                "Check whether the type of method caller is String class type.",
+                "Get the return type of called method.",
+                "Check whether the return type of called method is String.",
+                "Get the name of called method after trim.",
+                "Check whether the name is length.",
+                "Get the return type of called method after length.",
+                "Check whether the return type of called method is int.",
+                "Get the infix expression after length.",
+                "Get the operator of infix expression.",
+                "Check whether the operator in infix expression is ==.",
+                "Get the right operand of infix expression.",
+                "Check whether the right operand is 0."
+            ]
+        },
+        {
+            "status": "Querying API for checking using test logic",
+            "fixing": true,
+            "api_info": [
+                {
+                    "type": "api",
+                    "data": "net.sourceforge.pmd.lang.java.ast.ASTMethodCall: public java.lang.String getMethodName()"
+                },
+                {
+                    "type": "api",
+                    "data": "net.sourceforge.pmd.lang.java.ast.ASTMethodCall: public net.sourceforge.pmd.lang.java.ast.ASTExpression getQualifier()"
+                },
+                {
+                    "type": "api",
+                    "data": "net.sourceforge.pmd.lang.java.ast.ASTInfixExpression: public net.sourceforge.pmd.lang.java.ast.BinaryOp getOperator()"
+                },
+                {
+                    "type": "api",
+                    "data": "net.sourceforge.pmd.lang.java.ast.ASTInfixExpression: public net.sourceforge.pmd.lang.java.ast.ASTExpression getRightOperand()"
+                },
+                {
+                    "type": "api",
+                    "data": "net.sourceforge.pmd.lang.java.rule.internal.JavaRuleUtil: static public boolean isZeroChecked(net.sourceforge.pmd.lang.java.ast.ASTExpression)"
+                },
+                {
+                    "type": "meta",
+                    "data": "Check whether the method caller is string type"
+                },
+                {
+                    "type": "meta",
+                    "data": "Get the return type of called method"
+                },
+                {
+                    "type": "meta",
+                    "data": "Check whether the return type of called method is string"
+                },
+                {
+                    "type": "meta",
+                    "data": "Check whether the return type of called method is int type"
+                },
+                {
+                    "type": "meta",
+                    "data": "Check whether the operator in infix expression is ''"
+                }
+            ]
+        },
+        {
+            "status": "Generated checker fails to compile in attempt 3 / 5, preparing next attempt."
+        },
+        {
+            "status": "Failed to pass (violate rule)test case 6, and trying fix, generating test case logic in attempt 4 / 5",
+            "test_cases": [
+                {
+                    "name": "(follow rule)test case 1",
+                    "status": "success"
+                },
+                {
+                    "name": "(violate rule)test case 2",
+                    "status": "success"
+                },
+                {
+                    "name": "(follow rule)test case 3",
+                    "status": "success"
+                },
+                {
+                    "name": "(violate rule)test case 4",
+                    "status": "success"
+                },
+                {
+                    "name": "(follow rule)test case 5",
+                    "status": "success"
+                },
+                {
+                    "name": "(violate rule)test case 6",
+                    "status": "failure",
+                    "selected": true
+                }
+            ],
+            "fixing": true,
+            "logics": [
+                "Get the right-hand side operand of the assignment expression.",
+                "Check whether the right-hand side operand is an infix expression.",
+                "Get the operator of the infix expression.",
+                "Check whether the operator is ==.",
+                "Get the left operand of the infix expression.",
+                "Check whether the left operand is a method call.",
+                "Get the name of the called method.",
+                "Check whether the name is length.",
+                "Get the method caller of the called method.",
+                "Check whether the method caller is a method call.",
+                "Get the name of the called method.",
+                "Check whether the name is trim.",
+                "Get the method caller of the called method.",
+                "Check whether the method caller is a variable.",
+                "Get the type of the variable.",
+                "Check whether the type is String.",
+                "Get the right operand of the infix expression.",
+                "Check whether the right operand is a numeric literal.",
+                "Check whether the numeric literal is int literal.",
+                "Get the value of the int literal.",
+                "Check whether the value is 0."
+            ]
+        },
+        {
+            "status": "Querying API for checking using test logic",
+            "fixing": true,
+            "api_info": [
+                {
+                    "type": "api",
+                    "data": "net.sourceforge.pmd.lang.java.ast.ASTAssignmentExpression: public net.sourceforge.pmd.lang.java.ast.ASTExpression getRightOperand()"
+                },
+                {
+                    "type": "api",
+                    "data": "net.sourceforge.pmd.lang.java.ast.ASTInfixExpression: public net.sourceforge.pmd.lang.java.ast.BinaryOp getOperator()"
+                },
+                {
+                    "type": "api",
+                    "data": "net.sourceforge.pmd.lang.java.ast.ASTInfixExpression: public net.sourceforge.pmd.lang.java.ast.ASTExpression getLeftOperand()"
+                },
+                {
+                    "type": "api",
+                    "data": "net.sourceforge.pmd.lang.java.ast.ASTMethodCall: public boolean isExpression()"
+                },
+                {
+                    "type": "api",
+                    "data": "net.sourceforge.pmd.lang.java.ast.ASTMethodCall: public java.lang.String getMethodName()"
+                },
+                {
+                    "type": "api",
+                    "data": "net.sourceforge.pmd.lang.java.ast.ASTMethodCall: public net.sourceforge.pmd.lang.java.ast.ASTExpression getQualifier()"
+                },
+                {
+                    "type": "api",
+                    "data": "net.sourceforge.pmd.lang.java.ast.ASTMethodCall: public boolean equals(java.lang.Object)"
+                },
+                {
+                    "type": "api",
+                    "data": "net.sourceforge.pmd.lang.java.ast.ASTLocalVariableDeclaration: public net.sourceforge.pmd.lang.java.ast.ASTType getTypeNode()"
+                },
+                {
+                    "type": "api",
+                    "data": "net.sourceforge.pmd.lang.java.ast.ASTInfixExpression: public net.sourceforge.pmd.lang.java.ast.ASTExpression getRightOperand()"
+                },
+                {
+                    "type": "api",
+                    "data": "net.sourceforge.pmd.lang.java.ast.ASTNumericLiteral: public boolean isDoubleLiteral()"
+                },
+                {
+                    "type": "api",
+                    "data": "net.sourceforge.pmd.lang.java.ast.ASTNumericLiteral: public boolean isIntLiteral()"
+                },
+                {
+                    "type": "api",
+                    "data": "net.sourceforge.pmd.lang.java.ast.ASTNumericLiteral: public int getValueAsInt()"
+                },
+                {
+                    "type": "api",
+                    "data": "net.sourceforge.pmd.lang.java.rule.internal.JavaRuleUtil: static public boolean isZeroChecked(net.sourceforge.pmd.lang.java.ast.ASTExpression)"
+                },
+                {
+                    "type": "meta",
+                    "data": "Check whether the operator in infix expression is ''"
+                },
+                {
+                    "type": "meta",
+                    "data": "Check whether the field is string type"
+                }
+            ]
+        },
+        {
+            "status": "Fix successfully! Generating checker code",
+            "checker_code": "package net.sourceforge.pmd.lang.java.rule.performance;\n\n\nimport net.sourceforge.pmd.lang.java.rule.AbstractJavaRulechainRule;\nimport net.sourceforge.pmd.lang.java.ast. *;\nimport net.sourceforge.pmd.lang.java.ast.internal. *;\nimport net.sourceforge.pmd.lang.java.types. *;\nimport net.sourceforge.pmd.lang.java.symbols. *;\nimport net.sourceforge.pmd.lang.ast.NodeStream;\npublic class InefficientEmptyStringCheckRule extends AbstractJavaRulechainRule {\n    public InefficientEmptyStringCheckRule() {\n        super(ASTIfStatement.class, ASTWhileStatement.class, ASTLocalVariableDeclaration.class);\n    }\n\n    @Override\n    public Object visit(ASTIfStatement node, Object data) {\n        checkCondition(node.getCondition(), data);\n        return super.visit(node, data);\n    }\n\n    @Override\n    public Object visit(ASTWhileStatement node, Object data) {\n        checkCondition(node.getCondition(), data);\n        return super.visit(node, data);\n    }\n\n    @Override\n    public Object visit(ASTLocalVariableDeclaration node, Object data) {\n        NodeStream<ASTVariableDeclarator> declarators = node.children(ASTVariableDeclarator.class);\n        for (ASTVariableDeclarator declarator : declarators) {\n            ASTExpression initializer = declarator.getInitializer();\n            if (initializer != null) {\n                checkCondition(initializer, data);\n            }\n        }\n        return super.visit(node, data);\n    }\n\n    private void checkCondition(ASTExpression condition, Object data) {\n        if (condition instanceof ASTInfixExpression) {\n            ASTInfixExpression infixExpression = (ASTInfixExpression) condition;\n            if (isInfixExpressionWithOperator(infixExpression, BinaryOp.EQ)) {\n                ASTExpression leftOperand = infixExpression.getLeftOperand();\n                if (leftOperand instanceof ASTMethodCall) {\n                    ASTMethodCall methodCall = (ASTMethodCall) leftOperand;\n                    if (isMethodCallerStringType(methodCall) && \"length\".equals(methodCall.getMethodName())) {\n                        ASTExpression qualifier = methodCall.getQualifier();\n                        if (qualifier instanceof ASTMethodCall) {\n                            ASTMethodCall trimCall = (ASTMethodCall) qualifier;\n                            if (\"trim\".equals(trimCall.getMethodName())) {\n                                addViolation(data, condition);\n                            }\n                        }\n                    }\n                }\n            }\n        }\n    }\n\n    private boolean isInfixExpressionWithOperator(ASTInfixExpression node, BinaryOp op) {\n        return JavaAstUtils.isInfixExprWithOperator(node, op);\n    }\n\n    private boolean isMethodCallerStringType(ASTMethodCall node) {\n        return TypeTestUtil.isA(String.class, node.getQualifier());\n    }\n}"
+        },
+        {
+            "status": "Running test cases...",
+            "test_cases": [
+                {
+                    "name": "(follow rule)test case 1",
+                    "status": "pending"
+                },
+                {
+                    "name": "(violate rule)test case 2",
+                    "status": "pending"
+                },
+                {
+                    "name": "(follow rule)test case 3",
+                    "status": "pending"
+                },
+                {
+                    "name": "(violate rule)test case 4",
+                    "status": "pending"
+                },
+                {
+                    "name": "(follow rule)test case 5",
+                    "status": "pending"
+                },
+                {
+                    "name": "(violate rule)test case 6",
+                    "status": "pending"
+                },
+                {
+                    "name": "(follow rule)test case 7",
+                    "status": "pending"
+                },
+                {
+                    "name": "(follow rule)test case 8",
+                    "status": "pending"
+                },
+                {
+                    "name": "(follow rule)test case 9",
+                    "status": "pending"
+                },
+                {
+                    "name": "(violate rule)test case 10",
+                    "status": "pending"
+                },
+                {
+                    "name": "(violate rule)test case 11",
+                    "status": "pending"
+                },
+                {
+                    "name": "(violate rule)test case 12",
+                    "status": "pending"
+                },
+                {
+                    "name": "(follow rule)test case 13",
+                    "status": "pending"
+                },
+                {
+                    "name": "(follow rule)test case 14",
+                    "status": "pending"
+                },
+                {
+                    "name": "(violate rule)test case 15",
+                    "status": "pending"
+                },
+                {
+                    "name": "(violate rule)test case 16",
+                    "status": "pending"
+                },
+                {
+                    "name": "(violate rule)test case 17",
+                    "status": "pending"
+                },
+                {
+                    "name": "(violate rule)test case 18",
+                    "status": "pending"
+                }
+            ]
+        },
+        {
+            "status": "Failed to pass (follow rule)test case 7, and trying fix, generating test case logic in attempt 1 / 5",
+            "test_cases": [
+                {
+                    "name": "(follow rule)test case 1",
+                    "status": "success"
+                },
+                {
+                    "name": "(violate rule)test case 2",
+                    "status": "success"
+                },
+                {
+                    "name": "(follow rule)test case 3",
+                    "status": "success"
+                },
+                {
+                    "name": "(violate rule)test case 4",
+                    "status": "success"
+                },
+                {
+                    "name": "(follow rule)test case 5",
+                    "status": "success"
+                },
+                {
+                    "name": "(violate rule)test case 6",
+                    "status": "success"
+                },
+                {
+                    "name": "(follow rule)test case 7",
+                    "status": "failure",
+                    "selected": true
+                }
+            ],
+            "fixing": true,
+            "logics": [
+                "Get the name of called method.",
+                "Check whether the name is trim.",
+                "Get the method caller.",
+                "Check whether the type of method caller is String class type.",
+                "Get the next method call after trim.",
+                "Check whether the name is length or isEmpty.",
+                "Get the next operation after length or isEmpty.",
+                "Check whether the operation is a comparison (== or !=).",
+                "Check whether the right-hand side of the comparison is 0."
+            ]
+        },
+        {
+            "status": "Querying API for checking using test logic",
+            "fixing": true,
+            "api_info": [
+                {
+                    "type": "api",
+                    "data": "net.sourceforge.pmd.lang.java.ast.ASTMethodCall: public java.lang.String getMethodName()"
+                },
+                {
+                    "type": "api",
+                    "data": "net.sourceforge.pmd.lang.java.ast.ASTMethodCall: public net.sourceforge.pmd.lang.java.ast.ASTExpression getQualifier()"
+                },
+                {
+                    "type": "api",
+                    "data": "net.sourceforge.pmd.lang.java.ast.ASTMethodCall: public net.sourceforge.pmd.lang.ast.Node getNextSibling()"
+                },
+                {
+                    "type": "meta",
+                    "data": "Check whether the method caller is string type"
+                }
+            ]
+        },
+        {
+            "status": "Fix successfully! Generating checker code",
+            "checker_code": "package net.sourceforge.pmd.lang.java.rule.performance;\n\n\nimport net.sourceforge.pmd.lang.java.rule.AbstractJavaRulechainRule;\nimport net.sourceforge.pmd.lang.java.ast. *;\nimport net.sourceforge.pmd.lang.java.ast.internal. *;\nimport net.sourceforge.pmd.lang.java.types. *;\nimport net.sourceforge.pmd.lang.java.symbols. *;\nimport net.sourceforge.pmd.lang.ast.NodeStream;\npublic class InefficientEmptyStringCheckRule extends AbstractJavaRulechainRule {\n    public InefficientEmptyStringCheckRule() {\n        super(ASTIfStatement.class, ASTWhileStatement.class, ASTLocalVariableDeclaration.class);\n    }\n\n    @Override\n    public Object visit(ASTIfStatement node, Object data) {\n        checkCondition(node.getCondition(), data);\n        return super.visit(node, data);\n    }\n\n    @Override\n    public Object visit(ASTWhileStatement node, Object data) {\n        checkCondition(node.getCondition(), data);\n        return super.visit(node, data);\n    }\n\n    @Override\n    public Object visit(ASTLocalVariableDeclaration node, Object data) {\n        NodeStream<ASTVariableDeclarator> declarators = node.children(ASTVariableDeclarator.class);\n        for (ASTVariableDeclarator declarator : declarators) {\n            ASTExpression initializer = declarator.getInitializer();\n            if (initializer != null) {\n                checkCondition(initializer, data);\n            }\n        }\n        return super.visit(node, data);\n    }\n\n    private void checkCondition(ASTExpression condition, Object data) {\n        if (condition instanceof ASTInfixExpression) {\n            ASTInfixExpression infixExpression = (ASTInfixExpression) condition;\n            if (isInfixExpressionWithOperator(infixExpression, BinaryOp.EQ)) {\n                ASTExpression leftOperand = infixExpression.getLeftOperand();\n                ASTExpression rightOperand = infixExpression.getRightOperand();\n                if (leftOperand instanceof ASTMethodCall) {\n                    ASTMethodCall methodCall = (ASTMethodCall) leftOperand;\n                    if (isMethodCallerStringType(methodCall) && \"length\".equals(methodCall.getMethodName())) {\n                        ASTExpression qualifier = methodCall.getQualifier();\n                        if (qualifier instanceof ASTMethodCall) {\n                            ASTMethodCall trimCall = (ASTMethodCall) qualifier;\n                            if (\"trim\".equals(trimCall.getMethodName())) {\n                                if (rightOperand instanceof ASTNumericLiteral) {\n                                    ASTNumericLiteral numericLiteral = (ASTNumericLiteral) rightOperand;\n                                    if (numericLiteral.getValueAsInt() == 0) {\n                                        addViolation(data, condition);\n                                    }\n                                }\n                            }\n                        }\n                    }\n                }\n            }\n        }\n    }\n\n    private boolean isInfixExpressionWithOperator(ASTInfixExpression node, BinaryOp op) {\n        return JavaAstUtils.isInfixExprWithOperator(node, op);\n    }\n\n    private boolean isMethodCallerStringType(ASTMethodCall node) {\n        return TypeTestUtil.isA(String.class, node.getQualifier());\n    }\n}"
+        },
+        {
+            "status": "Running test cases...",
+            "test_cases": [
+                {
+                    "name": "(follow rule)test case 1",
+                    "status": "pending"
+                },
+                {
+                    "name": "(violate rule)test case 2",
+                    "status": "pending"
+                },
+                {
+                    "name": "(follow rule)test case 3",
+                    "status": "pending"
+                },
+                {
+                    "name": "(violate rule)test case 4",
+                    "status": "pending"
+                },
+                {
+                    "name": "(follow rule)test case 5",
+                    "status": "pending"
+                },
+                {
+                    "name": "(violate rule)test case 6",
+                    "status": "pending"
+                },
+                {
+                    "name": "(follow rule)test case 7",
+                    "status": "pending"
+                },
+                {
+                    "name": "(follow rule)test case 8",
+                    "status": "pending"
+                },
+                {
+                    "name": "(follow rule)test case 9",
+                    "status": "pending"
+                },
+                {
+                    "name": "(violate rule)test case 10",
+                    "status": "pending"
+                },
+                {
+                    "name": "(violate rule)test case 11",
+                    "status": "pending"
+                },
+                {
+                    "name": "(violate rule)test case 12",
+                    "status": "pending"
+                },
+                {
+                    "name": "(follow rule)test case 13",
+                    "status": "pending"
+                },
+                {
+                    "name": "(follow rule)test case 14",
+                    "status": "pending"
+                },
+                {
+                    "name": "(violate rule)test case 15",
+                    "status": "pending"
+                },
+                {
+                    "name": "(violate rule)test case 16",
+                    "status": "pending"
+                },
+                {
+                    "name": "(violate rule)test case 17",
+                    "status": "pending"
+                },
+                {
+                    "name": "(violate rule)test case 18",
+                    "status": "pending"
+                }
+            ]
+        },
+        {
+            "status": "Failed to pass (violate rule)test case 10, and trying fix, generating test case logic in attempt 1 / 5",
+            "test_cases": [
+                {
+                    "name": "(follow rule)test case 1",
+                    "status": "success"
+                },
+                {
+                    "name": "(violate rule)test case 2",
+                    "status": "success"
+                },
+                {
+                    "name": "(follow rule)test case 3",
+                    "status": "success"
+                },
+                {
+                    "name": "(violate rule)test case 4",
+                    "status": "success"
+                },
+                {
+                    "name": "(follow rule)test case 5",
+                    "status": "success"
+                },
+                {
+                    "name": "(violate rule)test case 6",
+                    "status": "success"
+                },
+                {
+                    "name": "(follow rule)test case 7",
+                    "status": "success"
+                },
+                {
+                    "name": "(follow rule)test case 8",
+                    "status": "success"
+                },
+                {
+                    "name": "(follow rule)test case 9",
+                    "status": "success"
+                },
+                {
+                    "name": "(violate rule)test case 10",
+                    "status": "failure",
+                    "selected": true
+                }
+            ],
+            "fixing": true,
+            "logics": [
+                "Get all method calls in the test case.",
+                "Check whether the method call is `isEmpty()`.",
+                "Get the method caller of the `isEmpty()` call.",
+                "Check whether the method caller is a method call to `trim()`.",
+                "Get the method caller of the `trim()` call.",
+                "Check whether the method caller is a `String` type.",
+                "If all conditions are met, count it as a violation."
+            ]
+        },
+        {
+            "status": "Querying API for checking using test logic",
+            "fixing": true,
+            "api_info": [
+                {
+                    "type": "api",
+                    "data": "net.sourceforge.pmd.lang.java.ast.ASTMethodCall: public boolean equals(java.lang.Object)"
+                },
+                {
+                    "type": "api",
+                    "data": "net.sourceforge.pmd.lang.java.ast.ASTMethodCall: public net.sourceforge.pmd.lang.java.ast.ASTExpression getQualifier()"
+                },
+                {
+                    "type": "meta",
+                    "data": "Check whether the method caller is string type"
+                }
+            ]
+        },
+        {
+            "status": "Fix successfully! Generating checker code",
+            "checker_code": "package net.sourceforge.pmd.lang.java.rule.performance;\n\n\nimport net.sourceforge.pmd.lang.java.rule.AbstractJavaRulechainRule;\nimport net.sourceforge.pmd.lang.java.ast. *;\nimport net.sourceforge.pmd.lang.java.ast.internal. *;\nimport net.sourceforge.pmd.lang.java.types. *;\nimport net.sourceforge.pmd.lang.java.symbols. *;\nimport net.sourceforge.pmd.lang.ast.NodeStream;\npublic class InefficientEmptyStringCheckRule extends AbstractJavaRulechainRule {\n    public InefficientEmptyStringCheckRule() {\n        super(ASTIfStatement.class, ASTWhileStatement.class, ASTLocalVariableDeclaration.class);\n    }\n\n    @Override\n    public Object visit(ASTIfStatement node, Object data) {\n        checkCondition(node.getCondition(), data);\n        return super.visit(node, data);\n    }\n\n    @Override\n    public Object visit(ASTWhileStatement node, Object data) {\n        checkCondition(node.getCondition(), data);\n        return super.visit(node, data);\n    }\n\n    @Override\n    public Object visit(ASTLocalVariableDeclaration node, Object data) {\n        NodeStream<ASTVariableDeclarator> declarators = node.children(ASTVariableDeclarator.class);\n        for (ASTVariableDeclarator declarator : declarators) {\n            ASTExpression initializer = declarator.getInitializer();\n            if (initializer != null) {\n                checkCondition(initializer, data);\n            }\n        }\n        return super.visit(node, data);\n    }\n\n    private void checkCondition(ASTExpression condition, Object data) {\n        if (condition instanceof ASTInfixExpression) {\n            ASTInfixExpression infixExpression = (ASTInfixExpression) condition;\n            if (isInfixExpressionWithOperator(infixExpression, BinaryOp.EQ)) {\n                ASTExpression leftOperand = infixExpression.getLeftOperand();\n                ASTExpression rightOperand = infixExpression.getRightOperand();\n                if (leftOperand instanceof ASTMethodCall) {\n                    ASTMethodCall methodCall = (ASTMethodCall) leftOperand;\n                    if (isMethodCallerStringType(methodCall) && \"length\".equals(methodCall.getMethodName())) {\n                        ASTExpression qualifier = methodCall.getQualifier();\n                        if (qualifier instanceof ASTMethodCall) {\n                            ASTMethodCall trimCall = (ASTMethodCall) qualifier;\n                            if (\"trim\".equals(trimCall.getMethodName())) {\n                                if (rightOperand instanceof ASTNumericLiteral) {\n                                    ASTNumericLiteral numericLiteral = (ASTNumericLiteral) rightOperand;\n                                    if (numericLiteral.getValueAsInt() == 0) {\n                                        addViolation(data, condition);\n                                    }\n                                }\n                            }\n                        }\n                    }\n                }\n            }\n        } else if (condition instanceof ASTMethodCall) {\n            ASTMethodCall methodCall = (ASTMethodCall) condition;\n            if (isMethodCallerStringType(methodCall) && \"isEmpty\".equals(methodCall.getMethodName())) {\n                ASTExpression qualifier = methodCall.getQualifier();\n                if (qualifier instanceof ASTMethodCall) {\n                    ASTMethodCall trimCall = (ASTMethodCall) qualifier;\n                    if (\"trim\".equals(trimCall.getMethodName())) {\n                        addViolation(data, condition);\n                    }\n                }\n            }\n        }\n    }\n\n    private boolean isInfixExpressionWithOperator(ASTInfixExpression node, BinaryOp op) {\n        return JavaAstUtils.isInfixExprWithOperator(node, op);\n    }\n\n    private boolean isMethodCallerStringType(ASTMethodCall node) {\n        return TypeTestUtil.isA(String.class, node.getQualifier());\n    }\n}"
+        },
+        {
+            "status": "Running test cases...",
+            "test_cases": [
+                {
+                    "name": "(follow rule)test case 1",
+                    "status": "pending"
+                },
+                {
+                    "name": "(violate rule)test case 2",
+                    "status": "pending"
+                },
+                {
+                    "name": "(follow rule)test case 3",
+                    "status": "pending"
+                },
+                {
+                    "name": "(violate rule)test case 4",
+                    "status": "pending"
+                },
+                {
+                    "name": "(follow rule)test case 5",
+                    "status": "pending"
+                },
+                {
+                    "name": "(violate rule)test case 6",
+                    "status": "pending"
+                },
+                {
+                    "name": "(follow rule)test case 7",
+                    "status": "pending"
+                },
+                {
+                    "name": "(follow rule)test case 8",
+                    "status": "pending"
+                },
+                {
+                    "name": "(follow rule)test case 9",
+                    "status": "pending"
+                },
+                {
+                    "name": "(violate rule)test case 10",
+                    "status": "pending"
+                },
+                {
+                    "name": "(violate rule)test case 11",
+                    "status": "pending"
+                },
+                {
+                    "name": "(violate rule)test case 12",
+                    "status": "pending"
+                },
+                {
+                    "name": "(follow rule)test case 13",
+                    "status": "pending"
+                },
+                {
+                    "name": "(follow rule)test case 14",
+                    "status": "pending"
+                },
+                {
+                    "name": "(violate rule)test case 15",
+                    "status": "pending"
+                },
+                {
+                    "name": "(violate rule)test case 16",
+                    "status": "pending"
+                },
+                {
+                    "name": "(violate rule)test case 17",
+                    "status": "pending"
+                },
+                {
+                    "name": "(violate rule)test case 18",
+                    "status": "pending"
+                }
+            ]
+        },
+        {
+            "status": "Failed to pass (violate rule)test case 11, and trying fix, generating test case logic in attempt 1 / 5",
+            "test_cases": [
+                {
+                    "name": "(follow rule)test case 1",
+                    "status": "success"
+                },
+                {
+                    "name": "(violate rule)test case 2",
+                    "status": "success"
+                },
+                {
+                    "name": "(follow rule)test case 3",
+                    "status": "success"
+                },
+                {
+                    "name": "(violate rule)test case 4",
+                    "status": "success"
+                },
+                {
+                    "name": "(follow rule)test case 5",
+                    "status": "success"
+                },
+                {
+                    "name": "(violate rule)test case 6",
+                    "status": "success"
+                },
+                {
+                    "name": "(follow rule)test case 7",
+                    "status": "success"
+                },
+                {
+                    "name": "(follow rule)test case 8",
+                    "status": "success"
+                },
+                {
+                    "name": "(follow rule)test case 9",
+                    "status": "success"
+                },
+                {
+                    "name": "(violate rule)test case 10",
+                    "status": "success"
+                },
+                {
+                    "name": "(violate rule)test case 11",
+                    "status": "failure",
+                    "selected": true
+                }
+            ],
+            "fixing": true,
+            "logics": [
+                "Get all method calls in the test case.",
+                "For each method call, check whether the method name is `isEmpty`.",
+                "For each `isEmpty` method call, get the method caller.",
+                "Check whether the method caller is a method call with the name `trim`.",
+                "For each `trim` method call, get the method caller.",
+                "Check whether the method caller is a method call or a variable access.",
+                "If the method caller is a method call, check whether it is part of a chain call.",
+                "If the method caller is a variable access, check whether it is a `String` type.",
+                "Count the number of occurrences where `trim().isEmpty()` is called on a `String` object or a chain call."
+            ]
+        },
+        {
+            "status": "Querying API for checking using test logic",
+            "fixing": true,
+            "api_info": [
+                {
+                    "type": "api",
+                    "data": "net.sourceforge.pmd.lang.java.ast.ASTMethodDeclaration: public boolean isVoid()"
+                },
+                {
+                    "type": "api",
+                    "data": "net.sourceforge.pmd.lang.java.ast.ASTMethodCall: public boolean equals(java.lang.Object)"
+                },
+                {
+                    "type": "api",
+                    "data": "net.sourceforge.pmd.lang.java.ast.ASTMethodCall: public net.sourceforge.pmd.lang.java.ast.ASTExpression getQualifier()"
+                },
+                {
+                    "type": "api",
+                    "data": "net.sourceforge.pmd.lang.java.rule.internal.JavaRuleUtil: static public boolean isGetterOrSetterCall(net.sourceforge.pmd.lang.java.ast.ASTMethodCall)"
+                },
+                {
+                    "type": "meta",
+                    "data": "Check whether the method caller is string type"
+                }
+            ]
+        },
+        {
+            "status": "Generated checker fails to pass (violate rule)test case 11 in attempt: 1 / 5, preparing next attempt.",
+            "fixing": true
+        },
+        {
+            "status": "Failed to pass (violate rule)test case 11, and trying fix, generating test case logic in attempt 2 / 5",
+            "test_cases": [
+                {
+                    "name": "(follow rule)test case 1",
+                    "status": "success"
+                },
+                {
+                    "name": "(violate rule)test case 2",
+                    "status": "success"
+                },
+                {
+                    "name": "(follow rule)test case 3",
+                    "status": "success"
+                },
+                {
+                    "name": "(violate rule)test case 4",
+                    "status": "success"
+                },
+                {
+                    "name": "(follow rule)test case 5",
+                    "status": "success"
+                },
+                {
+                    "name": "(violate rule)test case 6",
+                    "status": "success"
+                },
+                {
+                    "name": "(follow rule)test case 7",
+                    "status": "success"
+                },
+                {
+                    "name": "(follow rule)test case 8",
+                    "status": "success"
+                },
+                {
+                    "name": "(follow rule)test case 9",
+                    "status": "success"
+                },
+                {
+                    "name": "(violate rule)test case 10",
+                    "status": "success"
+                },
+                {
+                    "name": "(violate rule)test case 11",
+                    "status": "failure",
+                    "selected": true
+                }
+            ],
+            "fixing": true,
+            "logics": [
+                "Get all method calls in the test case.",
+                "For each method call, check whether the method name is `isEmpty`.",
+                "For each `isEmpty` method call, get the method caller.",
+                "Check whether the method caller is a method call with the name `trim`.",
+                "For each `trim` method call, get the method caller.",
+                "Check whether the method caller is a method call or a variable.",
+                "If the method caller is a method call, check whether it is part of a chain call.",
+                "If the method caller is a variable, check whether it is a `String` type variable."
+            ]
+        },
+        {
+            "status": "Querying API for checking using test logic",
+            "fixing": true,
+            "api_info": [
+                {
+                    "type": "api",
+                    "data": "net.sourceforge.pmd.lang.java.ast.ASTMethodDeclaration: public boolean isVoid()"
+                },
+                {
+                    "type": "api",
+                    "data": "net.sourceforge.pmd.lang.java.ast.ASTMethodCall: public boolean equals(java.lang.Object)"
+                },
+                {
+                    "type": "api",
+                    "data": "net.sourceforge.pmd.lang.java.ast.ASTMethodCall: public net.sourceforge.pmd.lang.java.ast.ASTExpression getQualifier()"
+                },
+                {
+                    "type": "meta",
+                    "data": "Check whether the method caller is string type"
+                }
+            ]
+        },
+        {
+            "status": "Generated checker fails to pass (violate rule)test case 11 in attempt: 2 / 5, preparing next attempt.",
+            "fixing": true
+        },
+        {
+            "status": "Failed to pass (violate rule)test case 11, and trying fix, generating test case logic in attempt 3 / 5",
+            "test_cases": [
+                {
+                    "name": "(follow rule)test case 1",
+                    "status": "success"
+                },
+                {
+                    "name": "(violate rule)test case 2",
+                    "status": "success"
+                },
+                {
+                    "name": "(follow rule)test case 3",
+                    "status": "success"
+                },
+                {
+                    "name": "(violate rule)test case 4",
+                    "status": "success"
+                },
+                {
+                    "name": "(follow rule)test case 5",
+                    "status": "success"
+                },
+                {
+                    "name": "(violate rule)test case 6",
+                    "status": "success"
+                },
+                {
+                    "name": "(follow rule)test case 7",
+                    "status": "success"
+                },
+                {
+                    "name": "(follow rule)test case 8",
+                    "status": "success"
+                },
+                {
+                    "name": "(follow rule)test case 9",
+                    "status": "success"
+                },
+                {
+                    "name": "(violate rule)test case 10",
+                    "status": "success"
+                },
+                {
+                    "name": "(violate rule)test case 11",
+                    "status": "failure",
+                    "selected": true
+                }
+            ],
+            "fixing": true,
+            "logics": [
+                "Get all method calls in the test case.",
+                "For each method call, check whether the method name is `isEmpty`.",
+                "For each `isEmpty` method call, get the method caller.",
+                "Check whether the method caller is a method call with the name `trim`.",
+                "For each `trim` method call, get the method caller.",
+                "Check whether the method caller is a method call with the name `toString` or `valueOf`.",
+                "If the above conditions are met, count it as a violation of the rule."
+            ]
+        },
+        {
+            "status": "Querying API for checking using test logic",
+            "fixing": true,
+            "api_info": [
+                {
+                    "type": "api",
+                    "data": "net.sourceforge.pmd.lang.java.ast.ASTMethodDeclaration: public boolean isVoid()"
+                },
+                {
+                    "type": "api",
+                    "data": "net.sourceforge.pmd.lang.java.ast.ASTMethodCall: public boolean equals(java.lang.Object)"
+                },
+                {
+                    "type": "api",
+                    "data": "net.sourceforge.pmd.lang.java.ast.ASTMethodCall: public net.sourceforge.pmd.lang.java.ast.ASTExpression getQualifier()"
+                },
+                {
+                    "type": "meta",
+                    "data": "Check whether the method caller is string type"
+                }
+            ]
+        },
+        {
+            "status": "Generated checker fails to pass (violate rule)test case 11 in attempt: 3 / 5, preparing next attempt.",
+            "fixing": true
+        },
+        {
+            "status": "Failed to pass (violate rule)test case 11, and trying fix, generating test case logic in attempt 4 / 5",
+            "test_cases": [
+                {
+                    "name": "(follow rule)test case 1",
+                    "status": "success"
+                },
+                {
+                    "name": "(violate rule)test case 2",
+                    "status": "success"
+                },
+                {
+                    "name": "(follow rule)test case 3",
+                    "status": "success"
+                },
+                {
+                    "name": "(violate rule)test case 4",
+                    "status": "success"
+                },
+                {
+                    "name": "(follow rule)test case 5",
+                    "status": "success"
+                },
+                {
+                    "name": "(violate rule)test case 6",
+                    "status": "success"
+                },
+                {
+                    "name": "(follow rule)test case 7",
+                    "status": "success"
+                },
+                {
+                    "name": "(follow rule)test case 8",
+                    "status": "success"
+                },
+                {
+                    "name": "(follow rule)test case 9",
+                    "status": "success"
+                },
+                {
+                    "name": "(violate rule)test case 10",
+                    "status": "success"
+                },
+                {
+                    "name": "(violate rule)test case 11",
+                    "status": "failure",
+                    "selected": true
+                }
+            ],
+            "fixing": true,
+            "logics": [
+                "Get all method calls in the test case.",
+                "For each method call:",
+                "Count the number of method calls that satisfy the above conditions."
+            ]
+        },
+        {
+            "status": "Querying API for checking using test logic",
+            "fixing": true,
+            "api_info": []
+        },
+        {
+            "status": "Fix successfully! Generating checker code",
+            "checker_code": "package net.sourceforge.pmd.lang.java.rule.performance;\n\n\nimport net.sourceforge.pmd.lang.java.rule.AbstractJavaRulechainRule;\nimport net.sourceforge.pmd.lang.java.ast. *;\nimport net.sourceforge.pmd.lang.java.ast.internal. *;\nimport net.sourceforge.pmd.lang.java.types. *;\nimport net.sourceforge.pmd.lang.java.symbols. *;\nimport net.sourceforge.pmd.lang.ast.NodeStream;\npublic class InefficientEmptyStringCheckRule extends AbstractJavaRulechainRule {\n    public InefficientEmptyStringCheckRule() {\n        super(ASTIfStatement.class, ASTWhileStatement.class, ASTLocalVariableDeclaration.class, ASTExpressionStatement.class);\n    }\n\n    @Override\n    public Object visit(ASTIfStatement node, Object data) {\n        checkCondition(node.getCondition(), data);\n        return super.visit(node, data);\n    }\n\n    @Override\n    public Object visit(ASTWhileStatement node, Object data) {\n        checkCondition(node.getCondition(), data);\n        return super.visit(node, data);\n    }\n\n    @Override\n    public Object visit(ASTLocalVariableDeclaration node, Object data) {\n        NodeStream<ASTVariableDeclarator> declarators = node.children(ASTVariableDeclarator.class);\n        for (ASTVariableDeclarator declarator : declarators) {\n            ASTExpression initializer = declarator.getInitializer();\n            if (initializer != null) {\n                checkCondition(initializer, data);\n            }\n        }\n        return super.visit(node, data);\n    }\n\n    @Override\n    public Object visit(ASTExpressionStatement node, Object data) {\n        ASTExpression expression = node.getFirstChildOfType(ASTExpression.class);\n        if (expression instanceof ASTAssignmentExpression) {\n            ASTAssignmentExpression assignment = (ASTAssignmentExpression) expression;\n            checkCondition(assignment.getRightOperand(), data);\n        }\n        return super.visit(node, data);\n    }\n\n    private void checkCondition(ASTExpression condition, Object data) {\n        if (condition instanceof ASTInfixExpression) {\n            ASTInfixExpression infixExpression = (ASTInfixExpression) condition;\n            if (isInfixExpressionWithOperator(infixExpression, BinaryOp.EQ)) {\n                ASTExpression leftOperand = infixExpression.getLeftOperand();\n                ASTExpression rightOperand = infixExpression.getRightOperand();\n                if (leftOperand instanceof ASTMethodCall) {\n                    ASTMethodCall methodCall = (ASTMethodCall) leftOperand;\n                    if (isMethodCallerStringType(methodCall) && \"length\".equals(methodCall.getMethodName())) {\n                        ASTExpression qualifier = methodCall.getQualifier();\n                        if (qualifier instanceof ASTMethodCall) {\n                            ASTMethodCall trimCall = (ASTMethodCall) qualifier;\n                            if (\"trim\".equals(trimCall.getMethodName())) {\n                                if (rightOperand instanceof ASTNumericLiteral) {\n                                    ASTNumericLiteral numericLiteral = (ASTNumericLiteral) rightOperand;\n                                    if (numericLiteral.getValueAsInt() == 0) {\n                                        addViolation(data, condition);\n                                    }\n                                }\n                            }\n                        }\n                    }\n                }\n            }\n        } else if (condition instanceof ASTMethodCall) {\n            ASTMethodCall methodCall = (ASTMethodCall) condition;\n            if (isMethodCallerStringType(methodCall) && \"isEmpty\".equals(methodCall.getMethodName())) {\n                ASTExpression qualifier = methodCall.getQualifier();\n                if (qualifier instanceof ASTMethodCall) {\n                    ASTMethodCall trimCall = (ASTMethodCall) qualifier;\n                    if (\"trim\".equals(trimCall.getMethodName())) {\n                        addViolation(data, condition);\n                    }\n                }\n            }\n        } else if (condition instanceof ASTAssignmentExpression) {\n            ASTAssignmentExpression assignment = (ASTAssignmentExpression) condition;\n            checkCondition(assignment.getRightOperand(), data);\n        }\n    }\n\n    private boolean isInfixExpressionWithOperator(ASTInfixExpression node, BinaryOp op) {\n        return JavaAstUtils.isInfixExprWithOperator(node, op);\n    }\n\n    private boolean isMethodCallerStringType(ASTMethodCall node) {\n        return TypeTestUtil.isA(String.class, node.getQualifier());\n    }\n}"
+        },
+        {
+            "status": "Running test cases...",
+            "test_cases": [
+                {
+                    "name": "(follow rule)test case 1",
+                    "status": "pending"
+                },
+                {
+                    "name": "(violate rule)test case 2",
+                    "status": "pending"
+                },
+                {
+                    "name": "(follow rule)test case 3",
+                    "status": "pending"
+                },
+                {
+                    "name": "(violate rule)test case 4",
+                    "status": "pending"
+                },
+                {
+                    "name": "(follow rule)test case 5",
+                    "status": "pending"
+                },
+                {
+                    "name": "(violate rule)test case 6",
+                    "status": "pending"
+                },
+                {
+                    "name": "(follow rule)test case 7",
+                    "status": "pending"
+                },
+                {
+                    "name": "(follow rule)test case 8",
+                    "status": "pending"
+                },
+                {
+                    "name": "(follow rule)test case 9",
+                    "status": "pending"
+                },
+                {
+                    "name": "(violate rule)test case 10",
+                    "status": "pending"
+                },
+                {
+                    "name": "(violate rule)test case 11",
+                    "status": "pending"
+                },
+                {
+                    "name": "(violate rule)test case 12",
+                    "status": "pending"
+                },
+                {
+                    "name": "(follow rule)test case 13",
+                    "status": "pending"
+                },
+                {
+                    "name": "(follow rule)test case 14",
+                    "status": "pending"
+                },
+                {
+                    "name": "(violate rule)test case 15",
+                    "status": "pending"
+                },
+                {
+                    "name": "(violate rule)test case 16",
+                    "status": "pending"
+                },
+                {
+                    "name": "(violate rule)test case 17",
+                    "status": "pending"
+                },
+                {
+                    "name": "(violate rule)test case 18",
+                    "status": "pending"
+                }
+            ]
+        },
+        {
+            "status": "Failed to pass (violate rule)test case 15, and trying fix, generating test case logic in attempt 1 / 5",
+            "test_cases": [
+                {
+                    "name": "(follow rule)test case 1",
+                    "status": "success"
+                },
+                {
+                    "name": "(violate rule)test case 2",
+                    "status": "success"
+                },
+                {
+                    "name": "(follow rule)test case 3",
+                    "status": "success"
+                },
+                {
+                    "name": "(violate rule)test case 4",
+                    "status": "success"
+                },
+                {
+                    "name": "(follow rule)test case 5",
+                    "status": "success"
+                },
+                {
+                    "name": "(violate rule)test case 6",
+                    "status": "success"
+                },
+                {
+                    "name": "(follow rule)test case 7",
+                    "status": "success"
+                },
+                {
+                    "name": "(follow rule)test case 8",
+                    "status": "success"
+                },
+                {
+                    "name": "(follow rule)test case 9",
+                    "status": "success"
+                },
+                {
+                    "name": "(violate rule)test case 10",
+                    "status": "success"
+                },
+                {
+                    "name": "(violate rule)test case 11",
+                    "status": "success"
+                },
+                {
+                    "name": "(violate rule)test case 12",
+                    "status": "success"
+                },
+                {
+                    "name": "(follow rule)test case 13",
+                    "status": "success"
+                },
+                {
+                    "name": "(follow rule)test case 14",
+                    "status": "success"
+                },
+                {
+                    "name": "(violate rule)test case 15",
+                    "status": "failure",
+                    "selected": true
+                }
+            ],
+            "fixing": true,
+            "logics": [
+                "Get all method calls in the test case.",
+                "Check whether the method call is `trim()`.",
+                "Check whether the return type of the `trim()` method is `String`.",
+                "Check whether the method call is `length()` or `isEmpty()`.",
+                "Check whether the method call `length()` or `isEmpty()` is invoked on the result of `trim()`.",
+                "Check whether the result of `length()` or `isEmpty()` is compared to `0` or used in a condition."
+            ]
+        },
+        {
+            "status": "Querying API for checking using test logic",
+            "fixing": true,
+            "api_info": [
+                {
+                    "type": "api",
+                    "data": "net.sourceforge.pmd.lang.java.ast.ASTMethodCall: public boolean equals(java.lang.Object)"
+                },
+                {
+                    "type": "meta",
+                    "data": "Check whether the return type of called method is string"
+                }
+            ]
+        },
+        {
+            "status": "Fix successfully! Generating checker code",
+            "checker_code": "package net.sourceforge.pmd.lang.java.rule.performance;\n\n\nimport net.sourceforge.pmd.lang.java.rule.AbstractJavaRulechainRule;\nimport net.sourceforge.pmd.lang.java.ast. *;\nimport net.sourceforge.pmd.lang.java.ast.internal. *;\nimport net.sourceforge.pmd.lang.java.types. *;\nimport net.sourceforge.pmd.lang.java.symbols. *;\nimport net.sourceforge.pmd.lang.ast.NodeStream;\npublic class InefficientEmptyStringCheckRule extends AbstractJavaRulechainRule {\n    public InefficientEmptyStringCheckRule() {\n        super(ASTIfStatement.class, ASTWhileStatement.class, ASTLocalVariableDeclaration.class, ASTExpressionStatement.class);\n    }\n\n    @Override\n    public Object visit(ASTIfStatement node, Object data) {\n        checkCondition(node.getCondition(), data);\n        return super.visit(node, data);\n    }\n\n    @Override\n    public Object visit(ASTWhileStatement node, Object data) {\n        checkCondition(node.getCondition(), data);\n        return super.visit(node, data);\n    }\n\n    @Override\n    public Object visit(ASTLocalVariableDeclaration node, Object data) {\n        NodeStream<ASTVariableDeclarator> declarators = node.children(ASTVariableDeclarator.class);\n        for (ASTVariableDeclarator declarator : declarators) {\n            ASTExpression initializer = declarator.getInitializer();\n            if (initializer != null) {\n                checkCondition(initializer, data);\n            }\n        }\n        return super.visit(node, data);\n    }\n\n    @Override\n    public Object visit(ASTExpressionStatement node, Object data) {\n        ASTExpression expression = node.getFirstChildOfType(ASTExpression.class);\n        if (expression instanceof ASTAssignmentExpression) {\n            ASTAssignmentExpression assignment = (ASTAssignmentExpression) expression;\n            checkCondition(assignment.getRightOperand(), data);\n        }\n        return super.visit(node, data);\n    }\n\n    private void checkCondition(ASTExpression condition, Object data) {\n        if (condition instanceof ASTInfixExpression) {\n            ASTInfixExpression infixExpression = (ASTInfixExpression) condition;\n            if (isInfixExpressionWithOperator(infixExpression, BinaryOp.EQ) || isInfixExpressionWithOperator(infixExpression, BinaryOp.GT)) {\n                ASTExpression leftOperand = infixExpression.getLeftOperand();\n                ASTExpression rightOperand = infixExpression.getRightOperand();\n                if (leftOperand instanceof ASTMethodCall) {\n                    ASTMethodCall methodCall = (ASTMethodCall) leftOperand;\n                    if (isMethodCallerStringType(methodCall) && \"length\".equals(methodCall.getMethodName())) {\n                        ASTExpression qualifier = methodCall.getQualifier();\n                        if (qualifier instanceof ASTMethodCall) {\n                            ASTMethodCall trimCall = (ASTMethodCall) qualifier;\n                            if (\"trim\".equals(trimCall.getMethodName())) {\n                                if (rightOperand instanceof ASTNumericLiteral) {\n                                    ASTNumericLiteral numericLiteral = (ASTNumericLiteral) rightOperand;\n                                    if (numericLiteral.getValueAsInt() == 0) {\n                                        addViolation(data, condition);\n                                    }\n                                }\n                            }\n                        }\n                    }\n                }\n            }\n        } else if (condition instanceof ASTMethodCall) {\n            ASTMethodCall methodCall = (ASTMethodCall) condition;\n            if (isMethodCallerStringType(methodCall) && \"isEmpty\".equals(methodCall.getMethodName())) {\n                ASTExpression qualifier = methodCall.getQualifier();\n                if (qualifier instanceof ASTMethodCall) {\n                    ASTMethodCall trimCall = (ASTMethodCall) qualifier;\n                    if (\"trim\".equals(trimCall.getMethodName())) {\n                        addViolation(data, condition);\n                    }\n                }\n            }\n        } else if (condition instanceof ASTAssignmentExpression) {\n            ASTAssignmentExpression assignment = (ASTAssignmentExpression) condition;\n            checkCondition(assignment.getRightOperand(), data);\n        }\n    }\n\n    private boolean isInfixExpressionWithOperator(ASTInfixExpression node, BinaryOp op) {\n        return JavaAstUtils.isInfixExprWithOperator(node, op);\n    }\n\n    private boolean isMethodCallerStringType(ASTMethodCall node) {\n        return TypeTestUtil.isA(String.class, node.getQualifier());\n    }\n}"
+        },
+        {
+            "status": "Running test cases...",
+            "test_cases": [
+                {
+                    "name": "(follow rule)test case 1",
+                    "status": "pending"
+                },
+                {
+                    "name": "(violate rule)test case 2",
+                    "status": "pending"
+                },
+                {
+                    "name": "(follow rule)test case 3",
+                    "status": "pending"
+                },
+                {
+                    "name": "(violate rule)test case 4",
+                    "status": "pending"
+                },
+                {
+                    "name": "(follow rule)test case 5",
+                    "status": "pending"
+                },
+                {
+                    "name": "(violate rule)test case 6",
+                    "status": "pending"
+                },
+                {
+                    "name": "(follow rule)test case 7",
+                    "status": "pending"
+                },
+                {
+                    "name": "(follow rule)test case 8",
+                    "status": "pending"
+                },
+                {
+                    "name": "(follow rule)test case 9",
+                    "status": "pending"
+                },
+                {
+                    "name": "(violate rule)test case 10",
+                    "status": "pending"
+                },
+                {
+                    "name": "(violate rule)test case 11",
+                    "status": "pending"
+                },
+                {
+                    "name": "(violate rule)test case 12",
+                    "status": "pending"
+                },
+                {
+                    "name": "(follow rule)test case 13",
+                    "status": "pending"
+                },
+                {
+                    "name": "(follow rule)test case 14",
+                    "status": "pending"
+                },
+                {
+                    "name": "(violate rule)test case 15",
+                    "status": "pending"
+                },
+                {
+                    "name": "(violate rule)test case 16",
+                    "status": "pending"
+                },
+                {
+                    "name": "(violate rule)test case 17",
+                    "status": "pending"
+                },
+                {
+                    "name": "(violate rule)test case 18",
+                    "status": "pending"
+                }
+            ]
+        },
+        {
+            "status": "Failed to pass (violate rule)test case 18, and trying fix, generating test case logic in attempt 1 / 5",
+            "test_cases": [
+                {
+                    "name": "(follow rule)test case 1",
+                    "status": "success"
+                },
+                {
+                    "name": "(violate rule)test case 2",
+                    "status": "success"
+                },
+                {
+                    "name": "(follow rule)test case 3",
+                    "status": "success"
+                },
+                {
+                    "name": "(violate rule)test case 4",
+                    "status": "success"
+                },
+                {
+                    "name": "(follow rule)test case 5",
+                    "status": "success"
+                },
+                {
+                    "name": "(violate rule)test case 6",
+                    "status": "success"
+                },
+                {
+                    "name": "(follow rule)test case 7",
+                    "status": "success"
+                },
+                {
+                    "name": "(follow rule)test case 8",
+                    "status": "success"
+                },
+                {
+                    "name": "(follow rule)test case 9",
+                    "status": "success"
+                },
+                {
+                    "name": "(violate rule)test case 10",
+                    "status": "success"
+                },
+                {
+                    "name": "(violate rule)test case 11",
+                    "status": "success"
+                },
+                {
+                    "name": "(violate rule)test case 12",
+                    "status": "success"
+                },
+                {
+                    "name": "(follow rule)test case 13",
+                    "status": "success"
+                },
+                {
+                    "name": "(follow rule)test case 14",
+                    "status": "success"
+                },
+                {
+                    "name": "(violate rule)test case 15",
+                    "status": "success"
+                },
+                {
+                    "name": "(violate rule)test case 16",
+                    "status": "success"
+                },
+                {
+                    "name": "(violate rule)test case 17",
+                    "status": "success"
+                },
+                {
+                    "name": "(violate rule)test case 18",
+                    "status": "failure",
+                    "selected": true
+                }
+            ],
+            "fixing": true,
+            "logics": [
+                "Get all method calls in the test case.",
+                "For each method call:",
+                "Count the number of violations where `String.trim().isEmpty()` or `String.trim().length() == 0` is used."
+            ]
+        },
+        {
+            "status": "Querying API for checking using test logic",
+            "fixing": true,
+            "api_info": []
+        },
+        {
+            "status": "Generated checker fails to pass (violate rule)test case 10 in attempt: 1 / 5, preparing next attempt.",
+            "fixing": true
+        },
+        {
+            "status": "Failed to pass (violate rule)test case 18, and trying fix, generating test case logic in attempt 2 / 5",
+            "test_cases": [
+                {
+                    "name": "(follow rule)test case 1",
+                    "status": "success"
+                },
+                {
+                    "name": "(violate rule)test case 2",
+                    "status": "success"
+                },
+                {
+                    "name": "(follow rule)test case 3",
+                    "status": "success"
+                },
+                {
+                    "name": "(violate rule)test case 4",
+                    "status": "success"
+                },
+                {
+                    "name": "(follow rule)test case 5",
+                    "status": "success"
+                },
+                {
+                    "name": "(violate rule)test case 6",
+                    "status": "success"
+                },
+                {
+                    "name": "(follow rule)test case 7",
+                    "status": "success"
+                },
+                {
+                    "name": "(follow rule)test case 8",
+                    "status": "success"
+                },
+                {
+                    "name": "(follow rule)test case 9",
+                    "status": "success"
+                },
+                {
+                    "name": "(violate rule)test case 10",
+                    "status": "success"
+                },
+                {
+                    "name": "(violate rule)test case 11",
+                    "status": "success"
+                },
+                {
+                    "name": "(violate rule)test case 12",
+                    "status": "success"
+                },
+                {
+                    "name": "(follow rule)test case 13",
+                    "status": "success"
+                },
+                {
+                    "name": "(follow rule)test case 14",
+                    "status": "success"
+                },
+                {
+                    "name": "(violate rule)test case 15",
+                    "status": "success"
+                },
+                {
+                    "name": "(violate rule)test case 16",
+                    "status": "success"
+                },
+                {
+                    "name": "(violate rule)test case 17",
+                    "status": "success"
+                },
+                {
+                    "name": "(violate rule)test case 18",
+                    "status": "failure",
+                    "selected": true
+                }
+            ],
+            "fixing": true,
+            "logics": [
+                "Get all method calls in the test case.",
+                "For each method call, check whether the method name is `trim`.",
+                "For each method call that is `trim`, get the method call that follows it.",
+                "Check whether the following method call is `isEmpty` or `length`.",
+                "If the following method call is `length`, check whether it is part of an equality comparison (`== 0`).",
+                "Count the number of occurrences where `trim().isEmpty()` or `trim().length() == 0` is used.",
+                "`bar.trim().isEmpty()` (violation)",
+                "`bar.trim().length() == 0` (violation)",
+                "`get().trim().isEmpty()` (violation)",
+                "`get().trim().length() == 0` (violation)",
+                "`this.get().trim().isEmpty()` (violation)",
+                "`this.get().trim().length() == 0` (violation)"
+            ]
+        },
+        {
+            "status": "Querying API for checking using test logic",
+            "fixing": true,
+            "api_info": [
+                {
+                    "type": "api",
+                    "data": "net.sourceforge.pmd.lang.java.ast.ASTMethodCall: public net.sourceforge.pmd.lang.ast.Node getNextSibling()"
+                },
+                {
+                    "type": "api",
+                    "data": "net.sourceforge.pmd.lang.java.ast.ASTMethodCall: public boolean equals(java.lang.Object)"
+                }
+            ]
+        },
+        {
+            "status": "Generated checker fails to pass (violate rule)test case 10 in attempt: 2 / 5, preparing next attempt.",
+            "fixing": true
+        },
+        {
+            "status": "Failed to pass (violate rule)test case 18, and trying fix, generating test case logic in attempt 3 / 5",
+            "test_cases": [
+                {
+                    "name": "(follow rule)test case 1",
+                    "status": "success"
+                },
+                {
+                    "name": "(violate rule)test case 2",
+                    "status": "success"
+                },
+                {
+                    "name": "(follow rule)test case 3",
+                    "status": "success"
+                },
+                {
+                    "name": "(violate rule)test case 4",
+                    "status": "success"
+                },
+                {
+                    "name": "(follow rule)test case 5",
+                    "status": "success"
+                },
+                {
+                    "name": "(violate rule)test case 6",
+                    "status": "success"
+                },
+                {
+                    "name": "(follow rule)test case 7",
+                    "status": "success"
+                },
+                {
+                    "name": "(follow rule)test case 8",
+                    "status": "success"
+                },
+                {
+                    "name": "(follow rule)test case 9",
+                    "status": "success"
+                },
+                {
+                    "name": "(violate rule)test case 10",
+                    "status": "success"
+                },
+                {
+                    "name": "(violate rule)test case 11",
+                    "status": "success"
+                },
+                {
+                    "name": "(violate rule)test case 12",
+                    "status": "success"
+                },
+                {
+                    "name": "(follow rule)test case 13",
+                    "status": "success"
+                },
+                {
+                    "name": "(follow rule)test case 14",
+                    "status": "success"
+                },
+                {
+                    "name": "(violate rule)test case 15",
+                    "status": "success"
+                },
+                {
+                    "name": "(violate rule)test case 16",
+                    "status": "success"
+                },
+                {
+                    "name": "(violate rule)test case 17",
+                    "status": "success"
+                },
+                {
+                    "name": "(violate rule)test case 18",
+                    "status": "failure",
+                    "selected": true
+                }
+            ],
+            "fixing": true,
+            "logics": [
+                "Get all method calls in the test case.",
+                "For each method call, check whether the method name is `trim`.",
+                "For each `trim` method call, get the method call immediately following it.",
+                "Check whether the method name following `trim` is `isEmpty` or `length`.",
+                "If the method name is `length`, check whether it is part of an equality comparison (`== 0`).",
+                "Count the number of occurrences where `trim().isEmpty()` or `trim().length() == 0` is used."
+            ]
+        },
+        {
+            "status": "Querying API for checking using test logic",
+            "fixing": true,
+            "api_info": [
+                {
+                    "type": "api",
+                    "data": "net.sourceforge.pmd.lang.java.ast.ASTMethodCall: public net.sourceforge.pmd.lang.ast.Node getNextSibling()"
+                },
+                {
+                    "type": "api",
+                    "data": "net.sourceforge.pmd.lang.java.ast.ASTMethodDeclaration: public boolean equals(java.lang.Object)"
+                }
+            ]
+        },
+        {
+            "status": "Generated checker fails to pass (follow rule)test case 5 in attempt: 3 / 5, preparing next attempt.",
+            "fixing": true
+        },
+        {
+            "status": "Failed to pass (violate rule)test case 18, and trying fix, generating test case logic in attempt 4 / 5",
+            "test_cases": [
+                {
+                    "name": "(follow rule)test case 1",
+                    "status": "success"
+                },
+                {
+                    "name": "(violate rule)test case 2",
+                    "status": "success"
+                },
+                {
+                    "name": "(follow rule)test case 3",
+                    "status": "success"
+                },
+                {
+                    "name": "(violate rule)test case 4",
+                    "status": "success"
+                },
+                {
+                    "name": "(follow rule)test case 5",
+                    "status": "success"
+                },
+                {
+                    "name": "(violate rule)test case 6",
+                    "status": "success"
+                },
+                {
+                    "name": "(follow rule)test case 7",
+                    "status": "success"
+                },
+                {
+                    "name": "(follow rule)test case 8",
+                    "status": "success"
+                },
+                {
+                    "name": "(follow rule)test case 9",
+                    "status": "success"
+                },
+                {
+                    "name": "(violate rule)test case 10",
+                    "status": "success"
+                },
+                {
+                    "name": "(violate rule)test case 11",
+                    "status": "success"
+                },
+                {
+                    "name": "(violate rule)test case 12",
+                    "status": "success"
+                },
+                {
+                    "name": "(follow rule)test case 13",
+                    "status": "success"
+                },
+                {
+                    "name": "(follow rule)test case 14",
+                    "status": "success"
+                },
+                {
+                    "name": "(violate rule)test case 15",
+                    "status": "success"
+                },
+                {
+                    "name": "(violate rule)test case 16",
+                    "status": "success"
+                },
+                {
+                    "name": "(violate rule)test case 17",
+                    "status": "success"
+                },
+                {
+                    "name": "(violate rule)test case 18",
+                    "status": "failure",
+                    "selected": true
+                }
+            ],
+            "fixing": true,
+            "logics": [
+                "Get all method calls in the test case.",
+                "For each method call, check whether the method name is `trim`.",
+                "For each `trim` method call, get the method call or expression that uses its result.",
+                "Check whether the result of `trim` is used in a method call named `isEmpty` or in an expression involving `length() == 0`.",
+                "Count the number of occurrences where `trim().isEmpty()` or `trim().length() == 0` is used."
+            ]
+        },
+        {
+            "status": "Querying API for checking using test logic",
+            "fixing": true,
+            "api_info": []
+        },
+        {
+            "status": "Generated checker fails to pass (violate rule)test case 10 in attempt: 4 / 5, preparing next attempt.",
+            "fixing": true
+        },
+        {
+            "status": "Failed to pass (violate rule)test case 18, and trying fix, generating test case logic in attempt 5 / 5",
+            "test_cases": [
+                {
+                    "name": "(follow rule)test case 1",
+                    "status": "success"
+                },
+                {
+                    "name": "(violate rule)test case 2",
+                    "status": "success"
+                },
+                {
+                    "name": "(follow rule)test case 3",
+                    "status": "success"
+                },
+                {
+                    "name": "(violate rule)test case 4",
+                    "status": "success"
+                },
+                {
+                    "name": "(follow rule)test case 5",
+                    "status": "success"
+                },
+                {
+                    "name": "(violate rule)test case 6",
+                    "status": "success"
+                },
+                {
+                    "name": "(follow rule)test case 7",
+                    "status": "success"
+                },
+                {
+                    "name": "(follow rule)test case 8",
+                    "status": "success"
+                },
+                {
+                    "name": "(follow rule)test case 9",
+                    "status": "success"
+                },
+                {
+                    "name": "(violate rule)test case 10",
+                    "status": "success"
+                },
+                {
+                    "name": "(violate rule)test case 11",
+                    "status": "success"
+                },
+                {
+                    "name": "(violate rule)test case 12",
+                    "status": "success"
+                },
+                {
+                    "name": "(follow rule)test case 13",
+                    "status": "success"
+                },
+                {
+                    "name": "(follow rule)test case 14",
+                    "status": "success"
+                },
+                {
+                    "name": "(violate rule)test case 15",
+                    "status": "success"
+                },
+                {
+                    "name": "(violate rule)test case 16",
+                    "status": "success"
+                },
+                {
+                    "name": "(violate rule)test case 17",
+                    "status": "success"
+                },
+                {
+                    "name": "(violate rule)test case 18",
+                    "status": "failure",
+                    "selected": true
+                }
+            ],
+            "fixing": true,
+            "logics": [
+                "Get all method calls in the test case.",
+                "For each method call, check whether the method name is `trim`.",
+                "For each `trim` method call, get the method call immediately following it.",
+                "Check whether the method name of the following method call is `isEmpty` or `length`.",
+                "If the method name is `length`, check whether it is part of an equality comparison (`== 0`).",
+                "Count the number of occurrences where `trim().isEmpty()` or `trim().length() == 0` is used."
+            ]
+        },
+        {
+            "status": "Querying API for checking using test logic",
+            "fixing": true,
+            "api_info": [
+                {
+                    "type": "api",
+                    "data": "net.sourceforge.pmd.lang.java.ast.ASTMethodCall: public net.sourceforge.pmd.lang.ast.Node getNextSibling()"
+                },
+                {
+                    "type": "api",
+                    "data": "net.sourceforge.pmd.lang.java.ast.ASTMethodDeclaration: public boolean equals(java.lang.Object)"
+                }
+            ]
+        },
+        {
+            "status": "Generated checker fails to pass (violate rule)test case 10 in attempt: 5 / 5, preparing next attempt.",
+            "fixing": true
+        },
+        {
+            "status": "All test cases passed!",
+            "test_cases": [
+                {
+                    "name": "(follow rule)test case 1",
+                    "status": "success"
+                },
+                {
+                    "name": "(violate rule)test case 2",
+                    "status": "success"
+                },
+                {
+                    "name": "(follow rule)test case 3",
+                    "status": "success"
+                },
+                {
+                    "name": "(violate rule)test case 4",
+                    "status": "success"
+                },
+                {
+                    "name": "(follow rule)test case 5",
+                    "status": "success"
+                },
+                {
+                    "name": "(violate rule)test case 6",
+                    "status": "success"
+                },
+                {
+                    "name": "(follow rule)test case 7",
+                    "status": "success"
+                },
+                {
+                    "name": "(follow rule)test case 8",
+                    "status": "success"
+                },
+                {
+                    "name": "(follow rule)test case 9",
+                    "status": "success"
+                },
+                {
+                    "name": "(violate rule)test case 10",
+                    "status": "success"
+                },
+                {
+                    "name": "(violate rule)test case 11",
+                    "status": "success"
+                },
+                {
+                    "name": "(violate rule)test case 12",
+                    "status": "success"
+                },
+                {
+                    "name": "(follow rule)test case 13",
+                    "status": "success"
+                },
+                {
+                    "name": "(follow rule)test case 14",
+                    "status": "success"
+                },
+                {
+                    "name": "(violate rule)test case 15",
+                    "status": "success"
+                },
+                {
+                    "name": "(violate rule)test case 16",
+                    "status": "success"
+                },
+                {
+                    "name": "(violate rule)test case 17",
+                    "status": "success"
+                },
+                {
+                    "name": "(violate rule)test case 18",
+                    "status": "skipped"
+                }
+            ]
+        }
+    ],
+    "test_cases": [
+        {
+            "name": "(follow rule)test case 1"
+        },
+        {
+            "name": "(violate rule)test case 2"
+        },
+        {
+            "name": "(follow rule)test case 3"
+        },
+        {
+            "name": "(violate rule)test case 4"
+        },
+        {
+            "name": "(follow rule)test case 5"
+        },
+        {
+            "name": "(violate rule)test case 6"
+        },
+        {
+            "name": "(follow rule)test case 7"
+        },
+        {
+            "name": "(follow rule)test case 8"
+        },
+        {
+            "name": "(follow rule)test case 9"
+        },
+        {
+            "name": "(violate rule)test case 10"
+        },
+        {
+            "name": "(violate rule)test case 11"
+        },
+        {
+            "name": "(violate rule)test case 12"
+        },
+        {
+            "name": "(follow rule)test case 13"
+        },
+        {
+            "name": "(follow rule)test case 14"
+        },
+        {
+            "name": "(violate rule)test case 15"
+        },
+        {
+            "name": "(violate rule)test case 16"
+        },
+        {
+            "name": "(violate rule)test case 17"
+        },
+        {
+            "name": "(violate rule)test case 18"
+        }
+    ]
+}

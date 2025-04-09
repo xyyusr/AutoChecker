@@ -1,0 +1,621 @@
+{
+    "name": "AvoidUsingOctalValuesRule",
+    "pass_rate": 87.50,
+    "description": "Integer literals should not start with zero since this denotes that the rest of literal will be interpreted as an octal value.",
+    "steps": [
+        {
+            "status": "Preparing to use negative test case to generate initial checker"
+        },
+        {
+            "status": "Generating test case logic using (violate rule)test case 1 in attempt 1 / 5",
+            "logics": [
+                "Get the type of field `x`.",
+                "Check whether the field `x` is initialized.",
+                "Check whether the field `x` is initialized to a literal value.",
+                "Get the literal value that the field `x` is initialized to.",
+                "Check whether the literal value is a numeric literal.",
+                "Check whether the numeric literal is an int literal.",
+                "Get the value of the int literal.",
+                "Check whether the int literal starts with zero.",
+                "Check whether the int literal is a valid octal value (digits 0-7 only)."
+            ],
+            "test_cases": [
+                {
+                    "name": "(violate rule)test case 1",
+                    "selected": true
+                }
+            ]
+        },
+        {
+            "status": "Querying API for checking using (violate rule)test case 1",
+            "api_info": [
+                {
+                    "type": "api",
+                    "data": "net.sourceforge.pmd.lang.java.ast.ASTFieldDeclaration: public net.sourceforge.pmd.lang.java.ast.ASTType getTypeNode()"
+                },
+                {
+                    "type": "api",
+                    "data": "net.sourceforge.pmd.lang.java.ast.ASTNumericLiteral: public boolean isDoubleLiteral()"
+                },
+                {
+                    "type": "api",
+                    "data": "net.sourceforge.pmd.lang.java.ast.ASTNumericLiteral: public boolean isIntLiteral()"
+                },
+                {
+                    "type": "api",
+                    "data": "net.sourceforge.pmd.lang.java.ast.ASTNumericLiteral: public int getValueAsInt()"
+                },
+                {
+                    "type": "meta",
+                    "data": "Check whether the field is initialized"
+                },
+                {
+                    "type": "meta",
+                    "data": "Check whether the field is initialized to variable value"
+                },
+                {
+                    "type": "meta",
+                    "data": "Get the literal value that the field is initialized to"
+                }
+            ]
+        },
+        {
+            "status": "Success! Generate initial checker code using (violate rule)test case 1. Start to iterate other test cases!",
+            "checker_code": "package net.sourceforge.pmd.lang.java.rule.errorprone;\n\nimport java.util.*;\nimport java.lang.*;\n\nimport net.sourceforge.pmd.lang.java.rule.AbstractJavaRulechainRule;\nimport net.sourceforge.pmd.lang.java.ast. *;\nimport net.sourceforge.pmd.lang.java.ast.internal. *;\nimport net.sourceforge.pmd.lang.java.types. *;\nimport net.sourceforge.pmd.lang.java.symbols. *;\nimport net.sourceforge.pmd.lang.ast.NodeStream;\npublic class AvoidUsingOctalValuesRule extends AbstractJavaRulechainRule {\n    public AvoidUsingOctalValuesRule() {\n        super(ASTNumericLiteral.class);\n    }\n\n    @Override\n    public Object visit(ASTNumericLiteral node, Object data) {\n        if (node.isIntLiteral()) {\n            String literalText = node.getImage();\n            if (literalText.startsWith(\"0\") && literalText.length() > 1 && !literalText.startsWith(\"0x\") && !literalText.startsWith(\"0X\")) {\n                addViolation(data, node);\n            }\n        }\n        return super.visit(node, data);\n    }\n}",
+            "test_cases": [
+                {
+                    "name": "(violate rule)test case 1",
+                    "selected": true
+                }
+            ]
+        },
+        {
+            "status": "Running test cases...",
+            "test_cases": [
+                {
+                    "name": "(violate rule)test case 1",
+                    "status": "pending"
+                },
+                {
+                    "name": "(follow rule)test case 2",
+                    "status": "pending"
+                },
+                {
+                    "name": "(follow rule)test case 3",
+                    "status": "pending"
+                },
+                {
+                    "name": "(follow rule)test case 4",
+                    "status": "pending"
+                },
+                {
+                    "name": "(follow rule)test case 5",
+                    "status": "pending"
+                },
+                {
+                    "name": "(violate rule)test case 6",
+                    "status": "pending"
+                },
+                {
+                    "name": "(follow rule)test case 7",
+                    "status": "pending"
+                },
+                {
+                    "name": "(follow rule)test case 8",
+                    "status": "pending"
+                }
+            ]
+        },
+        {
+            "status": "Failed to pass (violate rule)test case 6, and trying fix, generating test case logic in attempt 1 / 5",
+            "test_cases": [
+                {
+                    "name": "(violate rule)test case 1",
+                    "status": "success"
+                },
+                {
+                    "name": "(follow rule)test case 2",
+                    "status": "success"
+                },
+                {
+                    "name": "(follow rule)test case 3",
+                    "status": "success"
+                },
+                {
+                    "name": "(follow rule)test case 4",
+                    "status": "success"
+                },
+                {
+                    "name": "(follow rule)test case 5",
+                    "status": "success"
+                },
+                {
+                    "name": "(violate rule)test case 6",
+                    "status": "failure",
+                    "selected": true
+                }
+            ],
+            "fixing": true,
+            "logics": [
+                "Get all fields declared in the class.",
+                "Check whether the field is initialized to a literal value.",
+                "Get the literal value that the field is initialized to.",
+                "Check whether the literal value is a numeric literal.",
+                "Check whether the numeric literal is a long literal.",
+                "Get the value of the long literal.",
+                "Check whether the value of the long literal starts with '0'.",
+                "Check whether the value of the long literal is not '0' (to exclude the case of just '0')."
+            ]
+        },
+        {
+            "status": "Querying API for checking using test logic",
+            "fixing": true,
+            "api_info": [
+                {
+                    "type": "api",
+                    "data": "net.sourceforge.pmd.lang.java.ast.ASTFieldDeclaration: public net.sourceforge.pmd.lang.ast.NodeStream<ASTAnnotation> getDeclaredAnnotations()"
+                },
+                {
+                    "type": "api",
+                    "data": "net.sourceforge.pmd.lang.java.ast.ASTNumericLiteral: public boolean isDoubleLiteral()"
+                },
+                {
+                    "type": "api",
+                    "data": "net.sourceforge.pmd.lang.java.ast.ASTNumericLiteral: public boolean isLongLiteral()"
+                },
+                {
+                    "type": "api",
+                    "data": "net.sourceforge.pmd.lang.java.ast.ASTNumericLiteral: public long getValueAsLong()"
+                },
+                {
+                    "type": "meta",
+                    "data": "Check whether the field is initialized to variable value"
+                },
+                {
+                    "type": "meta",
+                    "data": "Get the literal value that the field is initialized to"
+                }
+            ]
+        },
+        {
+            "status": "Generated checker fails to pass (follow rule)test case 3 in attempt: 1 / 5, preparing next attempt.",
+            "fixing": true
+        },
+        {
+            "status": "Failed to pass (violate rule)test case 6, and trying fix, generating test case logic in attempt 2 / 5",
+            "test_cases": [
+                {
+                    "name": "(violate rule)test case 1",
+                    "status": "success"
+                },
+                {
+                    "name": "(follow rule)test case 2",
+                    "status": "success"
+                },
+                {
+                    "name": "(follow rule)test case 3",
+                    "status": "success"
+                },
+                {
+                    "name": "(follow rule)test case 4",
+                    "status": "success"
+                },
+                {
+                    "name": "(follow rule)test case 5",
+                    "status": "success"
+                },
+                {
+                    "name": "(violate rule)test case 6",
+                    "status": "failure",
+                    "selected": true
+                }
+            ],
+            "fixing": true,
+            "logics": [
+                "Get all fields declared in the class.",
+                "For each field, check whether it is initialized to a numeric literal.",
+                "For each numeric literal, check whether it is a long literal.",
+                "For each long literal, check whether it starts with '0'.",
+                "Count the number of long literals that start with '0'."
+            ]
+        },
+        {
+            "status": "Querying API for checking using test logic",
+            "fixing": true,
+            "api_info": [
+                {
+                    "type": "api",
+                    "data": "net.sourceforge.pmd.lang.java.ast.ASTFieldDeclaration: public net.sourceforge.pmd.lang.ast.NodeStream<ASTAnnotation> getDeclaredAnnotations()"
+                },
+                {
+                    "type": "api",
+                    "data": "net.sourceforge.pmd.lang.java.ast.ASTNumericLiteral: public boolean isLongLiteral()"
+                },
+                {
+                    "type": "meta",
+                    "data": "Check whether the field is initialized to variable value"
+                }
+            ]
+        },
+        {
+            "status": "Generated checker fails to pass (follow rule)test case 3 in attempt: 2 / 5, preparing next attempt.",
+            "fixing": true
+        },
+        {
+            "status": "Failed to pass (violate rule)test case 6, and trying fix, generating test case logic in attempt 3 / 5",
+            "test_cases": [
+                {
+                    "name": "(violate rule)test case 1",
+                    "status": "success"
+                },
+                {
+                    "name": "(follow rule)test case 2",
+                    "status": "success"
+                },
+                {
+                    "name": "(follow rule)test case 3",
+                    "status": "success"
+                },
+                {
+                    "name": "(follow rule)test case 4",
+                    "status": "success"
+                },
+                {
+                    "name": "(follow rule)test case 5",
+                    "status": "success"
+                },
+                {
+                    "name": "(violate rule)test case 6",
+                    "status": "failure",
+                    "selected": true
+                }
+            ],
+            "fixing": true,
+            "logics": [
+                "Get all fields declared in the class.",
+                "Check whether the field is initialized to a literal value.",
+                "Get the literal value that the field is initialized to.",
+                "Check whether the literal value is a numeric literal.",
+                "Check whether the numeric literal is a long literal.",
+                "Get the value of the long literal.",
+                "Check whether the value of the long literal starts with '0' (excluding '0L' or '0l')."
+            ]
+        },
+        {
+            "status": "Querying API for checking using test logic",
+            "fixing": true,
+            "api_info": [
+                {
+                    "type": "api",
+                    "data": "net.sourceforge.pmd.lang.java.ast.ASTFieldDeclaration: public net.sourceforge.pmd.lang.ast.NodeStream<ASTAnnotation> getDeclaredAnnotations()"
+                },
+                {
+                    "type": "api",
+                    "data": "net.sourceforge.pmd.lang.java.ast.ASTNumericLiteral: public boolean isDoubleLiteral()"
+                },
+                {
+                    "type": "api",
+                    "data": "net.sourceforge.pmd.lang.java.ast.ASTNumericLiteral: public boolean isLongLiteral()"
+                },
+                {
+                    "type": "api",
+                    "data": "net.sourceforge.pmd.lang.java.ast.ASTNumericLiteral: public long getValueAsLong()"
+                },
+                {
+                    "type": "meta",
+                    "data": "Check whether the field is initialized to variable value"
+                },
+                {
+                    "type": "meta",
+                    "data": "Get the literal value that the field is initialized to"
+                }
+            ]
+        },
+        {
+            "status": "Generated checker fails to pass (follow rule)test case 3 in attempt: 3 / 5, preparing next attempt.",
+            "fixing": true
+        },
+        {
+            "status": "Failed to pass (violate rule)test case 6, and trying fix, generating test case logic in attempt 4 / 5",
+            "test_cases": [
+                {
+                    "name": "(violate rule)test case 1",
+                    "status": "success"
+                },
+                {
+                    "name": "(follow rule)test case 2",
+                    "status": "success"
+                },
+                {
+                    "name": "(follow rule)test case 3",
+                    "status": "success"
+                },
+                {
+                    "name": "(follow rule)test case 4",
+                    "status": "success"
+                },
+                {
+                    "name": "(follow rule)test case 5",
+                    "status": "success"
+                },
+                {
+                    "name": "(violate rule)test case 6",
+                    "status": "failure",
+                    "selected": true
+                }
+            ],
+            "fixing": true,
+            "logics": [
+                "Get all fields declared in the class.",
+                "Check whether the field is initialized to a literal value.",
+                "Get the literal value that the field is initialized to.",
+                "Check whether the literal value is a numeric literal.",
+                "Check whether the numeric literal is a long literal.",
+                "Get the value of the long literal.",
+                "Check whether the value of the long literal starts with '0' (excluding '0L')."
+            ]
+        },
+        {
+            "status": "Querying API for checking using test logic",
+            "fixing": true,
+            "api_info": [
+                {
+                    "type": "api",
+                    "data": "net.sourceforge.pmd.lang.java.ast.ASTFieldDeclaration: public net.sourceforge.pmd.lang.ast.NodeStream<ASTAnnotation> getDeclaredAnnotations()"
+                },
+                {
+                    "type": "api",
+                    "data": "net.sourceforge.pmd.lang.java.ast.ASTNumericLiteral: public boolean isDoubleLiteral()"
+                },
+                {
+                    "type": "api",
+                    "data": "net.sourceforge.pmd.lang.java.ast.ASTNumericLiteral: public boolean isLongLiteral()"
+                },
+                {
+                    "type": "api",
+                    "data": "net.sourceforge.pmd.lang.java.ast.ASTNumericLiteral: public long getValueAsLong()"
+                },
+                {
+                    "type": "meta",
+                    "data": "Check whether the field is initialized to variable value"
+                },
+                {
+                    "type": "meta",
+                    "data": "Get the literal value that the field is initialized to"
+                }
+            ]
+        },
+        {
+            "status": "Generated checker fails to pass (follow rule)test case 3 in attempt: 4 / 5, preparing next attempt.",
+            "fixing": true
+        },
+        {
+            "status": "Failed to pass (violate rule)test case 6, and trying fix, generating test case logic in attempt 5 / 5",
+            "test_cases": [
+                {
+                    "name": "(violate rule)test case 1",
+                    "status": "success"
+                },
+                {
+                    "name": "(follow rule)test case 2",
+                    "status": "success"
+                },
+                {
+                    "name": "(follow rule)test case 3",
+                    "status": "success"
+                },
+                {
+                    "name": "(follow rule)test case 4",
+                    "status": "success"
+                },
+                {
+                    "name": "(follow rule)test case 5",
+                    "status": "success"
+                },
+                {
+                    "name": "(violate rule)test case 6",
+                    "status": "failure",
+                    "selected": true
+                }
+            ],
+            "fixing": true,
+            "logics": [
+                "Get the value of the long literal.",
+                "Check whether the value of the long literal starts with zero.",
+                "Check whether the value of the long literal is not zero (to avoid false positives for the literal `0L`).",
+                "Check whether the value of the long literal is not a single zero (to avoid false positives for the literal `0L`)."
+            ]
+        },
+        {
+            "status": "Querying API for checking using test logic",
+            "fixing": true,
+            "api_info": [
+                {
+                    "type": "api",
+                    "data": "net.sourceforge.pmd.lang.java.ast.ASTNumericLiteral: public long getValueAsLong()"
+                },
+                {
+                    "type": "api",
+                    "data": "net.sourceforge.pmd.lang.java.ast.ASTNumericLiteral: public boolean isLongLiteral()"
+                }
+            ]
+        },
+        {
+            "status": "Generated checker fails to pass (follow rule)test case 3 in attempt: 5 / 5, preparing next attempt.",
+            "fixing": true
+        },
+        {
+            "status": "Fix failed in five attempts, so skip the failed test case (violate rule)test case 6. Running test cases...",
+            "test_cases": [
+                {
+                    "name": "(violate rule)test case 1",
+                    "status": "pending"
+                },
+                {
+                    "name": "(follow rule)test case 2",
+                    "status": "pending"
+                },
+                {
+                    "name": "(follow rule)test case 3",
+                    "status": "pending"
+                },
+                {
+                    "name": "(follow rule)test case 4",
+                    "status": "pending"
+                },
+                {
+                    "name": "(follow rule)test case 5",
+                    "status": "pending"
+                },
+                {
+                    "name": "(violate rule)test case 6",
+                    "status": "skipped"
+                },
+                {
+                    "name": "(follow rule)test case 7",
+                    "status": "pending"
+                },
+                {
+                    "name": "(follow rule)test case 8",
+                    "status": "pending"
+                }
+            ]
+        },
+        {
+            "status": "Failed to pass (follow rule)test case 7, and trying fix, generating test case logic in attempt 1 / 5",
+            "test_cases": [
+                {
+                    "name": "(violate rule)test case 1",
+                    "status": "success"
+                },
+                {
+                    "name": "(follow rule)test case 2",
+                    "status": "success"
+                },
+                {
+                    "name": "(follow rule)test case 3",
+                    "status": "success"
+                },
+                {
+                    "name": "(follow rule)test case 4",
+                    "status": "success"
+                },
+                {
+                    "name": "(follow rule)test case 5",
+                    "status": "success"
+                },
+                {
+                    "name": "(violate rule)test case 6",
+                    "status": "skipped"
+                },
+                {
+                    "name": "(follow rule)test case 7",
+                    "status": "failure",
+                    "selected": true
+                }
+            ],
+            "fixing": true,
+            "logics": [
+                "Get all fields declared in the class.",
+                "Check whether the field is initialized to a literal value.",
+                "Check whether the literal value is an integer literal.",
+                "Get the value of the integer literal.",
+                "Check whether the integer literal starts with '0' and is not '0'.",
+                "Check whether the integer literal is a valid octal number (digits 0-7)."
+            ]
+        },
+        {
+            "status": "Querying API for checking using test logic",
+            "fixing": true,
+            "api_info": [
+                {
+                    "type": "api",
+                    "data": "net.sourceforge.pmd.lang.java.ast.ASTFieldDeclaration: public net.sourceforge.pmd.lang.ast.NodeStream<ASTAnnotation> getDeclaredAnnotations()"
+                },
+                {
+                    "type": "api",
+                    "data": "net.sourceforge.pmd.lang.java.ast.ASTNumericLiteral: public boolean isIntLiteral()"
+                },
+                {
+                    "type": "api",
+                    "data": "net.sourceforge.pmd.lang.java.ast.ASTNumericLiteral: public int getValueAsInt()"
+                },
+                {
+                    "type": "api",
+                    "data": "net.sourceforge.pmd.lang.java.ast.internal.JavaAstUtils: static public boolean isLiteralInt(net.sourceforge.pmd.lang.java.ast.JavaNode, int)"
+                },
+                {
+                    "type": "meta",
+                    "data": "Check whether the field is initialized to variable value"
+                }
+            ]
+        },
+        {
+            "status": "Fix successfully! Generating checker code",
+            "checker_code": "package net.sourceforge.pmd.lang.java.rule.errorprone;\n\nimport java.util.*;\nimport java.lang.*;\n\n\nimport net.sourceforge.pmd.lang.java.rule.AbstractJavaRulechainRule;\nimport net.sourceforge.pmd.lang.java.ast. *;\nimport net.sourceforge.pmd.lang.java.ast.internal. *;\nimport net.sourceforge.pmd.lang.java.types. *;\nimport net.sourceforge.pmd.lang.java.symbols. *;\nimport net.sourceforge.pmd.lang.ast.NodeStream;\npublic class AvoidUsingOctalValuesRule extends AbstractJavaRulechainRule {\n    public AvoidUsingOctalValuesRule() {\n        super(ASTNumericLiteral.class);\n    }\n\n    @Override\n    public Object visit(ASTNumericLiteral node, Object data) {\n        if (node.isIntLiteral()) {\n            String literalText = node.getImage();\n            if (literalText.startsWith(\"0\") && literalText.length() > 1 && !literalText.startsWith(\"0x\") && !literalText.startsWith(\"0X\")) {\n                int value = node.getValueAsInt();\n                if (value >= 8) {\n                    addViolation(data, node);\n                }\n            }\n        }\n        return super.visit(node, data);\n    }\n}"
+        },
+        {
+            "status": "All test cases passed!",
+            "test_cases": [
+                {
+                    "name": "(violate rule)test case 1",
+                    "status": "success"
+                },
+                {
+                    "name": "(follow rule)test case 2",
+                    "status": "success"
+                },
+                {
+                    "name": "(follow rule)test case 3",
+                    "status": "success"
+                },
+                {
+                    "name": "(follow rule)test case 4",
+                    "status": "success"
+                },
+                {
+                    "name": "(follow rule)test case 5",
+                    "status": "success"
+                },
+                {
+                    "name": "(violate rule)test case 6",
+                    "status": "skipped"
+                },
+                {
+                    "name": "(follow rule)test case 7",
+                    "status": "success"
+                },
+                {
+                    "name": "(follow rule)test case 8",
+                    "status": "success"
+                }
+            ]
+        }
+    ],
+    "test_cases": [
+        {
+            "name": "(violate rule)test case 1"
+        },
+        {
+            "name": "(follow rule)test case 2"
+        },
+        {
+            "name": "(follow rule)test case 3"
+        },
+        {
+            "name": "(follow rule)test case 4"
+        },
+        {
+            "name": "(follow rule)test case 5"
+        },
+        {
+            "name": "(violate rule)test case 6"
+        },
+        {
+            "name": "(follow rule)test case 7"
+        },
+        {
+            "name": "(follow rule)test case 8"
+        }
+    ]
+}

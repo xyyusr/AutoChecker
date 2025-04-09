@@ -1,0 +1,1988 @@
+{
+    "name": "MethodNamingConventionsRule",
+    "pass_rate": 66.67,
+    "description": "This rule reports method declarations which do not match the regex that applies to their specific kind (e.g. JUnit test or native method). By default this rule uses the standard Java naming convention (Camel case). Regex which applies to instance method names is \"[a-z][a-zA-Z0-9]*\". Regex which applies to static method names is \"[a-z][a-zA-Z0-9]*\". Regex which applies to native method names is \"[a-z][a-zA-Z0-9]*\". Regex which applies to JUnit 3 test method names is \"test[A-Z0-9][a-zA-Z0-9]*\". Regex which applies to JUnit 4 test method names is \"[a-z][a-zA-Z0-9]*\". Regex which applies to JUnit 5 test method names is \"[a-z][a-zA-Z0-9]*\".",
+    "steps": [
+        {
+            "status": "Preparing to use negative test case to generate initial checker"
+        },
+        {
+            "status": "Generating test case logic using (violate rule)test case 1 in attempt 1 / 5",
+            "logics": [
+                "Get the name of the method.",
+                "Check whether the method is static.",
+                "Check whether the method is native.",
+                "Check whether the method is a JUnit method.",
+                "Check whether the method name matches the regex \"[a-z][a-zA-Z0-9]*\" (for instance methods).",
+                "Check whether the method name matches the regex \"[a-z][a-zA-Z0-9]*\" (for static methods).",
+                "Check whether the method name matches the regex \"[a-z][a-zA-Z0-9]*\" (for native methods).",
+                "Check whether the method name matches the regex \"test[A-Z0-9][a-zA-Z0-9]*\" (for JUnit 3 test methods).",
+                "Check whether the method name matches the regex \"[a-z][a-zA-Z0-9]*\" (for JUnit 4 test methods).",
+                "Check whether the method name matches the regex \"[a-z][a-zA-Z0-9]*\" (for JUnit 5 test methods)."
+            ],
+            "test_cases": [
+                {
+                    "name": "(violate rule)test case 1",
+                    "selected": true
+                }
+            ]
+        },
+        {
+            "status": "Querying API for checking using (violate rule)test case 1",
+            "api_info": [
+                {
+                    "type": "api",
+                    "data": "net.sourceforge.pmd.lang.java.ast.ASTMethodDeclaration: public java.lang.String getName()"
+                },
+                {
+                    "type": "api",
+                    "data": "net.sourceforge.pmd.lang.java.ast.ASTMethodDeclaration: public boolean isStatic()"
+                },
+                {
+                    "type": "api",
+                    "data": "net.sourceforge.pmd.lang.java.ast.ASTMethodDeclaration: public boolean isNative()"
+                },
+                {
+                    "type": "api",
+                    "data": "net.sourceforge.pmd.lang.java.rule.internal.TestFrameworksUtil: static public boolean isJUnitMethod(net.sourceforge.pmd.lang.java.ast.ASTMethodDeclaration)"
+                },
+                {
+                    "type": "api",
+                    "data": "net.sourceforge.pmd.lang.java.rule.internal.TestFrameworksUtil: static public boolean isJUnit3Method(net.sourceforge.pmd.lang.java.ast.ASTMethodDeclaration)"
+                },
+                {
+                    "type": "api",
+                    "data": "net.sourceforge.pmd.lang.java.rule.internal.TestFrameworksUtil: static public boolean isJUnit4Method(net.sourceforge.pmd.lang.java.ast.ASTMethodDeclaration)"
+                },
+                {
+                    "type": "api",
+                    "data": "net.sourceforge.pmd.lang.java.rule.internal.TestFrameworksUtil: static public boolean isJUnit5Method(net.sourceforge.pmd.lang.java.ast.ASTMethodDeclaration)"
+                }
+            ]
+        },
+        {
+            "status": "Generated checker compile failed in attempt 1 / 5, preparing next attempt."
+        },
+        {
+            "status": "Generating test case logic using (violate rule)test case 1 in attempt 2 / 5",
+            "logics": [
+                "Get the name of the method.",
+                "Check whether the method is static.",
+                "Check whether the method is native.",
+                "Check whether the method is a JUnit method.",
+                "Check whether the method name matches the regex \"[a-z][a-zA-Z0-9]*\" if it is an instance method.",
+                "Check whether the method name matches the regex \"[a-z][a-zA-Z0-9]*\" if it is a static method.",
+                "Check whether the method name matches the regex \"[a-z][a-zA-Z0-9]*\" if it is a native method.",
+                "Check whether the method name matches the regex \"test[A-Z0-9][a-zA-Z0-9]*\" if it is a JUnit 3 test method.",
+                "Check whether the method name matches the regex \"[a-z][a-zA-Z0-9]*\" if it is a JUnit 4 test method.",
+                "Check whether the method name matches the regex \"[a-z][a-zA-Z0-9]*\" if it is a JUnit 5 test method."
+            ],
+            "test_cases": [
+                {
+                    "name": "(violate rule)test case 1",
+                    "selected": true
+                }
+            ]
+        },
+        {
+            "status": "Querying API for checking using (violate rule)test case 1",
+            "api_info": [
+                {
+                    "type": "api",
+                    "data": "net.sourceforge.pmd.lang.java.ast.ASTMethodDeclaration: public java.lang.String getName()"
+                },
+                {
+                    "type": "api",
+                    "data": "net.sourceforge.pmd.lang.java.ast.ASTMethodDeclaration: public boolean isStatic()"
+                },
+                {
+                    "type": "api",
+                    "data": "net.sourceforge.pmd.lang.java.ast.ASTMethodDeclaration: public boolean isNative()"
+                },
+                {
+                    "type": "api",
+                    "data": "net.sourceforge.pmd.lang.java.rule.internal.TestFrameworksUtil: static public boolean isJUnitMethod(net.sourceforge.pmd.lang.java.ast.ASTMethodDeclaration)"
+                },
+                {
+                    "type": "api",
+                    "data": "net.sourceforge.pmd.lang.java.rule.internal.TestFrameworksUtil: static public boolean isJUnit3Method(net.sourceforge.pmd.lang.java.ast.ASTMethodDeclaration)"
+                },
+                {
+                    "type": "api",
+                    "data": "net.sourceforge.pmd.lang.java.rule.internal.TestFrameworksUtil: static public boolean isJUnit4Method(net.sourceforge.pmd.lang.java.ast.ASTMethodDeclaration)"
+                },
+                {
+                    "type": "api",
+                    "data": "net.sourceforge.pmd.lang.java.rule.internal.TestFrameworksUtil: static public boolean isJUnit5Method(net.sourceforge.pmd.lang.java.ast.ASTMethodDeclaration)"
+                }
+            ]
+        },
+        {
+            "status": "Generated checker compile failed in attempt 2 / 5, preparing next attempt."
+        },
+        {
+            "status": "Generating test case logic using (violate rule)test case 1 in attempt 3 / 5",
+            "logics": [
+                "Get the name of the method.",
+                "Check whether the method is static.",
+                "Check whether the method is native.",
+                "Check whether the method is a JUnit method.",
+                "Check whether the method name matches the regex \"[a-z][a-zA-Z0-9]*\" if it is an instance method.",
+                "Check whether the method name matches the regex \"[a-z][a-zA-Z0-9]*\" if it is a static method.",
+                "Check whether the method name matches the regex \"[a-z][a-zA-Z0-9]*\" if it is a native method.",
+                "Check whether the method name matches the regex \"test[A-Z0-9][a-zA-Z0-9]*\" if it is a JUnit 3 test method.",
+                "Check whether the method name matches the regex \"[a-z][a-zA-Z0-9]*\" if it is a JUnit 4 test method.",
+                "Check whether the method name matches the regex \"[a-z][a-zA-Z0-9]*\" if it is a JUnit 5 test method."
+            ],
+            "test_cases": [
+                {
+                    "name": "(violate rule)test case 1",
+                    "selected": true
+                }
+            ]
+        },
+        {
+            "status": "Querying API for checking using (violate rule)test case 1",
+            "api_info": [
+                {
+                    "type": "api",
+                    "data": "net.sourceforge.pmd.lang.java.ast.ASTMethodDeclaration: public java.lang.String getName()"
+                },
+                {
+                    "type": "api",
+                    "data": "net.sourceforge.pmd.lang.java.ast.ASTMethodDeclaration: public boolean isStatic()"
+                },
+                {
+                    "type": "api",
+                    "data": "net.sourceforge.pmd.lang.java.ast.ASTMethodDeclaration: public boolean isNative()"
+                },
+                {
+                    "type": "api",
+                    "data": "net.sourceforge.pmd.lang.java.rule.internal.TestFrameworksUtil: static public boolean isJUnitMethod(net.sourceforge.pmd.lang.java.ast.ASTMethodDeclaration)"
+                },
+                {
+                    "type": "api",
+                    "data": "net.sourceforge.pmd.lang.java.rule.internal.TestFrameworksUtil: static public boolean isJUnit3Method(net.sourceforge.pmd.lang.java.ast.ASTMethodDeclaration)"
+                },
+                {
+                    "type": "api",
+                    "data": "net.sourceforge.pmd.lang.java.rule.internal.TestFrameworksUtil: static public boolean isJUnit4Method(net.sourceforge.pmd.lang.java.ast.ASTMethodDeclaration)"
+                },
+                {
+                    "type": "api",
+                    "data": "net.sourceforge.pmd.lang.java.rule.internal.TestFrameworksUtil: static public boolean isJUnit5Method(net.sourceforge.pmd.lang.java.ast.ASTMethodDeclaration)"
+                }
+            ]
+        },
+        {
+            "status": "Generated checker compile failed in attempt 3 / 5, preparing next attempt."
+        },
+        {
+            "status": "Generating test case logic using (violate rule)test case 1 in attempt 4 / 5",
+            "logics": [
+                "Get the name of the method.",
+                "Check whether the method is static.",
+                "Check whether the method is native.",
+                "Check whether the method is a JUnit method.",
+                "Check whether the method name matches the regex \"[a-z][a-zA-Z0-9]*\" (for instance methods).",
+                "Check whether the method name matches the regex \"[a-z][a-zA-Z0-9]*\" (for static methods).",
+                "Check whether the method name matches the regex \"[a-z][a-zA-Z0-9]*\" (for native methods).",
+                "Check whether the method name matches the regex \"test[A-Z0-9][a-zA-Z0-9]*\" (for JUnit 3 test methods).",
+                "Check whether the method name matches the regex \"[a-z][a-zA-Z0-9]*\" (for JUnit 4 test methods).",
+                "Check whether the method name matches the regex \"[a-z][a-zA-Z0-9]*\" (for JUnit 5 test methods)."
+            ],
+            "test_cases": [
+                {
+                    "name": "(violate rule)test case 1",
+                    "selected": true
+                }
+            ]
+        },
+        {
+            "status": "Querying API for checking using (violate rule)test case 1",
+            "api_info": [
+                {
+                    "type": "api",
+                    "data": "net.sourceforge.pmd.lang.java.ast.ASTMethodDeclaration: public java.lang.String getName()"
+                },
+                {
+                    "type": "api",
+                    "data": "net.sourceforge.pmd.lang.java.ast.ASTMethodDeclaration: public boolean isStatic()"
+                },
+                {
+                    "type": "api",
+                    "data": "net.sourceforge.pmd.lang.java.ast.ASTMethodDeclaration: public boolean isNative()"
+                },
+                {
+                    "type": "api",
+                    "data": "net.sourceforge.pmd.lang.java.rule.internal.TestFrameworksUtil: static public boolean isJUnitMethod(net.sourceforge.pmd.lang.java.ast.ASTMethodDeclaration)"
+                },
+                {
+                    "type": "api",
+                    "data": "net.sourceforge.pmd.lang.java.rule.internal.TestFrameworksUtil: static public boolean isJUnit3Method(net.sourceforge.pmd.lang.java.ast.ASTMethodDeclaration)"
+                },
+                {
+                    "type": "api",
+                    "data": "net.sourceforge.pmd.lang.java.rule.internal.TestFrameworksUtil: static public boolean isJUnit4Method(net.sourceforge.pmd.lang.java.ast.ASTMethodDeclaration)"
+                },
+                {
+                    "type": "api",
+                    "data": "net.sourceforge.pmd.lang.java.rule.internal.TestFrameworksUtil: static public boolean isJUnit5Method(net.sourceforge.pmd.lang.java.ast.ASTMethodDeclaration)"
+                }
+            ]
+        },
+        {
+            "status": "Generated checker compile failed in attempt 4 / 5, preparing next attempt."
+        },
+        {
+            "status": "Generating test case logic using (violate rule)test case 1 in attempt 5 / 5",
+            "logics": [
+                "Get the name of the method.",
+                "Check whether the method is static.",
+                "Check whether the method is native.",
+                "Check whether the method is a JUnit method.",
+                "Check whether the method name matches the regex \"[a-z][a-zA-Z0-9]*\" (for instance methods).",
+                "Check whether the method name matches the regex \"[a-z][a-zA-Z0-9]*\" (for static methods).",
+                "Check whether the method name matches the regex \"[a-z][a-zA-Z0-9]*\" (for native methods).",
+                "Check whether the method name matches the regex \"test[A-Z0-9][a-zA-Z0-9]*\" (for JUnit 3 test methods).",
+                "Check whether the method name matches the regex \"[a-z][a-zA-Z0-9]*\" (for JUnit 4 test methods).",
+                "Check whether the method name matches the regex \"[a-z][a-zA-Z0-9]*\" (for JUnit 5 test methods)."
+            ],
+            "test_cases": [
+                {
+                    "name": "(violate rule)test case 1",
+                    "selected": true
+                }
+            ]
+        },
+        {
+            "status": "Querying API for checking using (violate rule)test case 1",
+            "api_info": [
+                {
+                    "type": "api",
+                    "data": "net.sourceforge.pmd.lang.java.ast.ASTMethodDeclaration: public java.lang.String getName()"
+                },
+                {
+                    "type": "api",
+                    "data": "net.sourceforge.pmd.lang.java.ast.ASTMethodDeclaration: public boolean isStatic()"
+                },
+                {
+                    "type": "api",
+                    "data": "net.sourceforge.pmd.lang.java.ast.ASTMethodDeclaration: public boolean isNative()"
+                },
+                {
+                    "type": "api",
+                    "data": "net.sourceforge.pmd.lang.java.rule.internal.TestFrameworksUtil: static public boolean isJUnitMethod(net.sourceforge.pmd.lang.java.ast.ASTMethodDeclaration)"
+                },
+                {
+                    "type": "api",
+                    "data": "net.sourceforge.pmd.lang.java.rule.internal.TestFrameworksUtil: static public boolean isJUnit3Method(net.sourceforge.pmd.lang.java.ast.ASTMethodDeclaration)"
+                },
+                {
+                    "type": "api",
+                    "data": "net.sourceforge.pmd.lang.java.rule.internal.TestFrameworksUtil: static public boolean isJUnit4Method(net.sourceforge.pmd.lang.java.ast.ASTMethodDeclaration)"
+                },
+                {
+                    "type": "api",
+                    "data": "net.sourceforge.pmd.lang.java.rule.internal.TestFrameworksUtil: static public boolean isJUnit5Method(net.sourceforge.pmd.lang.java.ast.ASTMethodDeclaration)"
+                }
+            ]
+        },
+        {
+            "status": "Generated checker compile failed in attempt 5 / 5, preparing next attempt."
+        },
+        {
+            "status": "Failed in five attempts, so skip the failed test case (violate rule)test case 1, select next negative test case to generate initial checker..."
+        },
+        {
+            "status": "Generating test case logic using (violate rule)test case 2 in attempt 1 / 5",
+            "logics": [
+                "Get the name of the method.",
+                "Check whether the method is static.",
+                "Check whether the method is native.",
+                "Check whether the method is a JUnit method.",
+                "Check whether the method name matches the regex `[a-z][a-zA-Z0-9]*` (for instance methods).",
+                "Check whether the method name matches the regex `[a-z][a-zA-Z0-9]*` (for static methods).",
+                "Check whether the method name matches the regex `[a-z][a-zA-Z0-9]*` (for native methods).",
+                "Check whether the method name matches the regex `test[A-Z0-9][a-zA-Z0-9]*` (for JUnit 3 test methods).",
+                "Check whether the method name matches the regex `[a-z][a-zA-Z0-9]*` (for JUnit 4 test methods).",
+                "Check whether the method name matches the regex `[a-z][a-zA-Z0-9]*` (for JUnit 5 test methods)."
+            ],
+            "test_cases": [
+                {
+                    "name": "(violate rule)test case 1",
+                    "status": "skipped"
+                },
+                {
+                    "name": "(violate rule)test case 2",
+                    "selected": true
+                }
+            ]
+        },
+        {
+            "status": "Querying API for checking using (violate rule)test case 2",
+            "api_info": [
+                {
+                    "type": "api",
+                    "data": "net.sourceforge.pmd.lang.java.ast.ASTMethodDeclaration: public java.lang.String getName()"
+                },
+                {
+                    "type": "api",
+                    "data": "net.sourceforge.pmd.lang.java.ast.ASTMethodDeclaration: public boolean isStatic()"
+                },
+                {
+                    "type": "api",
+                    "data": "net.sourceforge.pmd.lang.java.ast.ASTMethodDeclaration: public boolean isNative()"
+                },
+                {
+                    "type": "api",
+                    "data": "net.sourceforge.pmd.lang.java.rule.internal.TestFrameworksUtil: static public boolean isJUnitMethod(net.sourceforge.pmd.lang.java.ast.ASTMethodDeclaration)"
+                },
+                {
+                    "type": "api",
+                    "data": "net.sourceforge.pmd.lang.java.rule.internal.TestFrameworksUtil: static public boolean isJUnit3Method(net.sourceforge.pmd.lang.java.ast.ASTMethodDeclaration)"
+                },
+                {
+                    "type": "api",
+                    "data": "net.sourceforge.pmd.lang.java.rule.internal.TestFrameworksUtil: static public boolean isJUnit4Method(net.sourceforge.pmd.lang.java.ast.ASTMethodDeclaration)"
+                },
+                {
+                    "type": "api",
+                    "data": "net.sourceforge.pmd.lang.java.rule.internal.TestFrameworksUtil: static public boolean isJUnit5Method(net.sourceforge.pmd.lang.java.ast.ASTMethodDeclaration)"
+                }
+            ]
+        },
+        {
+            "status": "Generated checker compile failed in attempt 1 / 5, preparing next attempt."
+        },
+        {
+            "status": "Generating test case logic using (violate rule)test case 2 in attempt 2 / 5",
+            "logics": [
+                "Get the name of the method.",
+                "Check whether the method is static.",
+                "Check whether the method is native.",
+                "Check whether the method is a JUnit method.",
+                "Check whether the method name matches the regex \"[a-z][a-zA-Z0-9]*\" (for instance methods).",
+                "Check whether the method name contains underscores."
+            ],
+            "test_cases": [
+                {
+                    "name": "(violate rule)test case 1",
+                    "status": "skipped"
+                },
+                {
+                    "name": "(violate rule)test case 2",
+                    "selected": true
+                }
+            ]
+        },
+        {
+            "status": "Querying API for checking using (violate rule)test case 2",
+            "api_info": [
+                {
+                    "type": "api",
+                    "data": "net.sourceforge.pmd.lang.java.ast.ASTMethodDeclaration: public java.lang.String getName()"
+                },
+                {
+                    "type": "api",
+                    "data": "net.sourceforge.pmd.lang.java.ast.ASTMethodDeclaration: public boolean isStatic()"
+                },
+                {
+                    "type": "api",
+                    "data": "net.sourceforge.pmd.lang.java.ast.ASTMethodDeclaration: public boolean isNative()"
+                },
+                {
+                    "type": "api",
+                    "data": "net.sourceforge.pmd.lang.java.rule.internal.TestFrameworksUtil: static public boolean isJUnitMethod(net.sourceforge.pmd.lang.java.ast.ASTMethodDeclaration)"
+                },
+                {
+                    "type": "api",
+                    "data": "net.sourceforge.pmd.lang.java.ast.ASTMethodDeclaration: public boolean hasModifiers(net.sourceforge.pmd.lang.java.ast.JModifier, [Lnet.sourceforge.pmd.lang.java.ast.JModifier;)"
+                }
+            ]
+        },
+        {
+            "status": "Generated checker compile failed in attempt 2 / 5, preparing next attempt."
+        },
+        {
+            "status": "Generating test case logic using (violate rule)test case 2 in attempt 3 / 5",
+            "logics": [
+                "Get the name of the method.",
+                "Check whether the method is static.",
+                "Check whether the method is native.",
+                "Check whether the method is a JUnit method.",
+                "If the method is not static, not native, and not a JUnit method, check whether the method name matches the regex \"[a-z][a-zA-Z0-9]*\".",
+                "If the method is static, check whether the method name matches the regex \"[a-z][a-zA-Z0-9]*\".",
+                "If the method is native, check whether the method name matches the regex \"[a-z][a-zA-Z0-9]*\".",
+                "If the method is a JUnit 3 test method, check whether the method name matches the regex \"test[A-Z0-9][a-zA-Z0-9]*\".",
+                "If the method is a JUnit 4 or JUnit 5 test method, check whether the method name matches the regex \"[a-z][a-zA-Z0-9]*\"."
+            ],
+            "test_cases": [
+                {
+                    "name": "(violate rule)test case 1",
+                    "status": "skipped"
+                },
+                {
+                    "name": "(violate rule)test case 2",
+                    "selected": true
+                }
+            ]
+        },
+        {
+            "status": "Querying API for checking using (violate rule)test case 2",
+            "api_info": [
+                {
+                    "type": "api",
+                    "data": "net.sourceforge.pmd.lang.java.ast.ASTMethodDeclaration: public java.lang.String getName()"
+                },
+                {
+                    "type": "api",
+                    "data": "net.sourceforge.pmd.lang.java.ast.ASTMethodDeclaration: public boolean isStatic()"
+                },
+                {
+                    "type": "api",
+                    "data": "net.sourceforge.pmd.lang.java.ast.ASTMethodDeclaration: public boolean isNative()"
+                },
+                {
+                    "type": "api",
+                    "data": "net.sourceforge.pmd.lang.java.rule.internal.TestFrameworksUtil: static public boolean isJUnitMethod(net.sourceforge.pmd.lang.java.ast.ASTMethodDeclaration)"
+                },
+                {
+                    "type": "api",
+                    "data": "net.sourceforge.pmd.lang.java.rule.internal.TestFrameworksUtil: static public boolean isJUnit3Method(net.sourceforge.pmd.lang.java.ast.ASTMethodDeclaration)"
+                },
+                {
+                    "type": "api",
+                    "data": "net.sourceforge.pmd.lang.java.ast.ASTMethodDeclaration: public boolean isSyntacticallyStatic()"
+                },
+                {
+                    "type": "api",
+                    "data": "net.sourceforge.pmd.lang.java.rule.internal.TestFrameworksUtil: static public boolean isJUnit4Method(net.sourceforge.pmd.lang.java.ast.ASTMethodDeclaration)"
+                }
+            ]
+        },
+        {
+            "status": "Generated checker compile failed in attempt 3 / 5, preparing next attempt."
+        },
+        {
+            "status": "Generating test case logic using (violate rule)test case 2 in attempt 4 / 5",
+            "logics": [
+                "Get the name of the method.",
+                "Check whether the method is static.",
+                "Check whether the method is native.",
+                "Check whether the method is a JUnit method.",
+                "Check whether the method name matches the regex `[a-z][a-zA-Z0-9]*` (for instance methods).",
+                "Check whether the method name matches the regex `[a-z][a-zA-Z0-9]*` (for static methods).",
+                "Check whether the method name matches the regex `[a-z][a-zA-Z0-9]*` (for native methods).",
+                "Check whether the method name matches the regex `test[A-Z0-9][a-zA-Z0-9]*` (for JUnit 3 test methods).",
+                "Check whether the method name matches the regex `[a-z][a-zA-Z0-9]*` (for JUnit 4 test methods).",
+                "Check whether the method name matches the regex `[a-z][a-zA-Z0-9]*` (for JUnit 5 test methods)."
+            ],
+            "test_cases": [
+                {
+                    "name": "(violate rule)test case 1",
+                    "status": "skipped"
+                },
+                {
+                    "name": "(violate rule)test case 2",
+                    "selected": true
+                }
+            ]
+        },
+        {
+            "status": "Querying API for checking using (violate rule)test case 2",
+            "api_info": [
+                {
+                    "type": "api",
+                    "data": "net.sourceforge.pmd.lang.java.ast.ASTMethodDeclaration: public java.lang.String getName()"
+                },
+                {
+                    "type": "api",
+                    "data": "net.sourceforge.pmd.lang.java.ast.ASTMethodDeclaration: public boolean isStatic()"
+                },
+                {
+                    "type": "api",
+                    "data": "net.sourceforge.pmd.lang.java.ast.ASTMethodDeclaration: public boolean isNative()"
+                },
+                {
+                    "type": "api",
+                    "data": "net.sourceforge.pmd.lang.java.rule.internal.TestFrameworksUtil: static public boolean isJUnitMethod(net.sourceforge.pmd.lang.java.ast.ASTMethodDeclaration)"
+                },
+                {
+                    "type": "api",
+                    "data": "net.sourceforge.pmd.lang.java.rule.internal.TestFrameworksUtil: static public boolean isJUnit3Method(net.sourceforge.pmd.lang.java.ast.ASTMethodDeclaration)"
+                },
+                {
+                    "type": "api",
+                    "data": "net.sourceforge.pmd.lang.java.rule.internal.TestFrameworksUtil: static public boolean isJUnit4Method(net.sourceforge.pmd.lang.java.ast.ASTMethodDeclaration)"
+                },
+                {
+                    "type": "api",
+                    "data": "net.sourceforge.pmd.lang.java.rule.internal.TestFrameworksUtil: static public boolean isJUnit5Method(net.sourceforge.pmd.lang.java.ast.ASTMethodDeclaration)"
+                }
+            ]
+        },
+        {
+            "status": "Generated checker compile failed in attempt 4 / 5, preparing next attempt."
+        },
+        {
+            "status": "Generating test case logic using (violate rule)test case 2 in attempt 5 / 5",
+            "logics": [
+                "Get the name of the method.",
+                "Check whether the method is static.",
+                "Check whether the method is native.",
+                "Check whether the method is a JUnit method.",
+                "Check whether the method name matches the regex `[a-z][a-zA-Z0-9]*` (for instance methods).",
+                "Check whether the method name matches the regex `[a-z][a-zA-Z0-9]*` (for static methods).",
+                "Check whether the method name matches the regex `[a-z][a-zA-Z0-9]*` (for native methods).",
+                "Check whether the method name matches the regex `test[A-Z0-9][a-zA-Z0-9]*` (for JUnit 3 test methods).",
+                "Check whether the method name matches the regex `[a-z][a-zA-Z0-9]*` (for JUnit 4 test methods).",
+                "Check whether the method name matches the regex `[a-z][a-zA-Z0-9]*` (for JUnit 5 test methods)."
+            ],
+            "test_cases": [
+                {
+                    "name": "(violate rule)test case 1",
+                    "status": "skipped"
+                },
+                {
+                    "name": "(violate rule)test case 2",
+                    "selected": true
+                }
+            ]
+        },
+        {
+            "status": "Querying API for checking using (violate rule)test case 2",
+            "api_info": [
+                {
+                    "type": "api",
+                    "data": "net.sourceforge.pmd.lang.java.ast.ASTMethodDeclaration: public java.lang.String getName()"
+                },
+                {
+                    "type": "api",
+                    "data": "net.sourceforge.pmd.lang.java.ast.ASTMethodDeclaration: public boolean isStatic()"
+                },
+                {
+                    "type": "api",
+                    "data": "net.sourceforge.pmd.lang.java.ast.ASTMethodDeclaration: public boolean isNative()"
+                },
+                {
+                    "type": "api",
+                    "data": "net.sourceforge.pmd.lang.java.rule.internal.TestFrameworksUtil: static public boolean isJUnitMethod(net.sourceforge.pmd.lang.java.ast.ASTMethodDeclaration)"
+                },
+                {
+                    "type": "api",
+                    "data": "net.sourceforge.pmd.lang.java.rule.internal.TestFrameworksUtil: static public boolean isJUnit3Method(net.sourceforge.pmd.lang.java.ast.ASTMethodDeclaration)"
+                },
+                {
+                    "type": "api",
+                    "data": "net.sourceforge.pmd.lang.java.rule.internal.TestFrameworksUtil: static public boolean isJUnit4Method(net.sourceforge.pmd.lang.java.ast.ASTMethodDeclaration)"
+                },
+                {
+                    "type": "api",
+                    "data": "net.sourceforge.pmd.lang.java.rule.internal.TestFrameworksUtil: static public boolean isJUnit5Method(net.sourceforge.pmd.lang.java.ast.ASTMethodDeclaration)"
+                }
+            ]
+        },
+        {
+            "status": "Generated checker compile failed in attempt 5 / 5, preparing next attempt."
+        },
+        {
+            "status": "Failed in five attempts, so skip the failed test case (violate rule)test case 2, select next negative test case to generate initial checker..."
+        },
+        {
+            "status": "Generating test case logic using (violate rule)test case 5 in attempt 1 / 5",
+            "logics": [
+                "Get the name of the method `foo`.",
+                "Check whether the method `foo` is static.",
+                "Check whether the name of the method `foo` matches the regex `[a-z][a-zA-Z0-9]*`.",
+                "Get the name of the method `st_whatever`.",
+                "Check whether the method `st_whatever` is static.",
+                "Check whether the name of the method `st_whatever` matches the regex `[a-z][a-zA-Z0-9]*`.",
+                "Get the name of the method `bar`.",
+                "Check whether the method `bar` is static.",
+                "Check whether the name of the method `bar` matches the regex `[a-z][a-zA-Z0-9]*`."
+            ],
+            "test_cases": [
+                {
+                    "name": "(violate rule)test case 1",
+                    "status": "skipped"
+                },
+                {
+                    "name": "(violate rule)test case 2",
+                    "status": "skipped"
+                },
+                {
+                    "name": "(violate rule)test case 5",
+                    "selected": true
+                }
+            ]
+        },
+        {
+            "status": "Querying API for checking using (violate rule)test case 5",
+            "api_info": [
+                {
+                    "type": "api",
+                    "data": "net.sourceforge.pmd.lang.java.ast.ASTMethodDeclaration: public java.lang.String getName()"
+                },
+                {
+                    "type": "api",
+                    "data": "net.sourceforge.pmd.lang.java.ast.ASTMethodDeclaration: public boolean isStatic()"
+                },
+                {
+                    "type": "api",
+                    "data": "net.sourceforge.pmd.lang.java.ast.ASTMethodDeclaration: public java.lang.String getName()"
+                }
+            ]
+        },
+        {
+            "status": "Success! Generate initial checker code using (violate rule)test case 5. Start to iterate other test cases!",
+            "checker_code": "package net.sourceforge.pmd.lang.java.rule.codestyle;\n\n\nimport net.sourceforge.pmd.lang.java.rule.AbstractJavaRulechainRule;\nimport net.sourceforge.pmd.lang.java.ast. *;\nimport net.sourceforge.pmd.lang.java.ast.internal. *;\nimport net.sourceforge.pmd.lang.java.types. *;\nimport net.sourceforge.pmd.lang.java.symbols. *;\nimport net.sourceforge.pmd.lang.ast.NodeStream;\npublic class MethodNamingConventionsRule extends AbstractJavaRulechainRule {\n    public MethodNamingConventionsRule() {\n        super(ASTMethodDeclaration.class);\n    }\n\n    @Override\n    public Object visit(ASTMethodDeclaration node, Object data) {\n        if (node.isStatic()) {\n            String methodName = node.getName();\n            if (!methodName.matches(\"[a-z][a-zA-Z0-9]*\")) {\n                addViolation(data, node);\n            }\n        }\n        return super.visit(node, data);\n    }\n}",
+            "test_cases": [
+                {
+                    "name": "(violate rule)test case 1",
+                    "status": "skipped"
+                },
+                {
+                    "name": "(violate rule)test case 2",
+                    "status": "skipped"
+                },
+                {
+                    "name": "(violate rule)test case 5",
+                    "selected": true
+                }
+            ]
+        },
+        {
+            "status": "Running test cases...",
+            "test_cases": [
+                {
+                    "name": "(violate rule)test case 1",
+                    "status": "skipped"
+                },
+                {
+                    "name": "(violate rule)test case 2",
+                    "status": "skipped"
+                },
+                {
+                    "name": "(follow rule)test case 3",
+                    "status": "pending"
+                },
+                {
+                    "name": "(follow rule)test case 4",
+                    "status": "pending"
+                },
+                {
+                    "name": "(violate rule)test case 5",
+                    "status": "pending"
+                },
+                {
+                    "name": "(violate rule)test case 6",
+                    "status": "pending"
+                },
+                {
+                    "name": "(violate rule)test case 7",
+                    "status": "pending"
+                },
+                {
+                    "name": "(follow rule)test case 8",
+                    "status": "pending"
+                },
+                {
+                    "name": "(violate rule)test case 9",
+                    "status": "pending"
+                },
+                {
+                    "name": "(follow rule)test case 10",
+                    "status": "pending"
+                },
+                {
+                    "name": "(follow rule)test case 11",
+                    "status": "pending"
+                },
+                {
+                    "name": "(violate rule)test case 12",
+                    "status": "pending"
+                }
+            ]
+        },
+        {
+            "status": "Failed to pass (violate rule)test case 6, and trying fix, generating test case logic in attempt 1 / 5",
+            "test_cases": [
+                {
+                    "name": "(violate rule)test case 1",
+                    "status": "skipped"
+                },
+                {
+                    "name": "(violate rule)test case 2",
+                    "status": "skipped"
+                },
+                {
+                    "name": "(follow rule)test case 3",
+                    "status": "success"
+                },
+                {
+                    "name": "(follow rule)test case 4",
+                    "status": "success"
+                },
+                {
+                    "name": "(violate rule)test case 5",
+                    "status": "success"
+                },
+                {
+                    "name": "(violate rule)test case 6",
+                    "status": "failure",
+                    "selected": true
+                }
+            ],
+            "fixing": true,
+            "logics": [
+                "Get all methods declared in the class.",
+                "For each method, check whether it is a native method.",
+                "For each native method, get its name.",
+                "Check whether the name matches the regex \"[a-z][a-zA-Z0-9]*\".",
+                "Count the number of native methods that do not match the regex."
+            ]
+        },
+        {
+            "status": "Querying API for checking using test logic",
+            "fixing": true,
+            "api_info": [
+                {
+                    "type": "api",
+                    "data": "net.sourceforge.pmd.lang.java.ast.ASTMethodDeclaration: public net.sourceforge.pmd.lang.ast.NodeStream<ASTAnnotation> getDeclaredAnnotations()"
+                },
+                {
+                    "type": "api",
+                    "data": "net.sourceforge.pmd.lang.java.ast.ASTMethodDeclaration: public boolean isNative()"
+                },
+                {
+                    "type": "api",
+                    "data": "net.sourceforge.pmd.lang.java.ast.ASTMethodDeclaration: public java.lang.String getName()"
+                }
+            ]
+        },
+        {
+            "status": "Fix successfully! Generating checker code",
+            "checker_code": "package net.sourceforge.pmd.lang.java.rule.codestyle;\n\n\nimport net.sourceforge.pmd.lang.java.rule.AbstractJavaRulechainRule;\nimport net.sourceforge.pmd.lang.java.ast. *;\nimport net.sourceforge.pmd.lang.java.ast.internal. *;\nimport net.sourceforge.pmd.lang.java.types. *;\nimport net.sourceforge.pmd.lang.java.symbols. *;\nimport net.sourceforge.pmd.lang.ast.NodeStream;\npublic class MethodNamingConventionsRule extends AbstractJavaRulechainRule {\n    public MethodNamingConventionsRule() {\n        super(ASTMethodDeclaration.class);\n    }\n\n    @Override\n    public Object visit(ASTMethodDeclaration node, Object data) {\n        if (node.isStatic()) {\n            String methodName = node.getName();\n            if (!methodName.matches(\"[a-z][a-zA-Z0-9]*\")) {\n                addViolation(data, node);\n            }\n        } else if (node.isNative()) {\n            String methodName = node.getName();\n            if (!methodName.matches(\"[a-z][a-zA-Z0-9]*\")) {\n                addViolation(data, node);\n            }\n        }\n        return super.visit(node, data);\n    }\n}"
+        },
+        {
+            "status": "Running test cases...",
+            "test_cases": [
+                {
+                    "name": "(violate rule)test case 1",
+                    "status": "skipped"
+                },
+                {
+                    "name": "(violate rule)test case 2",
+                    "status": "skipped"
+                },
+                {
+                    "name": "(follow rule)test case 3",
+                    "status": "pending"
+                },
+                {
+                    "name": "(follow rule)test case 4",
+                    "status": "pending"
+                },
+                {
+                    "name": "(violate rule)test case 5",
+                    "status": "pending"
+                },
+                {
+                    "name": "(violate rule)test case 6",
+                    "status": "pending"
+                },
+                {
+                    "name": "(violate rule)test case 7",
+                    "status": "pending"
+                },
+                {
+                    "name": "(follow rule)test case 8",
+                    "status": "pending"
+                },
+                {
+                    "name": "(violate rule)test case 9",
+                    "status": "pending"
+                },
+                {
+                    "name": "(follow rule)test case 10",
+                    "status": "pending"
+                },
+                {
+                    "name": "(follow rule)test case 11",
+                    "status": "pending"
+                },
+                {
+                    "name": "(violate rule)test case 12",
+                    "status": "pending"
+                }
+            ]
+        },
+        {
+            "status": "Failed to pass (violate rule)test case 7, and trying fix, generating test case logic in attempt 1 / 5",
+            "test_cases": [
+                {
+                    "name": "(violate rule)test case 1",
+                    "status": "skipped"
+                },
+                {
+                    "name": "(violate rule)test case 2",
+                    "status": "skipped"
+                },
+                {
+                    "name": "(follow rule)test case 3",
+                    "status": "success"
+                },
+                {
+                    "name": "(follow rule)test case 4",
+                    "status": "success"
+                },
+                {
+                    "name": "(violate rule)test case 5",
+                    "status": "success"
+                },
+                {
+                    "name": "(violate rule)test case 6",
+                    "status": "success"
+                },
+                {
+                    "name": "(violate rule)test case 7",
+                    "status": "failure",
+                    "selected": true
+                }
+            ],
+            "fixing": true,
+            "logics": [
+                "Get the name of the class.",
+                "Check whether the class extends `junit.framework.TestCase`.",
+                "Get all methods declared in the class.",
+                "Check whether the method is a JUnit 3 test method (starts with \"test\").",
+                "For each JUnit 3 test method, check whether the method name matches the regex `test[A-Z0-9][a-zA-Z0-9]*`.",
+                "Count the number of methods that violate the regex."
+            ]
+        },
+        {
+            "status": "Querying API for checking using test logic",
+            "fixing": true,
+            "api_info": [
+                {
+                    "type": "api",
+                    "data": "net.sourceforge.pmd.lang.java.ast.ASTClassOrInterfaceDeclaration: public java.lang.String getSimpleName()"
+                },
+                {
+                    "type": "api",
+                    "data": "net.sourceforge.pmd.lang.java.rule.internal.TestFrameworksUtil: static public boolean isJUnit3Class(net.sourceforge.pmd.lang.java.ast.ASTAnyTypeDeclaration)"
+                },
+                {
+                    "type": "api",
+                    "data": "net.sourceforge.pmd.lang.java.ast.ASTMethodDeclaration: public net.sourceforge.pmd.lang.ast.NodeStream<ASTAnnotation> getDeclaredAnnotations()"
+                },
+                {
+                    "type": "api",
+                    "data": "net.sourceforge.pmd.lang.java.rule.internal.TestFrameworksUtil: static public boolean isJUnitMethod(net.sourceforge.pmd.lang.java.ast.ASTMethodDeclaration)"
+                },
+                {
+                    "type": "api",
+                    "data": "net.sourceforge.pmd.lang.java.rule.internal.TestFrameworksUtil: static public boolean isJUnit3Method(net.sourceforge.pmd.lang.java.ast.ASTMethodDeclaration)"
+                }
+            ]
+        },
+        {
+            "status": "Generated checker fails to compile in attempt 1 / 5, preparing next attempt."
+        },
+        {
+            "status": "Failed to pass (violate rule)test case 7, and trying fix, generating test case logic in attempt 2 / 5",
+            "test_cases": [
+                {
+                    "name": "(violate rule)test case 1",
+                    "status": "skipped"
+                },
+                {
+                    "name": "(violate rule)test case 2",
+                    "status": "skipped"
+                },
+                {
+                    "name": "(follow rule)test case 3",
+                    "status": "success"
+                },
+                {
+                    "name": "(follow rule)test case 4",
+                    "status": "success"
+                },
+                {
+                    "name": "(violate rule)test case 5",
+                    "status": "success"
+                },
+                {
+                    "name": "(violate rule)test case 6",
+                    "status": "success"
+                },
+                {
+                    "name": "(violate rule)test case 7",
+                    "status": "failure",
+                    "selected": true
+                }
+            ],
+            "fixing": true,
+            "logics": [
+                "Get the name of the method `testGetBestTeam`.",
+                "Check whether the method is a JUnit 3 test method.",
+                "Check whether the method name matches the regex `test[A-Z0-9][a-zA-Z0-9]*`.",
+                "Get the name of the method `test_getBestTeam`.",
+                "Check whether the method is a JUnit 3 test method.",
+                "Check whether the method name matches the regex `test[A-Z0-9][a-zA-Z0-9]*`."
+            ]
+        },
+        {
+            "status": "Querying API for checking using test logic",
+            "fixing": true,
+            "api_info": [
+                {
+                    "type": "api",
+                    "data": "net.sourceforge.pmd.lang.java.ast.ASTMethodDeclaration: public java.lang.String getName()"
+                },
+                {
+                    "type": "api",
+                    "data": "net.sourceforge.pmd.lang.java.rule.internal.TestFrameworksUtil: static public boolean isJUnitMethod(net.sourceforge.pmd.lang.java.ast.ASTMethodDeclaration)"
+                }
+            ]
+        },
+        {
+            "status": "Generated checker fails to compile in attempt 2 / 5, preparing next attempt."
+        },
+        {
+            "status": "Failed to pass (violate rule)test case 7, and trying fix, generating test case logic in attempt 3 / 5",
+            "test_cases": [
+                {
+                    "name": "(violate rule)test case 1",
+                    "status": "skipped"
+                },
+                {
+                    "name": "(violate rule)test case 2",
+                    "status": "skipped"
+                },
+                {
+                    "name": "(follow rule)test case 3",
+                    "status": "success"
+                },
+                {
+                    "name": "(follow rule)test case 4",
+                    "status": "success"
+                },
+                {
+                    "name": "(violate rule)test case 5",
+                    "status": "success"
+                },
+                {
+                    "name": "(violate rule)test case 6",
+                    "status": "success"
+                },
+                {
+                    "name": "(violate rule)test case 7",
+                    "status": "failure",
+                    "selected": true
+                }
+            ],
+            "fixing": true,
+            "logics": [
+                "Get the name of the class.",
+                "Check whether the class extends `junit.framework.TestCase`.",
+                "Get all methods declared in the class.",
+                "For each method, check whether it is a JUnit 3 test method by verifying if its name starts with \"test\".",
+                "For each JUnit 3 test method, check whether its name matches the regex `test[A-Z0-9][a-zA-Z0-9]*`.",
+                "Count the number of JUnit 3 test methods that do not match the regex."
+            ]
+        },
+        {
+            "status": "Querying API for checking using test logic",
+            "fixing": true,
+            "api_info": [
+                {
+                    "type": "api",
+                    "data": "net.sourceforge.pmd.lang.java.ast.ASTClassOrInterfaceDeclaration: public java.lang.String getSimpleName()"
+                },
+                {
+                    "type": "api",
+                    "data": "net.sourceforge.pmd.lang.java.rule.internal.TestFrameworksUtil: static public boolean isJUnit3Class(net.sourceforge.pmd.lang.java.ast.ASTAnyTypeDeclaration)"
+                },
+                {
+                    "type": "api",
+                    "data": "net.sourceforge.pmd.lang.java.ast.ASTMethodDeclaration: public net.sourceforge.pmd.lang.ast.NodeStream<ASTAnnotation> getDeclaredAnnotations()"
+                },
+                {
+                    "type": "api",
+                    "data": "net.sourceforge.pmd.lang.java.rule.internal.TestFrameworksUtil: static public boolean isJUnit3Method(net.sourceforge.pmd.lang.java.ast.ASTMethodDeclaration)"
+                }
+            ]
+        },
+        {
+            "status": "Generated checker fails to compile in attempt 3 / 5, preparing next attempt."
+        },
+        {
+            "status": "Failed to pass (violate rule)test case 7, and trying fix, generating test case logic in attempt 4 / 5",
+            "test_cases": [
+                {
+                    "name": "(violate rule)test case 1",
+                    "status": "skipped"
+                },
+                {
+                    "name": "(violate rule)test case 2",
+                    "status": "skipped"
+                },
+                {
+                    "name": "(follow rule)test case 3",
+                    "status": "success"
+                },
+                {
+                    "name": "(follow rule)test case 4",
+                    "status": "success"
+                },
+                {
+                    "name": "(violate rule)test case 5",
+                    "status": "success"
+                },
+                {
+                    "name": "(violate rule)test case 6",
+                    "status": "success"
+                },
+                {
+                    "name": "(violate rule)test case 7",
+                    "status": "failure",
+                    "selected": true
+                }
+            ],
+            "fixing": true,
+            "logics": [
+                "Get the name of the method `testGetBestTeam`.",
+                "Check whether the method is a JUnit 3 test method.",
+                "Check whether the method name matches the regex `test[A-Z0-9][a-zA-Z0-9]*`.",
+                "Get the name of the method `test_getBestTeam`.",
+                "Check whether the method is a JUnit 3 test method.",
+                "Check whether the method name matches the regex `test[A-Z0-9][a-zA-Z0-9]*`."
+            ]
+        },
+        {
+            "status": "Querying API for checking using test logic",
+            "fixing": true,
+            "api_info": [
+                {
+                    "type": "api",
+                    "data": "net.sourceforge.pmd.lang.java.ast.ASTMethodDeclaration: public java.lang.String getName()"
+                },
+                {
+                    "type": "api",
+                    "data": "net.sourceforge.pmd.lang.java.rule.internal.TestFrameworksUtil: static public boolean isJUnitMethod(net.sourceforge.pmd.lang.java.ast.ASTMethodDeclaration)"
+                }
+            ]
+        },
+        {
+            "status": "Generated checker fails to compile in attempt 4 / 5, preparing next attempt."
+        },
+        {
+            "status": "Failed to pass (violate rule)test case 7, and trying fix, generating test case logic in attempt 5 / 5",
+            "test_cases": [
+                {
+                    "name": "(violate rule)test case 1",
+                    "status": "skipped"
+                },
+                {
+                    "name": "(violate rule)test case 2",
+                    "status": "skipped"
+                },
+                {
+                    "name": "(follow rule)test case 3",
+                    "status": "success"
+                },
+                {
+                    "name": "(follow rule)test case 4",
+                    "status": "success"
+                },
+                {
+                    "name": "(violate rule)test case 5",
+                    "status": "success"
+                },
+                {
+                    "name": "(violate rule)test case 6",
+                    "status": "success"
+                },
+                {
+                    "name": "(violate rule)test case 7",
+                    "status": "failure",
+                    "selected": true
+                }
+            ],
+            "fixing": true,
+            "logics": [
+                "Get the name of the class.",
+                "Check whether the class extends `junit.framework.TestCase`.",
+                "Get all methods declared in the class.",
+                "For each method, check whether it is a JUnit 3 test method by verifying:",
+                "For each JUnit 3 test method, check whether the method name matches the regex `test[A-Z0-9][a-zA-Z0-9]*`.",
+                "Count the number of JUnit 3 test methods that do not match the regex."
+            ]
+        },
+        {
+            "status": "Querying API for checking using test logic",
+            "fixing": true,
+            "api_info": [
+                {
+                    "type": "api",
+                    "data": "net.sourceforge.pmd.lang.java.ast.ASTClassOrInterfaceDeclaration: public java.lang.String getSimpleName()"
+                },
+                {
+                    "type": "api",
+                    "data": "net.sourceforge.pmd.lang.java.rule.internal.TestFrameworksUtil: static public boolean isJUnit3Class(net.sourceforge.pmd.lang.java.ast.ASTAnyTypeDeclaration)"
+                },
+                {
+                    "type": "api",
+                    "data": "net.sourceforge.pmd.lang.java.ast.ASTMethodDeclaration: public net.sourceforge.pmd.lang.ast.NodeStream<ASTAnnotation> getDeclaredAnnotations()"
+                },
+                {
+                    "type": "api",
+                    "data": "net.sourceforge.pmd.lang.java.rule.internal.TestFrameworksUtil: static public boolean isJUnitMethod(net.sourceforge.pmd.lang.java.ast.ASTMethodDeclaration)"
+                },
+                {
+                    "type": "api",
+                    "data": "net.sourceforge.pmd.lang.java.rule.internal.TestFrameworksUtil: static public boolean isJUnit3Method(net.sourceforge.pmd.lang.java.ast.ASTMethodDeclaration)"
+                }
+            ]
+        },
+        {
+            "status": "Generated checker fails to compile in attempt 5 / 5, preparing next attempt."
+        },
+        {
+            "status": "Fix failed in five attempts, so skip the failed test case (violate rule)test case 7. Running test cases...",
+            "test_cases": [
+                {
+                    "name": "(violate rule)test case 1",
+                    "status": "skipped"
+                },
+                {
+                    "name": "(violate rule)test case 2",
+                    "status": "skipped"
+                },
+                {
+                    "name": "(follow rule)test case 3",
+                    "status": "pending"
+                },
+                {
+                    "name": "(follow rule)test case 4",
+                    "status": "pending"
+                },
+                {
+                    "name": "(violate rule)test case 5",
+                    "status": "pending"
+                },
+                {
+                    "name": "(violate rule)test case 6",
+                    "status": "pending"
+                },
+                {
+                    "name": "(violate rule)test case 7",
+                    "status": "skipped"
+                },
+                {
+                    "name": "(follow rule)test case 8",
+                    "status": "pending"
+                },
+                {
+                    "name": "(violate rule)test case 9",
+                    "status": "pending"
+                },
+                {
+                    "name": "(follow rule)test case 10",
+                    "status": "pending"
+                },
+                {
+                    "name": "(follow rule)test case 11",
+                    "status": "pending"
+                },
+                {
+                    "name": "(violate rule)test case 12",
+                    "status": "pending"
+                }
+            ]
+        },
+        {
+            "status": "Failed to pass (violate rule)test case 9, and trying fix, generating test case logic in attempt 1 / 5",
+            "test_cases": [
+                {
+                    "name": "(violate rule)test case 1",
+                    "status": "skipped"
+                },
+                {
+                    "name": "(violate rule)test case 2",
+                    "status": "skipped"
+                },
+                {
+                    "name": "(follow rule)test case 3",
+                    "status": "success"
+                },
+                {
+                    "name": "(follow rule)test case 4",
+                    "status": "success"
+                },
+                {
+                    "name": "(violate rule)test case 5",
+                    "status": "success"
+                },
+                {
+                    "name": "(violate rule)test case 6",
+                    "status": "success"
+                },
+                {
+                    "name": "(violate rule)test case 7",
+                    "status": "skipped"
+                },
+                {
+                    "name": "(follow rule)test case 8",
+                    "status": "success"
+                },
+                {
+                    "name": "(violate rule)test case 9",
+                    "status": "failure",
+                    "selected": true
+                }
+            ],
+            "fixing": true,
+            "logics": [
+                "Get all methods declared in the class.",
+                "Check whether the method has declared annotations.",
+                "Get a declared annotation of the method.",
+                "Check whether the method has the `@Test` annotation.",
+                "Get the name of the method.",
+                "Check whether the method name matches the regex `\"[a-z][a-zA-Z0-9]*\"` (JUnit 4 test method name pattern).",
+                "If the method has the `@Test` annotation and its name does not match the regex, then it violates the rule."
+            ]
+        },
+        {
+            "status": "Querying API for checking using test logic",
+            "fixing": true,
+            "api_info": [
+                {
+                    "type": "api",
+                    "data": "net.sourceforge.pmd.lang.java.ast.ASTMethodDeclaration: public net.sourceforge.pmd.lang.ast.NodeStream<ASTAnnotation> getDeclaredAnnotations()"
+                },
+                {
+                    "type": "api",
+                    "data": "net.sourceforge.pmd.lang.java.ast.ASTMethodDeclaration: public boolean isAnyAnnotationPresent(java.util.Collection)"
+                },
+                {
+                    "type": "api",
+                    "data": "net.sourceforge.pmd.lang.java.ast.ASTMethodDeclaration: public java.lang.String getName()"
+                },
+                {
+                    "type": "meta",
+                    "data": "Check whether method has declared annotations"
+                }
+            ]
+        },
+        {
+            "status": "Generated checker fails to pass (follow rule)test case 4 in attempt: 1 / 5, preparing next attempt.",
+            "fixing": true
+        },
+        {
+            "status": "Failed to pass (violate rule)test case 9, and trying fix, generating test case logic in attempt 2 / 5",
+            "test_cases": [
+                {
+                    "name": "(violate rule)test case 1",
+                    "status": "skipped"
+                },
+                {
+                    "name": "(violate rule)test case 2",
+                    "status": "skipped"
+                },
+                {
+                    "name": "(follow rule)test case 3",
+                    "status": "success"
+                },
+                {
+                    "name": "(follow rule)test case 4",
+                    "status": "success"
+                },
+                {
+                    "name": "(violate rule)test case 5",
+                    "status": "success"
+                },
+                {
+                    "name": "(violate rule)test case 6",
+                    "status": "success"
+                },
+                {
+                    "name": "(violate rule)test case 7",
+                    "status": "skipped"
+                },
+                {
+                    "name": "(follow rule)test case 8",
+                    "status": "success"
+                },
+                {
+                    "name": "(violate rule)test case 9",
+                    "status": "failure",
+                    "selected": true
+                }
+            ],
+            "fixing": true,
+            "logics": [
+                "Get the name of the method `get_best_team`.",
+                "Check whether the method `get_best_team` has the `@Test` annotation.",
+                "Check whether the method `get_best_team` is a JUnit 4 test method.",
+                "Check whether the name of the method `get_best_team` matches the regex `[a-z][a-zA-Z0-9]*`.",
+                "Get the name of the method `getBestTeam`.",
+                "Check whether the method `getBestTeam` has the `@Test` annotation.",
+                "Check whether the method `getBestTeam` is a JUnit 4 test method.",
+                "Check whether the name of the method `getBestTeam` matches the regex `[a-z][a-zA-Z0-9]*`."
+            ]
+        },
+        {
+            "status": "Querying API for checking using test logic",
+            "fixing": true,
+            "api_info": [
+                {
+                    "type": "api",
+                    "data": "net.sourceforge.pmd.lang.java.rule.internal.TestFrameworksUtil: static public boolean isJUnit4Method(net.sourceforge.pmd.lang.java.ast.ASTMethodDeclaration)"
+                },
+                {
+                    "type": "api",
+                    "data": "net.sourceforge.pmd.lang.java.ast.ASTMethodDeclaration: public java.lang.String getName()"
+                },
+                {
+                    "type": "api",
+                    "data": "net.sourceforge.pmd.lang.java.ast.ASTMethodDeclaration: public boolean isAnnotationPresent(java.lang.Class)"
+                }
+            ]
+        },
+        {
+            "status": "Generated checker fails to compile in attempt 2 / 5, preparing next attempt."
+        },
+        {
+            "status": "Failed to pass (violate rule)test case 9, and trying fix, generating test case logic in attempt 3 / 5",
+            "test_cases": [
+                {
+                    "name": "(violate rule)test case 1",
+                    "status": "skipped"
+                },
+                {
+                    "name": "(violate rule)test case 2",
+                    "status": "skipped"
+                },
+                {
+                    "name": "(follow rule)test case 3",
+                    "status": "success"
+                },
+                {
+                    "name": "(follow rule)test case 4",
+                    "status": "success"
+                },
+                {
+                    "name": "(violate rule)test case 5",
+                    "status": "success"
+                },
+                {
+                    "name": "(violate rule)test case 6",
+                    "status": "success"
+                },
+                {
+                    "name": "(violate rule)test case 7",
+                    "status": "skipped"
+                },
+                {
+                    "name": "(follow rule)test case 8",
+                    "status": "success"
+                },
+                {
+                    "name": "(violate rule)test case 9",
+                    "status": "failure",
+                    "selected": true
+                }
+            ],
+            "fixing": true,
+            "logics": [
+                "Get the name of the method `get_best_team`.",
+                "Check whether the method is annotated with `@Test`.",
+                "Check whether the method name matches the regex `[a-z][a-zA-Z0-9]*` (default JUnit 4 test method naming convention).",
+                "Get the name of the method `getBestTeam`.",
+                "Check whether the method is annotated with `@Test`.",
+                "Check whether the method name matches the regex `[a-z][a-zA-Z0-9]*` (default JUnit 4 test method naming convention)."
+            ]
+        },
+        {
+            "status": "Querying API for checking using test logic",
+            "fixing": true,
+            "api_info": [
+                {
+                    "type": "api",
+                    "data": "net.sourceforge.pmd.lang.java.ast.ASTMethodDeclaration: public java.lang.String getName()"
+                },
+                {
+                    "type": "meta",
+                    "data": "Check whether method has declared annotations"
+                }
+            ]
+        },
+        {
+            "status": "Fix successfully! Generating checker code",
+            "checker_code": "package net.sourceforge.pmd.lang.java.rule.codestyle;\n\n\nimport net.sourceforge.pmd.lang.java.rule.AbstractJavaRulechainRule;\nimport net.sourceforge.pmd.lang.java.ast. *;\nimport net.sourceforge.pmd.lang.java.ast.internal. *;\nimport net.sourceforge.pmd.lang.java.types. *;\nimport net.sourceforge.pmd.lang.java.symbols. *;\nimport net.sourceforge.pmd.lang.ast.NodeStream;\npublic class MethodNamingConventionsRule extends AbstractJavaRulechainRule {\n    public MethodNamingConventionsRule() {\n        super(ASTMethodDeclaration.class);\n    }\n\n    @Override\n    public Object visit(ASTMethodDeclaration node, Object data) {\n        if (node.isStatic()) {\n            String methodName = node.getName();\n            if (!methodName.matches(\"[a-z][a-zA-Z0-9]*\")) {\n                addViolation(data, node);\n            }\n        } else if (node.isNative()) {\n            String methodName = node.getName();\n            if (!methodName.matches(\"[a-z][a-zA-Z0-9]*\")) {\n                addViolation(data, node);\n            }\n        } else if (hasAnnotation(node, \"Test\")) {\n            String methodName = node.getName();\n            if (!methodName.matches(\"[a-z][a-zA-Z0-9]*\")) {\n                addViolation(data, node);\n            }\n        }\n        return super.visit(node, data);\n    }\n\n    private boolean hasAnnotation(ASTMethodDeclaration node, String annotationName) {\n        NodeStream<ASTAnnotation> declaredAnnotations = node.getDeclaredAnnotations();\n        return declaredAnnotations.any(annotation -> annotation.getAnnotationName().equals(annotationName));\n    }\n}"
+        },
+        {
+            "status": "Running test cases...",
+            "test_cases": [
+                {
+                    "name": "(violate rule)test case 1",
+                    "status": "skipped"
+                },
+                {
+                    "name": "(violate rule)test case 2",
+                    "status": "skipped"
+                },
+                {
+                    "name": "(follow rule)test case 3",
+                    "status": "pending"
+                },
+                {
+                    "name": "(follow rule)test case 4",
+                    "status": "pending"
+                },
+                {
+                    "name": "(violate rule)test case 5",
+                    "status": "pending"
+                },
+                {
+                    "name": "(violate rule)test case 6",
+                    "status": "pending"
+                },
+                {
+                    "name": "(violate rule)test case 7",
+                    "status": "skipped"
+                },
+                {
+                    "name": "(follow rule)test case 8",
+                    "status": "pending"
+                },
+                {
+                    "name": "(violate rule)test case 9",
+                    "status": "pending"
+                },
+                {
+                    "name": "(follow rule)test case 10",
+                    "status": "pending"
+                },
+                {
+                    "name": "(follow rule)test case 11",
+                    "status": "pending"
+                },
+                {
+                    "name": "(violate rule)test case 12",
+                    "status": "pending"
+                }
+            ]
+        },
+        {
+            "status": "Failed to pass (violate rule)test case 12, and trying fix, generating test case logic in attempt 1 / 5",
+            "test_cases": [
+                {
+                    "name": "(violate rule)test case 1",
+                    "status": "skipped"
+                },
+                {
+                    "name": "(violate rule)test case 2",
+                    "status": "skipped"
+                },
+                {
+                    "name": "(follow rule)test case 3",
+                    "status": "success"
+                },
+                {
+                    "name": "(follow rule)test case 4",
+                    "status": "success"
+                },
+                {
+                    "name": "(violate rule)test case 5",
+                    "status": "success"
+                },
+                {
+                    "name": "(violate rule)test case 6",
+                    "status": "success"
+                },
+                {
+                    "name": "(violate rule)test case 7",
+                    "status": "skipped"
+                },
+                {
+                    "name": "(follow rule)test case 8",
+                    "status": "success"
+                },
+                {
+                    "name": "(violate rule)test case 9",
+                    "status": "success"
+                },
+                {
+                    "name": "(follow rule)test case 10",
+                    "status": "success"
+                },
+                {
+                    "name": "(follow rule)test case 11",
+                    "status": "success"
+                },
+                {
+                    "name": "(violate rule)test case 12",
+                    "status": "failure",
+                    "selected": true
+                }
+            ],
+            "fixing": true,
+            "logics": [
+                "Get the name of the first method.",
+                "Check whether the name of the first method matches the regex `[a-z][a-zA-Z0-9]*`.",
+                "Get the name of the second method.",
+                "Check whether the name of the second method matches the regex `[a-z][a-zA-Z0-9]*`.",
+                "Check whether the second method is an instance method.",
+                "Check whether the second method is a static method.",
+                "Check whether the second method is a native method.",
+                "Check whether the second method is a JUnit 3 test method.",
+                "Check whether the second method is a JUnit 4 test method.",
+                "Check whether the second method is a JUnit 5 test method."
+            ]
+        },
+        {
+            "status": "Querying API for checking using test logic",
+            "fixing": true,
+            "api_info": [
+                {
+                    "type": "api",
+                    "data": "net.sourceforge.pmd.lang.java.ast.ASTMethodDeclaration: public java.lang.String getName()"
+                },
+                {
+                    "type": "api",
+                    "data": "net.sourceforge.pmd.lang.java.rule.internal.TestFrameworksUtil: static public boolean isTestMethod(net.sourceforge.pmd.lang.java.ast.ASTMethodDeclaration)"
+                },
+                {
+                    "type": "api",
+                    "data": "net.sourceforge.pmd.lang.java.ast.ASTMethodDeclaration: public boolean isStatic()"
+                },
+                {
+                    "type": "api",
+                    "data": "net.sourceforge.pmd.lang.java.ast.ASTMethodDeclaration: public boolean isNative()"
+                },
+                {
+                    "type": "api",
+                    "data": "net.sourceforge.pmd.lang.java.rule.internal.TestFrameworksUtil: static public boolean isJUnitMethod(net.sourceforge.pmd.lang.java.ast.ASTMethodDeclaration)"
+                }
+            ]
+        },
+        {
+            "status": "Generated checker fails to pass (follow rule)test case 4 in attempt: 1 / 5, preparing next attempt.",
+            "fixing": true
+        },
+        {
+            "status": "Failed to pass (violate rule)test case 12, and trying fix, generating test case logic in attempt 2 / 5",
+            "test_cases": [
+                {
+                    "name": "(violate rule)test case 1",
+                    "status": "skipped"
+                },
+                {
+                    "name": "(violate rule)test case 2",
+                    "status": "skipped"
+                },
+                {
+                    "name": "(follow rule)test case 3",
+                    "status": "success"
+                },
+                {
+                    "name": "(follow rule)test case 4",
+                    "status": "success"
+                },
+                {
+                    "name": "(violate rule)test case 5",
+                    "status": "success"
+                },
+                {
+                    "name": "(violate rule)test case 6",
+                    "status": "success"
+                },
+                {
+                    "name": "(violate rule)test case 7",
+                    "status": "skipped"
+                },
+                {
+                    "name": "(follow rule)test case 8",
+                    "status": "success"
+                },
+                {
+                    "name": "(violate rule)test case 9",
+                    "status": "success"
+                },
+                {
+                    "name": "(follow rule)test case 10",
+                    "status": "success"
+                },
+                {
+                    "name": "(follow rule)test case 11",
+                    "status": "success"
+                },
+                {
+                    "name": "(violate rule)test case 12",
+                    "status": "failure",
+                    "selected": true
+                }
+            ],
+            "fixing": true,
+            "logics": [
+                "Get the name of the first method.",
+                "Check whether the name of the first method matches the regex `[a-z][a-zA-Z0-9]*`.",
+                "Get the name of the second method.",
+                "Check whether the name of the second method matches the regex `[a-z][a-zA-Z0-9]*`.",
+                "Check whether the second method name violates the regex for instance method names."
+            ]
+        },
+        {
+            "status": "Querying API for checking using test logic",
+            "fixing": true,
+            "api_info": [
+                {
+                    "type": "api",
+                    "data": "net.sourceforge.pmd.lang.java.ast.ASTMethodDeclaration: public java.lang.String getName()"
+                }
+            ]
+        },
+        {
+            "status": "Generated checker fails to pass (follow rule)test case 4 in attempt: 2 / 5, preparing next attempt.",
+            "fixing": true
+        },
+        {
+            "status": "Failed to pass (violate rule)test case 12, and trying fix, generating test case logic in attempt 3 / 5",
+            "test_cases": [
+                {
+                    "name": "(violate rule)test case 1",
+                    "status": "skipped"
+                },
+                {
+                    "name": "(violate rule)test case 2",
+                    "status": "skipped"
+                },
+                {
+                    "name": "(follow rule)test case 3",
+                    "status": "success"
+                },
+                {
+                    "name": "(follow rule)test case 4",
+                    "status": "success"
+                },
+                {
+                    "name": "(violate rule)test case 5",
+                    "status": "success"
+                },
+                {
+                    "name": "(violate rule)test case 6",
+                    "status": "success"
+                },
+                {
+                    "name": "(violate rule)test case 7",
+                    "status": "skipped"
+                },
+                {
+                    "name": "(follow rule)test case 8",
+                    "status": "success"
+                },
+                {
+                    "name": "(violate rule)test case 9",
+                    "status": "success"
+                },
+                {
+                    "name": "(follow rule)test case 10",
+                    "status": "success"
+                },
+                {
+                    "name": "(follow rule)test case 11",
+                    "status": "success"
+                },
+                {
+                    "name": "(violate rule)test case 12",
+                    "status": "failure",
+                    "selected": true
+                }
+            ],
+            "fixing": true,
+            "logics": [
+                "Get the name of the first method.",
+                "Check whether the first method name matches the regex \"[a-z][a-zA-Z0-9]*\".",
+                "Get the name of the second method.",
+                "Check whether the second method name matches the regex \"[a-z][a-zA-Z0-9]*\".",
+                "Check whether the second method name violates the regex \"[a-z][a-zA-Z0-9]*\"."
+            ]
+        },
+        {
+            "status": "Querying API for checking using test logic",
+            "fixing": true,
+            "api_info": [
+                {
+                    "type": "api",
+                    "data": "net.sourceforge.pmd.lang.java.ast.ASTMethodDeclaration: public java.lang.String getName()"
+                }
+            ]
+        },
+        {
+            "status": "Generated checker fails to pass (follow rule)test case 4 in attempt: 3 / 5, preparing next attempt.",
+            "fixing": true
+        },
+        {
+            "status": "Failed to pass (violate rule)test case 12, and trying fix, generating test case logic in attempt 4 / 5",
+            "test_cases": [
+                {
+                    "name": "(violate rule)test case 1",
+                    "status": "skipped"
+                },
+                {
+                    "name": "(violate rule)test case 2",
+                    "status": "skipped"
+                },
+                {
+                    "name": "(follow rule)test case 3",
+                    "status": "success"
+                },
+                {
+                    "name": "(follow rule)test case 4",
+                    "status": "success"
+                },
+                {
+                    "name": "(violate rule)test case 5",
+                    "status": "success"
+                },
+                {
+                    "name": "(violate rule)test case 6",
+                    "status": "success"
+                },
+                {
+                    "name": "(violate rule)test case 7",
+                    "status": "skipped"
+                },
+                {
+                    "name": "(follow rule)test case 8",
+                    "status": "success"
+                },
+                {
+                    "name": "(violate rule)test case 9",
+                    "status": "success"
+                },
+                {
+                    "name": "(follow rule)test case 10",
+                    "status": "success"
+                },
+                {
+                    "name": "(follow rule)test case 11",
+                    "status": "success"
+                },
+                {
+                    "name": "(violate rule)test case 12",
+                    "status": "failure",
+                    "selected": true
+                }
+            ],
+            "fixing": true,
+            "logics": [
+                "Get all methods declared in the class.",
+                "For each method:",
+                "Count the number of methods that do not match the corresponding regex."
+            ]
+        },
+        {
+            "status": "Querying API for checking using test logic",
+            "fixing": true,
+            "api_info": [
+                {
+                    "type": "api",
+                    "data": "net.sourceforge.pmd.lang.java.ast.ASTMethodDeclaration: public net.sourceforge.pmd.lang.ast.NodeStream<ASTAnnotation> getDeclaredAnnotations()"
+                }
+            ]
+        },
+        {
+            "status": "Generated checker fails to pass (follow rule)test case 4 in attempt: 4 / 5, preparing next attempt.",
+            "fixing": true
+        },
+        {
+            "status": "Failed to pass (violate rule)test case 12, and trying fix, generating test case logic in attempt 5 / 5",
+            "test_cases": [
+                {
+                    "name": "(violate rule)test case 1",
+                    "status": "skipped"
+                },
+                {
+                    "name": "(violate rule)test case 2",
+                    "status": "skipped"
+                },
+                {
+                    "name": "(follow rule)test case 3",
+                    "status": "success"
+                },
+                {
+                    "name": "(follow rule)test case 4",
+                    "status": "success"
+                },
+                {
+                    "name": "(violate rule)test case 5",
+                    "status": "success"
+                },
+                {
+                    "name": "(violate rule)test case 6",
+                    "status": "success"
+                },
+                {
+                    "name": "(violate rule)test case 7",
+                    "status": "skipped"
+                },
+                {
+                    "name": "(follow rule)test case 8",
+                    "status": "success"
+                },
+                {
+                    "name": "(violate rule)test case 9",
+                    "status": "success"
+                },
+                {
+                    "name": "(follow rule)test case 10",
+                    "status": "success"
+                },
+                {
+                    "name": "(follow rule)test case 11",
+                    "status": "success"
+                },
+                {
+                    "name": "(violate rule)test case 12",
+                    "status": "failure",
+                    "selected": true
+                }
+            ],
+            "fixing": true,
+            "logics": [
+                "Get the name of the first method.",
+                "Check whether the name of the first method matches the regex `[a-z][a-zA-Z0-9]*`.",
+                "Get the name of the second method.",
+                "Check whether the name of the second method matches the regex `[a-z][a-zA-Z0-9]*`.",
+                "Check whether the first method is static.",
+                "Check whether the first method is native.",
+                "Check whether the first method is a JUnit method.",
+                "Check whether the second method is static.",
+                "Check whether the second method is native.",
+                "Check whether the second method is a JUnit method."
+            ]
+        },
+        {
+            "status": "Querying API for checking using test logic",
+            "fixing": true,
+            "api_info": [
+                {
+                    "type": "api",
+                    "data": "net.sourceforge.pmd.lang.java.ast.ASTMethodDeclaration: public java.lang.String getName()"
+                },
+                {
+                    "type": "api",
+                    "data": "net.sourceforge.pmd.lang.java.ast.ASTMethodDeclaration: public boolean isStatic()"
+                },
+                {
+                    "type": "api",
+                    "data": "net.sourceforge.pmd.lang.java.ast.ASTMethodDeclaration: public boolean isNative()"
+                },
+                {
+                    "type": "api",
+                    "data": "net.sourceforge.pmd.lang.java.rule.internal.TestFrameworksUtil: static public boolean isJUnitMethod(net.sourceforge.pmd.lang.java.ast.ASTMethodDeclaration)"
+                }
+            ]
+        },
+        {
+            "status": "Generated checker fails to pass (follow rule)test case 4 in attempt: 5 / 5, preparing next attempt.",
+            "fixing": true
+        },
+        {
+            "status": "All test cases passed!",
+            "test_cases": [
+                {
+                    "name": "(violate rule)test case 1",
+                    "status": "skipped"
+                },
+                {
+                    "name": "(violate rule)test case 2",
+                    "status": "skipped"
+                },
+                {
+                    "name": "(follow rule)test case 3",
+                    "status": "success"
+                },
+                {
+                    "name": "(follow rule)test case 4",
+                    "status": "success"
+                },
+                {
+                    "name": "(violate rule)test case 5",
+                    "status": "success"
+                },
+                {
+                    "name": "(violate rule)test case 6",
+                    "status": "success"
+                },
+                {
+                    "name": "(violate rule)test case 7",
+                    "status": "skipped"
+                },
+                {
+                    "name": "(follow rule)test case 8",
+                    "status": "success"
+                },
+                {
+                    "name": "(violate rule)test case 9",
+                    "status": "success"
+                },
+                {
+                    "name": "(follow rule)test case 10",
+                    "status": "success"
+                },
+                {
+                    "name": "(follow rule)test case 11",
+                    "status": "success"
+                },
+                {
+                    "name": "(violate rule)test case 12",
+                    "status": "skipped"
+                }
+            ]
+        }
+    ],
+    "test_cases": [
+        {
+            "name": "(violate rule)test case 1"
+        },
+        {
+            "name": "(violate rule)test case 2"
+        },
+        {
+            "name": "(follow rule)test case 3"
+        },
+        {
+            "name": "(follow rule)test case 4"
+        },
+        {
+            "name": "(violate rule)test case 5"
+        },
+        {
+            "name": "(violate rule)test case 6"
+        },
+        {
+            "name": "(violate rule)test case 7"
+        },
+        {
+            "name": "(follow rule)test case 8"
+        },
+        {
+            "name": "(violate rule)test case 9"
+        },
+        {
+            "name": "(follow rule)test case 10"
+        },
+        {
+            "name": "(follow rule)test case 11"
+        },
+        {
+            "name": "(violate rule)test case 12"
+        }
+    ]
+}

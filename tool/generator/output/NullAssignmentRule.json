@@ -1,0 +1,1075 @@
+{
+    "name": "NullAssignmentRule",
+    "pass_rate": 100.00,
+    "description": "Assigning a null to a variable (outside of its declaration) is usually bad form.",
+    "steps": [
+        {
+            "status": "Preparing to use negative test case to generate initial checker"
+        },
+        {
+            "status": "Generating test case logic using (violate rule)test case 2 in attempt 1 / 5",
+            "logics": [
+                "Get the left-hand side operand of the assignment expression (`x = null`).",
+                "Check whether the operand is a variable.",
+                "Check whether the variable is being assigned `null`.",
+                "Check whether the assignment is outside of the variable's declaration (`Object x;` is the declaration, and `x = null;` is outside of it).",
+                "Check whether the variable is a local variable or a field (in this case, it is a local variable)."
+            ],
+            "test_cases": [
+                {
+                    "name": "(violate rule)test case 2",
+                    "selected": true
+                }
+            ]
+        },
+        {
+            "status": "Querying API for checking using (violate rule)test case 2",
+            "api_info": [
+                {
+                    "type": "api",
+                    "data": "net.sourceforge.pmd.lang.java.ast.ASTAssignmentExpression: public net.sourceforge.pmd.lang.java.ast.ASTAssignableExpr getLeftOperand()"
+                },
+                {
+                    "type": "api",
+                    "data": "net.sourceforge.pmd.lang.java.ast.ASTVariableDeclarator: public boolean equals(java.lang.Object)"
+                },
+                {
+                    "type": "api",
+                    "data": "net.sourceforge.pmd.lang.java.rule.internal.JavaRuleUtil: static public boolean isNullCheck(net.sourceforge.pmd.lang.java.ast.ASTExpression, net.sourceforge.pmd.lang.java.symbols.JVariableSymbol)"
+                },
+                {
+                    "type": "meta",
+                    "data": "Check whether the accessed variable is a field"
+                }
+            ]
+        },
+        {
+            "status": "Success! Generate initial checker code using (violate rule)test case 2. Start to iterate other test cases!",
+            "checker_code": "package net.sourceforge.pmd.lang.java.rule.errorprone;\n\nimport java.util.*;\nimport java.lang.*;\n\nimport net.sourceforge.pmd.lang.java.rule.AbstractJavaRulechainRule;\nimport net.sourceforge.pmd.lang.java.ast. *;\nimport net.sourceforge.pmd.lang.java.ast.internal. *;\nimport net.sourceforge.pmd.lang.java.types. *;\nimport net.sourceforge.pmd.lang.java.symbols. *;\nimport net.sourceforge.pmd.lang.ast.NodeStream;\npublic class NullAssignmentRule extends AbstractJavaRulechainRule {\n    public NullAssignmentRule() {\n        super(ASTAssignmentExpression.class);\n    }\n\n    @Override\n    public Object visit(ASTAssignmentExpression node, Object data) {\n        if (node.getRightOperand() instanceof ASTNullLiteral) {\n            ASTAssignableExpr leftOperand = node.getLeftOperand();\n            if (leftOperand instanceof ASTVariableAccess) {\n                ASTVariableAccess variableAccess = (ASTVariableAccess) leftOperand;\n                if (!isVariableAccessField(variableAccess)) {\n                    addViolation(data, node);\n                }\n            }\n        }\n        return super.visit(node, data);\n    }\n\n    // Check whether the accessed variable is a field\n    private boolean isVariableAccessField(ASTVariableAccess node) {\n        JVariableSymbol sym = node.getReferencedSym();\n        if (sym instanceof JFieldSymbol) {\n            JFieldSymbol fieldSym = (JFieldSymbol) sym;\n            return true;\n        }\n        return false;\n    }\n}",
+            "test_cases": [
+                {
+                    "name": "(violate rule)test case 2",
+                    "selected": true
+                }
+            ]
+        },
+        {
+            "status": "Running test cases...",
+            "test_cases": [
+                {
+                    "name": "(follow rule)test case 1",
+                    "status": "pending"
+                },
+                {
+                    "name": "(violate rule)test case 2",
+                    "status": "pending"
+                },
+                {
+                    "name": "(follow rule)test case 3",
+                    "status": "pending"
+                },
+                {
+                    "name": "(follow rule)test case 4",
+                    "status": "pending"
+                },
+                {
+                    "name": "(follow rule)test case 5",
+                    "status": "pending"
+                },
+                {
+                    "name": "(violate rule)test case 6",
+                    "status": "pending"
+                },
+                {
+                    "name": "(follow rule)test case 7",
+                    "status": "pending"
+                },
+                {
+                    "name": "(violate rule)test case 8",
+                    "status": "pending"
+                },
+                {
+                    "name": "(follow rule)test case 9",
+                    "status": "pending"
+                },
+                {
+                    "name": "(follow rule)test case 10",
+                    "status": "pending"
+                },
+                {
+                    "name": "(follow rule)test case 11",
+                    "status": "pending"
+                },
+                {
+                    "name": "(follow rule)test case 12",
+                    "status": "pending"
+                },
+                {
+                    "name": "(follow rule)test case 13",
+                    "status": "pending"
+                },
+                {
+                    "name": "(follow rule)test case 14",
+                    "status": "pending"
+                },
+                {
+                    "name": "(violate rule)test case 15",
+                    "status": "pending"
+                },
+                {
+                    "name": "(violate rule)test case 16",
+                    "status": "pending"
+                },
+                {
+                    "name": "(follow rule)test case 17",
+                    "status": "pending"
+                },
+                {
+                    "name": "(follow rule)test case 18",
+                    "status": "pending"
+                },
+                {
+                    "name": "(follow rule)test case 19",
+                    "status": "pending"
+                }
+            ]
+        },
+        {
+            "status": "Failed to pass (violate rule)test case 6, and trying fix, generating test case logic in attempt 1 / 5",
+            "test_cases": [
+                {
+                    "name": "(follow rule)test case 1",
+                    "status": "success"
+                },
+                {
+                    "name": "(violate rule)test case 2",
+                    "status": "success"
+                },
+                {
+                    "name": "(follow rule)test case 3",
+                    "status": "success"
+                },
+                {
+                    "name": "(follow rule)test case 4",
+                    "status": "success"
+                },
+                {
+                    "name": "(follow rule)test case 5",
+                    "status": "success"
+                },
+                {
+                    "name": "(violate rule)test case 6",
+                    "status": "failure",
+                    "selected": true
+                }
+            ],
+            "fixing": true,
+            "logics": [
+                "Get the right-hand side operand of the assignment expression.",
+                "Check whether the right-hand side operand is a ternary expression.",
+                "Get the expression if the condition of the ternary expression is false.",
+                "Check whether the expression is a null literal.",
+                "Check whether the assignment is outside of the variable declaration."
+            ]
+        },
+        {
+            "status": "Querying API for checking using test logic",
+            "fixing": true,
+            "api_info": [
+                {
+                    "type": "api",
+                    "data": "net.sourceforge.pmd.lang.java.ast.ASTAssignmentExpression: public net.sourceforge.pmd.lang.java.ast.ASTExpression getRightOperand()"
+                },
+                {
+                    "type": "api",
+                    "data": "net.sourceforge.pmd.lang.java.ast.ASTConditionalExpression: public net.sourceforge.pmd.lang.java.ast.ASTExpression getElseBranch()"
+                },
+                {
+                    "type": "api",
+                    "data": "net.sourceforge.pmd.lang.java.ast.ASTNullLiteral: public boolean isExpression()"
+                },
+                {
+                    "type": "api",
+                    "data": "net.sourceforge.pmd.lang.java.ast.ASTAssignmentExpression: public int compareLocation(net.sourceforge.pmd.lang.ast.Node)"
+                }
+            ]
+        },
+        {
+            "status": "Fix successfully! Generating checker code",
+            "checker_code": "package net.sourceforge.pmd.lang.java.rule.errorprone;\n\nimport java.util.*;\nimport java.lang.*;\n\n\nimport net.sourceforge.pmd.lang.java.rule.AbstractJavaRulechainRule;\nimport net.sourceforge.pmd.lang.java.ast. *;\nimport net.sourceforge.pmd.lang.java.ast.internal. *;\nimport net.sourceforge.pmd.lang.java.types. *;\nimport net.sourceforge.pmd.lang.java.symbols. *;\nimport net.sourceforge.pmd.lang.ast.NodeStream;\npublic class NullAssignmentRule extends AbstractJavaRulechainRule {\n    public NullAssignmentRule() {\n        super(ASTAssignmentExpression.class);\n    }\n\n    @Override\n    public Object visit(ASTAssignmentExpression node, Object data) {\n        if (node.getRightOperand() instanceof ASTNullLiteral) {\n            ASTAssignableExpr leftOperand = node.getLeftOperand();\n            if (leftOperand instanceof ASTVariableAccess) {\n                ASTVariableAccess variableAccess = (ASTVariableAccess) leftOperand;\n                if (!isVariableAccessField(variableAccess)) {\n                    addViolation(data, node);\n                }\n            }\n        } else if (node.getRightOperand() instanceof ASTConditionalExpression) {\n            ASTConditionalExpression conditionalExpression = (ASTConditionalExpression) node.getRightOperand();\n            if (conditionalExpression.getElseBranch() instanceof ASTNullLiteral) {\n                ASTAssignableExpr leftOperand = node.getLeftOperand();\n                if (leftOperand instanceof ASTVariableAccess) {\n                    ASTVariableAccess variableAccess = (ASTVariableAccess) leftOperand;\n                    if (!isVariableAccessField(variableAccess)) {\n                        addViolation(data, node);\n                    }\n                }\n            }\n        }\n        return super.visit(node, data);\n    }\n\n    private boolean isVariableAccessField(ASTVariableAccess node) {\n        JVariableSymbol sym = node.getReferencedSym();\n        if (sym instanceof JFieldSymbol) {\n            JFieldSymbol fieldSym = (JFieldSymbol) sym;\n            return true;\n        }\n        return false;\n    }\n}"
+        },
+        {
+            "status": "Running test cases...",
+            "test_cases": [
+                {
+                    "name": "(follow rule)test case 1",
+                    "status": "pending"
+                },
+                {
+                    "name": "(violate rule)test case 2",
+                    "status": "pending"
+                },
+                {
+                    "name": "(follow rule)test case 3",
+                    "status": "pending"
+                },
+                {
+                    "name": "(follow rule)test case 4",
+                    "status": "pending"
+                },
+                {
+                    "name": "(follow rule)test case 5",
+                    "status": "pending"
+                },
+                {
+                    "name": "(violate rule)test case 6",
+                    "status": "pending"
+                },
+                {
+                    "name": "(follow rule)test case 7",
+                    "status": "pending"
+                },
+                {
+                    "name": "(violate rule)test case 8",
+                    "status": "pending"
+                },
+                {
+                    "name": "(follow rule)test case 9",
+                    "status": "pending"
+                },
+                {
+                    "name": "(follow rule)test case 10",
+                    "status": "pending"
+                },
+                {
+                    "name": "(follow rule)test case 11",
+                    "status": "pending"
+                },
+                {
+                    "name": "(follow rule)test case 12",
+                    "status": "pending"
+                },
+                {
+                    "name": "(follow rule)test case 13",
+                    "status": "pending"
+                },
+                {
+                    "name": "(follow rule)test case 14",
+                    "status": "pending"
+                },
+                {
+                    "name": "(violate rule)test case 15",
+                    "status": "pending"
+                },
+                {
+                    "name": "(violate rule)test case 16",
+                    "status": "pending"
+                },
+                {
+                    "name": "(follow rule)test case 17",
+                    "status": "pending"
+                },
+                {
+                    "name": "(follow rule)test case 18",
+                    "status": "pending"
+                },
+                {
+                    "name": "(follow rule)test case 19",
+                    "status": "pending"
+                }
+            ]
+        },
+        {
+            "status": "Failed to pass (violate rule)test case 8, and trying fix, generating test case logic in attempt 1 / 5",
+            "test_cases": [
+                {
+                    "name": "(follow rule)test case 1",
+                    "status": "success"
+                },
+                {
+                    "name": "(violate rule)test case 2",
+                    "status": "success"
+                },
+                {
+                    "name": "(follow rule)test case 3",
+                    "status": "success"
+                },
+                {
+                    "name": "(follow rule)test case 4",
+                    "status": "success"
+                },
+                {
+                    "name": "(follow rule)test case 5",
+                    "status": "success"
+                },
+                {
+                    "name": "(violate rule)test case 6",
+                    "status": "success"
+                },
+                {
+                    "name": "(follow rule)test case 7",
+                    "status": "success"
+                },
+                {
+                    "name": "(violate rule)test case 8",
+                    "status": "failure",
+                    "selected": true
+                }
+            ],
+            "fixing": true,
+            "logics": [
+                "Get the right-hand side operand of the assignment expression.",
+                "Check whether the right-hand side operand is a ternary expression.",
+                "Get the expression if the condition of the ternary expression is true.",
+                "Check whether the expression is a null literal.",
+                "Get the expression if the condition of the ternary expression is false.",
+                "Check whether the expression is a string literal.",
+                "Get the left-hand side operand of the assignment expression.",
+                "Check whether the left-hand side operand is a local variable.",
+                "Check whether the local variable is initialized outside of its declaration."
+            ]
+        },
+        {
+            "status": "Querying API for checking using test logic",
+            "fixing": true,
+            "api_info": [
+                {
+                    "type": "api",
+                    "data": "net.sourceforge.pmd.lang.java.ast.ASTAssignmentExpression: public net.sourceforge.pmd.lang.java.ast.ASTExpression getRightOperand()"
+                },
+                {
+                    "type": "api",
+                    "data": "net.sourceforge.pmd.lang.java.ast.ASTConditionalExpression: public net.sourceforge.pmd.lang.java.ast.ASTExpression getThenBranch()"
+                },
+                {
+                    "type": "api",
+                    "data": "net.sourceforge.pmd.lang.java.ast.ASTNullLiteral: public boolean isExpression()"
+                },
+                {
+                    "type": "api",
+                    "data": "net.sourceforge.pmd.lang.java.ast.ASTConditionalExpression: public net.sourceforge.pmd.lang.java.ast.ASTExpression getElseBranch()"
+                },
+                {
+                    "type": "api",
+                    "data": "net.sourceforge.pmd.lang.java.ast.ASTStringLiteral: public boolean isExpression()"
+                },
+                {
+                    "type": "api",
+                    "data": "net.sourceforge.pmd.lang.java.ast.ASTAssignmentExpression: public net.sourceforge.pmd.lang.java.ast.ASTAssignableExpr getLeftOperand()"
+                },
+                {
+                    "type": "api",
+                    "data": "net.sourceforge.pmd.lang.java.ast.ASTLocalVariableDeclaration: public boolean equals(java.lang.Object)"
+                },
+                {
+                    "type": "meta",
+                    "data": "Check whether the local variable is initialized"
+                }
+            ]
+        },
+        {
+            "status": "Fix successfully! Generating checker code",
+            "checker_code": "package net.sourceforge.pmd.lang.java.rule.errorprone;\n\nimport java.util.*;\nimport java.lang.*;\n\n\nimport net.sourceforge.pmd.lang.java.rule.AbstractJavaRulechainRule;\nimport net.sourceforge.pmd.lang.java.ast. *;\nimport net.sourceforge.pmd.lang.java.ast.internal. *;\nimport net.sourceforge.pmd.lang.java.types. *;\nimport net.sourceforge.pmd.lang.java.symbols. *;\nimport net.sourceforge.pmd.lang.ast.NodeStream;\npublic class NullAssignmentRule extends AbstractJavaRulechainRule {\n    public NullAssignmentRule() {\n        super(ASTAssignmentExpression.class);\n    }\n\n    @Override\n    public Object visit(ASTAssignmentExpression node, Object data) {\n        if (node.getRightOperand() instanceof ASTNullLiteral) {\n            ASTAssignableExpr leftOperand = node.getLeftOperand();\n            if (leftOperand instanceof ASTVariableAccess) {\n                ASTVariableAccess variableAccess = (ASTVariableAccess) leftOperand;\n                if (!isVariableAccessField(variableAccess)) {\n                    addViolation(data, node);\n                }\n            }\n        } else if (node.getRightOperand() instanceof ASTConditionalExpression) {\n            ASTConditionalExpression conditionalExpression = (ASTConditionalExpression) node.getRightOperand();\n            if (conditionalExpression.getThenBranch() instanceof ASTNullLiteral || conditionalExpression.getElseBranch() instanceof ASTNullLiteral) {\n                ASTAssignableExpr leftOperand = node.getLeftOperand();\n                if (leftOperand instanceof ASTVariableAccess) {\n                    ASTVariableAccess variableAccess = (ASTVariableAccess) leftOperand;\n                    if (!isVariableAccessField(variableAccess)) {\n                        addViolation(data, node);\n                    }\n                }\n            }\n        }\n        return super.visit(node, data);\n    }\n\n    private boolean isVariableAccessField(ASTVariableAccess node) {\n        JVariableSymbol sym = node.getReferencedSym();\n        if (sym instanceof JFieldSymbol) {\n            JFieldSymbol fieldSym = (JFieldSymbol) sym;\n            return true;\n        }\n        return false;\n    }\n}"
+        },
+        {
+            "status": "Running test cases...",
+            "test_cases": [
+                {
+                    "name": "(follow rule)test case 1",
+                    "status": "pending"
+                },
+                {
+                    "name": "(violate rule)test case 2",
+                    "status": "pending"
+                },
+                {
+                    "name": "(follow rule)test case 3",
+                    "status": "pending"
+                },
+                {
+                    "name": "(follow rule)test case 4",
+                    "status": "pending"
+                },
+                {
+                    "name": "(follow rule)test case 5",
+                    "status": "pending"
+                },
+                {
+                    "name": "(violate rule)test case 6",
+                    "status": "pending"
+                },
+                {
+                    "name": "(follow rule)test case 7",
+                    "status": "pending"
+                },
+                {
+                    "name": "(violate rule)test case 8",
+                    "status": "pending"
+                },
+                {
+                    "name": "(follow rule)test case 9",
+                    "status": "pending"
+                },
+                {
+                    "name": "(follow rule)test case 10",
+                    "status": "pending"
+                },
+                {
+                    "name": "(follow rule)test case 11",
+                    "status": "pending"
+                },
+                {
+                    "name": "(follow rule)test case 12",
+                    "status": "pending"
+                },
+                {
+                    "name": "(follow rule)test case 13",
+                    "status": "pending"
+                },
+                {
+                    "name": "(follow rule)test case 14",
+                    "status": "pending"
+                },
+                {
+                    "name": "(violate rule)test case 15",
+                    "status": "pending"
+                },
+                {
+                    "name": "(violate rule)test case 16",
+                    "status": "pending"
+                },
+                {
+                    "name": "(follow rule)test case 17",
+                    "status": "pending"
+                },
+                {
+                    "name": "(follow rule)test case 18",
+                    "status": "pending"
+                },
+                {
+                    "name": "(follow rule)test case 19",
+                    "status": "pending"
+                }
+            ]
+        },
+        {
+            "status": "Failed to pass (violate rule)test case 16, and trying fix, generating test case logic in attempt 1 / 5",
+            "test_cases": [
+                {
+                    "name": "(follow rule)test case 1",
+                    "status": "success"
+                },
+                {
+                    "name": "(violate rule)test case 2",
+                    "status": "success"
+                },
+                {
+                    "name": "(follow rule)test case 3",
+                    "status": "success"
+                },
+                {
+                    "name": "(follow rule)test case 4",
+                    "status": "success"
+                },
+                {
+                    "name": "(follow rule)test case 5",
+                    "status": "success"
+                },
+                {
+                    "name": "(violate rule)test case 6",
+                    "status": "success"
+                },
+                {
+                    "name": "(follow rule)test case 7",
+                    "status": "success"
+                },
+                {
+                    "name": "(violate rule)test case 8",
+                    "status": "success"
+                },
+                {
+                    "name": "(follow rule)test case 9",
+                    "status": "success"
+                },
+                {
+                    "name": "(follow rule)test case 10",
+                    "status": "success"
+                },
+                {
+                    "name": "(follow rule)test case 11",
+                    "status": "success"
+                },
+                {
+                    "name": "(follow rule)test case 12",
+                    "status": "success"
+                },
+                {
+                    "name": "(follow rule)test case 13",
+                    "status": "success"
+                },
+                {
+                    "name": "(follow rule)test case 14",
+                    "status": "success"
+                },
+                {
+                    "name": "(violate rule)test case 15",
+                    "status": "success"
+                },
+                {
+                    "name": "(violate rule)test case 16",
+                    "status": "failure",
+                    "selected": true
+                }
+            ],
+            "fixing": true,
+            "logics": [
+                "Get all assignment expressions in the method.",
+                "For each assignment expression, get the right-hand side operand.",
+                "Check whether the right-hand side operand is a ternary expression.",
+                "For each ternary expression, get the expression if the condition is false.",
+                "Check whether the expression is a null literal.",
+                "Check whether the assignment is outside of the variable declaration."
+            ]
+        },
+        {
+            "status": "Querying API for checking using test logic",
+            "fixing": true,
+            "api_info": [
+                {
+                    "type": "api",
+                    "data": "net.sourceforge.pmd.lang.java.ast.ASTAssignmentExpression: public net.sourceforge.pmd.lang.document.Chars getText()"
+                },
+                {
+                    "type": "api",
+                    "data": "net.sourceforge.pmd.lang.java.ast.ASTAssignmentExpression: public net.sourceforge.pmd.lang.java.ast.ASTExpression getRightOperand()"
+                },
+                {
+                    "type": "api",
+                    "data": "net.sourceforge.pmd.lang.java.ast.ASTConditionalExpression: public net.sourceforge.pmd.lang.java.ast.ASTExpression getElseBranch()"
+                },
+                {
+                    "type": "api",
+                    "data": "net.sourceforge.pmd.lang.java.ast.ASTNullLiteral: public boolean isExpression()"
+                },
+                {
+                    "type": "api",
+                    "data": "net.sourceforge.pmd.lang.java.ast.ASTAssignmentExpression: public int compareLocation(net.sourceforge.pmd.lang.ast.Node)"
+                }
+            ]
+        },
+        {
+            "status": "Fix successfully! Generating checker code",
+            "checker_code": "package net.sourceforge.pmd.lang.java.rule.errorprone;\n\nimport java.util.*;\nimport java.lang.*;\n\n\nimport net.sourceforge.pmd.lang.java.rule.AbstractJavaRulechainRule;\nimport net.sourceforge.pmd.lang.java.ast. *;\nimport net.sourceforge.pmd.lang.java.ast.internal. *;\nimport net.sourceforge.pmd.lang.java.types. *;\nimport net.sourceforge.pmd.lang.java.symbols. *;\nimport net.sourceforge.pmd.lang.ast.NodeStream;\npublic class NullAssignmentRule extends AbstractJavaRulechainRule {\n    public NullAssignmentRule() {\n        super(ASTAssignmentExpression.class);\n    }\n\n    @Override\n    public Object visit(ASTAssignmentExpression node, Object data) {\n        if (node.getRightOperand() instanceof ASTNullLiteral) {\n            ASTAssignableExpr leftOperand = node.getLeftOperand();\n            if (leftOperand instanceof ASTVariableAccess) {\n                ASTVariableAccess variableAccess = (ASTVariableAccess) leftOperand;\n                if (!isVariableAccessField(variableAccess)) {\n                    addViolation(data, node);\n                }\n            }\n        } else if (node.getRightOperand() instanceof ASTConditionalExpression) {\n            ASTConditionalExpression conditionalExpression = (ASTConditionalExpression) node.getRightOperand();\n            if (containsNullLiteral(conditionalExpression)) {\n                ASTAssignableExpr leftOperand = node.getLeftOperand();\n                if (leftOperand instanceof ASTVariableAccess) {\n                    ASTVariableAccess variableAccess = (ASTVariableAccess) leftOperand;\n                    if (!isVariableAccessField(variableAccess)) {\n                        addViolation(data, node);\n                    }\n                }\n            }\n        }\n        return super.visit(node, data);\n    }\n\n    private boolean isVariableAccessField(ASTVariableAccess node) {\n        JVariableSymbol sym = node.getReferencedSym();\n        if (sym instanceof JFieldSymbol) {\n            JFieldSymbol fieldSym = (JFieldSymbol) sym;\n            return true;\n        }\n        return false;\n    }\n\n    private boolean containsNullLiteral(ASTConditionalExpression node) {\n        if (node.getThenBranch() instanceof ASTNullLiteral || node.getElseBranch() instanceof ASTNullLiteral) {\n            return true;\n        }\n        if (node.getThenBranch() instanceof ASTConditionalExpression) {\n            if (containsNullLiteral((ASTConditionalExpression) node.getThenBranch())) {\n                return true;\n            }\n        }\n        if (node.getElseBranch() instanceof ASTConditionalExpression) {\n            if (containsNullLiteral((ASTConditionalExpression) node.getElseBranch())) {\n                return true;\n            }\n        }\n        return false;\n    }\n}"
+        },
+        {
+            "status": "Running test cases...",
+            "test_cases": [
+                {
+                    "name": "(follow rule)test case 1",
+                    "status": "pending"
+                },
+                {
+                    "name": "(violate rule)test case 2",
+                    "status": "pending"
+                },
+                {
+                    "name": "(follow rule)test case 3",
+                    "status": "pending"
+                },
+                {
+                    "name": "(follow rule)test case 4",
+                    "status": "pending"
+                },
+                {
+                    "name": "(follow rule)test case 5",
+                    "status": "pending"
+                },
+                {
+                    "name": "(violate rule)test case 6",
+                    "status": "pending"
+                },
+                {
+                    "name": "(follow rule)test case 7",
+                    "status": "pending"
+                },
+                {
+                    "name": "(violate rule)test case 8",
+                    "status": "pending"
+                },
+                {
+                    "name": "(follow rule)test case 9",
+                    "status": "pending"
+                },
+                {
+                    "name": "(follow rule)test case 10",
+                    "status": "pending"
+                },
+                {
+                    "name": "(follow rule)test case 11",
+                    "status": "pending"
+                },
+                {
+                    "name": "(follow rule)test case 12",
+                    "status": "pending"
+                },
+                {
+                    "name": "(follow rule)test case 13",
+                    "status": "pending"
+                },
+                {
+                    "name": "(follow rule)test case 14",
+                    "status": "pending"
+                },
+                {
+                    "name": "(violate rule)test case 15",
+                    "status": "pending"
+                },
+                {
+                    "name": "(violate rule)test case 16",
+                    "status": "pending"
+                },
+                {
+                    "name": "(follow rule)test case 17",
+                    "status": "pending"
+                },
+                {
+                    "name": "(follow rule)test case 18",
+                    "status": "pending"
+                },
+                {
+                    "name": "(follow rule)test case 19",
+                    "status": "pending"
+                }
+            ]
+        },
+        {
+            "status": "Failed to pass (follow rule)test case 17, and trying fix, generating test case logic in attempt 1 / 5",
+            "test_cases": [
+                {
+                    "name": "(follow rule)test case 1",
+                    "status": "success"
+                },
+                {
+                    "name": "(violate rule)test case 2",
+                    "status": "success"
+                },
+                {
+                    "name": "(follow rule)test case 3",
+                    "status": "success"
+                },
+                {
+                    "name": "(follow rule)test case 4",
+                    "status": "success"
+                },
+                {
+                    "name": "(follow rule)test case 5",
+                    "status": "success"
+                },
+                {
+                    "name": "(violate rule)test case 6",
+                    "status": "success"
+                },
+                {
+                    "name": "(follow rule)test case 7",
+                    "status": "success"
+                },
+                {
+                    "name": "(violate rule)test case 8",
+                    "status": "success"
+                },
+                {
+                    "name": "(follow rule)test case 9",
+                    "status": "success"
+                },
+                {
+                    "name": "(follow rule)test case 10",
+                    "status": "success"
+                },
+                {
+                    "name": "(follow rule)test case 11",
+                    "status": "success"
+                },
+                {
+                    "name": "(follow rule)test case 12",
+                    "status": "success"
+                },
+                {
+                    "name": "(follow rule)test case 13",
+                    "status": "success"
+                },
+                {
+                    "name": "(follow rule)test case 14",
+                    "status": "success"
+                },
+                {
+                    "name": "(violate rule)test case 15",
+                    "status": "success"
+                },
+                {
+                    "name": "(violate rule)test case 16",
+                    "status": "success"
+                },
+                {
+                    "name": "(follow rule)test case 17",
+                    "status": "failure",
+                    "selected": true
+                }
+            ],
+            "fixing": true,
+            "logics": [
+                "Get all assignment expressions in the method.",
+                "For each assignment expression:",
+                "If the left-hand side operand is a final local variable and the right-hand side operand is a null literal and the assignment expression is outside the declaration of the local variable, then this test case violates the rule."
+            ]
+        },
+        {
+            "status": "Querying API for checking using test logic",
+            "fixing": true,
+            "api_info": [
+                {
+                    "type": "api",
+                    "data": "net.sourceforge.pmd.lang.java.ast.ASTAssignmentExpression: public net.sourceforge.pmd.lang.document.Chars getText()"
+                },
+                {
+                    "type": "api",
+                    "data": "net.sourceforge.pmd.lang.java.ast.ASTAssignmentExpression: public java.lang.Iterable<JavaccToken> tokens()"
+                }
+            ]
+        },
+        {
+            "status": "Failed to pass (follow rule)test case 17, and trying fix, generating test case logic in attempt 1 / 5",
+            "test_cases": [
+                {
+                    "name": "(follow rule)test case 1",
+                    "status": "success"
+                },
+                {
+                    "name": "(violate rule)test case 2",
+                    "status": "success"
+                },
+                {
+                    "name": "(follow rule)test case 3",
+                    "status": "success"
+                },
+                {
+                    "name": "(follow rule)test case 4",
+                    "status": "success"
+                },
+                {
+                    "name": "(follow rule)test case 5",
+                    "status": "success"
+                },
+                {
+                    "name": "(violate rule)test case 6",
+                    "status": "success"
+                },
+                {
+                    "name": "(follow rule)test case 7",
+                    "status": "success"
+                },
+                {
+                    "name": "(violate rule)test case 8",
+                    "status": "success"
+                },
+                {
+                    "name": "(follow rule)test case 9",
+                    "status": "success"
+                },
+                {
+                    "name": "(follow rule)test case 10",
+                    "status": "success"
+                },
+                {
+                    "name": "(follow rule)test case 11",
+                    "status": "success"
+                },
+                {
+                    "name": "(follow rule)test case 12",
+                    "status": "success"
+                },
+                {
+                    "name": "(follow rule)test case 13",
+                    "status": "success"
+                },
+                {
+                    "name": "(follow rule)test case 14",
+                    "status": "success"
+                },
+                {
+                    "name": "(violate rule)test case 15",
+                    "status": "success"
+                },
+                {
+                    "name": "(violate rule)test case 16",
+                    "status": "success"
+                },
+                {
+                    "name": "(follow rule)test case 17",
+                    "status": "failure",
+                    "selected": true
+                }
+            ],
+            "fixing": true,
+            "logics": [
+                "Get all assignment expressions in the method.",
+                "For each assignment expression:",
+                "If the right-hand side operand is a null literal, the left-hand side operand is a local variable, the local variable is final, and the assignment is outside the variable declaration, then this test case does not violate the rule."
+            ]
+        },
+        {
+            "status": "Querying API for checking using test logic",
+            "fixing": true,
+            "api_info": [
+                {
+                    "type": "api",
+                    "data": "net.sourceforge.pmd.lang.java.ast.ASTAssignmentExpression: public net.sourceforge.pmd.lang.document.Chars getText()"
+                },
+                {
+                    "type": "api",
+                    "data": "net.sourceforge.pmd.lang.java.ast.ASTAssignmentExpression: public java.lang.Iterable<JavaccToken> tokens()"
+                }
+            ]
+        },
+        {
+            "status": "Generated checker fails to compile in attempt 1 / 5, preparing next attempt."
+        },
+        {
+            "status": "Failed to pass (follow rule)test case 17, and trying fix, generating test case logic in attempt 2 / 5",
+            "test_cases": [
+                {
+                    "name": "(follow rule)test case 1",
+                    "status": "success"
+                },
+                {
+                    "name": "(violate rule)test case 2",
+                    "status": "success"
+                },
+                {
+                    "name": "(follow rule)test case 3",
+                    "status": "success"
+                },
+                {
+                    "name": "(follow rule)test case 4",
+                    "status": "success"
+                },
+                {
+                    "name": "(follow rule)test case 5",
+                    "status": "success"
+                },
+                {
+                    "name": "(violate rule)test case 6",
+                    "status": "success"
+                },
+                {
+                    "name": "(follow rule)test case 7",
+                    "status": "success"
+                },
+                {
+                    "name": "(violate rule)test case 8",
+                    "status": "success"
+                },
+                {
+                    "name": "(follow rule)test case 9",
+                    "status": "success"
+                },
+                {
+                    "name": "(follow rule)test case 10",
+                    "status": "success"
+                },
+                {
+                    "name": "(follow rule)test case 11",
+                    "status": "success"
+                },
+                {
+                    "name": "(follow rule)test case 12",
+                    "status": "success"
+                },
+                {
+                    "name": "(follow rule)test case 13",
+                    "status": "success"
+                },
+                {
+                    "name": "(follow rule)test case 14",
+                    "status": "success"
+                },
+                {
+                    "name": "(violate rule)test case 15",
+                    "status": "success"
+                },
+                {
+                    "name": "(violate rule)test case 16",
+                    "status": "success"
+                },
+                {
+                    "name": "(follow rule)test case 17",
+                    "status": "failure",
+                    "selected": true
+                }
+            ],
+            "fixing": true,
+            "logics": [
+                "Get all assignment expressions in the method.",
+                "For each assignment expression:",
+                "If the left-hand side operand is a final local variable and the right-hand side operand is a null literal, then this test case does not violate the rule because it is initializing a final variable."
+            ]
+        },
+        {
+            "status": "Querying API for checking using test logic",
+            "fixing": true,
+            "api_info": [
+                {
+                    "type": "api",
+                    "data": "net.sourceforge.pmd.lang.java.ast.ASTAssignmentExpression: public net.sourceforge.pmd.lang.document.Chars getText()"
+                },
+                {
+                    "type": "api",
+                    "data": "net.sourceforge.pmd.lang.java.ast.ASTAssignmentExpression: public java.lang.Iterable<JavaccToken> tokens()"
+                }
+            ]
+        },
+        {
+            "status": "Fix successfully! Generating checker code",
+            "checker_code": "package net.sourceforge.pmd.lang.java.rule.errorprone;\n\nimport java.util.*;\nimport java.lang.*;\n\n\nimport net.sourceforge.pmd.lang.java.rule.AbstractJavaRulechainRule;\nimport net.sourceforge.pmd.lang.java.ast. *;\nimport net.sourceforge.pmd.lang.java.ast.internal. *;\nimport net.sourceforge.pmd.lang.java.types. *;\nimport net.sourceforge.pmd.lang.java.symbols. *;\nimport net.sourceforge.pmd.lang.ast.NodeStream;\npublic class NullAssignmentRule extends AbstractJavaRulechainRule {\n    public NullAssignmentRule() {\n        super(ASTAssignmentExpression.class);\n    }\n\n    @Override\n    public Object visit(ASTAssignmentExpression node, Object data) {\n        if (node.getRightOperand() instanceof ASTNullLiteral) {\n            ASTAssignableExpr leftOperand = node.getLeftOperand();\n            if (leftOperand instanceof ASTVariableAccess) {\n                ASTVariableAccess variableAccess = (ASTVariableAccess) leftOperand;\n                if (!isVariableAccessField(variableAccess) && !isFinalVariable(variableAccess)) {\n                    addViolation(data, node);\n                }\n            }\n        } else if (node.getRightOperand() instanceof ASTConditionalExpression) {\n            ASTConditionalExpression conditionalExpression = (ASTConditionalExpression) node.getRightOperand();\n            if (containsNullLiteral(conditionalExpression)) {\n                ASTAssignableExpr leftOperand = node.getLeftOperand();\n                if (leftOperand instanceof ASTVariableAccess) {\n                    ASTVariableAccess variableAccess = (ASTVariableAccess) leftOperand;\n                    if (!isVariableAccessField(variableAccess) && !isFinalVariable(variableAccess)) {\n                        addViolation(data, node);\n                    }\n                }\n            }\n        }\n        return super.visit(node, data);\n    }\n\n    private boolean isVariableAccessField(ASTVariableAccess node) {\n        JVariableSymbol sym = node.getReferencedSym();\n        if (sym instanceof JFieldSymbol) {\n            JFieldSymbol fieldSym = (JFieldSymbol) sym;\n            return true;\n        }\n        return false;\n    }\n\n    private boolean isFinalVariable(ASTVariableAccess node) {\n        JVariableSymbol sym = node.getReferencedSym();\n        if (sym instanceof JLocalVariableSymbol) {\n            JLocalVariableSymbol localVarSym = (JLocalVariableSymbol) sym;\n            return localVarSym.isFinal();\n        }\n        return false;\n    }\n\n    private boolean containsNullLiteral(ASTConditionalExpression node) {\n        if (node.getThenBranch() instanceof ASTNullLiteral || node.getElseBranch() instanceof ASTNullLiteral) {\n            return true;\n        }\n        if (node.getThenBranch() instanceof ASTConditionalExpression) {\n            if (containsNullLiteral((ASTConditionalExpression) node.getThenBranch())) {\n                return true;\n            }\n        }\n        if (node.getElseBranch() instanceof ASTConditionalExpression) {\n            if (containsNullLiteral((ASTConditionalExpression) node.getElseBranch())) {\n                return true;\n            }\n        }\n        return false;\n    }\n}"
+        },
+        {
+            "status": "All test cases passed!",
+            "test_cases": [
+                {
+                    "name": "(follow rule)test case 1",
+                    "status": "success"
+                },
+                {
+                    "name": "(violate rule)test case 2",
+                    "status": "success"
+                },
+                {
+                    "name": "(follow rule)test case 3",
+                    "status": "success"
+                },
+                {
+                    "name": "(follow rule)test case 4",
+                    "status": "success"
+                },
+                {
+                    "name": "(follow rule)test case 5",
+                    "status": "success"
+                },
+                {
+                    "name": "(violate rule)test case 6",
+                    "status": "success"
+                },
+                {
+                    "name": "(follow rule)test case 7",
+                    "status": "success"
+                },
+                {
+                    "name": "(violate rule)test case 8",
+                    "status": "success"
+                },
+                {
+                    "name": "(follow rule)test case 9",
+                    "status": "success"
+                },
+                {
+                    "name": "(follow rule)test case 10",
+                    "status": "success"
+                },
+                {
+                    "name": "(follow rule)test case 11",
+                    "status": "success"
+                },
+                {
+                    "name": "(follow rule)test case 12",
+                    "status": "success"
+                },
+                {
+                    "name": "(follow rule)test case 13",
+                    "status": "success"
+                },
+                {
+                    "name": "(follow rule)test case 14",
+                    "status": "success"
+                },
+                {
+                    "name": "(violate rule)test case 15",
+                    "status": "success"
+                },
+                {
+                    "name": "(violate rule)test case 16",
+                    "status": "success"
+                },
+                {
+                    "name": "(follow rule)test case 17",
+                    "status": "success"
+                },
+                {
+                    "name": "(follow rule)test case 18",
+                    "status": "success"
+                },
+                {
+                    "name": "(follow rule)test case 19",
+                    "status": "success"
+                }
+            ]
+        }
+    ],
+    "test_cases": [
+        {
+            "name": "(follow rule)test case 1"
+        },
+        {
+            "name": "(violate rule)test case 2"
+        },
+        {
+            "name": "(follow rule)test case 3"
+        },
+        {
+            "name": "(follow rule)test case 4"
+        },
+        {
+            "name": "(follow rule)test case 5"
+        },
+        {
+            "name": "(violate rule)test case 6"
+        },
+        {
+            "name": "(follow rule)test case 7"
+        },
+        {
+            "name": "(violate rule)test case 8"
+        },
+        {
+            "name": "(follow rule)test case 9"
+        },
+        {
+            "name": "(follow rule)test case 10"
+        },
+        {
+            "name": "(follow rule)test case 11"
+        },
+        {
+            "name": "(follow rule)test case 12"
+        },
+        {
+            "name": "(follow rule)test case 13"
+        },
+        {
+            "name": "(follow rule)test case 14"
+        },
+        {
+            "name": "(violate rule)test case 15"
+        },
+        {
+            "name": "(violate rule)test case 16"
+        },
+        {
+            "name": "(follow rule)test case 17"
+        },
+        {
+            "name": "(follow rule)test case 18"
+        },
+        {
+            "name": "(follow rule)test case 19"
+        }
+    ]
+}

@@ -1,0 +1,809 @@
+{
+    "name": "ExceptionAsFlowControlRule",
+    "pass_rate": 85.71,
+    "description": "This rule reports exceptions thrown and caught in an enclosing try statement. This use of exceptions as a form of goto statement is discouraged, as that may hide actual exceptions, and obscures control flow, especially when debugging. To fix a violation, add the necessary validation or use an alternate control structure.",
+    "steps": [
+        {
+            "status": "Preparing to use negative test case to generate initial checker"
+        },
+        {
+            "status": "Generating test case logic using (violate rule)test case 1 in attempt 1 / 5",
+            "logics": [
+                "Get the catch branch of the outer try statement.",
+                "Get the exception type of the catch parameter in the outer catch branch.",
+                "Check whether the exception type is WrapperException.",
+                "Get the catch branch of the inner try statement.",
+                "Get the exception type of the catch parameter in the inner catch branch.",
+                "Check whether the exception type is Exception.",
+                "Get the expression in the throw statement inside the inner catch branch.",
+                "Get the type of exception thrown in the throw statement.",
+                "Check whether the exception type thrown is WrapperException.",
+                "Check whether the thrown exception is caught by the outer catch branch."
+            ],
+            "test_cases": [
+                {
+                    "name": "(violate rule)test case 1",
+                    "selected": true
+                }
+            ]
+        },
+        {
+            "status": "Querying API for checking using (violate rule)test case 1",
+            "api_info": [
+                {
+                    "type": "api",
+                    "data": "net.sourceforge.pmd.lang.java.ast.ASTTryStatement: public net.sourceforge.pmd.lang.ast.NodeStream<ASTCatchClause> getCatchClauses()"
+                },
+                {
+                    "type": "api",
+                    "data": "net.sourceforge.pmd.lang.java.ast.ASTCatchParameter: public net.sourceforge.pmd.lang.ast.NodeStream<ASTClassOrInterfaceType> getAllExceptionTypes()"
+                },
+                {
+                    "type": "api",
+                    "data": "net.sourceforge.pmd.lang.java.ast.ASTThrowStatement: public net.sourceforge.pmd.lang.java.ast.ASTExpression getExpr()"
+                },
+                {
+                    "type": "meta",
+                    "data": "Check whether the exception type thrown by the throw statement is x"
+                },
+                {
+                    "type": "meta",
+                    "data": "Get the type of exception thrown in throw statement"
+                }
+            ]
+        },
+        {
+            "status": "Generated checker compile failed in attempt 1 / 5, preparing next attempt."
+        },
+        {
+            "status": "Generating test case logic using (violate rule)test case 1 in attempt 2 / 5",
+            "logics": [
+                "Get the catch branch of the inner try statement.",
+                "Check whether the catch branch contains a throw statement.",
+                "Get the type of exception thrown in the throw statement.",
+                "Check whether the type of exception thrown is WrapperException.",
+                "Get the catch branch of the outer try statement.",
+                "Check whether the catch branch catches WrapperException.",
+                "Check whether the catch branch of the outer try statement is executed as a result of the throw statement in the inner catch branch."
+            ],
+            "test_cases": [
+                {
+                    "name": "(violate rule)test case 1",
+                    "selected": true
+                }
+            ]
+        },
+        {
+            "status": "Querying API for checking using (violate rule)test case 1",
+            "api_info": [
+                {
+                    "type": "api",
+                    "data": "net.sourceforge.pmd.lang.java.ast.ASTTryStatement: public net.sourceforge.pmd.lang.ast.NodeStream<ASTCatchClause> getCatchClauses()"
+                },
+                {
+                    "type": "api",
+                    "data": "net.sourceforge.pmd.lang.java.ast.ASTThrowStatement: public boolean equals(java.lang.Object)"
+                },
+                {
+                    "type": "api",
+                    "data": "net.sourceforge.pmd.lang.java.ast.ASTCatchParameter: public boolean isProtected()"
+                },
+                {
+                    "type": "meta",
+                    "data": "Get the type of exception thrown in throw statement"
+                },
+                {
+                    "type": "meta",
+                    "data": "Check whether the exception type thrown by the throw statement is x"
+                }
+            ]
+        },
+        {
+            "status": "Generated checker compile failed in attempt 2 / 5, preparing next attempt."
+        },
+        {
+            "status": "Generating test case logic using (violate rule)test case 1 in attempt 3 / 5",
+            "logics": [
+                "Get the try statement in the method.",
+                "Check whether the try statement has a catch clause.",
+                "Get the exception type of the catch parameter in the catch clause.",
+                "Check whether the exception type is `Exception`.",
+                "Get the throw statement in the catch clause.",
+                "Get the type of exception thrown in the throw statement.",
+                "Check whether the exception type thrown is `WrapperException`.",
+                "Check whether there is an enclosing try statement.",
+                "Get the catch clause of the enclosing try statement.",
+                "Check whether the exception type of the catch parameter in the enclosing catch clause is `WrapperException`."
+            ],
+            "test_cases": [
+                {
+                    "name": "(violate rule)test case 1",
+                    "selected": true
+                }
+            ]
+        },
+        {
+            "status": "Querying API for checking using (violate rule)test case 1",
+            "api_info": [
+                {
+                    "type": "api",
+                    "data": "net.sourceforge.pmd.lang.java.ast.ASTTryStatement: public net.sourceforge.pmd.lang.ast.NodeStream<ASTCatchClause> getCatchClauses()"
+                },
+                {
+                    "type": "api",
+                    "data": "net.sourceforge.pmd.lang.java.ast.ASTCatchClause: public boolean equals(java.lang.Object)"
+                },
+                {
+                    "type": "api",
+                    "data": "net.sourceforge.pmd.lang.java.ast.ASTCatchParameter: public net.sourceforge.pmd.lang.ast.NodeStream<ASTClassOrInterfaceType> getAllExceptionTypes()"
+                },
+                {
+                    "type": "api",
+                    "data": "net.sourceforge.pmd.lang.java.ast.ASTThrowStatement: public net.sourceforge.pmd.lang.java.ast.ASTExpression getExpr()"
+                },
+                {
+                    "type": "api",
+                    "data": "net.sourceforge.pmd.lang.java.ast.ASTTryStatement: public net.sourceforge.pmd.lang.java.ast.ASTAnyTypeDeclaration getEnclosingType()"
+                },
+                {
+                    "type": "api",
+                    "data": "net.sourceforge.pmd.lang.java.ast.ASTCatchClause: public net.sourceforge.pmd.lang.java.ast.ASTCatchParameter getParameter()"
+                },
+                {
+                    "type": "api",
+                    "data": "net.sourceforge.pmd.lang.java.ast.ASTCatchClause: public net.sourceforge.pmd.lang.java.ast.ASTAnyTypeDeclaration getEnclosingType()"
+                },
+                {
+                    "type": "meta",
+                    "data": "Check whether the exception type thrown by the throw statement is x"
+                },
+                {
+                    "type": "meta",
+                    "data": "Get the type of exception thrown in throw statement"
+                }
+            ]
+        },
+        {
+            "status": "Success! Generate initial checker code using (violate rule)test case 1. Start to iterate other test cases!",
+            "checker_code": "package net.sourceforge.pmd.lang.java.rule.design;\n\n\nimport net.sourceforge.pmd.lang.java.rule.AbstractJavaRulechainRule;\nimport net.sourceforge.pmd.lang.java.ast. *;\nimport net.sourceforge.pmd.lang.java.ast.internal. *;\nimport net.sourceforge.pmd.lang.java.types. *;\nimport net.sourceforge.pmd.lang.java.symbols. *;\nimport net.sourceforge.pmd.lang.ast.NodeStream;\npublic class ExceptionAsFlowControlRule extends AbstractJavaRulechainRule {\n    public ExceptionAsFlowControlRule() {\n        super(ASTTryStatement.class, ASTThrowStatement.class);\n    }\n\n    @Override\n    public Object visit(ASTTryStatement node, Object data) {\n        NodeStream<ASTCatchClause> catchClauses = node.getCatchClauses();\n        for (ASTCatchClause catchClause : catchClauses) {\n            ASTCatchParameter catchParameter = catchClause.getParameter();\n            NodeStream<ASTClassOrInterfaceType> exceptionTypes = catchParameter.getAllExceptionTypes();\n            for (ASTClassOrInterfaceType exceptionType : exceptionTypes) {\n                String exceptionTypeName = exceptionType.getSimpleName();\n                NodeStream<ASTThrowStatement> throwStatements = node.descendants(ASTThrowStatement.class);\n                for (ASTThrowStatement throwStatement : throwStatements) {\n                    JTypeMirror thrownType = throwStatement.getExpr().getTypeMirror();\n                    if (TypeTestUtil.isA(exceptionTypeName, thrownType)) {\n                        addViolation(data, throwStatement);\n                    }\n                }\n            }\n        }\n        return super.visit(node, data);\n    }\n\n    @Override\n    public Object visit(ASTThrowStatement node, Object data) {\n        return super.visit(node, data);\n    }\n}",
+            "test_cases": [
+                {
+                    "name": "(violate rule)test case 1",
+                    "selected": true
+                }
+            ]
+        },
+        {
+            "status": "Running test cases...",
+            "test_cases": [
+                {
+                    "name": "(violate rule)test case 1",
+                    "status": "pending"
+                },
+                {
+                    "name": "(follow rule)test case 2",
+                    "status": "pending"
+                },
+                {
+                    "name": "(follow rule)test case 3",
+                    "status": "pending"
+                },
+                {
+                    "name": "(follow rule)test case 4",
+                    "status": "pending"
+                },
+                {
+                    "name": "(violate rule)test case 5",
+                    "status": "pending"
+                },
+                {
+                    "name": "(follow rule)test case 6",
+                    "status": "pending"
+                },
+                {
+                    "name": "(follow rule)test case 7",
+                    "status": "pending"
+                }
+            ]
+        },
+        {
+            "status": "Failed to pass (violate rule)test case 5, and trying fix, generating test case logic in attempt 1 / 5",
+            "test_cases": [
+                {
+                    "name": "(violate rule)test case 1",
+                    "status": "success"
+                },
+                {
+                    "name": "(follow rule)test case 2",
+                    "status": "success"
+                },
+                {
+                    "name": "(follow rule)test case 3",
+                    "status": "success"
+                },
+                {
+                    "name": "(follow rule)test case 4",
+                    "status": "success"
+                },
+                {
+                    "name": "(violate rule)test case 5",
+                    "status": "failure",
+                    "selected": true
+                }
+            ],
+            "fixing": true,
+            "logics": [
+                "Get the exception type thrown in the throw statement.",
+                "Get the exception type of the catch parameter.",
+                "Check whether the exception type thrown is a subtype of the exception type of the catch parameter.",
+                "Check whether the exception type of the catch parameter is a subtype of the exception type thrown."
+            ]
+        },
+        {
+            "status": "Querying API for checking using test logic",
+            "fixing": true,
+            "api_info": [
+                {
+                    "type": "api",
+                    "data": "net.sourceforge.pmd.lang.java.ast.ASTCatchParameter: public net.sourceforge.pmd.lang.ast.NodeStream<ASTClassOrInterfaceType> getAllExceptionTypes()"
+                },
+                {
+                    "type": "meta",
+                    "data": "Get the type of exception thrown in throw statement"
+                },
+                {
+                    "type": "meta",
+                    "data": "Check whether the exception type thrown by the throw statement is x"
+                },
+                {
+                    "type": "meta",
+                    "data": "Check whether the catch parameter is x type"
+                }
+            ]
+        },
+        {
+            "status": "Generated checker fails to pass (follow rule)test case 3 in attempt: 1 / 5, preparing next attempt.",
+            "fixing": true
+        },
+        {
+            "status": "Failed to pass (violate rule)test case 5, and trying fix, generating test case logic in attempt 2 / 5",
+            "test_cases": [
+                {
+                    "name": "(violate rule)test case 1",
+                    "status": "success"
+                },
+                {
+                    "name": "(follow rule)test case 2",
+                    "status": "success"
+                },
+                {
+                    "name": "(follow rule)test case 3",
+                    "status": "success"
+                },
+                {
+                    "name": "(follow rule)test case 4",
+                    "status": "success"
+                },
+                {
+                    "name": "(violate rule)test case 5",
+                    "status": "failure",
+                    "selected": true
+                }
+            ],
+            "fixing": true,
+            "logics": [
+                "Get the exception type thrown in the throw statement.",
+                "Get the exception type of the catch parameter.",
+                "Check whether the exception type thrown is a subtype of the exception type caught.",
+                "Check whether the exception type caught is a subtype of the exception type thrown."
+            ]
+        },
+        {
+            "status": "Querying API for checking using test logic",
+            "fixing": true,
+            "api_info": [
+                {
+                    "type": "api",
+                    "data": "net.sourceforge.pmd.lang.java.ast.ASTCatchParameter: public net.sourceforge.pmd.lang.ast.NodeStream<ASTClassOrInterfaceType> getAllExceptionTypes()"
+                },
+                {
+                    "type": "meta",
+                    "data": "Get the type of exception thrown in throw statement"
+                },
+                {
+                    "type": "meta",
+                    "data": "Check whether the exception type thrown by the throw statement is x"
+                }
+            ]
+        },
+        {
+            "status": "Failed to pass (violate rule)test case 5, and trying fix, generating test case logic in attempt 2 / 5",
+            "test_cases": [
+                {
+                    "name": "(violate rule)test case 1",
+                    "status": "success"
+                },
+                {
+                    "name": "(follow rule)test case 2",
+                    "status": "success"
+                },
+                {
+                    "name": "(follow rule)test case 3",
+                    "status": "success"
+                },
+                {
+                    "name": "(follow rule)test case 4",
+                    "status": "success"
+                },
+                {
+                    "name": "(violate rule)test case 5",
+                    "status": "failure",
+                    "selected": true
+                }
+            ],
+            "fixing": true,
+            "logics": [
+                "Get the exception type thrown in the throw statement.",
+                "Get the exception type of the catch parameter.",
+                "Check whether the exception type thrown is a subtype of the catch parameter type.",
+                "Check whether the exception type of the catch parameter is a supertype of the thrown exception type."
+            ]
+        },
+        {
+            "status": "Querying API for checking using test logic",
+            "fixing": true,
+            "api_info": [
+                {
+                    "type": "api",
+                    "data": "net.sourceforge.pmd.lang.java.ast.ASTCatchParameter: public net.sourceforge.pmd.lang.ast.NodeStream<ASTClassOrInterfaceType> getAllExceptionTypes()"
+                },
+                {
+                    "type": "meta",
+                    "data": "Get the type of exception thrown in throw statement"
+                },
+                {
+                    "type": "meta",
+                    "data": "Check whether the exception type thrown by the throw statement is x"
+                }
+            ]
+        },
+        {
+            "status": "Generated checker fails to pass (follow rule)test case 3 in attempt: 2 / 5, preparing next attempt.",
+            "fixing": true
+        },
+        {
+            "status": "Failed to pass (violate rule)test case 5, and trying fix, generating test case logic in attempt 3 / 5",
+            "test_cases": [
+                {
+                    "name": "(violate rule)test case 1",
+                    "status": "success"
+                },
+                {
+                    "name": "(follow rule)test case 2",
+                    "status": "success"
+                },
+                {
+                    "name": "(follow rule)test case 3",
+                    "status": "success"
+                },
+                {
+                    "name": "(follow rule)test case 4",
+                    "status": "success"
+                },
+                {
+                    "name": "(violate rule)test case 5",
+                    "status": "failure",
+                    "selected": true
+                }
+            ],
+            "fixing": true,
+            "logics": [
+                "Get the catch branch of the first try statement.",
+                "Get the exception type of the catch parameter in the first catch branch.",
+                "Check whether the exception type is SubE.",
+                "Get the throw statement in the first try block.",
+                "Get the type of exception thrown in the throw statement.",
+                "Check whether the exception type thrown is TopE.",
+                "Get the catch branch of the second try statement.",
+                "Get the exception type of the catch parameter in the second catch branch.",
+                "Check whether the exception type is TopE.",
+                "Get the throw statement in the second try block.",
+                "Get the type of exception thrown in the throw statement.",
+                "Check whether the exception type thrown is SubE.",
+                "Check whether the exception type thrown in the throw statement is a subtype of the exception type in the catch parameter."
+            ]
+        },
+        {
+            "status": "Querying API for checking using test logic",
+            "fixing": true,
+            "api_info": [
+                {
+                    "type": "api",
+                    "data": "net.sourceforge.pmd.lang.java.ast.ASTTryStatement: public net.sourceforge.pmd.lang.ast.NodeStream<ASTCatchClause> getCatchClauses()"
+                },
+                {
+                    "type": "api",
+                    "data": "net.sourceforge.pmd.lang.java.ast.ASTCatchParameter: public net.sourceforge.pmd.lang.ast.NodeStream<ASTClassOrInterfaceType> getAllExceptionTypes()"
+                },
+                {
+                    "type": "api",
+                    "data": "net.sourceforge.pmd.lang.java.ast.ASTThrowStatement: public net.sourceforge.pmd.lang.ast.impl.javacc.JavaccToken getFirstToken()"
+                },
+                {
+                    "type": "api",
+                    "data": "net.sourceforge.pmd.lang.java.ast.ASTThrowStatement: public net.sourceforge.pmd.lang.document.Chars getText()"
+                },
+                {
+                    "type": "meta",
+                    "data": "Get the type of exception thrown in throw statement"
+                },
+                {
+                    "type": "meta",
+                    "data": "Check whether the exception type thrown by the throw statement is x"
+                }
+            ]
+        },
+        {
+            "status": "Failed to pass (violate rule)test case 5, and trying fix, generating test case logic in attempt 3 / 5",
+            "test_cases": [
+                {
+                    "name": "(violate rule)test case 1",
+                    "status": "success"
+                },
+                {
+                    "name": "(follow rule)test case 2",
+                    "status": "success"
+                },
+                {
+                    "name": "(follow rule)test case 3",
+                    "status": "success"
+                },
+                {
+                    "name": "(follow rule)test case 4",
+                    "status": "success"
+                },
+                {
+                    "name": "(violate rule)test case 5",
+                    "status": "failure",
+                    "selected": true
+                }
+            ],
+            "fixing": true,
+            "logics": [
+                "Get the type of exception thrown in throw statement.",
+                "Get the exception type of catch parameter.",
+                "Check whether the exception type thrown by the throw statement is a subtype of the exception type of catch parameter.",
+                "Check whether the exception type of catch parameter is a subtype of the exception type thrown by the throw statement."
+            ]
+        },
+        {
+            "status": "Querying API for checking using test logic",
+            "fixing": true,
+            "api_info": [
+                {
+                    "type": "api",
+                    "data": "net.sourceforge.pmd.lang.java.ast.ASTCatchParameter: public net.sourceforge.pmd.lang.ast.NodeStream<ASTClassOrInterfaceType> getAllExceptionTypes()"
+                },
+                {
+                    "type": "meta",
+                    "data": "Get the type of exception thrown in throw statement"
+                },
+                {
+                    "type": "meta",
+                    "data": "Check whether the exception type thrown by the throw statement is x"
+                }
+            ]
+        },
+        {
+            "status": "Generated checker fails to compile in attempt 3 / 5, preparing next attempt."
+        },
+        {
+            "status": "Failed to pass (violate rule)test case 5, and trying fix, generating test case logic in attempt 4 / 5",
+            "test_cases": [
+                {
+                    "name": "(violate rule)test case 1",
+                    "status": "success"
+                },
+                {
+                    "name": "(follow rule)test case 2",
+                    "status": "success"
+                },
+                {
+                    "name": "(follow rule)test case 3",
+                    "status": "success"
+                },
+                {
+                    "name": "(follow rule)test case 4",
+                    "status": "success"
+                },
+                {
+                    "name": "(violate rule)test case 5",
+                    "status": "failure",
+                    "selected": true
+                }
+            ],
+            "fixing": true,
+            "logics": [
+                "Get the exception type thrown in the throw statement.",
+                "Get the exception type of the catch parameter.",
+                "Check whether the exception type thrown is a subtype of the exception type caught.",
+                "Check whether the exception type caught is a subtype of the exception type thrown."
+            ]
+        },
+        {
+            "status": "Querying API for checking using test logic",
+            "fixing": true,
+            "api_info": [
+                {
+                    "type": "api",
+                    "data": "net.sourceforge.pmd.lang.java.ast.ASTCatchParameter: public net.sourceforge.pmd.lang.ast.NodeStream<ASTClassOrInterfaceType> getAllExceptionTypes()"
+                },
+                {
+                    "type": "meta",
+                    "data": "Get the type of exception thrown in throw statement"
+                },
+                {
+                    "type": "meta",
+                    "data": "Check whether the exception type thrown by the throw statement is x"
+                }
+            ]
+        },
+        {
+            "status": "Failed to pass (violate rule)test case 5, and trying fix, generating test case logic in attempt 4 / 5",
+            "test_cases": [
+                {
+                    "name": "(violate rule)test case 1",
+                    "status": "success"
+                },
+                {
+                    "name": "(follow rule)test case 2",
+                    "status": "success"
+                },
+                {
+                    "name": "(follow rule)test case 3",
+                    "status": "success"
+                },
+                {
+                    "name": "(follow rule)test case 4",
+                    "status": "success"
+                },
+                {
+                    "name": "(violate rule)test case 5",
+                    "status": "failure",
+                    "selected": true
+                }
+            ],
+            "fixing": true,
+            "logics": [
+                "Get the exception type thrown in the throw statement.",
+                "Get the exception type of the catch parameter.",
+                "Check whether the exception type thrown is a subtype of the exception type caught.",
+                "Check whether the exception type caught is a subtype of the exception type thrown."
+            ]
+        },
+        {
+            "status": "Querying API for checking using test logic",
+            "fixing": true,
+            "api_info": [
+                {
+                    "type": "api",
+                    "data": "net.sourceforge.pmd.lang.java.ast.ASTCatchParameter: public net.sourceforge.pmd.lang.ast.NodeStream<ASTClassOrInterfaceType> getAllExceptionTypes()"
+                },
+                {
+                    "type": "meta",
+                    "data": "Get the type of exception thrown in throw statement"
+                },
+                {
+                    "type": "meta",
+                    "data": "Check whether the exception type thrown by the throw statement is x"
+                }
+            ]
+        },
+        {
+            "status": "Generated checker fails to compile in attempt 4 / 5, preparing next attempt."
+        },
+        {
+            "status": "Failed to pass (violate rule)test case 5, and trying fix, generating test case logic in attempt 5 / 5",
+            "test_cases": [
+                {
+                    "name": "(violate rule)test case 1",
+                    "status": "success"
+                },
+                {
+                    "name": "(follow rule)test case 2",
+                    "status": "success"
+                },
+                {
+                    "name": "(follow rule)test case 3",
+                    "status": "success"
+                },
+                {
+                    "name": "(follow rule)test case 4",
+                    "status": "success"
+                },
+                {
+                    "name": "(violate rule)test case 5",
+                    "status": "failure",
+                    "selected": true
+                }
+            ],
+            "fixing": true,
+            "logics": [
+                "Get the type of exception thrown in the throw statement.",
+                "Get the exception type of the catch parameter.",
+                "Check whether the exception type thrown by the throw statement is a subtype of the exception type of the catch parameter.",
+                "Check whether the exception type of the catch parameter is a subtype of the exception type thrown by the throw statement."
+            ]
+        },
+        {
+            "status": "Querying API for checking using test logic",
+            "fixing": true,
+            "api_info": [
+                {
+                    "type": "api",
+                    "data": "net.sourceforge.pmd.lang.java.ast.ASTCatchParameter: public net.sourceforge.pmd.lang.ast.NodeStream<ASTClassOrInterfaceType> getAllExceptionTypes()"
+                },
+                {
+                    "type": "meta",
+                    "data": "Get the type of exception thrown in throw statement"
+                },
+                {
+                    "type": "meta",
+                    "data": "Check whether the exception type thrown by the throw statement is x"
+                }
+            ]
+        },
+        {
+            "status": "Generated checker fails to compile in attempt 5 / 5, preparing next attempt."
+        },
+        {
+            "status": "Fix failed in five attempts, so skip the failed test case (violate rule)test case 5. Running test cases...",
+            "test_cases": [
+                {
+                    "name": "(violate rule)test case 1",
+                    "status": "pending"
+                },
+                {
+                    "name": "(follow rule)test case 2",
+                    "status": "pending"
+                },
+                {
+                    "name": "(follow rule)test case 3",
+                    "status": "pending"
+                },
+                {
+                    "name": "(follow rule)test case 4",
+                    "status": "pending"
+                },
+                {
+                    "name": "(violate rule)test case 5",
+                    "status": "skipped"
+                },
+                {
+                    "name": "(follow rule)test case 6",
+                    "status": "pending"
+                },
+                {
+                    "name": "(follow rule)test case 7",
+                    "status": "pending"
+                }
+            ]
+        },
+        {
+            "status": "Failed to pass (follow rule)test case 6, and trying fix, generating test case logic in attempt 1 / 5",
+            "test_cases": [
+                {
+                    "name": "(violate rule)test case 1",
+                    "status": "success"
+                },
+                {
+                    "name": "(follow rule)test case 2",
+                    "status": "success"
+                },
+                {
+                    "name": "(follow rule)test case 3",
+                    "status": "success"
+                },
+                {
+                    "name": "(follow rule)test case 4",
+                    "status": "success"
+                },
+                {
+                    "name": "(violate rule)test case 5",
+                    "status": "skipped"
+                },
+                {
+                    "name": "(follow rule)test case 6",
+                    "status": "failure",
+                    "selected": true
+                }
+            ],
+            "fixing": true,
+            "logics": [
+                "Get all catch branches of the try statement.",
+                "For each catch branch, get the exception type of the catch parameter.",
+                "Check whether the exception type is rethrown in the catch block.",
+                "Check whether the rethrown exception is the same as the caught exception.",
+                "If the exception is rethrown without modification or wrapping, it violates the rule."
+            ]
+        },
+        {
+            "status": "Querying API for checking using test logic",
+            "fixing": true,
+            "api_info": [
+                {
+                    "type": "api",
+                    "data": "net.sourceforge.pmd.lang.java.ast.ASTTryStatement: public net.sourceforge.pmd.lang.ast.NodeStream<ASTCatchClause> getCatchClauses()"
+                },
+                {
+                    "type": "api",
+                    "data": "net.sourceforge.pmd.lang.java.ast.ASTCatchParameter: public net.sourceforge.pmd.lang.ast.NodeStream<ASTClassOrInterfaceType> getAllExceptionTypes()"
+                },
+                {
+                    "type": "api",
+                    "data": "net.sourceforge.pmd.lang.java.ast.internal.JavaAstUtils: static public boolean isJustRethrowException(net.sourceforge.pmd.lang.java.ast.ASTCatchClause)"
+                }
+            ]
+        },
+        {
+            "status": "Fix successfully! Generating checker code",
+            "checker_code": "package net.sourceforge.pmd.lang.java.rule.design;\n\n\nimport net.sourceforge.pmd.lang.java.rule.AbstractJavaRulechainRule;\nimport net.sourceforge.pmd.lang.java.ast. *;\nimport net.sourceforge.pmd.lang.java.ast.internal. *;\nimport net.sourceforge.pmd.lang.java.types. *;\nimport net.sourceforge.pmd.lang.java.symbols. *;\nimport net.sourceforge.pmd.lang.ast.NodeStream;\npublic class ExceptionAsFlowControlRule extends AbstractJavaRulechainRule {\n    public ExceptionAsFlowControlRule() {\n        super(ASTTryStatement.class, ASTThrowStatement.class);\n    }\n\n    @Override\n    public Object visit(ASTTryStatement node, Object data) {\n        NodeStream<ASTCatchClause> catchClauses = node.getCatchClauses();\n        for (ASTCatchClause catchClause : catchClauses) {\n            if (!JavaAstUtils.isJustRethrowException(catchClause)) {\n                ASTCatchParameter catchParameter = catchClause.getParameter();\n                NodeStream<ASTClassOrInterfaceType> exceptionTypes = catchParameter.getAllExceptionTypes();\n                for (ASTClassOrInterfaceType exceptionType : exceptionTypes) {\n                    String exceptionTypeName = exceptionType.getSimpleName();\n                    NodeStream<ASTThrowStatement> throwStatements = node.descendants(ASTThrowStatement.class);\n                    for (ASTThrowStatement throwStatement : throwStatements) {\n                        JTypeMirror thrownType = throwStatement.getExpr().getTypeMirror();\n                        if (TypeTestUtil.isA(exceptionTypeName, thrownType)) {\n                            addViolation(data, throwStatement);\n                        }\n                    }\n                }\n            }\n        }\n        return super.visit(node, data);\n    }\n\n    @Override\n    public Object visit(ASTThrowStatement node, Object data) {\n        return super.visit(node, data);\n    }\n}"
+        },
+        {
+            "status": "All test cases passed!",
+            "test_cases": [
+                {
+                    "name": "(violate rule)test case 1",
+                    "status": "success"
+                },
+                {
+                    "name": "(follow rule)test case 2",
+                    "status": "success"
+                },
+                {
+                    "name": "(follow rule)test case 3",
+                    "status": "success"
+                },
+                {
+                    "name": "(follow rule)test case 4",
+                    "status": "success"
+                },
+                {
+                    "name": "(violate rule)test case 5",
+                    "status": "skipped"
+                },
+                {
+                    "name": "(follow rule)test case 6",
+                    "status": "success"
+                },
+                {
+                    "name": "(follow rule)test case 7",
+                    "status": "success"
+                }
+            ]
+        }
+    ],
+    "test_cases": [
+        {
+            "name": "(violate rule)test case 1"
+        },
+        {
+            "name": "(follow rule)test case 2"
+        },
+        {
+            "name": "(follow rule)test case 3"
+        },
+        {
+            "name": "(follow rule)test case 4"
+        },
+        {
+            "name": "(violate rule)test case 5"
+        },
+        {
+            "name": "(follow rule)test case 6"
+        },
+        {
+            "name": "(follow rule)test case 7"
+        }
+    ]
+}

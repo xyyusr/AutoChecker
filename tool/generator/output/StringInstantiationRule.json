@@ -1,0 +1,607 @@
+{
+    "name": "StringInstantiationRule",
+    "pass_rate": 90.00,
+    "description": "Avoid instantiating String objects.",
+    "steps": [
+        {
+            "status": "Preparing to use negative test case to generate initial checker"
+        },
+        {
+            "status": "Generating test case logic using (violate rule)test case 1 in attempt 1 / 5",
+            "logics": [
+                "Get all field declarations in the class.",
+                "Check whether the field is of type String.",
+                "Check whether the field is initialized with a new String object.",
+                "Count the number of fields initialized with new String objects."
+            ],
+            "test_cases": [
+                {
+                    "name": "(violate rule)test case 1",
+                    "selected": true
+                }
+            ]
+        },
+        {
+            "status": "Querying API for checking using (violate rule)test case 1",
+            "api_info": [
+                {
+                    "type": "api",
+                    "data": "net.sourceforge.pmd.lang.java.ast.ASTFieldDeclaration: public net.sourceforge.pmd.lang.ast.NodeStream<ASTAnnotation> getDeclaredAnnotations()"
+                },
+                {
+                    "type": "meta",
+                    "data": "Check whether the field is string type"
+                },
+                {
+                    "type": "meta",
+                    "data": "Check whether the field is initialized"
+                }
+            ]
+        },
+        {
+            "status": "Success! Generate initial checker code using (violate rule)test case 1. Start to iterate other test cases!",
+            "checker_code": "package net.sourceforge.pmd.lang.java.rule.performance;\n\n\nimport net.sourceforge.pmd.lang.java.rule.AbstractJavaRulechainRule;\nimport net.sourceforge.pmd.lang.java.ast. *;\nimport net.sourceforge.pmd.lang.java.ast.internal. *;\nimport net.sourceforge.pmd.lang.java.types. *;\nimport net.sourceforge.pmd.lang.java.symbols. *;\nimport net.sourceforge.pmd.lang.ast.NodeStream;\npublic class StringInstantiationRule extends AbstractJavaRulechainRule {\n    public StringInstantiationRule() {\n        super(ASTFieldDeclaration.class);\n    }\n\n    @Override\n    public Object visit(ASTFieldDeclaration node, Object data) {\n        if (isFieldStringType(node)) {\n            NodeStream<ASTVariableDeclaratorId> varIds = node.getVarIds();\n            for (ASTVariableDeclaratorId varId : varIds) {\n                ASTExpression init = varId.getInitializer();\n                if (init instanceof ASTConstructorCall) {\n                    ASTConstructorCall constructorCall = (ASTConstructorCall) init;\n                    if (TypeTestUtil.isA(String.class, constructorCall.getTypeNode())) {\n                        addViolation(data, constructorCall);\n                    }\n                }\n            }\n        }\n        return super.visit(node, data);\n    }\n\n    // Check whether the field is string type\n    private boolean isFieldStringType(ASTFieldDeclaration node) {\n        return TypeTestUtil.isA(String.class, node.getTypeNode());\n    }\n\n    // Check whether the field is initialized\n    private boolean isInitialized(ASTFieldDeclaration node) {\n        NodeStream<ASTVariableDeclaratorId> varIds = node.getVarIds();\n        for (ASTVariableDeclaratorId varId : varIds) {\n            // a field declaration may have several variables, choose which one we want, here we use name to filter, you can also select other ways\n            if (varId.getName().equals(\"x\")) {\n                ASTExpression init = varId.getInitializer();\n                if (init != null) {\n                    return true;\n                }\n            }\n        }\n        return false;\n    }\n}",
+            "test_cases": [
+                {
+                    "name": "(violate rule)test case 1",
+                    "selected": true
+                }
+            ]
+        },
+        {
+            "status": "Running test cases...",
+            "test_cases": [
+                {
+                    "name": "(violate rule)test case 1",
+                    "status": "pending"
+                },
+                {
+                    "name": "(follow rule)test case 2",
+                    "status": "pending"
+                },
+                {
+                    "name": "(follow rule)test case 3",
+                    "status": "pending"
+                },
+                {
+                    "name": "(follow rule)test case 4",
+                    "status": "pending"
+                },
+                {
+                    "name": "(follow rule)test case 5",
+                    "status": "pending"
+                },
+                {
+                    "name": "(violate rule)test case 6",
+                    "status": "pending"
+                },
+                {
+                    "name": "(follow rule)test case 7",
+                    "status": "pending"
+                },
+                {
+                    "name": "(violate rule)test case 8",
+                    "status": "pending"
+                },
+                {
+                    "name": "(violate rule)test case 9",
+                    "status": "pending"
+                },
+                {
+                    "name": "(violate rule)test case 10",
+                    "status": "pending"
+                }
+            ]
+        },
+        {
+            "status": "Failed to pass (violate rule)test case 6, and trying fix, generating test case logic in attempt 1 / 5",
+            "test_cases": [
+                {
+                    "name": "(violate rule)test case 1",
+                    "status": "success"
+                },
+                {
+                    "name": "(follow rule)test case 2",
+                    "status": "success"
+                },
+                {
+                    "name": "(follow rule)test case 3",
+                    "status": "success"
+                },
+                {
+                    "name": "(follow rule)test case 4",
+                    "status": "success"
+                },
+                {
+                    "name": "(follow rule)test case 5",
+                    "status": "success"
+                },
+                {
+                    "name": "(violate rule)test case 6",
+                    "status": "failure",
+                    "selected": true
+                }
+            ],
+            "fixing": true,
+            "logics": [
+                "Get the return expression in the return statement.",
+                "Check whether the return expression is a constructor call.",
+                "Get the type of object created by the constructor call.",
+                "Check whether the type of object is String class type."
+            ]
+        },
+        {
+            "status": "Querying API for checking using test logic",
+            "fixing": true,
+            "api_info": [
+                {
+                    "type": "api",
+                    "data": "net.sourceforge.pmd.lang.java.ast.ASTReturnStatement: public net.sourceforge.pmd.lang.java.ast.ASTExpression getExpr()"
+                },
+                {
+                    "type": "api",
+                    "data": "net.sourceforge.pmd.lang.java.ast.ASTConstructorCall: public boolean isExpression()"
+                },
+                {
+                    "type": "api",
+                    "data": "net.sourceforge.pmd.lang.java.ast.ASTConstructorCall: public net.sourceforge.pmd.lang.java.ast.ASTClassOrInterfaceType getTypeNode()"
+                },
+                {
+                    "type": "meta",
+                    "data": "Check whether the type of object is x class type"
+                }
+            ]
+        },
+        {
+            "status": "Fix successfully! Generating checker code",
+            "checker_code": "package net.sourceforge.pmd.lang.java.rule.performance;\n\n\nimport net.sourceforge.pmd.lang.java.rule.AbstractJavaRulechainRule;\nimport net.sourceforge.pmd.lang.java.ast. *;\nimport net.sourceforge.pmd.lang.java.ast.internal. *;\nimport net.sourceforge.pmd.lang.java.types. *;\nimport net.sourceforge.pmd.lang.java.symbols. *;\nimport net.sourceforge.pmd.lang.ast.NodeStream;\npublic class StringInstantiationRule extends AbstractJavaRulechainRule {\n    public StringInstantiationRule() {\n        super(ASTFieldDeclaration.class, ASTMethodDeclaration.class);\n    }\n\n    @Override\n    public Object visit(ASTFieldDeclaration node, Object data) {\n        if (isFieldStringType(node)) {\n            NodeStream<ASTVariableDeclaratorId> varIds = node.getVarIds();\n            for (ASTVariableDeclaratorId varId : varIds) {\n                ASTExpression init = varId.getInitializer();\n                if (init instanceof ASTConstructorCall) {\n                    ASTConstructorCall constructorCall = (ASTConstructorCall) init;\n                    if (TypeTestUtil.isA(String.class, constructorCall.getTypeNode())) {\n                        addViolation(data, constructorCall);\n                    }\n                }\n            }\n        }\n        return super.visit(node, data);\n    }\n\n    @Override\n    public Object visit(ASTMethodDeclaration node, Object data) {\n        NodeStream<ASTReturnStatement> returnStatements = node.getBody().descendants(ASTReturnStatement.class);\n        for (ASTReturnStatement returnStatement : returnStatements) {\n            ASTExpression expr = returnStatement.getExpr();\n            if (expr instanceof ASTConstructorCall) {\n                ASTConstructorCall constructorCall = (ASTConstructorCall) expr;\n                if (TypeTestUtil.isA(String.class, constructorCall.getTypeNode())) {\n                    addViolation(data, constructorCall);\n                }\n            }\n        }\n        return super.visit(node, data);\n    }\n\n    private boolean isFieldStringType(ASTFieldDeclaration node) {\n        return TypeTestUtil.isA(String.class, node.getTypeNode());\n    }\n\n    private boolean isInitialized(ASTFieldDeclaration node) {\n        NodeStream<ASTVariableDeclaratorId> varIds = node.getVarIds();\n        for (ASTVariableDeclaratorId varId : varIds) {\n            if (varId.getName().equals(\"x\")) {\n                ASTExpression init = varId.getInitializer();\n                if (init != null) {\n                    return true;\n                }\n            }\n        }\n        return false;\n    }\n}"
+        },
+        {
+            "status": "Running test cases...",
+            "test_cases": [
+                {
+                    "name": "(violate rule)test case 1",
+                    "status": "pending"
+                },
+                {
+                    "name": "(follow rule)test case 2",
+                    "status": "pending"
+                },
+                {
+                    "name": "(follow rule)test case 3",
+                    "status": "pending"
+                },
+                {
+                    "name": "(follow rule)test case 4",
+                    "status": "pending"
+                },
+                {
+                    "name": "(follow rule)test case 5",
+                    "status": "pending"
+                },
+                {
+                    "name": "(violate rule)test case 6",
+                    "status": "pending"
+                },
+                {
+                    "name": "(follow rule)test case 7",
+                    "status": "pending"
+                },
+                {
+                    "name": "(violate rule)test case 8",
+                    "status": "pending"
+                },
+                {
+                    "name": "(violate rule)test case 9",
+                    "status": "pending"
+                },
+                {
+                    "name": "(violate rule)test case 10",
+                    "status": "pending"
+                }
+            ]
+        },
+        {
+            "status": "Failed to pass (violate rule)test case 9, and trying fix, generating test case logic in attempt 1 / 5",
+            "test_cases": [
+                {
+                    "name": "(violate rule)test case 1",
+                    "status": "success"
+                },
+                {
+                    "name": "(follow rule)test case 2",
+                    "status": "success"
+                },
+                {
+                    "name": "(follow rule)test case 3",
+                    "status": "success"
+                },
+                {
+                    "name": "(follow rule)test case 4",
+                    "status": "success"
+                },
+                {
+                    "name": "(follow rule)test case 5",
+                    "status": "success"
+                },
+                {
+                    "name": "(violate rule)test case 6",
+                    "status": "success"
+                },
+                {
+                    "name": "(follow rule)test case 7",
+                    "status": "success"
+                },
+                {
+                    "name": "(violate rule)test case 8",
+                    "status": "success"
+                },
+                {
+                    "name": "(violate rule)test case 9",
+                    "status": "failure",
+                    "selected": true
+                }
+            ],
+            "fixing": true,
+            "logics": [
+                "Get all object creation expressions in the test case.",
+                "Check whether the type of object created is `String`.",
+                "Count the number of `String` object creation expressions."
+            ]
+        },
+        {
+            "status": "Querying API for checking using test logic",
+            "fixing": true,
+            "api_info": [
+                {
+                    "type": "meta",
+                    "data": "Check whether the field is string type"
+                }
+            ]
+        },
+        {
+            "status": "Generated checker fails to compile in attempt 1 / 5, preparing next attempt."
+        },
+        {
+            "status": "Failed to pass (violate rule)test case 9, and trying fix, generating test case logic in attempt 2 / 5",
+            "test_cases": [
+                {
+                    "name": "(violate rule)test case 1",
+                    "status": "success"
+                },
+                {
+                    "name": "(follow rule)test case 2",
+                    "status": "success"
+                },
+                {
+                    "name": "(follow rule)test case 3",
+                    "status": "success"
+                },
+                {
+                    "name": "(follow rule)test case 4",
+                    "status": "success"
+                },
+                {
+                    "name": "(follow rule)test case 5",
+                    "status": "success"
+                },
+                {
+                    "name": "(violate rule)test case 6",
+                    "status": "success"
+                },
+                {
+                    "name": "(follow rule)test case 7",
+                    "status": "success"
+                },
+                {
+                    "name": "(violate rule)test case 8",
+                    "status": "success"
+                },
+                {
+                    "name": "(violate rule)test case 9",
+                    "status": "failure",
+                    "selected": true
+                }
+            ],
+            "fixing": true,
+            "logics": [
+                "Get all object creation expressions in the test case.",
+                "Check whether the type of the created object is `String`.",
+                "Count the number of `String` object creation expressions."
+            ]
+        },
+        {
+            "status": "Querying API for checking using test logic",
+            "fixing": true,
+            "api_info": [
+                {
+                    "type": "meta",
+                    "data": "Check whether the field is string type"
+                }
+            ]
+        },
+        {
+            "status": "Generated checker fails to compile in attempt 2 / 5, preparing next attempt."
+        },
+        {
+            "status": "Failed to pass (violate rule)test case 9, and trying fix, generating test case logic in attempt 3 / 5",
+            "test_cases": [
+                {
+                    "name": "(violate rule)test case 1",
+                    "status": "success"
+                },
+                {
+                    "name": "(follow rule)test case 2",
+                    "status": "success"
+                },
+                {
+                    "name": "(follow rule)test case 3",
+                    "status": "success"
+                },
+                {
+                    "name": "(follow rule)test case 4",
+                    "status": "success"
+                },
+                {
+                    "name": "(follow rule)test case 5",
+                    "status": "success"
+                },
+                {
+                    "name": "(violate rule)test case 6",
+                    "status": "success"
+                },
+                {
+                    "name": "(follow rule)test case 7",
+                    "status": "success"
+                },
+                {
+                    "name": "(violate rule)test case 8",
+                    "status": "success"
+                },
+                {
+                    "name": "(violate rule)test case 9",
+                    "status": "failure",
+                    "selected": true
+                }
+            ],
+            "fixing": true,
+            "logics": [
+                "Get all object creation expressions in the test case.",
+                "Check whether the type of the created object is `String`.",
+                "Get the arguments passed to the `String` constructor.",
+                "Check whether the argument is a string literal or a string array access.",
+                "Count the number of `String` instantiations."
+            ]
+        },
+        {
+            "status": "Querying API for checking using test logic",
+            "fixing": true,
+            "api_info": [
+                {
+                    "type": "api",
+                    "data": "net.sourceforge.pmd.lang.java.ast.ASTConstructorCall: public net.sourceforge.pmd.lang.java.ast.ASTArgumentList getArguments()"
+                },
+                {
+                    "type": "api",
+                    "data": "net.sourceforge.pmd.lang.java.ast.ASTArrayAccess: public boolean isExpression()"
+                },
+                {
+                    "type": "meta",
+                    "data": "Check whether the field is string type"
+                }
+            ]
+        },
+        {
+            "status": "Generated checker fails to compile in attempt 3 / 5, preparing next attempt."
+        },
+        {
+            "status": "Failed to pass (violate rule)test case 9, and trying fix, generating test case logic in attempt 4 / 5",
+            "test_cases": [
+                {
+                    "name": "(violate rule)test case 1",
+                    "status": "success"
+                },
+                {
+                    "name": "(follow rule)test case 2",
+                    "status": "success"
+                },
+                {
+                    "name": "(follow rule)test case 3",
+                    "status": "success"
+                },
+                {
+                    "name": "(follow rule)test case 4",
+                    "status": "success"
+                },
+                {
+                    "name": "(follow rule)test case 5",
+                    "status": "success"
+                },
+                {
+                    "name": "(violate rule)test case 6",
+                    "status": "success"
+                },
+                {
+                    "name": "(follow rule)test case 7",
+                    "status": "success"
+                },
+                {
+                    "name": "(violate rule)test case 8",
+                    "status": "success"
+                },
+                {
+                    "name": "(violate rule)test case 9",
+                    "status": "failure",
+                    "selected": true
+                }
+            ],
+            "fixing": true,
+            "logics": [
+                "Get all object creation expressions in the code.",
+                "Check whether the type of the created object is `String`.",
+                "Count the number of `String` object instantiations."
+            ]
+        },
+        {
+            "status": "Querying API for checking using test logic",
+            "fixing": true,
+            "api_info": [
+                {
+                    "type": "meta",
+                    "data": "Check whether the field is string type"
+                }
+            ]
+        },
+        {
+            "status": "Generated checker fails to compile in attempt 4 / 5, preparing next attempt."
+        },
+        {
+            "status": "Failed to pass (violate rule)test case 9, and trying fix, generating test case logic in attempt 5 / 5",
+            "test_cases": [
+                {
+                    "name": "(violate rule)test case 1",
+                    "status": "success"
+                },
+                {
+                    "name": "(follow rule)test case 2",
+                    "status": "success"
+                },
+                {
+                    "name": "(follow rule)test case 3",
+                    "status": "success"
+                },
+                {
+                    "name": "(follow rule)test case 4",
+                    "status": "success"
+                },
+                {
+                    "name": "(follow rule)test case 5",
+                    "status": "success"
+                },
+                {
+                    "name": "(violate rule)test case 6",
+                    "status": "success"
+                },
+                {
+                    "name": "(follow rule)test case 7",
+                    "status": "success"
+                },
+                {
+                    "name": "(violate rule)test case 8",
+                    "status": "success"
+                },
+                {
+                    "name": "(violate rule)test case 9",
+                    "status": "failure",
+                    "selected": true
+                }
+            ],
+            "fixing": true,
+            "logics": [
+                "Get all object creation expressions in the test case.",
+                "Check whether the type of object created is `String`.",
+                "Get the arguments passed to the `String` constructor.",
+                "Check whether the argument is a string literal or a string array access.",
+                "Count the number of `String` instantiations."
+            ]
+        },
+        {
+            "status": "Querying API for checking using test logic",
+            "fixing": true,
+            "api_info": [
+                {
+                    "type": "api",
+                    "data": "net.sourceforge.pmd.lang.java.ast.ASTConstructorCall: public net.sourceforge.pmd.lang.java.ast.ASTArgumentList getArguments()"
+                },
+                {
+                    "type": "api",
+                    "data": "net.sourceforge.pmd.lang.java.ast.ASTArrayAccess: public boolean isExpression()"
+                },
+                {
+                    "type": "meta",
+                    "data": "Check whether the field is string type"
+                }
+            ]
+        },
+        {
+            "status": "Generated checker fails to compile in attempt 5 / 5, preparing next attempt."
+        },
+        {
+            "status": "All test cases passed!",
+            "test_cases": [
+                {
+                    "name": "(violate rule)test case 1",
+                    "status": "success"
+                },
+                {
+                    "name": "(follow rule)test case 2",
+                    "status": "success"
+                },
+                {
+                    "name": "(follow rule)test case 3",
+                    "status": "success"
+                },
+                {
+                    "name": "(follow rule)test case 4",
+                    "status": "success"
+                },
+                {
+                    "name": "(follow rule)test case 5",
+                    "status": "success"
+                },
+                {
+                    "name": "(violate rule)test case 6",
+                    "status": "success"
+                },
+                {
+                    "name": "(follow rule)test case 7",
+                    "status": "success"
+                },
+                {
+                    "name": "(violate rule)test case 8",
+                    "status": "success"
+                },
+                {
+                    "name": "(violate rule)test case 9",
+                    "status": "skipped"
+                },
+                {
+                    "name": "(violate rule)test case 10",
+                    "status": "success"
+                }
+            ]
+        }
+    ],
+    "test_cases": [
+        {
+            "name": "(violate rule)test case 1"
+        },
+        {
+            "name": "(follow rule)test case 2"
+        },
+        {
+            "name": "(follow rule)test case 3"
+        },
+        {
+            "name": "(follow rule)test case 4"
+        },
+        {
+            "name": "(follow rule)test case 5"
+        },
+        {
+            "name": "(violate rule)test case 6"
+        },
+        {
+            "name": "(follow rule)test case 7"
+        },
+        {
+            "name": "(violate rule)test case 8"
+        },
+        {
+            "name": "(violate rule)test case 9"
+        },
+        {
+            "name": "(violate rule)test case 10"
+        }
+    ]
+}

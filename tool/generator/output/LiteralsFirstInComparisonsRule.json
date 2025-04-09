@@ -1,0 +1,3537 @@
+{
+    "name": "LiteralsFirstInComparisonsRule",
+    "pass_rate": 93.94,
+    "description": "Position literals first in all String comparison methods: non-overloaded 'boolean equals(Object o)' and 'equalsIgnoreCase' and 'compareTo' and 'compareToIgnoreCase' and 'contentEquals', if the second argument is null then NullPointerExceptions can be avoided, they will just return false.",
+    "steps": [
+        {
+            "status": "Preparing to use negative test case to generate initial checker"
+        },
+        {
+            "status": "Generating test case logic using (violate rule)test case 2 in attempt 1 / 5",
+            "logics": [
+                "Get the name of called method.",
+                "Check whether the name is equals, equalsIgnoreCase, compareTo, compareToIgnoreCase, or contentEquals.",
+                "Get the method caller.",
+                "Check whether the method caller is a variable.",
+                "Get the argument list of method.",
+                "Check whether the argument is a string literal.",
+                "Check whether the string literal is the first argument."
+            ],
+            "test_cases": [
+                {
+                    "name": "(violate rule)test case 2",
+                    "selected": true
+                }
+            ]
+        },
+        {
+            "status": "Querying API for checking using (violate rule)test case 2",
+            "api_info": [
+                {
+                    "type": "api",
+                    "data": "net.sourceforge.pmd.lang.java.ast.ASTMethodCall: public java.lang.String getMethodName()"
+                },
+                {
+                    "type": "api",
+                    "data": "net.sourceforge.pmd.lang.java.ast.ASTMethodCall: public net.sourceforge.pmd.lang.java.ast.ASTExpression getQualifier()"
+                },
+                {
+                    "type": "api",
+                    "data": "net.sourceforge.pmd.lang.java.ast.ASTMethodCall: public boolean equals(java.lang.Object)"
+                },
+                {
+                    "type": "api",
+                    "data": "net.sourceforge.pmd.lang.java.ast.ASTMethodCall: public net.sourceforge.pmd.lang.java.ast.ASTArgumentList getArguments()"
+                },
+                {
+                    "type": "api",
+                    "data": "net.sourceforge.pmd.lang.java.ast.ASTStringLiteral: public boolean isStringLiteral()"
+                },
+                {
+                    "type": "meta",
+                    "data": "Check whether the argument is string type"
+                }
+            ]
+        },
+        {
+            "status": "Success! Generate initial checker code using (violate rule)test case 2. Start to iterate other test cases!",
+            "checker_code": "package net.sourceforge.pmd.lang.java.rule.bestpractices;\n\n\nimport net.sourceforge.pmd.lang.java.rule.AbstractJavaRulechainRule;\nimport net.sourceforge.pmd.lang.java.ast. *;\nimport net.sourceforge.pmd.lang.java.ast.internal. *;\nimport net.sourceforge.pmd.lang.java.types. *;\nimport net.sourceforge.pmd.lang.java.symbols. *;\nimport net.sourceforge.pmd.lang.ast.NodeStream;\npublic class LiteralsFirstInComparisonsRule extends AbstractJavaRulechainRule {\n    public LiteralsFirstInComparisonsRule() {\n        super(ASTMethodCall.class);\n    }\n\n    @Override\n    public Object visit(ASTMethodCall node, Object data) {\n        String methodName = node.getMethodName();\n        if (isComparisonMethod(methodName)) {\n            ASTExpression qualifier = node.getQualifier();\n            if (qualifier != null && !(qualifier instanceof ASTStringLiteral)) {\n                ASTArgumentList arguments = node.getArguments();\n                if (arguments.size() == 1 && isMethodCallArgumentStringType(node)) {\n                    addViolation(data, node);\n                }\n            }\n        }\n        return super.visit(node, data);\n    }\n\n    private boolean isComparisonMethod(String methodName) {\n        return \"equals\".equals(methodName) || \"equalsIgnoreCase\".equals(methodName) ||\n               \"compareTo\".equals(methodName) || \"compareToIgnoreCase\".equals(methodName) ||\n               \"contentEquals\".equals(methodName);\n    }\n\n    private boolean isMethodCallArgumentStringType(ASTMethodCall node) {\n        ASTArgumentList astArgumentList = node.getArguments();\n        //select which argument to judge\n        ASTExpression expression = astArgumentList.get(0);\n        return TypeTestUtil.isA(String.class, expression.getTypeMirror());\n    }\n}",
+            "test_cases": [
+                {
+                    "name": "(violate rule)test case 2",
+                    "selected": true
+                }
+            ]
+        },
+        {
+            "status": "Running test cases...",
+            "test_cases": [
+                {
+                    "name": "(follow rule)test case 1",
+                    "status": "pending"
+                },
+                {
+                    "name": "(violate rule)test case 2",
+                    "status": "pending"
+                },
+                {
+                    "name": "(violate rule)test case 3",
+                    "status": "pending"
+                },
+                {
+                    "name": "(follow rule)test case 4",
+                    "status": "pending"
+                },
+                {
+                    "name": "(follow rule)test case 5",
+                    "status": "pending"
+                },
+                {
+                    "name": "(follow rule)test case 6",
+                    "status": "pending"
+                },
+                {
+                    "name": "(follow rule)test case 7",
+                    "status": "pending"
+                },
+                {
+                    "name": "(violate rule)test case 8",
+                    "status": "pending"
+                },
+                {
+                    "name": "(follow rule)test case 9",
+                    "status": "pending"
+                },
+                {
+                    "name": "(follow rule)test case 10",
+                    "status": "pending"
+                },
+                {
+                    "name": "(follow rule)test case 11",
+                    "status": "pending"
+                },
+                {
+                    "name": "(follow rule)test case 12",
+                    "status": "pending"
+                },
+                {
+                    "name": "(violate rule)test case 13",
+                    "status": "pending"
+                },
+                {
+                    "name": "(follow rule)test case 14",
+                    "status": "pending"
+                },
+                {
+                    "name": "(follow rule)test case 15",
+                    "status": "pending"
+                },
+                {
+                    "name": "(violate rule)test case 16",
+                    "status": "pending"
+                },
+                {
+                    "name": "(follow rule)test case 17",
+                    "status": "pending"
+                },
+                {
+                    "name": "(follow rule)test case 18",
+                    "status": "pending"
+                },
+                {
+                    "name": "(violate rule)test case 19",
+                    "status": "pending"
+                },
+                {
+                    "name": "(follow rule)test case 20",
+                    "status": "pending"
+                },
+                {
+                    "name": "(violate rule)test case 21",
+                    "status": "pending"
+                },
+                {
+                    "name": "(follow rule)test case 22",
+                    "status": "pending"
+                },
+                {
+                    "name": "(violate rule)test case 23",
+                    "status": "pending"
+                },
+                {
+                    "name": "(violate rule)test case 24",
+                    "status": "pending"
+                },
+                {
+                    "name": "(violate rule)test case 25",
+                    "status": "pending"
+                },
+                {
+                    "name": "(follow rule)test case 26",
+                    "status": "pending"
+                },
+                {
+                    "name": "(follow rule)test case 27",
+                    "status": "pending"
+                },
+                {
+                    "name": "(follow rule)test case 28",
+                    "status": "pending"
+                },
+                {
+                    "name": "(violate rule)test case 29",
+                    "status": "pending"
+                },
+                {
+                    "name": "(follow rule)test case 30",
+                    "status": "pending"
+                },
+                {
+                    "name": "(follow rule)test case 31",
+                    "status": "pending"
+                },
+                {
+                    "name": "(follow rule)test case 32",
+                    "status": "pending"
+                },
+                {
+                    "name": "(follow rule)test case 33",
+                    "status": "pending"
+                }
+            ]
+        },
+        {
+            "status": "Failed to pass (follow rule)test case 5, and trying fix, generating test case logic in attempt 1 / 5",
+            "test_cases": [
+                {
+                    "name": "(follow rule)test case 1",
+                    "status": "success"
+                },
+                {
+                    "name": "(violate rule)test case 2",
+                    "status": "success"
+                },
+                {
+                    "name": "(violate rule)test case 3",
+                    "status": "success"
+                },
+                {
+                    "name": "(follow rule)test case 4",
+                    "status": "success"
+                },
+                {
+                    "name": "(follow rule)test case 5",
+                    "status": "failure",
+                    "selected": true
+                }
+            ],
+            "fixing": true,
+            "logics": [
+                "Get the name of called method.",
+                "Check whether the name is equals.",
+                "Get the method caller.",
+                "Check whether the type of method caller is String class type.",
+                "Get the argument list of method.",
+                "Get the size of argument list.",
+                "Check whether the size of argument list is 1.",
+                "Check whether the argument is a string literal.",
+                "Check whether the method caller is a string literal."
+            ]
+        },
+        {
+            "status": "Querying API for checking using test logic",
+            "fixing": true,
+            "api_info": [
+                {
+                    "type": "api",
+                    "data": "net.sourceforge.pmd.lang.java.ast.ASTMethodCall: public java.lang.String getMethodName()"
+                },
+                {
+                    "type": "api",
+                    "data": "net.sourceforge.pmd.lang.java.ast.internal.JavaAstUtils: static public boolean isEqualsMethod(net.sourceforge.pmd.lang.java.ast.ASTMethodDeclaration)"
+                },
+                {
+                    "type": "api",
+                    "data": "net.sourceforge.pmd.lang.java.ast.ASTMethodCall: public net.sourceforge.pmd.lang.java.ast.ASTExpression getQualifier()"
+                },
+                {
+                    "type": "api",
+                    "data": "net.sourceforge.pmd.lang.java.ast.ASTMethodCall: public net.sourceforge.pmd.lang.java.ast.ASTArgumentList getArguments()"
+                },
+                {
+                    "type": "api",
+                    "data": "net.sourceforge.pmd.lang.java.ast.ASTArgumentList: public int size()"
+                },
+                {
+                    "type": "meta",
+                    "data": "Check whether the method caller is string type"
+                },
+                {
+                    "type": "meta",
+                    "data": "Check whether the argument is string type"
+                }
+            ]
+        },
+        {
+            "status": "Fix successfully! Generating checker code",
+            "checker_code": "package net.sourceforge.pmd.lang.java.rule.bestpractices;\n\n\nimport net.sourceforge.pmd.lang.java.rule.AbstractJavaRulechainRule;\nimport net.sourceforge.pmd.lang.java.ast. *;\nimport net.sourceforge.pmd.lang.java.ast.internal. *;\nimport net.sourceforge.pmd.lang.java.types. *;\nimport net.sourceforge.pmd.lang.java.symbols. *;\nimport net.sourceforge.pmd.lang.ast.NodeStream;\npublic class LiteralsFirstInComparisonsRule extends AbstractJavaRulechainRule {\n    public LiteralsFirstInComparisonsRule() {\n        super(ASTMethodCall.class);\n    }\n\n    @Override\n    public Object visit(ASTMethodCall node, Object data) {\n        String methodName = node.getMethodName();\n        if (isComparisonMethod(methodName)) {\n            ASTExpression qualifier = node.getQualifier();\n            if (qualifier != null && !(qualifier instanceof ASTStringLiteral)) {\n                ASTArgumentList arguments = node.getArguments();\n                if (arguments.size() == 1 && isMethodCallArgumentStringType(node)) {\n                    ASTExpression argument = arguments.get(0);\n                    if (!(argument instanceof ASTMethodCall)) {\n                        addViolation(data, node);\n                    }\n                }\n            }\n        }\n        return super.visit(node, data);\n    }\n\n    private boolean isComparisonMethod(String methodName) {\n        return \"equals\".equals(methodName) || \"equalsIgnoreCase\".equals(methodName) ||\n               \"compareTo\".equals(methodName) || \"compareToIgnoreCase\".equals(methodName) ||\n               \"contentEquals\".equals(methodName);\n    }\n\n    private boolean isMethodCallArgumentStringType(ASTMethodCall node) {\n        ASTArgumentList astArgumentList = node.getArguments();\n        ASTExpression expression = astArgumentList.get(0);\n        return TypeTestUtil.isA(String.class, expression.getTypeMirror());\n    }\n}"
+        },
+        {
+            "status": "Running test cases...",
+            "test_cases": [
+                {
+                    "name": "(follow rule)test case 1",
+                    "status": "pending"
+                },
+                {
+                    "name": "(violate rule)test case 2",
+                    "status": "pending"
+                },
+                {
+                    "name": "(violate rule)test case 3",
+                    "status": "pending"
+                },
+                {
+                    "name": "(follow rule)test case 4",
+                    "status": "pending"
+                },
+                {
+                    "name": "(follow rule)test case 5",
+                    "status": "pending"
+                },
+                {
+                    "name": "(follow rule)test case 6",
+                    "status": "pending"
+                },
+                {
+                    "name": "(follow rule)test case 7",
+                    "status": "pending"
+                },
+                {
+                    "name": "(violate rule)test case 8",
+                    "status": "pending"
+                },
+                {
+                    "name": "(follow rule)test case 9",
+                    "status": "pending"
+                },
+                {
+                    "name": "(follow rule)test case 10",
+                    "status": "pending"
+                },
+                {
+                    "name": "(follow rule)test case 11",
+                    "status": "pending"
+                },
+                {
+                    "name": "(follow rule)test case 12",
+                    "status": "pending"
+                },
+                {
+                    "name": "(violate rule)test case 13",
+                    "status": "pending"
+                },
+                {
+                    "name": "(follow rule)test case 14",
+                    "status": "pending"
+                },
+                {
+                    "name": "(follow rule)test case 15",
+                    "status": "pending"
+                },
+                {
+                    "name": "(violate rule)test case 16",
+                    "status": "pending"
+                },
+                {
+                    "name": "(follow rule)test case 17",
+                    "status": "pending"
+                },
+                {
+                    "name": "(follow rule)test case 18",
+                    "status": "pending"
+                },
+                {
+                    "name": "(violate rule)test case 19",
+                    "status": "pending"
+                },
+                {
+                    "name": "(follow rule)test case 20",
+                    "status": "pending"
+                },
+                {
+                    "name": "(violate rule)test case 21",
+                    "status": "pending"
+                },
+                {
+                    "name": "(follow rule)test case 22",
+                    "status": "pending"
+                },
+                {
+                    "name": "(violate rule)test case 23",
+                    "status": "pending"
+                },
+                {
+                    "name": "(violate rule)test case 24",
+                    "status": "pending"
+                },
+                {
+                    "name": "(violate rule)test case 25",
+                    "status": "pending"
+                },
+                {
+                    "name": "(follow rule)test case 26",
+                    "status": "pending"
+                },
+                {
+                    "name": "(follow rule)test case 27",
+                    "status": "pending"
+                },
+                {
+                    "name": "(follow rule)test case 28",
+                    "status": "pending"
+                },
+                {
+                    "name": "(violate rule)test case 29",
+                    "status": "pending"
+                },
+                {
+                    "name": "(follow rule)test case 30",
+                    "status": "pending"
+                },
+                {
+                    "name": "(follow rule)test case 31",
+                    "status": "pending"
+                },
+                {
+                    "name": "(follow rule)test case 32",
+                    "status": "pending"
+                },
+                {
+                    "name": "(follow rule)test case 33",
+                    "status": "pending"
+                }
+            ]
+        },
+        {
+            "status": "Failed to pass (follow rule)test case 26, and trying fix, generating test case logic in attempt 1 / 5",
+            "test_cases": [
+                {
+                    "name": "(follow rule)test case 1",
+                    "status": "success"
+                },
+                {
+                    "name": "(violate rule)test case 2",
+                    "status": "success"
+                },
+                {
+                    "name": "(violate rule)test case 3",
+                    "status": "success"
+                },
+                {
+                    "name": "(follow rule)test case 4",
+                    "status": "success"
+                },
+                {
+                    "name": "(follow rule)test case 5",
+                    "status": "success"
+                },
+                {
+                    "name": "(follow rule)test case 6",
+                    "status": "success"
+                },
+                {
+                    "name": "(follow rule)test case 7",
+                    "status": "success"
+                },
+                {
+                    "name": "(violate rule)test case 8",
+                    "status": "success"
+                },
+                {
+                    "name": "(follow rule)test case 9",
+                    "status": "success"
+                },
+                {
+                    "name": "(follow rule)test case 10",
+                    "status": "success"
+                },
+                {
+                    "name": "(follow rule)test case 11",
+                    "status": "success"
+                },
+                {
+                    "name": "(follow rule)test case 12",
+                    "status": "success"
+                },
+                {
+                    "name": "(violate rule)test case 13",
+                    "status": "success"
+                },
+                {
+                    "name": "(follow rule)test case 14",
+                    "status": "success"
+                },
+                {
+                    "name": "(follow rule)test case 15",
+                    "status": "success"
+                },
+                {
+                    "name": "(violate rule)test case 16",
+                    "status": "success"
+                },
+                {
+                    "name": "(follow rule)test case 17",
+                    "status": "success"
+                },
+                {
+                    "name": "(follow rule)test case 18",
+                    "status": "success"
+                },
+                {
+                    "name": "(violate rule)test case 19",
+                    "status": "success"
+                },
+                {
+                    "name": "(follow rule)test case 20",
+                    "status": "success"
+                },
+                {
+                    "name": "(violate rule)test case 21",
+                    "status": "success"
+                },
+                {
+                    "name": "(follow rule)test case 22",
+                    "status": "success"
+                },
+                {
+                    "name": "(violate rule)test case 23",
+                    "status": "success"
+                },
+                {
+                    "name": "(violate rule)test case 24",
+                    "status": "success"
+                },
+                {
+                    "name": "(violate rule)test case 25",
+                    "status": "success"
+                },
+                {
+                    "name": "(follow rule)test case 26",
+                    "status": "failure",
+                    "selected": true
+                }
+            ],
+            "fixing": true,
+            "logics": [
+                "Get the name of called method.",
+                "Check whether the name is equals, equalsIgnoreCase, compareTo, compareToIgnoreCase, or contentEquals.",
+                "Get the method caller.",
+                "Check whether the method caller is a string literal.",
+                "Get the argument list of method.",
+                "Check whether the argument is a string literal.",
+                "Check whether the field TEST_CONSTANT is final."
+            ]
+        },
+        {
+            "status": "Querying API for checking using test logic",
+            "fixing": true,
+            "api_info": [
+                {
+                    "type": "api",
+                    "data": "net.sourceforge.pmd.lang.java.ast.ASTMethodCall: public java.lang.String getMethodName()"
+                },
+                {
+                    "type": "api",
+                    "data": "net.sourceforge.pmd.lang.java.ast.ASTMethodCall: public net.sourceforge.pmd.lang.java.ast.ASTExpression getQualifier()"
+                },
+                {
+                    "type": "api",
+                    "data": "net.sourceforge.pmd.lang.java.ast.ASTMethodCall: public net.sourceforge.pmd.lang.java.ast.ASTArgumentList getArguments()"
+                },
+                {
+                    "type": "api",
+                    "data": "net.sourceforge.pmd.lang.java.ast.ASTFieldDeclaration: public boolean isFinal()"
+                },
+                {
+                    "type": "meta",
+                    "data": "Check whether the method caller is string type"
+                },
+                {
+                    "type": "meta",
+                    "data": "Check whether the argument is string type"
+                }
+            ]
+        },
+        {
+            "status": "Generated checker fails to pass (follow rule)test case 26 in attempt: 1 / 5, preparing next attempt.",
+            "fixing": true
+        },
+        {
+            "status": "Failed to pass (follow rule)test case 26, and trying fix, generating test case logic in attempt 2 / 5",
+            "test_cases": [
+                {
+                    "name": "(follow rule)test case 1",
+                    "status": "success"
+                },
+                {
+                    "name": "(violate rule)test case 2",
+                    "status": "success"
+                },
+                {
+                    "name": "(violate rule)test case 3",
+                    "status": "success"
+                },
+                {
+                    "name": "(follow rule)test case 4",
+                    "status": "success"
+                },
+                {
+                    "name": "(follow rule)test case 5",
+                    "status": "success"
+                },
+                {
+                    "name": "(follow rule)test case 6",
+                    "status": "success"
+                },
+                {
+                    "name": "(follow rule)test case 7",
+                    "status": "success"
+                },
+                {
+                    "name": "(violate rule)test case 8",
+                    "status": "success"
+                },
+                {
+                    "name": "(follow rule)test case 9",
+                    "status": "success"
+                },
+                {
+                    "name": "(follow rule)test case 10",
+                    "status": "success"
+                },
+                {
+                    "name": "(follow rule)test case 11",
+                    "status": "success"
+                },
+                {
+                    "name": "(follow rule)test case 12",
+                    "status": "success"
+                },
+                {
+                    "name": "(violate rule)test case 13",
+                    "status": "success"
+                },
+                {
+                    "name": "(follow rule)test case 14",
+                    "status": "success"
+                },
+                {
+                    "name": "(follow rule)test case 15",
+                    "status": "success"
+                },
+                {
+                    "name": "(violate rule)test case 16",
+                    "status": "success"
+                },
+                {
+                    "name": "(follow rule)test case 17",
+                    "status": "success"
+                },
+                {
+                    "name": "(follow rule)test case 18",
+                    "status": "success"
+                },
+                {
+                    "name": "(violate rule)test case 19",
+                    "status": "success"
+                },
+                {
+                    "name": "(follow rule)test case 20",
+                    "status": "success"
+                },
+                {
+                    "name": "(violate rule)test case 21",
+                    "status": "success"
+                },
+                {
+                    "name": "(follow rule)test case 22",
+                    "status": "success"
+                },
+                {
+                    "name": "(violate rule)test case 23",
+                    "status": "success"
+                },
+                {
+                    "name": "(violate rule)test case 24",
+                    "status": "success"
+                },
+                {
+                    "name": "(violate rule)test case 25",
+                    "status": "success"
+                },
+                {
+                    "name": "(follow rule)test case 26",
+                    "status": "failure",
+                    "selected": true
+                }
+            ],
+            "fixing": true,
+            "logics": [
+                "Get the name of called method.",
+                "Check whether the name is equals, equalsIgnoreCase, compareTo, compareToIgnoreCase, or contentEquals.",
+                "Get the method caller.",
+                "Check whether the method caller is a string literal.",
+                "Get the argument list of method.",
+                "Check whether the argument is a field.",
+                "Get the field declaration of the argument.",
+                "Check whether the field is final."
+            ]
+        },
+        {
+            "status": "Querying API for checking using test logic",
+            "fixing": true,
+            "api_info": [
+                {
+                    "type": "api",
+                    "data": "net.sourceforge.pmd.lang.java.ast.ASTMethodCall: public java.lang.String getMethodName()"
+                },
+                {
+                    "type": "api",
+                    "data": "net.sourceforge.pmd.lang.java.ast.ASTMethodCall: public net.sourceforge.pmd.lang.java.ast.ASTExpression getQualifier()"
+                },
+                {
+                    "type": "api",
+                    "data": "net.sourceforge.pmd.lang.java.ast.ASTMethodCall: public net.sourceforge.pmd.lang.java.ast.ASTArgumentList getArguments()"
+                },
+                {
+                    "type": "api",
+                    "data": "net.sourceforge.pmd.lang.java.ast.ASTFieldDeclaration: public boolean isSyntacticallyAbstract()"
+                },
+                {
+                    "type": "api",
+                    "data": "net.sourceforge.pmd.lang.java.ast.ASTFieldDeclaration: public net.sourceforge.pmd.lang.ast.NodeStream<ASTAnnotation> getDeclaredAnnotations()"
+                },
+                {
+                    "type": "api",
+                    "data": "net.sourceforge.pmd.lang.java.ast.ASTFieldDeclaration: public boolean isFinal()"
+                },
+                {
+                    "type": "meta",
+                    "data": "Check whether the method caller is string type"
+                }
+            ]
+        },
+        {
+            "status": "Generated checker fails to compile in attempt 2 / 5, preparing next attempt."
+        },
+        {
+            "status": "Failed to pass (follow rule)test case 26, and trying fix, generating test case logic in attempt 3 / 5",
+            "test_cases": [
+                {
+                    "name": "(follow rule)test case 1",
+                    "status": "success"
+                },
+                {
+                    "name": "(violate rule)test case 2",
+                    "status": "success"
+                },
+                {
+                    "name": "(violate rule)test case 3",
+                    "status": "success"
+                },
+                {
+                    "name": "(follow rule)test case 4",
+                    "status": "success"
+                },
+                {
+                    "name": "(follow rule)test case 5",
+                    "status": "success"
+                },
+                {
+                    "name": "(follow rule)test case 6",
+                    "status": "success"
+                },
+                {
+                    "name": "(follow rule)test case 7",
+                    "status": "success"
+                },
+                {
+                    "name": "(violate rule)test case 8",
+                    "status": "success"
+                },
+                {
+                    "name": "(follow rule)test case 9",
+                    "status": "success"
+                },
+                {
+                    "name": "(follow rule)test case 10",
+                    "status": "success"
+                },
+                {
+                    "name": "(follow rule)test case 11",
+                    "status": "success"
+                },
+                {
+                    "name": "(follow rule)test case 12",
+                    "status": "success"
+                },
+                {
+                    "name": "(violate rule)test case 13",
+                    "status": "success"
+                },
+                {
+                    "name": "(follow rule)test case 14",
+                    "status": "success"
+                },
+                {
+                    "name": "(follow rule)test case 15",
+                    "status": "success"
+                },
+                {
+                    "name": "(violate rule)test case 16",
+                    "status": "success"
+                },
+                {
+                    "name": "(follow rule)test case 17",
+                    "status": "success"
+                },
+                {
+                    "name": "(follow rule)test case 18",
+                    "status": "success"
+                },
+                {
+                    "name": "(violate rule)test case 19",
+                    "status": "success"
+                },
+                {
+                    "name": "(follow rule)test case 20",
+                    "status": "success"
+                },
+                {
+                    "name": "(violate rule)test case 21",
+                    "status": "success"
+                },
+                {
+                    "name": "(follow rule)test case 22",
+                    "status": "success"
+                },
+                {
+                    "name": "(violate rule)test case 23",
+                    "status": "success"
+                },
+                {
+                    "name": "(violate rule)test case 24",
+                    "status": "success"
+                },
+                {
+                    "name": "(violate rule)test case 25",
+                    "status": "success"
+                },
+                {
+                    "name": "(follow rule)test case 26",
+                    "status": "failure",
+                    "selected": true
+                }
+            ],
+            "fixing": true,
+            "logics": [
+                "Get the name of called method.",
+                "Check whether the name is equals or equalsIgnoreCase or compareTo or compareToIgnoreCase or contentEquals.",
+                "Get the method caller.",
+                "Check whether the method caller is a field.",
+                "Check whether the field is final.",
+                "Get the argument list of method.",
+                "Check whether the argument is a literal."
+            ]
+        },
+        {
+            "status": "Querying API for checking using test logic",
+            "fixing": true,
+            "api_info": [
+                {
+                    "type": "api",
+                    "data": "net.sourceforge.pmd.lang.java.ast.ASTMethodCall: public java.lang.String getMethodName()"
+                },
+                {
+                    "type": "api",
+                    "data": "net.sourceforge.pmd.lang.java.ast.ASTMethodCall: public net.sourceforge.pmd.lang.java.ast.ASTExpression getQualifier()"
+                },
+                {
+                    "type": "api",
+                    "data": "net.sourceforge.pmd.lang.java.ast.ASTFieldDeclaration: public boolean isFinal()"
+                },
+                {
+                    "type": "api",
+                    "data": "net.sourceforge.pmd.lang.java.ast.ASTMethodCall: public net.sourceforge.pmd.lang.java.ast.ASTArgumentList getArguments()"
+                },
+                {
+                    "type": "api",
+                    "data": "net.sourceforge.pmd.lang.java.ast.internal.JavaAstUtils: static public boolean isBooleanLiteral(net.sourceforge.pmd.lang.java.ast.JavaNode)"
+                },
+                {
+                    "type": "meta",
+                    "data": "Check whether the method caller is record type"
+                }
+            ]
+        },
+        {
+            "status": "Generated checker fails to pass (follow rule)test case 26 in attempt: 3 / 5, preparing next attempt.",
+            "fixing": true
+        },
+        {
+            "status": "Failed to pass (follow rule)test case 26, and trying fix, generating test case logic in attempt 4 / 5",
+            "test_cases": [
+                {
+                    "name": "(follow rule)test case 1",
+                    "status": "success"
+                },
+                {
+                    "name": "(violate rule)test case 2",
+                    "status": "success"
+                },
+                {
+                    "name": "(violate rule)test case 3",
+                    "status": "success"
+                },
+                {
+                    "name": "(follow rule)test case 4",
+                    "status": "success"
+                },
+                {
+                    "name": "(follow rule)test case 5",
+                    "status": "success"
+                },
+                {
+                    "name": "(follow rule)test case 6",
+                    "status": "success"
+                },
+                {
+                    "name": "(follow rule)test case 7",
+                    "status": "success"
+                },
+                {
+                    "name": "(violate rule)test case 8",
+                    "status": "success"
+                },
+                {
+                    "name": "(follow rule)test case 9",
+                    "status": "success"
+                },
+                {
+                    "name": "(follow rule)test case 10",
+                    "status": "success"
+                },
+                {
+                    "name": "(follow rule)test case 11",
+                    "status": "success"
+                },
+                {
+                    "name": "(follow rule)test case 12",
+                    "status": "success"
+                },
+                {
+                    "name": "(violate rule)test case 13",
+                    "status": "success"
+                },
+                {
+                    "name": "(follow rule)test case 14",
+                    "status": "success"
+                },
+                {
+                    "name": "(follow rule)test case 15",
+                    "status": "success"
+                },
+                {
+                    "name": "(violate rule)test case 16",
+                    "status": "success"
+                },
+                {
+                    "name": "(follow rule)test case 17",
+                    "status": "success"
+                },
+                {
+                    "name": "(follow rule)test case 18",
+                    "status": "success"
+                },
+                {
+                    "name": "(violate rule)test case 19",
+                    "status": "success"
+                },
+                {
+                    "name": "(follow rule)test case 20",
+                    "status": "success"
+                },
+                {
+                    "name": "(violate rule)test case 21",
+                    "status": "success"
+                },
+                {
+                    "name": "(follow rule)test case 22",
+                    "status": "success"
+                },
+                {
+                    "name": "(violate rule)test case 23",
+                    "status": "success"
+                },
+                {
+                    "name": "(violate rule)test case 24",
+                    "status": "success"
+                },
+                {
+                    "name": "(violate rule)test case 25",
+                    "status": "success"
+                },
+                {
+                    "name": "(follow rule)test case 26",
+                    "status": "failure",
+                    "selected": true
+                }
+            ],
+            "fixing": true,
+            "logics": [
+                "Get the name of called method.",
+                "Check whether the name is equals, equalsIgnoreCase, compareTo, compareToIgnoreCase, or contentEquals.",
+                "Get the method caller.",
+                "Check whether the method caller is a string literal.",
+                "Get the argument list of method.",
+                "Get the size of argument list.",
+                "Check whether the size of argument list is 1.",
+                "Check whether the argument is a field.",
+                "Check whether the field is final."
+            ]
+        },
+        {
+            "status": "Querying API for checking using test logic",
+            "fixing": true,
+            "api_info": [
+                {
+                    "type": "api",
+                    "data": "net.sourceforge.pmd.lang.java.ast.ASTMethodCall: public java.lang.String getMethodName()"
+                },
+                {
+                    "type": "api",
+                    "data": "net.sourceforge.pmd.lang.java.ast.ASTMethodCall: public net.sourceforge.pmd.lang.java.ast.ASTExpression getQualifier()"
+                },
+                {
+                    "type": "api",
+                    "data": "net.sourceforge.pmd.lang.java.ast.ASTMethodCall: public net.sourceforge.pmd.lang.java.ast.ASTArgumentList getArguments()"
+                },
+                {
+                    "type": "api",
+                    "data": "net.sourceforge.pmd.lang.java.ast.ASTArgumentList: public int size()"
+                },
+                {
+                    "type": "api",
+                    "data": "net.sourceforge.pmd.lang.java.ast.ASTFieldDeclaration: public boolean isSyntacticallyAbstract()"
+                },
+                {
+                    "type": "api",
+                    "data": "net.sourceforge.pmd.lang.java.ast.ASTFieldDeclaration: public boolean isFinal()"
+                },
+                {
+                    "type": "meta",
+                    "data": "Check whether the method caller is string type"
+                }
+            ]
+        },
+        {
+            "status": "Generated checker fails to pass (follow rule)test case 26 in attempt: 4 / 5, preparing next attempt.",
+            "fixing": true
+        },
+        {
+            "status": "Failed to pass (follow rule)test case 26, and trying fix, generating test case logic in attempt 5 / 5",
+            "test_cases": [
+                {
+                    "name": "(follow rule)test case 1",
+                    "status": "success"
+                },
+                {
+                    "name": "(violate rule)test case 2",
+                    "status": "success"
+                },
+                {
+                    "name": "(violate rule)test case 3",
+                    "status": "success"
+                },
+                {
+                    "name": "(follow rule)test case 4",
+                    "status": "success"
+                },
+                {
+                    "name": "(follow rule)test case 5",
+                    "status": "success"
+                },
+                {
+                    "name": "(follow rule)test case 6",
+                    "status": "success"
+                },
+                {
+                    "name": "(follow rule)test case 7",
+                    "status": "success"
+                },
+                {
+                    "name": "(violate rule)test case 8",
+                    "status": "success"
+                },
+                {
+                    "name": "(follow rule)test case 9",
+                    "status": "success"
+                },
+                {
+                    "name": "(follow rule)test case 10",
+                    "status": "success"
+                },
+                {
+                    "name": "(follow rule)test case 11",
+                    "status": "success"
+                },
+                {
+                    "name": "(follow rule)test case 12",
+                    "status": "success"
+                },
+                {
+                    "name": "(violate rule)test case 13",
+                    "status": "success"
+                },
+                {
+                    "name": "(follow rule)test case 14",
+                    "status": "success"
+                },
+                {
+                    "name": "(follow rule)test case 15",
+                    "status": "success"
+                },
+                {
+                    "name": "(violate rule)test case 16",
+                    "status": "success"
+                },
+                {
+                    "name": "(follow rule)test case 17",
+                    "status": "success"
+                },
+                {
+                    "name": "(follow rule)test case 18",
+                    "status": "success"
+                },
+                {
+                    "name": "(violate rule)test case 19",
+                    "status": "success"
+                },
+                {
+                    "name": "(follow rule)test case 20",
+                    "status": "success"
+                },
+                {
+                    "name": "(violate rule)test case 21",
+                    "status": "success"
+                },
+                {
+                    "name": "(follow rule)test case 22",
+                    "status": "success"
+                },
+                {
+                    "name": "(violate rule)test case 23",
+                    "status": "success"
+                },
+                {
+                    "name": "(violate rule)test case 24",
+                    "status": "success"
+                },
+                {
+                    "name": "(violate rule)test case 25",
+                    "status": "success"
+                },
+                {
+                    "name": "(follow rule)test case 26",
+                    "status": "failure",
+                    "selected": true
+                }
+            ],
+            "fixing": true,
+            "logics": [
+                "Get the name of called method.",
+                "Check whether the name is equals or equalsIgnoreCase or compareTo or compareToIgnoreCase or contentEquals.",
+                "Get the method caller.",
+                "Check whether the method caller is a string literal.",
+                "Get the argument list of method.",
+                "Get the size of argument list.",
+                "Check whether the size of argument list is 1.",
+                "Get the first argument of method.",
+                "Check whether the first argument is a field.",
+                "Check whether the field is final."
+            ]
+        },
+        {
+            "status": "Querying API for checking using test logic",
+            "fixing": true,
+            "api_info": [
+                {
+                    "type": "api",
+                    "data": "net.sourceforge.pmd.lang.java.ast.ASTMethodCall: public java.lang.String getMethodName()"
+                },
+                {
+                    "type": "api",
+                    "data": "net.sourceforge.pmd.lang.java.ast.ASTMethodCall: public net.sourceforge.pmd.lang.java.ast.ASTExpression getQualifier()"
+                },
+                {
+                    "type": "api",
+                    "data": "net.sourceforge.pmd.lang.java.ast.ASTMethodCall: public net.sourceforge.pmd.lang.java.ast.ASTArgumentList getArguments()"
+                },
+                {
+                    "type": "api",
+                    "data": "net.sourceforge.pmd.lang.java.ast.ASTArgumentList: public int size()"
+                },
+                {
+                    "type": "api",
+                    "data": "net.sourceforge.pmd.lang.java.ast.ASTFieldDeclaration: public boolean isSyntacticallyAbstract()"
+                },
+                {
+                    "type": "api",
+                    "data": "net.sourceforge.pmd.lang.java.ast.ASTFieldDeclaration: public boolean isFinal()"
+                },
+                {
+                    "type": "meta",
+                    "data": "Check whether the method caller is string type"
+                }
+            ]
+        },
+        {
+            "status": "Generated checker fails to compile in attempt 5 / 5, preparing next attempt."
+        },
+        {
+            "status": "Fix failed in five attempts, so skip the failed test case (follow rule)test case 26. Running test cases...",
+            "test_cases": [
+                {
+                    "name": "(follow rule)test case 1",
+                    "status": "pending"
+                },
+                {
+                    "name": "(violate rule)test case 2",
+                    "status": "pending"
+                },
+                {
+                    "name": "(violate rule)test case 3",
+                    "status": "pending"
+                },
+                {
+                    "name": "(follow rule)test case 4",
+                    "status": "pending"
+                },
+                {
+                    "name": "(follow rule)test case 5",
+                    "status": "pending"
+                },
+                {
+                    "name": "(follow rule)test case 6",
+                    "status": "pending"
+                },
+                {
+                    "name": "(follow rule)test case 7",
+                    "status": "pending"
+                },
+                {
+                    "name": "(violate rule)test case 8",
+                    "status": "pending"
+                },
+                {
+                    "name": "(follow rule)test case 9",
+                    "status": "pending"
+                },
+                {
+                    "name": "(follow rule)test case 10",
+                    "status": "pending"
+                },
+                {
+                    "name": "(follow rule)test case 11",
+                    "status": "pending"
+                },
+                {
+                    "name": "(follow rule)test case 12",
+                    "status": "pending"
+                },
+                {
+                    "name": "(violate rule)test case 13",
+                    "status": "pending"
+                },
+                {
+                    "name": "(follow rule)test case 14",
+                    "status": "pending"
+                },
+                {
+                    "name": "(follow rule)test case 15",
+                    "status": "pending"
+                },
+                {
+                    "name": "(violate rule)test case 16",
+                    "status": "pending"
+                },
+                {
+                    "name": "(follow rule)test case 17",
+                    "status": "pending"
+                },
+                {
+                    "name": "(follow rule)test case 18",
+                    "status": "pending"
+                },
+                {
+                    "name": "(violate rule)test case 19",
+                    "status": "pending"
+                },
+                {
+                    "name": "(follow rule)test case 20",
+                    "status": "pending"
+                },
+                {
+                    "name": "(violate rule)test case 21",
+                    "status": "pending"
+                },
+                {
+                    "name": "(follow rule)test case 22",
+                    "status": "pending"
+                },
+                {
+                    "name": "(violate rule)test case 23",
+                    "status": "pending"
+                },
+                {
+                    "name": "(violate rule)test case 24",
+                    "status": "pending"
+                },
+                {
+                    "name": "(violate rule)test case 25",
+                    "status": "pending"
+                },
+                {
+                    "name": "(follow rule)test case 26",
+                    "status": "skipped"
+                },
+                {
+                    "name": "(follow rule)test case 27",
+                    "status": "pending"
+                },
+                {
+                    "name": "(follow rule)test case 28",
+                    "status": "pending"
+                },
+                {
+                    "name": "(violate rule)test case 29",
+                    "status": "pending"
+                },
+                {
+                    "name": "(follow rule)test case 30",
+                    "status": "pending"
+                },
+                {
+                    "name": "(follow rule)test case 31",
+                    "status": "pending"
+                },
+                {
+                    "name": "(follow rule)test case 32",
+                    "status": "pending"
+                },
+                {
+                    "name": "(follow rule)test case 33",
+                    "status": "pending"
+                }
+            ]
+        },
+        {
+            "status": "Failed to pass (follow rule)test case 27, and trying fix, generating test case logic in attempt 1 / 5",
+            "test_cases": [
+                {
+                    "name": "(follow rule)test case 1",
+                    "status": "success"
+                },
+                {
+                    "name": "(violate rule)test case 2",
+                    "status": "success"
+                },
+                {
+                    "name": "(violate rule)test case 3",
+                    "status": "success"
+                },
+                {
+                    "name": "(follow rule)test case 4",
+                    "status": "success"
+                },
+                {
+                    "name": "(follow rule)test case 5",
+                    "status": "success"
+                },
+                {
+                    "name": "(follow rule)test case 6",
+                    "status": "success"
+                },
+                {
+                    "name": "(follow rule)test case 7",
+                    "status": "success"
+                },
+                {
+                    "name": "(violate rule)test case 8",
+                    "status": "success"
+                },
+                {
+                    "name": "(follow rule)test case 9",
+                    "status": "success"
+                },
+                {
+                    "name": "(follow rule)test case 10",
+                    "status": "success"
+                },
+                {
+                    "name": "(follow rule)test case 11",
+                    "status": "success"
+                },
+                {
+                    "name": "(follow rule)test case 12",
+                    "status": "success"
+                },
+                {
+                    "name": "(violate rule)test case 13",
+                    "status": "success"
+                },
+                {
+                    "name": "(follow rule)test case 14",
+                    "status": "success"
+                },
+                {
+                    "name": "(follow rule)test case 15",
+                    "status": "success"
+                },
+                {
+                    "name": "(violate rule)test case 16",
+                    "status": "success"
+                },
+                {
+                    "name": "(follow rule)test case 17",
+                    "status": "success"
+                },
+                {
+                    "name": "(follow rule)test case 18",
+                    "status": "success"
+                },
+                {
+                    "name": "(violate rule)test case 19",
+                    "status": "success"
+                },
+                {
+                    "name": "(follow rule)test case 20",
+                    "status": "success"
+                },
+                {
+                    "name": "(violate rule)test case 21",
+                    "status": "success"
+                },
+                {
+                    "name": "(follow rule)test case 22",
+                    "status": "success"
+                },
+                {
+                    "name": "(violate rule)test case 23",
+                    "status": "success"
+                },
+                {
+                    "name": "(violate rule)test case 24",
+                    "status": "success"
+                },
+                {
+                    "name": "(violate rule)test case 25",
+                    "status": "success"
+                },
+                {
+                    "name": "(follow rule)test case 26",
+                    "status": "skipped"
+                },
+                {
+                    "name": "(follow rule)test case 27",
+                    "status": "failure",
+                    "selected": true
+                }
+            ],
+            "fixing": true,
+            "logics": [
+                "Get the name of called method.",
+                "Check whether the name is equals, equalsIgnoreCase, compareTo, compareToIgnoreCase, or contentEquals.",
+                "Get the method caller.",
+                "Check whether the method caller is a string literal.",
+                "Get the argument list of method.",
+                "Check whether the argument is a field.",
+                "Check whether the field is static."
+            ]
+        },
+        {
+            "status": "Querying API for checking using test logic",
+            "fixing": true,
+            "api_info": [
+                {
+                    "type": "api",
+                    "data": "net.sourceforge.pmd.lang.java.ast.ASTMethodCall: public java.lang.String getMethodName()"
+                },
+                {
+                    "type": "api",
+                    "data": "net.sourceforge.pmd.lang.java.ast.ASTMethodCall: public net.sourceforge.pmd.lang.java.ast.ASTExpression getQualifier()"
+                },
+                {
+                    "type": "api",
+                    "data": "net.sourceforge.pmd.lang.java.ast.ASTMethodCall: public net.sourceforge.pmd.lang.java.ast.ASTArgumentList getArguments()"
+                },
+                {
+                    "type": "api",
+                    "data": "net.sourceforge.pmd.lang.java.ast.ASTFieldDeclaration: public boolean isSyntacticallyAbstract()"
+                },
+                {
+                    "type": "api",
+                    "data": "net.sourceforge.pmd.lang.java.ast.ASTFieldDeclaration: public boolean isStatic()"
+                },
+                {
+                    "type": "meta",
+                    "data": "Check whether the method caller is string type"
+                }
+            ]
+        },
+        {
+            "status": "Generated checker fails to pass (follow rule)test case 27 in attempt: 1 / 5, preparing next attempt.",
+            "fixing": true
+        },
+        {
+            "status": "Failed to pass (follow rule)test case 27, and trying fix, generating test case logic in attempt 2 / 5",
+            "test_cases": [
+                {
+                    "name": "(follow rule)test case 1",
+                    "status": "success"
+                },
+                {
+                    "name": "(violate rule)test case 2",
+                    "status": "success"
+                },
+                {
+                    "name": "(violate rule)test case 3",
+                    "status": "success"
+                },
+                {
+                    "name": "(follow rule)test case 4",
+                    "status": "success"
+                },
+                {
+                    "name": "(follow rule)test case 5",
+                    "status": "success"
+                },
+                {
+                    "name": "(follow rule)test case 6",
+                    "status": "success"
+                },
+                {
+                    "name": "(follow rule)test case 7",
+                    "status": "success"
+                },
+                {
+                    "name": "(violate rule)test case 8",
+                    "status": "success"
+                },
+                {
+                    "name": "(follow rule)test case 9",
+                    "status": "success"
+                },
+                {
+                    "name": "(follow rule)test case 10",
+                    "status": "success"
+                },
+                {
+                    "name": "(follow rule)test case 11",
+                    "status": "success"
+                },
+                {
+                    "name": "(follow rule)test case 12",
+                    "status": "success"
+                },
+                {
+                    "name": "(violate rule)test case 13",
+                    "status": "success"
+                },
+                {
+                    "name": "(follow rule)test case 14",
+                    "status": "success"
+                },
+                {
+                    "name": "(follow rule)test case 15",
+                    "status": "success"
+                },
+                {
+                    "name": "(violate rule)test case 16",
+                    "status": "success"
+                },
+                {
+                    "name": "(follow rule)test case 17",
+                    "status": "success"
+                },
+                {
+                    "name": "(follow rule)test case 18",
+                    "status": "success"
+                },
+                {
+                    "name": "(violate rule)test case 19",
+                    "status": "success"
+                },
+                {
+                    "name": "(follow rule)test case 20",
+                    "status": "success"
+                },
+                {
+                    "name": "(violate rule)test case 21",
+                    "status": "success"
+                },
+                {
+                    "name": "(follow rule)test case 22",
+                    "status": "success"
+                },
+                {
+                    "name": "(violate rule)test case 23",
+                    "status": "success"
+                },
+                {
+                    "name": "(violate rule)test case 24",
+                    "status": "success"
+                },
+                {
+                    "name": "(violate rule)test case 25",
+                    "status": "success"
+                },
+                {
+                    "name": "(follow rule)test case 26",
+                    "status": "skipped"
+                },
+                {
+                    "name": "(follow rule)test case 27",
+                    "status": "failure",
+                    "selected": true
+                }
+            ],
+            "fixing": true,
+            "logics": [
+                "Get the name of the called method.",
+                "Check whether the method name is one of: `equals`, `equalsIgnoreCase`, `compareTo`, `compareToIgnoreCase`, or `contentEquals`.",
+                "Get the method caller.",
+                "Check whether the method caller is a literal.",
+                "Get the argument of the called method.",
+                "Check whether the argument is a field.",
+                "Check whether the field is static.",
+                "Check whether the field is final.",
+                "Check whether the field is initialized to a literal value."
+            ]
+        },
+        {
+            "status": "Querying API for checking using test logic",
+            "fixing": true,
+            "api_info": [
+                {
+                    "type": "api",
+                    "data": "net.sourceforge.pmd.lang.java.ast.ASTMethodCall: public java.lang.String getMethodName()"
+                },
+                {
+                    "type": "api",
+                    "data": "net.sourceforge.pmd.lang.java.ast.ASTMethodDeclaration: public boolean equals(java.lang.Object)"
+                },
+                {
+                    "type": "api",
+                    "data": "net.sourceforge.pmd.lang.java.ast.ASTMethodCall: public net.sourceforge.pmd.lang.java.ast.ASTExpression getQualifier()"
+                },
+                {
+                    "type": "api",
+                    "data": "net.sourceforge.pmd.lang.java.ast.ASTMethodCall: public boolean isExpression()"
+                },
+                {
+                    "type": "api",
+                    "data": "net.sourceforge.pmd.lang.java.ast.ASTMethodCall: public net.sourceforge.pmd.lang.java.ast.ASTArgumentList getArguments()"
+                },
+                {
+                    "type": "api",
+                    "data": "net.sourceforge.pmd.lang.java.ast.ASTFieldDeclaration: public boolean isSyntacticallyAbstract()"
+                },
+                {
+                    "type": "api",
+                    "data": "net.sourceforge.pmd.lang.java.ast.ASTFieldDeclaration: public boolean isStatic()"
+                },
+                {
+                    "type": "api",
+                    "data": "net.sourceforge.pmd.lang.java.ast.ASTFieldDeclaration: public boolean isFinal()"
+                },
+                {
+                    "type": "meta",
+                    "data": "Check whether the field is initialized to variable value"
+                }
+            ]
+        },
+        {
+            "status": "Generated checker fails to compile in attempt 2 / 5, preparing next attempt."
+        },
+        {
+            "status": "Failed to pass (follow rule)test case 27, and trying fix, generating test case logic in attempt 3 / 5",
+            "test_cases": [
+                {
+                    "name": "(follow rule)test case 1",
+                    "status": "success"
+                },
+                {
+                    "name": "(violate rule)test case 2",
+                    "status": "success"
+                },
+                {
+                    "name": "(violate rule)test case 3",
+                    "status": "success"
+                },
+                {
+                    "name": "(follow rule)test case 4",
+                    "status": "success"
+                },
+                {
+                    "name": "(follow rule)test case 5",
+                    "status": "success"
+                },
+                {
+                    "name": "(follow rule)test case 6",
+                    "status": "success"
+                },
+                {
+                    "name": "(follow rule)test case 7",
+                    "status": "success"
+                },
+                {
+                    "name": "(violate rule)test case 8",
+                    "status": "success"
+                },
+                {
+                    "name": "(follow rule)test case 9",
+                    "status": "success"
+                },
+                {
+                    "name": "(follow rule)test case 10",
+                    "status": "success"
+                },
+                {
+                    "name": "(follow rule)test case 11",
+                    "status": "success"
+                },
+                {
+                    "name": "(follow rule)test case 12",
+                    "status": "success"
+                },
+                {
+                    "name": "(violate rule)test case 13",
+                    "status": "success"
+                },
+                {
+                    "name": "(follow rule)test case 14",
+                    "status": "success"
+                },
+                {
+                    "name": "(follow rule)test case 15",
+                    "status": "success"
+                },
+                {
+                    "name": "(violate rule)test case 16",
+                    "status": "success"
+                },
+                {
+                    "name": "(follow rule)test case 17",
+                    "status": "success"
+                },
+                {
+                    "name": "(follow rule)test case 18",
+                    "status": "success"
+                },
+                {
+                    "name": "(violate rule)test case 19",
+                    "status": "success"
+                },
+                {
+                    "name": "(follow rule)test case 20",
+                    "status": "success"
+                },
+                {
+                    "name": "(violate rule)test case 21",
+                    "status": "success"
+                },
+                {
+                    "name": "(follow rule)test case 22",
+                    "status": "success"
+                },
+                {
+                    "name": "(violate rule)test case 23",
+                    "status": "success"
+                },
+                {
+                    "name": "(violate rule)test case 24",
+                    "status": "success"
+                },
+                {
+                    "name": "(violate rule)test case 25",
+                    "status": "success"
+                },
+                {
+                    "name": "(follow rule)test case 26",
+                    "status": "skipped"
+                },
+                {
+                    "name": "(follow rule)test case 27",
+                    "status": "failure",
+                    "selected": true
+                }
+            ],
+            "fixing": true,
+            "logics": [
+                "Get the name of the called method.",
+                "Check whether the method name is one of: `equals`, `equalsIgnoreCase`, `compareTo`, `compareToIgnoreCase`, or `contentEquals`.",
+                "Get the method caller.",
+                "Check whether the method caller is a literal.",
+                "Get the argument of the called method.",
+                "Check whether the argument is a field.",
+                "Check whether the field is static.",
+                "Check whether the field is final.",
+                "Check whether the field is initialized to a literal value."
+            ]
+        },
+        {
+            "status": "Querying API for checking using test logic",
+            "fixing": true,
+            "api_info": [
+                {
+                    "type": "api",
+                    "data": "net.sourceforge.pmd.lang.java.ast.ASTMethodCall: public java.lang.String getMethodName()"
+                },
+                {
+                    "type": "api",
+                    "data": "net.sourceforge.pmd.lang.java.ast.ASTMethodDeclaration: public boolean equals(java.lang.Object)"
+                },
+                {
+                    "type": "api",
+                    "data": "net.sourceforge.pmd.lang.java.ast.ASTMethodCall: public net.sourceforge.pmd.lang.java.ast.ASTExpression getQualifier()"
+                },
+                {
+                    "type": "api",
+                    "data": "net.sourceforge.pmd.lang.java.ast.ASTMethodCall: public boolean isExpression()"
+                },
+                {
+                    "type": "api",
+                    "data": "net.sourceforge.pmd.lang.java.ast.ASTMethodCall: public net.sourceforge.pmd.lang.java.ast.ASTArgumentList getArguments()"
+                },
+                {
+                    "type": "api",
+                    "data": "net.sourceforge.pmd.lang.java.ast.ASTFieldDeclaration: public boolean isSyntacticallyAbstract()"
+                },
+                {
+                    "type": "api",
+                    "data": "net.sourceforge.pmd.lang.java.ast.ASTFieldDeclaration: public boolean isStatic()"
+                },
+                {
+                    "type": "api",
+                    "data": "net.sourceforge.pmd.lang.java.ast.ASTFieldDeclaration: public boolean isFinal()"
+                },
+                {
+                    "type": "meta",
+                    "data": "Check whether the field is initialized to variable value"
+                }
+            ]
+        },
+        {
+            "status": "Generated checker fails to compile in attempt 3 / 5, preparing next attempt."
+        },
+        {
+            "status": "Failed to pass (follow rule)test case 27, and trying fix, generating test case logic in attempt 4 / 5",
+            "test_cases": [
+                {
+                    "name": "(follow rule)test case 1",
+                    "status": "success"
+                },
+                {
+                    "name": "(violate rule)test case 2",
+                    "status": "success"
+                },
+                {
+                    "name": "(violate rule)test case 3",
+                    "status": "success"
+                },
+                {
+                    "name": "(follow rule)test case 4",
+                    "status": "success"
+                },
+                {
+                    "name": "(follow rule)test case 5",
+                    "status": "success"
+                },
+                {
+                    "name": "(follow rule)test case 6",
+                    "status": "success"
+                },
+                {
+                    "name": "(follow rule)test case 7",
+                    "status": "success"
+                },
+                {
+                    "name": "(violate rule)test case 8",
+                    "status": "success"
+                },
+                {
+                    "name": "(follow rule)test case 9",
+                    "status": "success"
+                },
+                {
+                    "name": "(follow rule)test case 10",
+                    "status": "success"
+                },
+                {
+                    "name": "(follow rule)test case 11",
+                    "status": "success"
+                },
+                {
+                    "name": "(follow rule)test case 12",
+                    "status": "success"
+                },
+                {
+                    "name": "(violate rule)test case 13",
+                    "status": "success"
+                },
+                {
+                    "name": "(follow rule)test case 14",
+                    "status": "success"
+                },
+                {
+                    "name": "(follow rule)test case 15",
+                    "status": "success"
+                },
+                {
+                    "name": "(violate rule)test case 16",
+                    "status": "success"
+                },
+                {
+                    "name": "(follow rule)test case 17",
+                    "status": "success"
+                },
+                {
+                    "name": "(follow rule)test case 18",
+                    "status": "success"
+                },
+                {
+                    "name": "(violate rule)test case 19",
+                    "status": "success"
+                },
+                {
+                    "name": "(follow rule)test case 20",
+                    "status": "success"
+                },
+                {
+                    "name": "(violate rule)test case 21",
+                    "status": "success"
+                },
+                {
+                    "name": "(follow rule)test case 22",
+                    "status": "success"
+                },
+                {
+                    "name": "(violate rule)test case 23",
+                    "status": "success"
+                },
+                {
+                    "name": "(violate rule)test case 24",
+                    "status": "success"
+                },
+                {
+                    "name": "(violate rule)test case 25",
+                    "status": "success"
+                },
+                {
+                    "name": "(follow rule)test case 26",
+                    "status": "skipped"
+                },
+                {
+                    "name": "(follow rule)test case 27",
+                    "status": "failure",
+                    "selected": true
+                }
+            ],
+            "fixing": true,
+            "logics": [
+                "Get the name of called method.",
+                "Check whether the name is equals, equalsIgnoreCase, compareTo, compareToIgnoreCase, or contentEquals.",
+                "Get the method caller.",
+                "Check whether the method caller is a string literal.",
+                "Get the argument list of method.",
+                "Check whether the argument is a field.",
+                "Check whether the field is static.",
+                "Check whether the field is final.",
+                "Check whether the field is initialized to a literal value.",
+                "Get the literal value that the field is initialized to.",
+                "Check whether the literal value is a string literal."
+            ]
+        },
+        {
+            "status": "Querying API for checking using test logic",
+            "fixing": true,
+            "api_info": [
+                {
+                    "type": "api",
+                    "data": "net.sourceforge.pmd.lang.java.ast.ASTMethodCall: public java.lang.String getMethodName()"
+                },
+                {
+                    "type": "api",
+                    "data": "net.sourceforge.pmd.lang.java.ast.ASTMethodCall: public net.sourceforge.pmd.lang.java.ast.ASTExpression getQualifier()"
+                },
+                {
+                    "type": "api",
+                    "data": "net.sourceforge.pmd.lang.java.ast.ASTMethodCall: public net.sourceforge.pmd.lang.java.ast.ASTArgumentList getArguments()"
+                },
+                {
+                    "type": "api",
+                    "data": "net.sourceforge.pmd.lang.java.ast.ASTFieldDeclaration: public boolean isSyntacticallyAbstract()"
+                },
+                {
+                    "type": "api",
+                    "data": "net.sourceforge.pmd.lang.java.ast.ASTFieldDeclaration: public boolean isStatic()"
+                },
+                {
+                    "type": "api",
+                    "data": "net.sourceforge.pmd.lang.java.ast.ASTFieldDeclaration: public boolean isFinal()"
+                },
+                {
+                    "type": "api",
+                    "data": "net.sourceforge.pmd.lang.java.ast.ASTStringLiteral: public boolean isStringLiteral()"
+                },
+                {
+                    "type": "meta",
+                    "data": "Check whether the method caller is string type"
+                },
+                {
+                    "type": "meta",
+                    "data": "Check whether the field is initialized to variable value"
+                },
+                {
+                    "type": "meta",
+                    "data": "Get the literal value that the field is initialized to"
+                }
+            ]
+        },
+        {
+            "status": "Generated checker fails to pass (follow rule)test case 27 in attempt: 4 / 5, preparing next attempt.",
+            "fixing": true
+        },
+        {
+            "status": "Failed to pass (follow rule)test case 27, and trying fix, generating test case logic in attempt 5 / 5",
+            "test_cases": [
+                {
+                    "name": "(follow rule)test case 1",
+                    "status": "success"
+                },
+                {
+                    "name": "(violate rule)test case 2",
+                    "status": "success"
+                },
+                {
+                    "name": "(violate rule)test case 3",
+                    "status": "success"
+                },
+                {
+                    "name": "(follow rule)test case 4",
+                    "status": "success"
+                },
+                {
+                    "name": "(follow rule)test case 5",
+                    "status": "success"
+                },
+                {
+                    "name": "(follow rule)test case 6",
+                    "status": "success"
+                },
+                {
+                    "name": "(follow rule)test case 7",
+                    "status": "success"
+                },
+                {
+                    "name": "(violate rule)test case 8",
+                    "status": "success"
+                },
+                {
+                    "name": "(follow rule)test case 9",
+                    "status": "success"
+                },
+                {
+                    "name": "(follow rule)test case 10",
+                    "status": "success"
+                },
+                {
+                    "name": "(follow rule)test case 11",
+                    "status": "success"
+                },
+                {
+                    "name": "(follow rule)test case 12",
+                    "status": "success"
+                },
+                {
+                    "name": "(violate rule)test case 13",
+                    "status": "success"
+                },
+                {
+                    "name": "(follow rule)test case 14",
+                    "status": "success"
+                },
+                {
+                    "name": "(follow rule)test case 15",
+                    "status": "success"
+                },
+                {
+                    "name": "(violate rule)test case 16",
+                    "status": "success"
+                },
+                {
+                    "name": "(follow rule)test case 17",
+                    "status": "success"
+                },
+                {
+                    "name": "(follow rule)test case 18",
+                    "status": "success"
+                },
+                {
+                    "name": "(violate rule)test case 19",
+                    "status": "success"
+                },
+                {
+                    "name": "(follow rule)test case 20",
+                    "status": "success"
+                },
+                {
+                    "name": "(violate rule)test case 21",
+                    "status": "success"
+                },
+                {
+                    "name": "(follow rule)test case 22",
+                    "status": "success"
+                },
+                {
+                    "name": "(violate rule)test case 23",
+                    "status": "success"
+                },
+                {
+                    "name": "(violate rule)test case 24",
+                    "status": "success"
+                },
+                {
+                    "name": "(violate rule)test case 25",
+                    "status": "success"
+                },
+                {
+                    "name": "(follow rule)test case 26",
+                    "status": "skipped"
+                },
+                {
+                    "name": "(follow rule)test case 27",
+                    "status": "failure",
+                    "selected": true
+                }
+            ],
+            "fixing": true,
+            "logics": [
+                "Get the name of called method.",
+                "Check whether the name is equals or equalsIgnoreCase or compareTo or compareToIgnoreCase or contentEquals.",
+                "Get the method caller.",
+                "Check whether the method caller is a string literal.",
+                "Get the argument list of method.",
+                "Get the size of argument list.",
+                "Check whether the size of argument list is 1.",
+                "Check whether the argument is a string literal.",
+                "Check whether the argument is a static field.",
+                "Check whether the argument is a final field."
+            ]
+        },
+        {
+            "status": "Querying API for checking using test logic",
+            "fixing": true,
+            "api_info": [
+                {
+                    "type": "api",
+                    "data": "net.sourceforge.pmd.lang.java.ast.ASTMethodCall: public java.lang.String getMethodName()"
+                },
+                {
+                    "type": "api",
+                    "data": "net.sourceforge.pmd.lang.java.ast.ASTMethodCall: public net.sourceforge.pmd.lang.java.ast.ASTExpression getQualifier()"
+                },
+                {
+                    "type": "api",
+                    "data": "net.sourceforge.pmd.lang.java.ast.ASTMethodCall: public net.sourceforge.pmd.lang.java.ast.ASTArgumentList getArguments()"
+                },
+                {
+                    "type": "api",
+                    "data": "net.sourceforge.pmd.lang.java.ast.ASTArgumentList: public int size()"
+                },
+                {
+                    "type": "api",
+                    "data": "net.sourceforge.pmd.lang.java.ast.ASTFieldDeclaration: public boolean isStatic()"
+                },
+                {
+                    "type": "api",
+                    "data": "net.sourceforge.pmd.lang.java.ast.ASTFieldDeclaration: public boolean isFinal()"
+                },
+                {
+                    "type": "meta",
+                    "data": "Check whether the method caller is string type"
+                },
+                {
+                    "type": "meta",
+                    "data": "Check whether the argument is string type"
+                }
+            ]
+        },
+        {
+            "status": "Generated checker fails to compile in attempt 5 / 5, preparing next attempt."
+        },
+        {
+            "status": "Fix failed in five attempts, so skip the failed test case (follow rule)test case 27. Running test cases...",
+            "test_cases": [
+                {
+                    "name": "(follow rule)test case 1",
+                    "status": "pending"
+                },
+                {
+                    "name": "(violate rule)test case 2",
+                    "status": "pending"
+                },
+                {
+                    "name": "(violate rule)test case 3",
+                    "status": "pending"
+                },
+                {
+                    "name": "(follow rule)test case 4",
+                    "status": "pending"
+                },
+                {
+                    "name": "(follow rule)test case 5",
+                    "status": "pending"
+                },
+                {
+                    "name": "(follow rule)test case 6",
+                    "status": "pending"
+                },
+                {
+                    "name": "(follow rule)test case 7",
+                    "status": "pending"
+                },
+                {
+                    "name": "(violate rule)test case 8",
+                    "status": "pending"
+                },
+                {
+                    "name": "(follow rule)test case 9",
+                    "status": "pending"
+                },
+                {
+                    "name": "(follow rule)test case 10",
+                    "status": "pending"
+                },
+                {
+                    "name": "(follow rule)test case 11",
+                    "status": "pending"
+                },
+                {
+                    "name": "(follow rule)test case 12",
+                    "status": "pending"
+                },
+                {
+                    "name": "(violate rule)test case 13",
+                    "status": "pending"
+                },
+                {
+                    "name": "(follow rule)test case 14",
+                    "status": "pending"
+                },
+                {
+                    "name": "(follow rule)test case 15",
+                    "status": "pending"
+                },
+                {
+                    "name": "(violate rule)test case 16",
+                    "status": "pending"
+                },
+                {
+                    "name": "(follow rule)test case 17",
+                    "status": "pending"
+                },
+                {
+                    "name": "(follow rule)test case 18",
+                    "status": "pending"
+                },
+                {
+                    "name": "(violate rule)test case 19",
+                    "status": "pending"
+                },
+                {
+                    "name": "(follow rule)test case 20",
+                    "status": "pending"
+                },
+                {
+                    "name": "(violate rule)test case 21",
+                    "status": "pending"
+                },
+                {
+                    "name": "(follow rule)test case 22",
+                    "status": "pending"
+                },
+                {
+                    "name": "(violate rule)test case 23",
+                    "status": "pending"
+                },
+                {
+                    "name": "(violate rule)test case 24",
+                    "status": "pending"
+                },
+                {
+                    "name": "(violate rule)test case 25",
+                    "status": "pending"
+                },
+                {
+                    "name": "(follow rule)test case 26",
+                    "status": "skipped"
+                },
+                {
+                    "name": "(follow rule)test case 27",
+                    "status": "skipped"
+                },
+                {
+                    "name": "(follow rule)test case 28",
+                    "status": "pending"
+                },
+                {
+                    "name": "(violate rule)test case 29",
+                    "status": "pending"
+                },
+                {
+                    "name": "(follow rule)test case 30",
+                    "status": "pending"
+                },
+                {
+                    "name": "(follow rule)test case 31",
+                    "status": "pending"
+                },
+                {
+                    "name": "(follow rule)test case 32",
+                    "status": "pending"
+                },
+                {
+                    "name": "(follow rule)test case 33",
+                    "status": "pending"
+                }
+            ]
+        },
+        {
+            "status": "Failed to pass (follow rule)test case 30, and trying fix, generating test case logic in attempt 1 / 5",
+            "test_cases": [
+                {
+                    "name": "(follow rule)test case 1",
+                    "status": "success"
+                },
+                {
+                    "name": "(violate rule)test case 2",
+                    "status": "success"
+                },
+                {
+                    "name": "(violate rule)test case 3",
+                    "status": "success"
+                },
+                {
+                    "name": "(follow rule)test case 4",
+                    "status": "success"
+                },
+                {
+                    "name": "(follow rule)test case 5",
+                    "status": "success"
+                },
+                {
+                    "name": "(follow rule)test case 6",
+                    "status": "success"
+                },
+                {
+                    "name": "(follow rule)test case 7",
+                    "status": "success"
+                },
+                {
+                    "name": "(violate rule)test case 8",
+                    "status": "success"
+                },
+                {
+                    "name": "(follow rule)test case 9",
+                    "status": "success"
+                },
+                {
+                    "name": "(follow rule)test case 10",
+                    "status": "success"
+                },
+                {
+                    "name": "(follow rule)test case 11",
+                    "status": "success"
+                },
+                {
+                    "name": "(follow rule)test case 12",
+                    "status": "success"
+                },
+                {
+                    "name": "(violate rule)test case 13",
+                    "status": "success"
+                },
+                {
+                    "name": "(follow rule)test case 14",
+                    "status": "success"
+                },
+                {
+                    "name": "(follow rule)test case 15",
+                    "status": "success"
+                },
+                {
+                    "name": "(violate rule)test case 16",
+                    "status": "success"
+                },
+                {
+                    "name": "(follow rule)test case 17",
+                    "status": "success"
+                },
+                {
+                    "name": "(follow rule)test case 18",
+                    "status": "success"
+                },
+                {
+                    "name": "(violate rule)test case 19",
+                    "status": "success"
+                },
+                {
+                    "name": "(follow rule)test case 20",
+                    "status": "success"
+                },
+                {
+                    "name": "(violate rule)test case 21",
+                    "status": "success"
+                },
+                {
+                    "name": "(follow rule)test case 22",
+                    "status": "success"
+                },
+                {
+                    "name": "(violate rule)test case 23",
+                    "status": "success"
+                },
+                {
+                    "name": "(violate rule)test case 24",
+                    "status": "success"
+                },
+                {
+                    "name": "(violate rule)test case 25",
+                    "status": "success"
+                },
+                {
+                    "name": "(follow rule)test case 26",
+                    "status": "skipped"
+                },
+                {
+                    "name": "(follow rule)test case 27",
+                    "status": "skipped"
+                },
+                {
+                    "name": "(follow rule)test case 28",
+                    "status": "success"
+                },
+                {
+                    "name": "(violate rule)test case 29",
+                    "status": "success"
+                },
+                {
+                    "name": "(follow rule)test case 30",
+                    "status": "failure",
+                    "selected": true
+                }
+            ],
+            "fixing": true,
+            "logics": [
+                "Get the condition of the if statement.",
+                "Check whether the condition is a method call.",
+                "Get the name of the called method.",
+                "Check whether the method name is one of: equals, equalsIgnoreCase, compareTo, compareToIgnoreCase, contentEquals.",
+                "Get the method caller.",
+                "Check whether the method caller is a literal or a constant field.",
+                "Get the argument of the method call.",
+                "Check whether the argument is a variable or expression.",
+                "Check whether the argument is null."
+            ]
+        },
+        {
+            "status": "Querying API for checking using test logic",
+            "fixing": true,
+            "api_info": [
+                {
+                    "type": "api",
+                    "data": "net.sourceforge.pmd.lang.java.ast.ASTIfStatement: public net.sourceforge.pmd.lang.java.ast.ASTExpression getCondition()"
+                },
+                {
+                    "type": "api",
+                    "data": "net.sourceforge.pmd.lang.java.ast.ASTMethodCall: public boolean isExpression()"
+                },
+                {
+                    "type": "api",
+                    "data": "net.sourceforge.pmd.lang.java.ast.ASTMethodCall: public java.lang.String getMethodName()"
+                },
+                {
+                    "type": "api",
+                    "data": "net.sourceforge.pmd.lang.java.ast.ASTMethodDeclaration: public boolean equals(java.lang.Object)"
+                },
+                {
+                    "type": "api",
+                    "data": "net.sourceforge.pmd.lang.java.ast.ASTMethodCall: public net.sourceforge.pmd.lang.java.ast.ASTExpression getQualifier()"
+                },
+                {
+                    "type": "api",
+                    "data": "net.sourceforge.pmd.lang.java.ast.ASTMethodCall: public boolean isCompileTimeConstant()"
+                },
+                {
+                    "type": "api",
+                    "data": "net.sourceforge.pmd.lang.java.ast.ASTMethodCall: public net.sourceforge.pmd.lang.java.ast.ASTArgumentList getArguments()"
+                },
+                {
+                    "type": "api",
+                    "data": "net.sourceforge.pmd.lang.java.ast.ASTVariableAccess: public boolean isExpression()"
+                },
+                {
+                    "type": "api",
+                    "data": "net.sourceforge.pmd.lang.java.rule.internal.JavaRuleUtil: static public boolean isNullCheck(net.sourceforge.pmd.lang.java.ast.ASTExpression, net.sourceforge.pmd.lang.java.rule.internal.StablePathMatcher)"
+                }
+            ]
+        },
+        {
+            "status": "Generated checker fails to compile in attempt 1 / 5, preparing next attempt."
+        },
+        {
+            "status": "Failed to pass (follow rule)test case 30, and trying fix, generating test case logic in attempt 2 / 5",
+            "test_cases": [
+                {
+                    "name": "(follow rule)test case 1",
+                    "status": "success"
+                },
+                {
+                    "name": "(violate rule)test case 2",
+                    "status": "success"
+                },
+                {
+                    "name": "(violate rule)test case 3",
+                    "status": "success"
+                },
+                {
+                    "name": "(follow rule)test case 4",
+                    "status": "success"
+                },
+                {
+                    "name": "(follow rule)test case 5",
+                    "status": "success"
+                },
+                {
+                    "name": "(follow rule)test case 6",
+                    "status": "success"
+                },
+                {
+                    "name": "(follow rule)test case 7",
+                    "status": "success"
+                },
+                {
+                    "name": "(violate rule)test case 8",
+                    "status": "success"
+                },
+                {
+                    "name": "(follow rule)test case 9",
+                    "status": "success"
+                },
+                {
+                    "name": "(follow rule)test case 10",
+                    "status": "success"
+                },
+                {
+                    "name": "(follow rule)test case 11",
+                    "status": "success"
+                },
+                {
+                    "name": "(follow rule)test case 12",
+                    "status": "success"
+                },
+                {
+                    "name": "(violate rule)test case 13",
+                    "status": "success"
+                },
+                {
+                    "name": "(follow rule)test case 14",
+                    "status": "success"
+                },
+                {
+                    "name": "(follow rule)test case 15",
+                    "status": "success"
+                },
+                {
+                    "name": "(violate rule)test case 16",
+                    "status": "success"
+                },
+                {
+                    "name": "(follow rule)test case 17",
+                    "status": "success"
+                },
+                {
+                    "name": "(follow rule)test case 18",
+                    "status": "success"
+                },
+                {
+                    "name": "(violate rule)test case 19",
+                    "status": "success"
+                },
+                {
+                    "name": "(follow rule)test case 20",
+                    "status": "success"
+                },
+                {
+                    "name": "(violate rule)test case 21",
+                    "status": "success"
+                },
+                {
+                    "name": "(follow rule)test case 22",
+                    "status": "success"
+                },
+                {
+                    "name": "(violate rule)test case 23",
+                    "status": "success"
+                },
+                {
+                    "name": "(violate rule)test case 24",
+                    "status": "success"
+                },
+                {
+                    "name": "(violate rule)test case 25",
+                    "status": "success"
+                },
+                {
+                    "name": "(follow rule)test case 26",
+                    "status": "skipped"
+                },
+                {
+                    "name": "(follow rule)test case 27",
+                    "status": "skipped"
+                },
+                {
+                    "name": "(follow rule)test case 28",
+                    "status": "success"
+                },
+                {
+                    "name": "(violate rule)test case 29",
+                    "status": "success"
+                },
+                {
+                    "name": "(follow rule)test case 30",
+                    "status": "failure",
+                    "selected": true
+                }
+            ],
+            "fixing": true,
+            "logics": [
+                "Get the condition of if statement.",
+                "Check whether the condition is a method call.",
+                "Get the name of the called method.",
+                "Check whether the method name is one of: equals, equalsIgnoreCase, compareTo, compareToIgnoreCase, contentEquals.",
+                "Get the method caller.",
+                "Check whether the method caller is a literal or a constant field.",
+                "Get the argument of the called method.",
+                "Check whether the argument is a variable or expression."
+            ]
+        },
+        {
+            "status": "Querying API for checking using test logic",
+            "fixing": true,
+            "api_info": [
+                {
+                    "type": "api",
+                    "data": "net.sourceforge.pmd.lang.java.ast.ASTIfStatement: public net.sourceforge.pmd.lang.java.ast.ASTExpression getCondition()"
+                },
+                {
+                    "type": "api",
+                    "data": "net.sourceforge.pmd.lang.java.ast.ASTMethodCall: public boolean isExpression()"
+                },
+                {
+                    "type": "api",
+                    "data": "net.sourceforge.pmd.lang.java.ast.ASTMethodCall: public java.lang.String getMethodName()"
+                },
+                {
+                    "type": "api",
+                    "data": "net.sourceforge.pmd.lang.java.ast.ASTMethodDeclaration: public boolean equals(java.lang.Object)"
+                },
+                {
+                    "type": "api",
+                    "data": "net.sourceforge.pmd.lang.java.ast.ASTMethodCall: public net.sourceforge.pmd.lang.java.ast.ASTExpression getQualifier()"
+                },
+                {
+                    "type": "api",
+                    "data": "net.sourceforge.pmd.lang.java.ast.ASTMethodCall: public boolean isCompileTimeConstant()"
+                },
+                {
+                    "type": "api",
+                    "data": "net.sourceforge.pmd.lang.java.ast.ASTMethodCall: public net.sourceforge.pmd.lang.java.ast.ASTArgumentList getArguments()"
+                },
+                {
+                    "type": "api",
+                    "data": "net.sourceforge.pmd.lang.java.ast.ASTVariableAccess: public boolean isExpression()"
+                }
+            ]
+        },
+        {
+            "status": "Fix successfully! Generating checker code",
+            "checker_code": "package net.sourceforge.pmd.lang.java.rule.bestpractices;\n\n\n\nimport net.sourceforge.pmd.lang.java.rule.AbstractJavaRulechainRule;\nimport net.sourceforge.pmd.lang.java.ast. *;\nimport net.sourceforge.pmd.lang.java.ast.internal. *;\nimport net.sourceforge.pmd.lang.java.types. *;\nimport net.sourceforge.pmd.lang.java.symbols. *;\nimport net.sourceforge.pmd.lang.ast.NodeStream;\npublic class LiteralsFirstInComparisonsRule extends AbstractJavaRulechainRule {\n    public LiteralsFirstInComparisonsRule() {\n        super(ASTMethodCall.class);\n    }\n\n    @Override\n    public Object visit(ASTMethodCall node, Object data) {\n        String methodName = node.getMethodName();\n        if (isComparisonMethod(methodName)) {\n            ASTExpression qualifier = node.getQualifier();\n            if (qualifier != null && !(qualifier instanceof ASTStringLiteral)) {\n                ASTArgumentList arguments = node.getArguments();\n                if (arguments.size() == 1 && isMethodCallArgumentStringType(node)) {\n                    ASTExpression argument = arguments.get(0);\n                    if (!(argument instanceof ASTMethodCall) && !isCompileTimeConstant(qualifier)) {\n                        addViolation(data, node);\n                    }\n                }\n            }\n        }\n        return super.visit(node, data);\n    }\n\n    private boolean isComparisonMethod(String methodName) {\n        return \"equals\".equals(methodName) || \"equalsIgnoreCase\".equals(methodName) ||\n               \"compareTo\".equals(methodName) || \"compareToIgnoreCase\".equals(methodName) ||\n               \"contentEquals\".equals(methodName);\n    }\n\n    private boolean isMethodCallArgumentStringType(ASTMethodCall node) {\n        ASTArgumentList astArgumentList = node.getArguments();\n        ASTExpression expression = astArgumentList.get(0);\n        return TypeTestUtil.isA(String.class, expression.getTypeMirror());\n    }\n\n    private boolean isCompileTimeConstant(ASTExpression expression) {\n        if (expression instanceof ASTVariableAccess) {\n            ASTVariableAccess variableAccess = (ASTVariableAccess) expression;\n            return variableAccess.getReferencedSym() instanceof JVariableSymbol && ((JVariableSymbol) variableAccess.getReferencedSym()).isFinal();\n        }\n        return false;\n    }\n}"
+        },
+        {
+            "status": "Running test cases...",
+            "test_cases": [
+                {
+                    "name": "(follow rule)test case 1",
+                    "status": "pending"
+                },
+                {
+                    "name": "(violate rule)test case 2",
+                    "status": "pending"
+                },
+                {
+                    "name": "(violate rule)test case 3",
+                    "status": "pending"
+                },
+                {
+                    "name": "(follow rule)test case 4",
+                    "status": "pending"
+                },
+                {
+                    "name": "(follow rule)test case 5",
+                    "status": "pending"
+                },
+                {
+                    "name": "(follow rule)test case 6",
+                    "status": "pending"
+                },
+                {
+                    "name": "(follow rule)test case 7",
+                    "status": "pending"
+                },
+                {
+                    "name": "(violate rule)test case 8",
+                    "status": "pending"
+                },
+                {
+                    "name": "(follow rule)test case 9",
+                    "status": "pending"
+                },
+                {
+                    "name": "(follow rule)test case 10",
+                    "status": "pending"
+                },
+                {
+                    "name": "(follow rule)test case 11",
+                    "status": "pending"
+                },
+                {
+                    "name": "(follow rule)test case 12",
+                    "status": "pending"
+                },
+                {
+                    "name": "(violate rule)test case 13",
+                    "status": "pending"
+                },
+                {
+                    "name": "(follow rule)test case 14",
+                    "status": "pending"
+                },
+                {
+                    "name": "(follow rule)test case 15",
+                    "status": "pending"
+                },
+                {
+                    "name": "(violate rule)test case 16",
+                    "status": "pending"
+                },
+                {
+                    "name": "(follow rule)test case 17",
+                    "status": "pending"
+                },
+                {
+                    "name": "(follow rule)test case 18",
+                    "status": "pending"
+                },
+                {
+                    "name": "(violate rule)test case 19",
+                    "status": "pending"
+                },
+                {
+                    "name": "(follow rule)test case 20",
+                    "status": "pending"
+                },
+                {
+                    "name": "(violate rule)test case 21",
+                    "status": "pending"
+                },
+                {
+                    "name": "(follow rule)test case 22",
+                    "status": "pending"
+                },
+                {
+                    "name": "(violate rule)test case 23",
+                    "status": "pending"
+                },
+                {
+                    "name": "(violate rule)test case 24",
+                    "status": "pending"
+                },
+                {
+                    "name": "(violate rule)test case 25",
+                    "status": "pending"
+                },
+                {
+                    "name": "(follow rule)test case 26",
+                    "status": "skipped"
+                },
+                {
+                    "name": "(follow rule)test case 27",
+                    "status": "skipped"
+                },
+                {
+                    "name": "(follow rule)test case 28",
+                    "status": "pending"
+                },
+                {
+                    "name": "(violate rule)test case 29",
+                    "status": "pending"
+                },
+                {
+                    "name": "(follow rule)test case 30",
+                    "status": "pending"
+                },
+                {
+                    "name": "(follow rule)test case 31",
+                    "status": "pending"
+                },
+                {
+                    "name": "(follow rule)test case 32",
+                    "status": "pending"
+                },
+                {
+                    "name": "(follow rule)test case 33",
+                    "status": "pending"
+                }
+            ]
+        },
+        {
+            "status": "Failed to pass (follow rule)test case 31, and trying fix, generating test case logic in attempt 1 / 5",
+            "test_cases": [
+                {
+                    "name": "(follow rule)test case 1",
+                    "status": "success"
+                },
+                {
+                    "name": "(violate rule)test case 2",
+                    "status": "success"
+                },
+                {
+                    "name": "(violate rule)test case 3",
+                    "status": "success"
+                },
+                {
+                    "name": "(follow rule)test case 4",
+                    "status": "success"
+                },
+                {
+                    "name": "(follow rule)test case 5",
+                    "status": "success"
+                },
+                {
+                    "name": "(follow rule)test case 6",
+                    "status": "success"
+                },
+                {
+                    "name": "(follow rule)test case 7",
+                    "status": "success"
+                },
+                {
+                    "name": "(violate rule)test case 8",
+                    "status": "success"
+                },
+                {
+                    "name": "(follow rule)test case 9",
+                    "status": "success"
+                },
+                {
+                    "name": "(follow rule)test case 10",
+                    "status": "success"
+                },
+                {
+                    "name": "(follow rule)test case 11",
+                    "status": "success"
+                },
+                {
+                    "name": "(follow rule)test case 12",
+                    "status": "success"
+                },
+                {
+                    "name": "(violate rule)test case 13",
+                    "status": "success"
+                },
+                {
+                    "name": "(follow rule)test case 14",
+                    "status": "success"
+                },
+                {
+                    "name": "(follow rule)test case 15",
+                    "status": "success"
+                },
+                {
+                    "name": "(violate rule)test case 16",
+                    "status": "success"
+                },
+                {
+                    "name": "(follow rule)test case 17",
+                    "status": "success"
+                },
+                {
+                    "name": "(follow rule)test case 18",
+                    "status": "success"
+                },
+                {
+                    "name": "(violate rule)test case 19",
+                    "status": "success"
+                },
+                {
+                    "name": "(follow rule)test case 20",
+                    "status": "success"
+                },
+                {
+                    "name": "(violate rule)test case 21",
+                    "status": "success"
+                },
+                {
+                    "name": "(follow rule)test case 22",
+                    "status": "success"
+                },
+                {
+                    "name": "(violate rule)test case 23",
+                    "status": "success"
+                },
+                {
+                    "name": "(violate rule)test case 24",
+                    "status": "success"
+                },
+                {
+                    "name": "(violate rule)test case 25",
+                    "status": "success"
+                },
+                {
+                    "name": "(follow rule)test case 26",
+                    "status": "skipped"
+                },
+                {
+                    "name": "(follow rule)test case 27",
+                    "status": "skipped"
+                },
+                {
+                    "name": "(follow rule)test case 28",
+                    "status": "success"
+                },
+                {
+                    "name": "(violate rule)test case 29",
+                    "status": "success"
+                },
+                {
+                    "name": "(follow rule)test case 30",
+                    "status": "success"
+                },
+                {
+                    "name": "(follow rule)test case 31",
+                    "status": "failure",
+                    "selected": true
+                }
+            ],
+            "fixing": true,
+            "logics": [
+                "Get all method calls in the test case.",
+                "Check whether the method name is `equals`, `equalsIgnoreCase`, `compareTo`, `compareToIgnoreCase`, or `contentEquals`.",
+                "For each method call, check whether the method caller is a literal (e.g., a string literal or a constant).",
+                "Check whether the argument of the method call is a literal or a constant.",
+                "If the method caller is not a literal but the argument is a literal, then this violates the rule.",
+                "**First Method Call: `S1.equals(S2)`**",
+                "**Second Method Call: `PMDVersion.VERSION.equals(S2)`**"
+            ]
+        },
+        {
+            "status": "Querying API for checking using test logic",
+            "fixing": true,
+            "api_info": [
+                {
+                    "type": "api",
+                    "data": "net.sourceforge.pmd.lang.java.ast.ASTMethodDeclaration: public boolean equals(java.lang.Object)"
+                },
+                {
+                    "type": "api",
+                    "data": "net.sourceforge.pmd.lang.java.ast.ASTMethodCall: public boolean isCompileTimeConstant()"
+                },
+                {
+                    "type": "meta",
+                    "data": "Check whether the method caller is string type"
+                }
+            ]
+        },
+        {
+            "status": "Generated checker fails to pass (violate rule)test case 25 in attempt: 1 / 5, preparing next attempt.",
+            "fixing": true
+        },
+        {
+            "status": "Failed to pass (follow rule)test case 31, and trying fix, generating test case logic in attempt 2 / 5",
+            "test_cases": [
+                {
+                    "name": "(follow rule)test case 1",
+                    "status": "success"
+                },
+                {
+                    "name": "(violate rule)test case 2",
+                    "status": "success"
+                },
+                {
+                    "name": "(violate rule)test case 3",
+                    "status": "success"
+                },
+                {
+                    "name": "(follow rule)test case 4",
+                    "status": "success"
+                },
+                {
+                    "name": "(follow rule)test case 5",
+                    "status": "success"
+                },
+                {
+                    "name": "(follow rule)test case 6",
+                    "status": "success"
+                },
+                {
+                    "name": "(follow rule)test case 7",
+                    "status": "success"
+                },
+                {
+                    "name": "(violate rule)test case 8",
+                    "status": "success"
+                },
+                {
+                    "name": "(follow rule)test case 9",
+                    "status": "success"
+                },
+                {
+                    "name": "(follow rule)test case 10",
+                    "status": "success"
+                },
+                {
+                    "name": "(follow rule)test case 11",
+                    "status": "success"
+                },
+                {
+                    "name": "(follow rule)test case 12",
+                    "status": "success"
+                },
+                {
+                    "name": "(violate rule)test case 13",
+                    "status": "success"
+                },
+                {
+                    "name": "(follow rule)test case 14",
+                    "status": "success"
+                },
+                {
+                    "name": "(follow rule)test case 15",
+                    "status": "success"
+                },
+                {
+                    "name": "(violate rule)test case 16",
+                    "status": "success"
+                },
+                {
+                    "name": "(follow rule)test case 17",
+                    "status": "success"
+                },
+                {
+                    "name": "(follow rule)test case 18",
+                    "status": "success"
+                },
+                {
+                    "name": "(violate rule)test case 19",
+                    "status": "success"
+                },
+                {
+                    "name": "(follow rule)test case 20",
+                    "status": "success"
+                },
+                {
+                    "name": "(violate rule)test case 21",
+                    "status": "success"
+                },
+                {
+                    "name": "(follow rule)test case 22",
+                    "status": "success"
+                },
+                {
+                    "name": "(violate rule)test case 23",
+                    "status": "success"
+                },
+                {
+                    "name": "(violate rule)test case 24",
+                    "status": "success"
+                },
+                {
+                    "name": "(violate rule)test case 25",
+                    "status": "success"
+                },
+                {
+                    "name": "(follow rule)test case 26",
+                    "status": "skipped"
+                },
+                {
+                    "name": "(follow rule)test case 27",
+                    "status": "skipped"
+                },
+                {
+                    "name": "(follow rule)test case 28",
+                    "status": "success"
+                },
+                {
+                    "name": "(violate rule)test case 29",
+                    "status": "success"
+                },
+                {
+                    "name": "(follow rule)test case 30",
+                    "status": "success"
+                },
+                {
+                    "name": "(follow rule)test case 31",
+                    "status": "failure",
+                    "selected": true
+                }
+            ],
+            "fixing": true,
+            "logics": [
+                "Get all method calls in the test case.",
+                "Check whether the method name is `equals`, `equalsIgnoreCase`, `compareTo`, `compareToIgnoreCase`, or `contentEquals`.",
+                "For each method call, get the method caller.",
+                "Check whether the method caller is a string literal.",
+                "Check whether the argument passed to the method is a string literal or a constant.",
+                "If the method caller is not a string literal and the argument is a string literal or constant, then it violates the rule."
+            ]
+        },
+        {
+            "status": "Querying API for checking using test logic",
+            "fixing": true,
+            "api_info": [
+                {
+                    "type": "api",
+                    "data": "net.sourceforge.pmd.lang.java.ast.ASTMethodDeclaration: public boolean equals(java.lang.Object)"
+                },
+                {
+                    "type": "api",
+                    "data": "net.sourceforge.pmd.lang.java.ast.ASTMethodCall: public net.sourceforge.pmd.lang.java.ast.ASTExpression getQualifier()"
+                },
+                {
+                    "type": "meta",
+                    "data": "Check whether the method caller is string type"
+                },
+                {
+                    "type": "meta",
+                    "data": "Check whether the argument is string type"
+                }
+            ]
+        },
+        {
+            "status": "Generated checker fails to compile in attempt 2 / 5, preparing next attempt."
+        },
+        {
+            "status": "Failed to pass (follow rule)test case 31, and trying fix, generating test case logic in attempt 3 / 5",
+            "test_cases": [
+                {
+                    "name": "(follow rule)test case 1",
+                    "status": "success"
+                },
+                {
+                    "name": "(violate rule)test case 2",
+                    "status": "success"
+                },
+                {
+                    "name": "(violate rule)test case 3",
+                    "status": "success"
+                },
+                {
+                    "name": "(follow rule)test case 4",
+                    "status": "success"
+                },
+                {
+                    "name": "(follow rule)test case 5",
+                    "status": "success"
+                },
+                {
+                    "name": "(follow rule)test case 6",
+                    "status": "success"
+                },
+                {
+                    "name": "(follow rule)test case 7",
+                    "status": "success"
+                },
+                {
+                    "name": "(violate rule)test case 8",
+                    "status": "success"
+                },
+                {
+                    "name": "(follow rule)test case 9",
+                    "status": "success"
+                },
+                {
+                    "name": "(follow rule)test case 10",
+                    "status": "success"
+                },
+                {
+                    "name": "(follow rule)test case 11",
+                    "status": "success"
+                },
+                {
+                    "name": "(follow rule)test case 12",
+                    "status": "success"
+                },
+                {
+                    "name": "(violate rule)test case 13",
+                    "status": "success"
+                },
+                {
+                    "name": "(follow rule)test case 14",
+                    "status": "success"
+                },
+                {
+                    "name": "(follow rule)test case 15",
+                    "status": "success"
+                },
+                {
+                    "name": "(violate rule)test case 16",
+                    "status": "success"
+                },
+                {
+                    "name": "(follow rule)test case 17",
+                    "status": "success"
+                },
+                {
+                    "name": "(follow rule)test case 18",
+                    "status": "success"
+                },
+                {
+                    "name": "(violate rule)test case 19",
+                    "status": "success"
+                },
+                {
+                    "name": "(follow rule)test case 20",
+                    "status": "success"
+                },
+                {
+                    "name": "(violate rule)test case 21",
+                    "status": "success"
+                },
+                {
+                    "name": "(follow rule)test case 22",
+                    "status": "success"
+                },
+                {
+                    "name": "(violate rule)test case 23",
+                    "status": "success"
+                },
+                {
+                    "name": "(violate rule)test case 24",
+                    "status": "success"
+                },
+                {
+                    "name": "(violate rule)test case 25",
+                    "status": "success"
+                },
+                {
+                    "name": "(follow rule)test case 26",
+                    "status": "skipped"
+                },
+                {
+                    "name": "(follow rule)test case 27",
+                    "status": "skipped"
+                },
+                {
+                    "name": "(follow rule)test case 28",
+                    "status": "success"
+                },
+                {
+                    "name": "(violate rule)test case 29",
+                    "status": "success"
+                },
+                {
+                    "name": "(follow rule)test case 30",
+                    "status": "success"
+                },
+                {
+                    "name": "(follow rule)test case 31",
+                    "status": "failure",
+                    "selected": true
+                }
+            ],
+            "fixing": true,
+            "logics": [
+                "Get all method calls in the test case.",
+                "Check whether the method name is `equals`, `equalsIgnoreCase`, `compareTo`, `compareToIgnoreCase`, or `contentEquals`.",
+                "For each method call identified in step 2:",
+                "If the method caller is not a string literal and the first argument is a string literal or a constant, then this test case violates the rule."
+            ]
+        },
+        {
+            "status": "Querying API for checking using test logic",
+            "fixing": true,
+            "api_info": [
+                {
+                    "type": "api",
+                    "data": "net.sourceforge.pmd.lang.java.ast.ASTMethodDeclaration: public boolean equals(java.lang.Object)"
+                }
+            ]
+        },
+        {
+            "status": "Fix successfully! Generating checker code",
+            "checker_code": "package net.sourceforge.pmd.lang.java.rule.bestpractices;\n\n\nimport net.sourceforge.pmd.lang.java.rule.AbstractJavaRulechainRule;\nimport net.sourceforge.pmd.lang.java.ast. *;\nimport net.sourceforge.pmd.lang.java.ast.internal. *;\nimport net.sourceforge.pmd.lang.java.types. *;\nimport net.sourceforge.pmd.lang.java.symbols. *;\nimport net.sourceforge.pmd.lang.ast.NodeStream;\npublic class LiteralsFirstInComparisonsRule extends AbstractJavaRulechainRule {\n    public LiteralsFirstInComparisonsRule() {\n        super(ASTMethodCall.class);\n    }\n\n    @Override\n    public Object visit(ASTMethodCall node, Object data) {\n        String methodName = node.getMethodName();\n        if (isComparisonMethod(methodName)) {\n            ASTExpression qualifier = node.getQualifier();\n            if (qualifier != null && !(qualifier instanceof ASTStringLiteral)) {\n                ASTArgumentList arguments = node.getArguments();\n                if (arguments.size() == 1 && isMethodCallArgumentStringType(node)) {\n                    ASTExpression argument = arguments.get(0);\n                    if (!(argument instanceof ASTMethodCall) && !isCompileTimeConstant(qualifier) && !isFinalField(qualifier)) {\n                        addViolation(data, node);\n                    }\n                }\n            }\n        }\n        return super.visit(node, data);\n    }\n\n    private boolean isComparisonMethod(String methodName) {\n        return \"equals\".equals(methodName) || \"equalsIgnoreCase\".equals(methodName) ||\n               \"compareTo\".equals(methodName) || \"compareToIgnoreCase\".equals(methodName) ||\n               \"contentEquals\".equals(methodName);\n    }\n\n    private boolean isMethodCallArgumentStringType(ASTMethodCall node) {\n        ASTArgumentList astArgumentList = node.getArguments();\n        ASTExpression expression = astArgumentList.get(0);\n        return TypeTestUtil.isA(String.class, expression.getTypeMirror());\n    }\n\n    private boolean isCompileTimeConstant(ASTExpression expression) {\n        if (expression instanceof ASTVariableAccess) {\n            ASTVariableAccess variableAccess = (ASTVariableAccess) expression;\n            return variableAccess.getReferencedSym() instanceof JVariableSymbol && ((JVariableSymbol) variableAccess.getReferencedSym()).isFinal();\n        }\n        return false;\n    }\n\n    private boolean isFinalField(ASTExpression expression) {\n        if (expression instanceof ASTVariableAccess) {\n            ASTVariableAccess variableAccess = (ASTVariableAccess) expression;\n            return variableAccess.getReferencedSym() instanceof JFieldSymbol && ((JFieldSymbol) variableAccess.getReferencedSym()).isFinal();\n        } else if (expression instanceof ASTFieldAccess) {\n            ASTFieldAccess fieldAccess = (ASTFieldAccess) expression;\n            return fieldAccess.getReferencedSym() instanceof JFieldSymbol && ((JFieldSymbol) fieldAccess.getReferencedSym()).isFinal();\n        }\n        return false;\n    }\n}"
+        },
+        {
+            "status": "All test cases passed!",
+            "test_cases": [
+                {
+                    "name": "(follow rule)test case 1",
+                    "status": "success"
+                },
+                {
+                    "name": "(violate rule)test case 2",
+                    "status": "success"
+                },
+                {
+                    "name": "(violate rule)test case 3",
+                    "status": "success"
+                },
+                {
+                    "name": "(follow rule)test case 4",
+                    "status": "success"
+                },
+                {
+                    "name": "(follow rule)test case 5",
+                    "status": "success"
+                },
+                {
+                    "name": "(follow rule)test case 6",
+                    "status": "success"
+                },
+                {
+                    "name": "(follow rule)test case 7",
+                    "status": "success"
+                },
+                {
+                    "name": "(violate rule)test case 8",
+                    "status": "success"
+                },
+                {
+                    "name": "(follow rule)test case 9",
+                    "status": "success"
+                },
+                {
+                    "name": "(follow rule)test case 10",
+                    "status": "success"
+                },
+                {
+                    "name": "(follow rule)test case 11",
+                    "status": "success"
+                },
+                {
+                    "name": "(follow rule)test case 12",
+                    "status": "success"
+                },
+                {
+                    "name": "(violate rule)test case 13",
+                    "status": "success"
+                },
+                {
+                    "name": "(follow rule)test case 14",
+                    "status": "success"
+                },
+                {
+                    "name": "(follow rule)test case 15",
+                    "status": "success"
+                },
+                {
+                    "name": "(violate rule)test case 16",
+                    "status": "success"
+                },
+                {
+                    "name": "(follow rule)test case 17",
+                    "status": "success"
+                },
+                {
+                    "name": "(follow rule)test case 18",
+                    "status": "success"
+                },
+                {
+                    "name": "(violate rule)test case 19",
+                    "status": "success"
+                },
+                {
+                    "name": "(follow rule)test case 20",
+                    "status": "success"
+                },
+                {
+                    "name": "(violate rule)test case 21",
+                    "status": "success"
+                },
+                {
+                    "name": "(follow rule)test case 22",
+                    "status": "success"
+                },
+                {
+                    "name": "(violate rule)test case 23",
+                    "status": "success"
+                },
+                {
+                    "name": "(violate rule)test case 24",
+                    "status": "success"
+                },
+                {
+                    "name": "(violate rule)test case 25",
+                    "status": "success"
+                },
+                {
+                    "name": "(follow rule)test case 26",
+                    "status": "skipped"
+                },
+                {
+                    "name": "(follow rule)test case 27",
+                    "status": "skipped"
+                },
+                {
+                    "name": "(follow rule)test case 28",
+                    "status": "success"
+                },
+                {
+                    "name": "(violate rule)test case 29",
+                    "status": "success"
+                },
+                {
+                    "name": "(follow rule)test case 30",
+                    "status": "success"
+                },
+                {
+                    "name": "(follow rule)test case 31",
+                    "status": "success"
+                },
+                {
+                    "name": "(follow rule)test case 32",
+                    "status": "success"
+                },
+                {
+                    "name": "(follow rule)test case 33",
+                    "status": "success"
+                }
+            ]
+        }
+    ],
+    "test_cases": [
+        {
+            "name": "(follow rule)test case 1"
+        },
+        {
+            "name": "(violate rule)test case 2"
+        },
+        {
+            "name": "(violate rule)test case 3"
+        },
+        {
+            "name": "(follow rule)test case 4"
+        },
+        {
+            "name": "(follow rule)test case 5"
+        },
+        {
+            "name": "(follow rule)test case 6"
+        },
+        {
+            "name": "(follow rule)test case 7"
+        },
+        {
+            "name": "(violate rule)test case 8"
+        },
+        {
+            "name": "(follow rule)test case 9"
+        },
+        {
+            "name": "(follow rule)test case 10"
+        },
+        {
+            "name": "(follow rule)test case 11"
+        },
+        {
+            "name": "(follow rule)test case 12"
+        },
+        {
+            "name": "(violate rule)test case 13"
+        },
+        {
+            "name": "(follow rule)test case 14"
+        },
+        {
+            "name": "(follow rule)test case 15"
+        },
+        {
+            "name": "(violate rule)test case 16"
+        },
+        {
+            "name": "(follow rule)test case 17"
+        },
+        {
+            "name": "(follow rule)test case 18"
+        },
+        {
+            "name": "(violate rule)test case 19"
+        },
+        {
+            "name": "(follow rule)test case 20"
+        },
+        {
+            "name": "(violate rule)test case 21"
+        },
+        {
+            "name": "(follow rule)test case 22"
+        },
+        {
+            "name": "(violate rule)test case 23"
+        },
+        {
+            "name": "(violate rule)test case 24"
+        },
+        {
+            "name": "(violate rule)test case 25"
+        },
+        {
+            "name": "(follow rule)test case 26"
+        },
+        {
+            "name": "(follow rule)test case 27"
+        },
+        {
+            "name": "(follow rule)test case 28"
+        },
+        {
+            "name": "(violate rule)test case 29"
+        },
+        {
+            "name": "(follow rule)test case 30"
+        },
+        {
+            "name": "(follow rule)test case 31"
+        },
+        {
+            "name": "(follow rule)test case 32"
+        },
+        {
+            "name": "(follow rule)test case 33"
+        }
+    ]
+}

@@ -1,0 +1,301 @@
+{
+    "name": "ExcessivePublicCountRule",
+    "pass_rate":100.00,
+    "description": "Classes with large numbers of public methods and attributes require disproportionate testing efforts since combinational side effects grow rapidly and increase risk. The default threshold above which a node is reported is 2.",
+    "steps": [
+        {
+            "status": "Preparing to use negative test case to generate initial checker"
+        },
+        {
+            "status": "Generating test case logic using (violate rule)test case 2 in attempt 1 / 5",
+            "logics": [
+                "Get the name of the class.",
+                "Check whether the class is public.",
+                "Get all fields declared in the class.",
+                "Check whether the field is public.",
+                "Count the number of public fields.",
+                "Check whether the number of public fields exceeds the threshold (2)."
+            ],
+            "test_cases": [
+                {
+                    "name": "(violate rule)test case 2",
+                    "selected": true
+                }
+            ]
+        },
+        {
+            "status": "Querying API for checking using (violate rule)test case 2",
+            "api_info": [
+                {
+                    "type": "api",
+                    "data": "net.sourceforge.pmd.lang.java.ast.ASTClassOrInterfaceDeclaration: public java.lang.String getSimpleName()"
+                },
+                {
+                    "type": "api",
+                    "data": "net.sourceforge.pmd.lang.java.ast.ASTClassOrInterfaceDeclaration: public boolean isPublic()"
+                },
+                {
+                    "type": "api",
+                    "data": "net.sourceforge.pmd.lang.java.ast.ASTFieldDeclaration: public net.sourceforge.pmd.lang.ast.NodeStream<ASTAnnotation> getDeclaredAnnotations()"
+                },
+                {
+                    "type": "api",
+                    "data": "net.sourceforge.pmd.lang.java.ast.ASTFieldDeclaration: public boolean isPublic()"
+                }
+            ]
+        },
+        {
+            "status": "Success! Generate initial checker code using (violate rule)test case 2. Start to iterate other test cases!",
+            "checker_code": "package net.sourceforge.pmd.lang.java.rule.design;\n\nimport java.util.*;\nimport java.lang.*;\n\nimport net.sourceforge.pmd.lang.java.rule.AbstractJavaRulechainRule;\nimport net.sourceforge.pmd.lang.java.ast. *;\nimport net.sourceforge.pmd.lang.java.ast.internal. *;\nimport net.sourceforge.pmd.lang.java.types. *;\nimport net.sourceforge.pmd.lang.java.symbols. *;\nimport net.sourceforge.pmd.lang.ast.NodeStream;\npublic class ExcessivePublicCountRule extends AbstractJavaRulechainRule {\n    private static final int THRESHOLD = 2;\n\n    public ExcessivePublicCountRule() {\n        super(ASTClassOrInterfaceDeclaration.class);\n    }\n\n    @Override\n    public Object visit(ASTClassOrInterfaceDeclaration node, Object data) {\n        if (node.isPublic()) {\n            int publicFieldCount = node.getFirstChildOfType(ASTClassOrInterfaceBody.class)\n                                      .children(ASTFieldDeclaration.class)\n                                      .filter(ASTFieldDeclaration::isPublic)\n                                      .count();\n\n            if (publicFieldCount > THRESHOLD) {\n                addViolation(data, node);\n            }\n        }\n        return super.visit(node, data);\n    }\n}",
+            "test_cases": [
+                {
+                    "name": "(violate rule)test case 2",
+                    "selected": true
+                }
+            ]
+        },
+        {
+            "status": "Running test cases...",
+            "test_cases": [
+                {
+                    "name": "(follow rule)test case 1",
+                    "status": "pending"
+                },
+                {
+                    "name": "(violate rule)test case 2",
+                    "status": "pending"
+                },
+                {
+                    "name": "(follow rule)test case 3",
+                    "status": "pending"
+                },
+                {
+                    "name": "(violate rule)test case 4",
+                    "status": "pending"
+                },
+                {
+                    "name": "(violate rule)test case 5",
+                    "status": "pending"
+                },
+                {
+                    "name": "(follow rule)test case 6",
+                    "status": "pending"
+                },
+                {
+                    "name": "(follow rule)test case 7",
+                    "status": "pending"
+                }
+            ]
+        },
+        {
+            "status": "Failed to pass (follow rule)test case 3, and trying fix, generating test case logic in attempt 1 / 5",
+            "test_cases": [
+                {
+                    "name": "(follow rule)test case 1",
+                    "status": "success"
+                },
+                {
+                    "name": "(violate rule)test case 2",
+                    "status": "success"
+                },
+                {
+                    "name": "(follow rule)test case 3",
+                    "status": "failure",
+                    "selected": true
+                }
+            ],
+            "fixing": true,
+            "logics": [
+                "Get the name of the class.",
+                "Check whether the class is public.",
+                "Get all fields declared in the class.",
+                "Check whether the field is public.",
+                "Check whether the field is static.",
+                "Check whether the field is final.",
+                "Count the number of public fields in the class.",
+                "Check whether the number of public fields exceeds the threshold (2)."
+            ]
+        },
+        {
+            "status": "Querying API for checking using test logic",
+            "fixing": true,
+            "api_info": [
+                {
+                    "type": "api",
+                    "data": "net.sourceforge.pmd.lang.java.ast.ASTClassOrInterfaceDeclaration: public java.lang.String getSimpleName()"
+                },
+                {
+                    "type": "api",
+                    "data": "net.sourceforge.pmd.lang.java.ast.ASTClassOrInterfaceDeclaration: public boolean isPublic()"
+                },
+                {
+                    "type": "api",
+                    "data": "net.sourceforge.pmd.lang.java.ast.ASTFieldDeclaration: public net.sourceforge.pmd.lang.ast.NodeStream<ASTAnnotation> getDeclaredAnnotations()"
+                },
+                {
+                    "type": "api",
+                    "data": "net.sourceforge.pmd.lang.java.ast.ASTFieldDeclaration: public boolean isPublic()"
+                },
+                {
+                    "type": "api",
+                    "data": "net.sourceforge.pmd.lang.java.ast.ASTFieldDeclaration: public boolean isStatic()"
+                },
+                {
+                    "type": "api",
+                    "data": "net.sourceforge.pmd.lang.java.ast.ASTFieldDeclaration: public boolean isFinal()"
+                }
+            ]
+        },
+        {
+            "status": "Fix successfully! Generating checker code",
+            "checker_code": "package net.sourceforge.pmd.lang.java.rule.design;\n\nimport java.util.*;\nimport java.lang.*;\n\n\nimport net.sourceforge.pmd.lang.java.rule.AbstractJavaRulechainRule;\nimport net.sourceforge.pmd.lang.java.ast. *;\nimport net.sourceforge.pmd.lang.java.ast.internal. *;\nimport net.sourceforge.pmd.lang.java.types. *;\nimport net.sourceforge.pmd.lang.java.symbols. *;\nimport net.sourceforge.pmd.lang.ast.NodeStream;\npublic class ExcessivePublicCountRule extends AbstractJavaRulechainRule {\n    private static final int THRESHOLD = 2;\n\n    public ExcessivePublicCountRule() {\n        super(ASTClassOrInterfaceDeclaration.class);\n    }\n\n    @Override\n    public Object visit(ASTClassOrInterfaceDeclaration node, Object data) {\n        if (node.isPublic()) {\n            int publicFieldCount = node.getFirstChildOfType(ASTClassOrInterfaceBody.class)\n                                      .children(ASTFieldDeclaration.class)\n                                      .filter(field -> field.isPublic() && !(field.isStatic() && field.isFinal()))\n                                      .count();\n\n            if (publicFieldCount > THRESHOLD) {\n                addViolation(data, node);\n            }\n        }\n        return super.visit(node, data);\n    }\n}"
+        },
+        {
+            "status": "Running test cases...",
+            "test_cases": [
+                {
+                    "name": "(follow rule)test case 1",
+                    "status": "pending"
+                },
+                {
+                    "name": "(violate rule)test case 2",
+                    "status": "pending"
+                },
+                {
+                    "name": "(follow rule)test case 3",
+                    "status": "pending"
+                },
+                {
+                    "name": "(violate rule)test case 4",
+                    "status": "pending"
+                },
+                {
+                    "name": "(violate rule)test case 5",
+                    "status": "pending"
+                },
+                {
+                    "name": "(follow rule)test case 6",
+                    "status": "pending"
+                },
+                {
+                    "name": "(follow rule)test case 7",
+                    "status": "pending"
+                }
+            ]
+        },
+        {
+            "status": "Failed to pass (violate rule)test case 4, and trying fix, generating test case logic in attempt 1 / 5",
+            "test_cases": [
+                {
+                    "name": "(follow rule)test case 1",
+                    "status": "success"
+                },
+                {
+                    "name": "(violate rule)test case 2",
+                    "status": "success"
+                },
+                {
+                    "name": "(follow rule)test case 3",
+                    "status": "success"
+                },
+                {
+                    "name": "(violate rule)test case 4",
+                    "status": "failure",
+                    "selected": true
+                }
+            ],
+            "fixing": true,
+            "logics": [
+                "Get the name of the class.",
+                "Check whether the class is public.",
+                "Get all methods declared in the class.",
+                "Check whether each method is public.",
+                "Count the number of public methods.",
+                "Compare the count of public methods with the threshold (2).",
+                "Check whether the count exceeds the threshold."
+            ]
+        },
+        {
+            "status": "Querying API for checking using test logic",
+            "fixing": true,
+            "api_info": [
+                {
+                    "type": "api",
+                    "data": "net.sourceforge.pmd.lang.java.ast.ASTClassOrInterfaceDeclaration: public java.lang.String getSimpleName()"
+                },
+                {
+                    "type": "api",
+                    "data": "net.sourceforge.pmd.lang.java.ast.ASTClassOrInterfaceDeclaration: public boolean isPublic()"
+                },
+                {
+                    "type": "api",
+                    "data": "net.sourceforge.pmd.lang.java.ast.ASTMethodDeclaration: public net.sourceforge.pmd.lang.ast.NodeStream<ASTAnnotation> getDeclaredAnnotations()"
+                },
+                {
+                    "type": "api",
+                    "data": "net.sourceforge.pmd.lang.java.ast.ASTMethodDeclaration: public boolean isPublic()"
+                }
+            ]
+        },
+        {
+            "status": "Fix successfully! Generating checker code",
+            "checker_code": "package net.sourceforge.pmd.lang.java.rule.design;\n\nimport java.util.*;\nimport java.lang.*;\n\n\nimport net.sourceforge.pmd.lang.java.rule.AbstractJavaRulechainRule;\nimport net.sourceforge.pmd.lang.java.ast. *;\nimport net.sourceforge.pmd.lang.java.ast.internal. *;\nimport net.sourceforge.pmd.lang.java.types. *;\nimport net.sourceforge.pmd.lang.java.symbols. *;\nimport net.sourceforge.pmd.lang.ast.NodeStream;\npublic class ExcessivePublicCountRule extends AbstractJavaRulechainRule {\n    private static final int THRESHOLD = 2;\n\n    public ExcessivePublicCountRule() {\n        super(ASTClassOrInterfaceDeclaration.class);\n    }\n\n    @Override\n    public Object visit(ASTClassOrInterfaceDeclaration node, Object data) {\n        if (node.isPublic()) {\n            int publicFieldCount = node.getFirstChildOfType(ASTClassOrInterfaceBody.class)\n                                      .children(ASTFieldDeclaration.class)\n                                      .filter(field -> field.isPublic() && !(field.isStatic() && field.isFinal()))\n                                      .count();\n\n            int publicMethodCount = node.getFirstChildOfType(ASTClassOrInterfaceBody.class)\n                                      .children(ASTMethodDeclaration.class)\n                                      .filter(method -> method.isPublic())\n                                      .count();\n\n            if (publicFieldCount + publicMethodCount > THRESHOLD) {\n                addViolation(data, node);\n            }\n        }\n        return super.visit(node, data);\n    }\n}"
+        },
+        {
+            "status": "All test cases passed!",
+            "test_cases": [
+                {
+                    "name": "(follow rule)test case 1",
+                    "status": "success"
+                },
+                {
+                    "name": "(violate rule)test case 2",
+                    "status": "success"
+                },
+                {
+                    "name": "(follow rule)test case 3",
+                    "status": "success"
+                },
+                {
+                    "name": "(violate rule)test case 4",
+                    "status": "success"
+                },
+                {
+                    "name": "(violate rule)test case 5",
+                    "status": "success"
+                },
+                {
+                    "name": "(follow rule)test case 6",
+                    "status": "success"
+                },
+                {
+                    "name": "(follow rule)test case 7",
+                    "status": "success"
+                }
+            ]
+        }
+    ],
+    "test_cases": [
+        {
+            "name": "(follow rule)test case 1"
+        },
+        {
+            "name": "(violate rule)test case 2"
+        },
+        {
+            "name": "(follow rule)test case 3"
+        },
+        {
+            "name": "(violate rule)test case 4"
+        },
+        {
+            "name": "(violate rule)test case 5"
+        },
+        {
+            "name": "(follow rule)test case 6"
+        },
+        {
+            "name": "(follow rule)test case 7"
+        }
+    ]
+}

@@ -1,0 +1,63 @@
+{
+    "name": "ExcessiveImportsRule",
+    "pass_rate": 100.00,
+    "description": "A high number of imports can indicate a high degree of coupling within an object. This rule counts the number of imports and reports a violation if the count is above the threshold. The default threshold above which a node is reported is 3.",
+    "steps": [
+        {
+            "status": "Preparing to use negative test case to generate initial checker"
+        },
+        {
+            "status": "Generating test case logic using (violate rule)test case 1 in attempt 1 / 5",
+            "logics": [
+                "Get the number of import statements in the file.",
+                "Check whether the number of import statements exceeds the threshold (default is 3)."
+            ],
+            "test_cases": [
+                {
+                    "name": "(violate rule)test case 1",
+                    "selected": true
+                }
+            ]
+        },
+        {
+            "status": "Querying API for checking using (violate rule)test case 1",
+            "api_info": [
+                {
+                    "type": "api",
+                    "data": "net.sourceforge.pmd.lang.java.ast.ASTImportDeclaration: public int getNumChildren()"
+                }
+            ]
+        },
+        {
+            "status": "Success! Generate initial checker code using (violate rule)test case 1. Start to iterate other test cases!",
+            "checker_code": "package net.sourceforge.pmd.lang.java.rule.design;\n\n\nimport net.sourceforge.pmd.lang.java.rule.AbstractJavaRulechainRule;\nimport net.sourceforge.pmd.lang.java.ast. *;\nimport net.sourceforge.pmd.lang.java.ast.internal. *;\nimport net.sourceforge.pmd.lang.java.types. *;\nimport net.sourceforge.pmd.lang.java.symbols. *;\nimport net.sourceforge.pmd.lang.ast.NodeStream;\npublic class ExcessiveImportsRule extends AbstractJavaRulechainRule {\n    private static final int THRESHOLD = 3;\n\n    public ExcessiveImportsRule() {\n        super(ASTCompilationUnit.class);\n    }\n\n    @Override\n    public Object visit(ASTCompilationUnit node, Object data) {\n        NodeStream<ASTImportDeclaration> imports = node.children(ASTImportDeclaration.class);\n        if (imports.count() > THRESHOLD) {\n            addViolation(data, node);\n        }\n        return super.visit(node, data);\n    }\n}",
+            "test_cases": [
+                {
+                    "name": "(violate rule)test case 1",
+                    "selected": true
+                }
+            ]
+        },
+        {
+            "status": "All test cases passed!",
+            "test_cases": [
+                {
+                    "name": "(violate rule)test case 1",
+                    "status": "success"
+                },
+                {
+                    "name": "(follow rule)test case 2",
+                    "status": "success"
+                }
+            ]
+        }
+    ],
+    "test_cases": [
+        {
+            "name": "(violate rule)test case 1"
+        },
+        {
+            "name": "(follow rule)test case 2"
+        }
+    ]
+}

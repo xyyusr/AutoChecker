@@ -1,0 +1,409 @@
+{
+    "name": "IdenticalCatchBranchesRule",
+    "pass_rate": 0,
+    "description": "Identical catch branches use up vertical space and increase the complexity of code without adding functionality. It’s better style to collapse identical branches into a single multi-catch branch.",
+    "steps": [
+        {
+            "status": "Preparing to use negative test case to generate initial checker"
+        },
+        {
+            "status": "Generating test case logic using (violate rule)test case 1 in attempt 1 / 5",
+            "logics": [
+                "Get all catch branches of the try statement.",
+                "For each catch branch, get the exception type of the catch parameter.",
+                "For each catch branch, get the body of the catch branch.",
+                "Check whether the bodies of the catch branches are identical.",
+                "Check whether the exception types of the catch parameters are different."
+            ],
+            "test_cases": [
+                {
+                    "name": "(violate rule)test case 1",
+                    "selected": true
+                }
+            ]
+        },
+        {
+            "status": "Querying API for checking using (violate rule)test case 1",
+            "api_info": [
+                {
+                    "type": "api",
+                    "data": "net.sourceforge.pmd.lang.java.ast.ASTTryStatement: public net.sourceforge.pmd.lang.ast.NodeStream<ASTCatchClause> getCatchClauses()"
+                },
+                {
+                    "type": "api",
+                    "data": "net.sourceforge.pmd.lang.java.ast.ASTCatchParameter: public net.sourceforge.pmd.lang.ast.NodeStream<ASTClassOrInterfaceType> getAllExceptionTypes()"
+                },
+                {
+                    "type": "api",
+                    "data": "net.sourceforge.pmd.lang.java.ast.ASTCatchClause: public net.sourceforge.pmd.lang.java.ast.ASTBlock getBody()"
+                },
+                {
+                    "type": "api",
+                    "data": "net.sourceforge.pmd.lang.java.ast.ASTCatchParameter: public net.sourceforge.pmd.lang.ast.NodeStream<ASTClassOrInterfaceType> getAllExceptionTypes()"
+                }
+            ]
+        },
+        {
+            "status": "Generated checker compile failed in attempt 1 / 5, preparing next attempt."
+        },
+        {
+            "status": "Generating test case logic using (violate rule)test case 1 in attempt 2 / 5",
+            "logics": [
+                "Get all catch branches of the try statement.",
+                "Get the body of each catch branch.",
+                "Check whether the bodies of the catch branches are identical.",
+                "Check whether the catch branches can be collapsed into a single multi-catch branch."
+            ],
+            "test_cases": [
+                {
+                    "name": "(violate rule)test case 1",
+                    "selected": true
+                }
+            ]
+        },
+        {
+            "status": "Querying API for checking using (violate rule)test case 1",
+            "api_info": [
+                {
+                    "type": "api",
+                    "data": "net.sourceforge.pmd.lang.java.ast.ASTTryStatement: public net.sourceforge.pmd.lang.ast.NodeStream<ASTCatchClause> getCatchClauses()"
+                },
+                {
+                    "type": "api",
+                    "data": "net.sourceforge.pmd.lang.java.ast.ASTCatchClause: public net.sourceforge.pmd.lang.java.ast.ASTBlock getBody()"
+                }
+            ]
+        },
+        {
+            "status": "Generated checker test failed in attempt  2 / 5, preparing next attempt."
+        },
+        {
+            "status": "Generating test case logic using (violate rule)test case 1 in attempt 3 / 5",
+            "logics": [
+                "Get all catch branches of the try statement.",
+                "For each catch branch, get the exception type of the catch parameter.",
+                "For each catch branch, get the body of the catch branch.",
+                "Check whether the bodies of the catch branches are identical.",
+                "Check whether the exception types are different.",
+                "If the bodies of the catch branches are identical and the exception types are different, then these catch branches can be collapsed into a single multi-catch branch."
+            ],
+            "test_cases": [
+                {
+                    "name": "(violate rule)test case 1",
+                    "selected": true
+                }
+            ]
+        },
+        {
+            "status": "Querying API for checking using (violate rule)test case 1",
+            "api_info": [
+                {
+                    "type": "api",
+                    "data": "net.sourceforge.pmd.lang.java.ast.ASTTryStatement: public net.sourceforge.pmd.lang.ast.NodeStream<ASTCatchClause> getCatchClauses()"
+                },
+                {
+                    "type": "api",
+                    "data": "net.sourceforge.pmd.lang.java.ast.ASTCatchParameter: public net.sourceforge.pmd.lang.ast.NodeStream<ASTClassOrInterfaceType> getAllExceptionTypes()"
+                },
+                {
+                    "type": "api",
+                    "data": "net.sourceforge.pmd.lang.java.ast.ASTCatchClause: public net.sourceforge.pmd.lang.java.ast.ASTBlock getBody()"
+                },
+                {
+                    "type": "api",
+                    "data": "net.sourceforge.pmd.lang.java.ast.internal.JavaAstUtils: static public boolean hasExceptionList(net.sourceforge.pmd.lang.java.ast.ASTMethodOrConstructorDeclaration, [Ljava.lang.Class;)"
+                }
+            ]
+        },
+        {
+            "status": "Generated checker test failed in attempt  3 / 5, preparing next attempt."
+        },
+        {
+            "status": "Generating test case logic using (violate rule)test case 1 in attempt 4 / 5",
+            "logics": [
+                "Get all catch branches of the try statement.",
+                "For each catch branch:",
+                "Check whether there are multiple catch branches with identical bodies.",
+                "Check whether the exception types in these catch branches can be combined into a multi-catch clause (i.e., they are not in a subclass-superclass relationship)."
+            ],
+            "test_cases": [
+                {
+                    "name": "(violate rule)test case 1",
+                    "selected": true
+                }
+            ]
+        },
+        {
+            "status": "Querying API for checking using (violate rule)test case 1",
+            "api_info": [
+                {
+                    "type": "api",
+                    "data": "net.sourceforge.pmd.lang.java.ast.ASTTryStatement: public net.sourceforge.pmd.lang.ast.NodeStream<ASTCatchClause> getCatchClauses()"
+                },
+                {
+                    "type": "api",
+                    "data": "net.sourceforge.pmd.lang.java.ast.ASTCatchParameter: public boolean isMulticatch()"
+                }
+            ]
+        },
+        {
+            "status": "Generated checker compile failed in attempt 4 / 5, preparing next attempt."
+        },
+        {
+            "status": "Generating test case logic using (violate rule)test case 1 in attempt 5 / 5",
+            "logics": [
+                "Get all catch branches of the try statement.",
+                "Check whether the catch branches have identical bodies.",
+                "Check whether the catch branches throw the same exception type.",
+                "Check whether the catch branches can be collapsed into a single multi-catch branch."
+            ],
+            "test_cases": [
+                {
+                    "name": "(violate rule)test case 1",
+                    "selected": true
+                }
+            ]
+        },
+        {
+            "status": "Querying API for checking using (violate rule)test case 1",
+            "api_info": [
+                {
+                    "type": "api",
+                    "data": "net.sourceforge.pmd.lang.java.ast.ASTTryStatement: public net.sourceforge.pmd.lang.ast.NodeStream<ASTCatchClause> getCatchClauses()"
+                },
+                {
+                    "type": "api",
+                    "data": "net.sourceforge.pmd.lang.java.ast.ASTThrowStatement: public boolean hasDescendantOfType(java.lang.Class)"
+                }
+            ]
+        },
+        {
+            "status": "Generated checker compile failed in attempt 5 / 5, preparing next attempt."
+        },
+        {
+            "status": "Failed in five attempts, so skip the failed test case (violate rule)test case 1, select next negative test case to generate initial checker..."
+        },
+        {
+            "status": "Generating test case logic using (violate rule)test case 3 in attempt 1 / 5",
+            "logics": [
+                "Get all catch branches of the try statement.",
+                "For each catch branch, get the exception type of the catch parameter.",
+                "For each catch branch, get the statements inside the catch block.",
+                "Check whether the statements in the catch blocks are identical.",
+                "Check whether the exception types in the catch branches are different."
+            ],
+            "test_cases": [
+                {
+                    "name": "(violate rule)test case 1",
+                    "status": "skipped"
+                },
+                {
+                    "name": "(violate rule)test case 3",
+                    "selected": true
+                }
+            ]
+        },
+        {
+            "status": "Querying API for checking using (violate rule)test case 3",
+            "api_info": [
+                {
+                    "type": "api",
+                    "data": "net.sourceforge.pmd.lang.java.ast.ASTTryStatement: public net.sourceforge.pmd.lang.ast.NodeStream<ASTCatchClause> getCatchClauses()"
+                },
+                {
+                    "type": "api",
+                    "data": "net.sourceforge.pmd.lang.java.ast.ASTCatchParameter: public net.sourceforge.pmd.lang.ast.NodeStream<ASTClassOrInterfaceType> getAllExceptionTypes()"
+                },
+                {
+                    "type": "api",
+                    "data": "net.sourceforge.pmd.lang.java.ast.ASTTryStatement: public net.sourceforge.pmd.lang.ast.NodeStream<ASTCatchClause> getCatchClauses()"
+                },
+                {
+                    "type": "api",
+                    "data": "net.sourceforge.pmd.lang.java.ast.ASTCatchClause: public boolean equals(java.lang.Object)"
+                },
+                {
+                    "type": "api",
+                    "data": "net.sourceforge.pmd.lang.java.ast.ASTCatchClause: public boolean hasDescendantOfType(java.lang.Class)"
+                }
+            ]
+        },
+        {
+            "status": "Generated checker compile failed in attempt 1 / 5, preparing next attempt."
+        },
+        {
+            "status": "Generating test case logic using (violate rule)test case 3 in attempt 2 / 5",
+            "logics": [
+                "Get the catch branches of the try statement.",
+                "Check whether the catch branches have identical statements.",
+                "Check whether the exception types in the catch branches are different.",
+                "Check whether the catch branches could be collapsed into a single multi-catch branch."
+            ],
+            "test_cases": [
+                {
+                    "name": "(violate rule)test case 1",
+                    "status": "skipped"
+                },
+                {
+                    "name": "(violate rule)test case 3",
+                    "selected": true
+                }
+            ]
+        },
+        {
+            "status": "Querying API for checking using (violate rule)test case 3",
+            "api_info": [
+                {
+                    "type": "api",
+                    "data": "net.sourceforge.pmd.lang.java.ast.ASTTryStatement: public net.sourceforge.pmd.lang.ast.NodeStream<ASTCatchClause> getCatchClauses()"
+                },
+                {
+                    "type": "api",
+                    "data": "net.sourceforge.pmd.lang.java.ast.ASTCatchClause: public boolean equals(java.lang.Object)"
+                },
+                {
+                    "type": "api",
+                    "data": "net.sourceforge.pmd.lang.java.ast.ASTCatchClause: public boolean hasDescendantOfType(java.lang.Class)"
+                }
+            ]
+        },
+        {
+            "status": "Generated checker compile failed in attempt 2 / 5, preparing next attempt."
+        },
+        {
+            "status": "Generating test case logic using (violate rule)test case 3 in attempt 3 / 5",
+            "logics": [
+                "Get the catch branches of the try statement.",
+                "Check whether the catch branches have identical statements.",
+                "Check whether the catch branches have different exception names.",
+                "Check whether the catch branches can be collapsed into a single multi-catch branch."
+            ],
+            "test_cases": [
+                {
+                    "name": "(violate rule)test case 1",
+                    "status": "skipped"
+                },
+                {
+                    "name": "(violate rule)test case 3",
+                    "selected": true
+                }
+            ]
+        },
+        {
+            "status": "Querying API for checking using (violate rule)test case 3",
+            "api_info": [
+                {
+                    "type": "api",
+                    "data": "net.sourceforge.pmd.lang.java.ast.ASTTryStatement: public net.sourceforge.pmd.lang.ast.NodeStream<ASTCatchClause> getCatchClauses()"
+                },
+                {
+                    "type": "api",
+                    "data": "net.sourceforge.pmd.lang.java.ast.ASTCatchClause: public boolean equals(java.lang.Object)"
+                }
+            ]
+        },
+        {
+            "status": "Generated checker compile failed in attempt 3 / 5, preparing next attempt."
+        },
+        {
+            "status": "Generating test case logic using (violate rule)test case 3 in attempt 4 / 5",
+            "logics": [
+                "Get all catch branches of the try statement.",
+                "Check whether the number of catch branches is greater than 1.",
+                "For each catch branch:",
+                "Compare the statements in each catch branch to check if they are identical.",
+                "If the statements in multiple catch branches are identical, check whether they are collapsed into a single multi-catch branch."
+            ],
+            "test_cases": [
+                {
+                    "name": "(violate rule)test case 1",
+                    "status": "skipped"
+                },
+                {
+                    "name": "(violate rule)test case 3",
+                    "selected": true
+                }
+            ]
+        },
+        {
+            "status": "Querying API for checking using (violate rule)test case 3",
+            "api_info": [
+                {
+                    "type": "api",
+                    "data": "net.sourceforge.pmd.lang.java.ast.ASTTryStatement: public net.sourceforge.pmd.lang.ast.NodeStream<ASTCatchClause> getCatchClauses()"
+                },
+                {
+                    "type": "api",
+                    "data": "net.sourceforge.pmd.lang.java.ast.ASTCatchClause: public boolean equals(java.lang.Object)"
+                }
+            ]
+        },
+        {
+            "status": "Generated checker compile failed in attempt 4 / 5, preparing next attempt."
+        },
+        {
+            "status": "Generating test case logic using (violate rule)test case 3 in attempt 5 / 5",
+            "logics": [
+                "Get the catch branches of the try statement.",
+                "Check whether the catch branches have identical statements.",
+                "Check whether the catch branches have different exception names.",
+                "Check whether the catch branches can be collapsed into a single multi-catch branch."
+            ],
+            "test_cases": [
+                {
+                    "name": "(violate rule)test case 1",
+                    "status": "skipped"
+                },
+                {
+                    "name": "(violate rule)test case 3",
+                    "selected": true
+                }
+            ]
+        },
+        {
+            "status": "Querying API for checking using (violate rule)test case 3",
+            "api_info": [
+                {
+                    "type": "api",
+                    "data": "net.sourceforge.pmd.lang.java.ast.ASTTryStatement: public net.sourceforge.pmd.lang.ast.NodeStream<ASTCatchClause> getCatchClauses()"
+                },
+                {
+                    "type": "api",
+                    "data": "net.sourceforge.pmd.lang.java.ast.ASTCatchClause: public boolean equals(java.lang.Object)"
+                }
+            ]
+        },
+        {
+            "status": "Generated checker compile failed in attempt 5 / 5, preparing next attempt."
+        },
+        {
+            "status": "Failed in five attempts, so skip the failed test case (violate rule)test case 3, select next negative test case to generate initial checker..."
+        },
+        {
+            "status": "Use negative test case to generate initial checker failed!"
+        }
+    ],
+    "test_cases": [
+        {
+            "name": "(violate rule)test case 1"
+        },
+        {
+            "name": "(follow rule)test case 2"
+        },
+        {
+            "name": "(violate rule)test case 3"
+        },
+        {
+            "name": "(follow rule)test case 4"
+        },
+        {
+            "name": "(follow rule)test case 5"
+        },
+        {
+            "name": "(follow rule)test case 6"
+        },
+        {
+            "name": "(follow rule)test case 7"
+        }
+    ]
+}
